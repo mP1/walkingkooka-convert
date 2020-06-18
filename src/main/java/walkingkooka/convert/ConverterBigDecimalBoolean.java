@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.math.BigDecimal;
@@ -50,7 +51,7 @@ final class ConverterBigDecimalBoolean extends Converter2 {
     <T> Either<T, String> convert0(final Object value,
                                    final Class<T> type,
                                    final ConverterContext context) {
-        return Either.left(type.cast(((BigDecimal) value).signum() != 0));
+        return Either.left(Cast.to(((BigDecimal) value).signum() != 0));
     }
 
     @Override

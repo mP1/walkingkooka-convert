@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 
@@ -65,7 +66,7 @@ abstract class DateTimeFormatterConverter<S, D> extends Converter2 {
                                          final ConverterContext context) {
         Either<T, String> result;
         try {
-            result = Either.left(type.cast(this.convert1(this.sourceType().cast(value), context)));
+            result = Either.left(Cast.to(this.convert1(Cast.to(value), context)));
         } catch (final IllegalArgumentException | DateTimeException cause) {
             result = this.failConversion(value, type, cause);
         }

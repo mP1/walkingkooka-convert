@@ -63,7 +63,7 @@ final class ConverterNumberNumber extends Converter2 {
         Either<T, String> result;
         try {
             result = type == Number.class ?
-                    Either.left(type.cast(value)) :
+                    Either.left(Cast.to(value)) :
                     this.convertNonNumber(value, type);
         } catch (final RuntimeException cause) {
             result = this.failConversion(value, type, cause);
@@ -76,7 +76,7 @@ final class ConverterNumberNumber extends Converter2 {
         final ConverterNumberNumberNumberTypeVisitorNumber<?> visitor = ConverterNumberNumberNumberTypeVisitor.visitor(type);
         return null == visitor ?
                 this.failConversion(value, type) :
-                Either.left(type.cast(visitor.convert(Cast.to(value))));
+                Either.left(Cast.to(visitor.convert(Cast.to(value))));
     }
 
     @Override

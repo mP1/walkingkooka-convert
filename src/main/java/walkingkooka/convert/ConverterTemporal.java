@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 /**
@@ -48,7 +49,7 @@ abstract class ConverterTemporal<S, D> extends Converter2 {
     final <T> Either<T, String> convert0(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {
-        return this.convert1(this.sourceType().cast(value),
+        return this.convert1(Cast.to(value),
                 type,
                 context);
     }

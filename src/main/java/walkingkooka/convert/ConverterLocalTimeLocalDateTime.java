@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.time.LocalDate;
@@ -48,7 +49,7 @@ final class ConverterLocalTimeLocalDateTime extends ConverterLocalTime {
                                                final LocalTime localTime,
                                                final Class<T> type,
                                                final ConverterContext context) {
-        return Either.left(type.cast(LocalDateTime.of(DATE, localTime)));
+        return Either.left(Cast.to(LocalDateTime.of(DATE, localTime)));
     }
 
     private final static LocalDate DATE = LocalDate.EPOCH;

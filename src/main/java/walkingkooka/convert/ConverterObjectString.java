@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 /**
@@ -42,7 +43,7 @@ final class ConverterObjectString extends Converter2 {
     <T> Either<T, String> convert0(final Object value,
                                    final Class<T> type,
                                    final ConverterContext context) {
-        return Either.left(type.cast(value.toString()));
+        return Either.left(Cast.to(value.toString()));
     }
 
     @Override
