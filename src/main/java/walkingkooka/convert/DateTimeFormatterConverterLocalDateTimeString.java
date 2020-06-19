@@ -37,6 +37,11 @@ final class DateTimeFormatterConverterLocalDateTimeString extends DateTimeFormat
     }
 
     @Override
+    boolean isSourceTypeCompatible(final Object value) {
+        return value instanceof LocalDateTime;
+    }
+
+    @Override
     Class<LocalDateTime> sourceType() {
         return LocalDateTime.class;
     }
