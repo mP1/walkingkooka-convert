@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -39,6 +40,11 @@ final class DateTimeFormatterConverterStringLocalDate extends DateTimeFormatterC
      */
     private DateTimeFormatterConverterStringLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         super(formatter);
+    }
+
+    @Override
+    boolean isSourceTypeCompatible(final Object value) {
+        return value instanceof String;
     }
 
     @Override

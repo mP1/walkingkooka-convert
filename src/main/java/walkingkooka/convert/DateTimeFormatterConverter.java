@@ -44,9 +44,14 @@ abstract class DateTimeFormatterConverter<S, D> extends Converter2 {
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
                                     final ConverterContext context) {
-        return this.sourceType().isInstance(value) &&
+        return this.isSourceTypeCompatible(value) &&
                 this.targetType() == type;
     }
+
+    /**
+     * Performs an instanceof test. This is necessary to avoid calling {@link Class#isInstance(Object)}.
+     */
+    abstract boolean isSourceTypeCompatible(final Object value);
 
     abstract Class<S> sourceType();
 
