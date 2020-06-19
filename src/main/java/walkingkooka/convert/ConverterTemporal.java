@@ -34,8 +34,13 @@ abstract class ConverterTemporal<S, D> extends Converter2 {
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
                                     final ConverterContext context) {
-        return this.sourceType().isInstance(value) && this.isTargetType(type);
+        return this.isSourceTypeCompatible(value) && this.isTargetType(type);
     }
+
+    /**
+     * Performs an instanceof test. This is necessary to avoid calling {@link Class#isInstance(Object)}.
+     */
+    abstract boolean isSourceTypeCompatible(final Object value);
 
     abstract boolean isTargetType(final Class<?> type);
 

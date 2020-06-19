@@ -32,6 +32,11 @@ abstract class ConverterTemporalLocalDate<D> extends ConverterTemporal<LocalDate
     }
 
     @Override
+    final boolean isSourceTypeCompatible(final Object value) {
+        return value instanceof LocalDate;
+    }
+
+    @Override
     final Class<LocalDate> sourceType() {
         return LocalDate.class;
     }
