@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.Value;
 import walkingkooka.text.cursor.TextCursor;
@@ -78,7 +79,7 @@ final class ParserConverter<V, PC extends ParserContext> implements Converter {
         final TextCursor cursor = TextCursors.charSequence(text);
         final Optional<ParserToken> result = this.parser.parse(cursor, this.context.apply(context));
         return result.isPresent() ?
-                Either.left(type.cast(((Value) result.get()).value())) :
+                Either.left(Cast.to(((Value) result.get()).value())) :
                 this.failConversion(text, type);
     }
 

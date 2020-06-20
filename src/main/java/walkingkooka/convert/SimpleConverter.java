@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 /**
@@ -52,7 +53,7 @@ final class SimpleConverter implements Converter {
                                          final Class<T> type,
                                          final ConverterContext context) {
         return this.canConvert0(value, type) ?
-                Either.left(type.cast(value)) :
+                Either.left(Cast.to(value)) :
                 this.failConversion(value, type);
     }
 
