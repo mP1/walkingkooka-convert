@@ -18,40 +18,43 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.predicate.Predicates;
+
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<BooleanTrueFalseConverter> {
 
-    private final static Class<Integer> SOURCE_TYPE = Integer.class;
-    private final static Integer FALSE_VALUE = 1;
-    private final static Class<String> TARGET_TYPE = String.class;
+    private final static Predicate<Object> SOURCE_TESTER = Predicates.customToString((t) -> t instanceof Integer, "Integer");
+    private final static Predicate<Object> FALSE_VALUE = Predicates.is(1);
+    private final static Predicate<Class<?>> TARGET_TESTER = Predicates.customToString((t) -> t == String.class, "String");
     private final static String TRUE_ANSWER = "true!!";
     private final static String FALSE_ANSWER = "false!!";
 
     @Test
-    public void testWithNullSourceTypeFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(null, FALSE_VALUE, TARGET_TYPE, TRUE_ANSWER, FALSE_ANSWER));
+    public void testWithNullSourceFails() {
+        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(null, FALSE_VALUE, TARGET_TESTER, TRUE_ANSWER, FALSE_ANSWER));
     }
 
     @Test
     public void testWithNullFalseValueFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TYPE, null, TARGET_TYPE, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TESTER, null, TARGET_TESTER, TRUE_ANSWER, FALSE_ANSWER));
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TYPE, FALSE_VALUE, null, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TESTER, FALSE_VALUE, null, TRUE_ANSWER, FALSE_ANSWER));
     }
 
     @Test
     public void testWithNullTrueAnswerFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TYPE, FALSE_VALUE, TARGET_TYPE, null, FALSE_ANSWER));
+        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TESTER, FALSE_VALUE, TARGET_TESTER, null, FALSE_ANSWER));
     }
 
     @Test
     public void testWithNullFalseAnswerFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TYPE, FALSE_VALUE, TARGET_TYPE, TRUE_ANSWER, null));
+        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TESTER, FALSE_VALUE, TARGET_TESTER, TRUE_ANSWER, null));
     }
 
     @Test
@@ -67,12 +70,12 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createConverter(),
-                SOURCE_TYPE.getSimpleName() + "->" + TARGET_TYPE.getSimpleName());
+                "Integer->String");
     }
 
     @Override
     public BooleanTrueFalseConverter createConverter() {
-        return BooleanTrueFalseConverter.with(SOURCE_TYPE, FALSE_VALUE, TARGET_TYPE, TRUE_ANSWER, FALSE_ANSWER);
+        return BooleanTrueFalseConverter.with(SOURCE_TESTER, FALSE_VALUE, TARGET_TESTER, TRUE_ANSWER, FALSE_ANSWER);
     }
 
     @Override
