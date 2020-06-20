@@ -21,33 +21,29 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class FunctionConverterTest extends ConverterTestCase2<FunctionConverter<String, Boolean>> {
 
-    private final static Class<String> SOURCE_TYPE = String.class;
-    private final static Class<Boolean> TARGET_TYPE = Boolean.class;
+    private final static Predicate<Object> SOURCE = (t) -> t instanceof String;
+    private final static Predicate<Class<?>> TARGET = Predicate.isEqual(Boolean.class);
     private final static Function<String, Boolean> CONVERTER = Boolean::valueOf;
 
     @Test
     public void testWithNullSourceTypeFails() {
-        assertThrows(NullPointerException.class, () -> FunctionConverter.with(null, TARGET_TYPE, CONVERTER));
+        assertThrows(NullPointerException.class, () -> FunctionConverter.with(null, TARGET, CONVERTER));
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> FunctionConverter.with(SOURCE_TYPE, null, CONVERTER));
+        assertThrows(NullPointerException.class, () -> FunctionConverter.with(SOURCE, null, CONVERTER));
     }
 
     @Test
     public void testWithNullConverterFunctionFails() {
-        assertThrows(NullPointerException.class, () -> FunctionConverter.with(null, TARGET_TYPE, null));
-    }
-
-    @Test
-    public void testWithSameSourceAndTargetTypesFails() {
-        assertThrows(IllegalArgumentException.class, () -> FunctionConverter.with(SOURCE_TYPE, SOURCE_TYPE, String::valueOf));
+        assertThrows(NullPointerException.class, () -> FunctionConverter.with(null, TARGET, null));
     }
 
     // converter........................................................................................................
@@ -66,14 +62,18 @@ public final class FunctionConverterTest extends ConverterTestCase2<FunctionConv
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "String->Boolean");
+        this.toStringAndCheck(this.createConverter().setToString("String->Boolean"), "String->Boolean");
     }
 
     // Converter........................................................................................................
 
     @Override
     public FunctionConverter<String, Boolean> createConverter() {
-        return FunctionConverter.with(String.class, Boolean.class, Boolean::valueOf);
+        return FunctionConverter.with(SOURCE, TARGET, FunctionConverterTest::stringToBoolean);
+    }
+
+    private static Boolean stringToBoolean(final String s) {
+        return Boolean.valueOf(s);
     }
 
     @Override

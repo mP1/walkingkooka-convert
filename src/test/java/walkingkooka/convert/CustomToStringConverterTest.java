@@ -20,6 +20,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 
+import java.util.function.Predicate;
+
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -71,7 +73,7 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
 
     @Test
     public void testEqualsDifferentWrappedConverter() {
-        this.checkNotEquals(CustomToStringConverter.wrap(Converters.function(String.class, Boolean.class, Boolean::valueOf), CUSTOM_TO_STRING));
+        this.checkNotEquals(CustomToStringConverter.wrap(Converters.function(t -> t instanceof String, Predicate.isEqual(Boolean.class), (String v) -> Boolean.valueOf(v)), CUSTOM_TO_STRING));
     }
 
     @Test

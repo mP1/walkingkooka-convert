@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.predicate.Predicates;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -69,7 +70,11 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
 
     @Override
     public ConverterCollection createConverter() {
-        return Cast.to(ConverterCollection.with(Lists.of(Converters.function(String.class, Boolean.class, Boolean::valueOf), Converters.numberNumber())));
+        return Cast.to(ConverterCollection.with(Lists.of(booleanToString().setToString("String->Boolean"), Converters.numberNumber())));
+    }
+
+    private Converter booleanToString() {
+        return Converters.<String, Boolean>function(t-> t instanceof String, Predicates.is(Boolean.class), Boolean::valueOf);
     }
 
     @Override

@@ -17,61 +17,59 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * A {@link Converter} passes the given value to a {@link Function} such as a method handle to a static method which performs the conversion.
  */
 final class FunctionConverter<S, D> extends Converter2 {
 
-    static <S, D> FunctionConverter<S, D> with(final Class<S> sourceType,
-                                               final Class<D> targetType,
+    static <S, D> FunctionConverter<S, D> with(final Predicate<Object> source,
+                                               final Predicate<Class<?>> target,
                                                final Function<S, D> converter) {
-        Objects.requireNonNull(sourceType, "sourceType");
-        Objects.requireNonNull(targetType, "targetType");
+        Objects.requireNonNull(source, "source");
+        Objects.requireNonNull(target, "target");
 
-        if (sourceType.equals(targetType)) {
-            throw new IllegalArgumentException("Source and target types are the same" + sourceType.getName());
-        }
-
-        return new FunctionConverter<>(sourceType, targetType, converter);
+        return new FunctionConverter<>(source, target, converter);
     }
 
     /**
      * Private ctor use static factory.
      */
-    private FunctionConverter(final Class<S> sourceType,
-                              final Class<D> targetType,
+    private FunctionConverter(final Predicate<Object> source,
+                              final Predicate<Class<?>> target,
                               final Function<S, D> converter) {
         super();
-        this.sourceType = sourceType;
-        this.targetType = targetType;
+        this.source = source;
+        this.target = target;
         this.converter = converter;
     }
 
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final ConverterContext context) {
-        return this.sourceType.isInstance(value) &&
-                this.targetType == type;
+        return this.source.test(value) &&
+                this.target.test(type);
     }
 
     @Override
     <T> Either<T, String> convert0(final Object value,
                                    final Class<T> type,
                                    final ConverterContext context) {
-        return Either.left(type.cast(this.converter.apply(this.sourceType.cast(value))));
+        return Either.left(Cast.to(this.converter.apply(Cast.to(value))));
     }
 
-    private final Class<S> sourceType;
-    private final Class<D> targetType;
+    private final Predicate<Object> source;
+    private final Predicate<Class<?>> target;
     private final Function<S, D> converter;
 
     @Override
     public String toString() {
-        return this.sourceType.getSimpleName() + "->" + this.targetType.getSimpleName();
+        return this.source + "->" + this.target;
     }
 }
