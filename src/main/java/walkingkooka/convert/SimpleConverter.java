@@ -39,14 +39,19 @@ final class SimpleConverter implements Converter {
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final ConverterContext context) {
-        return type.isInstance(value);
+        return this.canConvert0(value, type);
+    }
+
+    private boolean canConvert0(final Object value,
+                                final Class<?> type) {
+        return type == value.getClass();
     }
 
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {
-        return type.isInstance(value) ?
+        return this.canConvert0(value, type) ?
                 Either.left(type.cast(value)) :
                 this.failConversion(value, type);
     }
