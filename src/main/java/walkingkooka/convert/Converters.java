@@ -28,6 +28,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Factory methods for numerous {@link Converter converters}.
@@ -90,14 +91,14 @@ public final class Converters implements PublicStaticHelper {
     /**
      * [@see BooleanTrueFalseConverter}
      */
-    public static <S, T> Converter booleanTrueFalse(final Class<S> sourceType,
-                                                    final S falseValue,
-                                                    final Class<T> targetType,
-                                                    final T trueAnswer,
-                                                    final T falseAnswer) {
-        return BooleanTrueFalseConverter.with(sourceType,
+    public static <S, D> Converter booleanTrueFalse(final Predicate<Object> source,
+                                                    final Predicate<Object> falseValue,
+                                                    final Predicate<Class<?>> target,
+                                                    final D trueAnswer,
+                                                    final D falseAnswer) {
+        return BooleanTrueFalseConverter.with(source,
                 falseValue,
-                targetType,
+                target,
                 trueAnswer,
                 falseAnswer);
     }

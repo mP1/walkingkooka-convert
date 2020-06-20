@@ -20,39 +20,40 @@ package walkingkooka.convert;
 import walkingkooka.Either;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
 final class BooleanTrueFalseConverter<S, D> extends Converter2 {
 
-    static <S, T> BooleanTrueFalseConverter<S, T> with(final Class<S> sourceType,
-                                                       final S falseValue,
-                                                       final Class<T> targetType,
-                                                       final T trueAnswer,
-                                                       final T falseAnswer) {
-        Objects.requireNonNull(sourceType, "sourceType");
+    static <S, D> BooleanTrueFalseConverter<S, D> with(final Predicate<Object> source,
+                                                       final Predicate<Object> falseValue,
+                                                       final Predicate<Class<?>> target,
+                                                       final D trueAnswer,
+                                                       final D falseAnswer) {
+        Objects.requireNonNull(source, "source");
         Objects.requireNonNull(falseValue, "falseValue");
-        Objects.requireNonNull(targetType, "targetType");
+        Objects.requireNonNull(target, "target");
         Objects.requireNonNull(trueAnswer, "trueAnswer");
         Objects.requireNonNull(falseAnswer, "falseAnswer");
 
-        return new BooleanTrueFalseConverter<>(sourceType,
+        return new BooleanTrueFalseConverter<>(source,
                 falseValue,
-                targetType,
+                target,
                 trueAnswer,
                 falseAnswer);
     }
 
-    private BooleanTrueFalseConverter(final Class<S> sourceType,
-                                      final S falseValue,
-                                      final Class<D> targetType,
+    private BooleanTrueFalseConverter(final Predicate<Object> source,
+                                      final Predicate<Object> falseValue,
+                                      final Predicate<Class<?>> target,
                                       final D trueAnswer,
                                       final D falseAnswer) {
         super();
-        this.sourceType = sourceType;
+        this.source = source;
         this.falseValue = falseValue;
-        this.targetType = targetType;
+        this.target = target;
         this.trueAnswer = trueAnswer;
         this.falseAnswer = falseAnswer;
     }
@@ -61,29 +62,27 @@ final class BooleanTrueFalseConverter<S, D> extends Converter2 {
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final ConverterContext context) {
-        return this.sourceType.isInstance(value) &&
-                this.targetType == type;
+        return this.source.test(value) &&
+                this.target.test(type);
     }
 
-    private final Class<S> sourceType;
+    private final Predicate<Object> source;
+    private final Predicate<Class<?>> target;
 
-    @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
-        return Either.left(type.cast(this.falseValue.equals(value) ?
+    @Override <T> Either<T, String> convert0(final Object value,
+                                             final Class<T> type,
+                                             final ConverterContext context) {
+        return Either.left(type.cast(this.falseValue.test(value) ?
                 this.falseAnswer :
                 this.trueAnswer));
     }
 
-    private final Object falseValue;
+    private final Predicate<Object> falseValue;
     private final D trueAnswer;
     private final D falseAnswer;
 
-    private final Class<D> targetType;
-
     @Override
     public String toString() {
-        return this.sourceType.getSimpleName() + "->" + this.targetType.getSimpleName();
+        return this.source + "->" + this.target;
     }
 }
