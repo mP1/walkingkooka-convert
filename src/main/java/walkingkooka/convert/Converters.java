@@ -143,10 +143,10 @@ public final class Converters implements PublicStaticHelper {
     /**
      * [@see FunctionConverter}
      */
-    public static <S, D> Converter function(final Class<S> sourceType,
-                                            final Class<D> targetType,
+    public static <S, D> Converter function(final Predicate<Object> source,
+                                            final Predicate<Class<?>> target,
                                             final Function<S, D> converter) {
-        return FunctionConverter.with(sourceType, targetType, converter);
+        return FunctionConverter.with(source, target, converter);
     }
 
     /**
