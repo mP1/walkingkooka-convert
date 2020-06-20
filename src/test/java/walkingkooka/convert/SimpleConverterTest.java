@@ -28,7 +28,7 @@ public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverte
 
     @Test
     public void testInstanceOfTargetType() {
-        this.convertAndCheck("ABC", CharSequence.class);
+        this.convertFails("ABC", CharSequence.class);
     }
 
     @Test
