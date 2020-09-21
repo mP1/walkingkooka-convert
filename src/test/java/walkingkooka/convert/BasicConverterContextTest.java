@@ -35,7 +35,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     private final static String CURRENCY = "$$";
     private final static char DECIMAL = 'D';
-    private final static char EXPONENT = 'X';
+    private final static String EXPONENT = "X";
     private final static char GROUPING = 'G';
     private final static char MINUS = 'M';
     private final static char PERCENTAGE = 'R';
@@ -97,7 +97,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     @Override
-    public char exponentSymbol() {
+    public String exponentSymbol() {
         return EXPONENT;
     }
 

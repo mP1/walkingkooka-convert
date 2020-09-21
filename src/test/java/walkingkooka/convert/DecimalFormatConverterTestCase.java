@@ -79,7 +79,6 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(DateTimeContexts.fake(),
                 DecimalNumberContexts.decimalFormatSymbols(new DecimalFormatSymbols(locale),
-                        'E',
                         '+',
                         locale,
                         MathContext.DECIMAL32));
