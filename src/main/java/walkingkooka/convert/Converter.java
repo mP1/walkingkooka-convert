@@ -26,7 +26,8 @@ import walkingkooka.text.CharSequences;
 public interface Converter {
 
     /**
-     * Queries whether this {@link Converter} supports converting to the requested {@link Class class}.
+     * Queries whether this {@link Converter} supports converting to the requested {@link Class class}. A returned true
+     * does not actually guarantee that the convert method will success, the result should still be tested.
      */
     boolean canConvert(final Object value,
                        final Class<?> type,
