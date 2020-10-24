@@ -21,12 +21,12 @@ import walkingkooka.Either;
 import walkingkooka.text.CharSequences;
 
 /**
- * Converts an object instance to a requested target {@link Class reflect}.
+ * Converts an object instance to a requested target {@link Class class}.
  */
 public interface Converter {
 
     /**
-     * Queries whether this {@link Converter} supports converting to the requested {@link Class reflect}.
+     * Queries whether this {@link Converter} supports converting to the requested {@link Class class}.
      */
     boolean canConvert(final Object value,
                        final Class<?> type,
