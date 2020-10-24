@@ -57,7 +57,7 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
             private final static long serialVersionUID = 1L;
         };
         //noinspection unchecked
-        assertEquals(Either.right("Failed to convert " + number + " to " + BigDecimal.class.getName()),
+        assertEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + BigDecimal.class.getName()),
                 ConverterNumberNumberVisitor.convert(this.converter(),
                         number,
                         BigDecimal.class));

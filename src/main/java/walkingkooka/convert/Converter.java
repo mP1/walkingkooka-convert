@@ -59,7 +59,7 @@ public interface Converter {
      */
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target) {
-        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " to " + target.getName());
+        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName());
     }
 
     /**
@@ -68,7 +68,7 @@ public interface Converter {
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target,
                                                  final Throwable cause) {
-        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " to " + target.getName() + " " + cause.getMessage());
+        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName() + " " + cause.getMessage());
     }
 
     /**
