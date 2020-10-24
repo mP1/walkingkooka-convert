@@ -54,17 +54,26 @@ public interface Converter {
         return converted.leftValue();
     }
 
+    /**
+     * Useful to report a failed conversion with a standard error message.
+     */
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target) {
         return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " to " + target.getName());
     }
 
+    /**
+     * Useful to report a failed conversion with a standard error message, which includes a {@link Throwable#getMessage()}.
+     */
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target,
                                                  final Throwable cause) {
         return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " to " + target.getName() + " " + cause.getMessage());
     }
 
+    /**
+     * Replaces the current {@link Object#toString()} with a new one.
+     */
     default Converter setToString(final String toString) {
         return Converters.customToString(this, toString);
     }
