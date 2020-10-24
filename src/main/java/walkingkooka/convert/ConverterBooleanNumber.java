@@ -19,9 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import walkingkooka.math.Maths;
 
 /**
  * Handles converting {@link Number} to {@link Boolean}.
@@ -44,18 +42,7 @@ final class ConverterBooleanNumber extends Converter2 {
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
                                     final ConverterContext context) {
-        return value instanceof Boolean && this.isTargetType(type);
-    }
-
-    private boolean isTargetType(final Class<?> type) {
-        return type == BigDecimal.class ||
-                type == BigInteger.class ||
-                type == Byte.class ||
-                type == Double.class ||
-                type == Float.class ||
-                type == Integer.class ||
-                type == Long.class ||
-                type == Short.class;
+        return value instanceof Boolean && Maths.isNumber(type);
     }
 
     @Override

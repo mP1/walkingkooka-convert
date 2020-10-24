@@ -19,9 +19,8 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
 
 /**
@@ -44,16 +43,7 @@ final class ConverterNumberNumber extends Converter2 {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");
 
-        return value instanceof Number && (
-                type == BigDecimal.class ||
-                        type == BigInteger.class ||
-                        type == Byte.class ||
-                        type == Float.class ||
-                        type == Double.class ||
-                        type == Integer.class ||
-                        type == Long.class ||
-                        type == Number.class ||
-                        type == Short.class);
+        return value instanceof Number && (Number.class == type || Maths.isNumber(type));
     }
 
     @Override
