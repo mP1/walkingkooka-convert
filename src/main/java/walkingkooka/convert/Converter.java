@@ -77,12 +77,4 @@ public interface Converter {
     default Converter setToString(final String toString) {
         return Converters.customToString(this, toString);
     }
-
-    /**
-     * Chains a successful convert from this {@link Converter} to another {@link Converter} to complete conversion using two steps.
-     */
-    default Converter then(final Class<?> intermediateTargetType,
-                           final Converter last) {
-        return Converters.chain(this, intermediateTargetType, last);
-    }
 }
