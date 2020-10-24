@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.predicate.Predicates;
 
@@ -61,6 +62,27 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     @Test
     public void testUnhandledTargetType() {
         this.convertFails("Cant convert to Void", Void.class);
+    }
+
+    @Test
+    public void testSkipsFailed() {
+        this.convertAndCheck(ConverterCollection.with(Lists.of(new Converter() {
+                                                                   @Override
+                                                                   public boolean canConvert(final Object value,
+                                                                                             final Class<?> type,
+                                                                                             final ConverterContext context) {
+                                                                       return true;
+                                                                   }
+
+                                                                   @Override
+                                                                   public <T> Either<T, String> convert(Object value, Class<T> type, ConverterContext context) {
+                                                                       return Either.right("failed!");
+                                                                   }
+                                                               },
+                Converters.truthyNumberBoolean())),
+                1,
+                Boolean.class,
+                true);
     }
 
     @Test

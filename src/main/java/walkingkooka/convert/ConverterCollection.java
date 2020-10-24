@@ -22,7 +22,6 @@ import walkingkooka.collect.list.Lists;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -63,24 +62,30 @@ final class ConverterCollection implements Converter {
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final ConverterContext context) {
-        return this.converterForType(value, type, context).isPresent();
+        return this.converters.stream()
+                .anyMatch(c -> c.canConvert(value, type, context));
     }
 
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {
-        final Optional<Converter> converter = this.converterForType(value, type, context);
-        return converter.map(c -> c.convert(value, type, context))
-                .orElse(this.failConversion(value, type));
-    }
+        Either<T, String> result = null;
 
-    private Optional<Converter> converterForType(final Object value,
-                                                 final Class<?> type,
-                                                 final ConverterContext context) {
-        return this.converters.stream()
-                .filter(c -> c.canConvert(value, type, context))
-                .findFirst();
+        for (final Converter possible : this.converters) {
+            if (possible.canConvert(value, type, context)) {
+                result = possible.convert(value, type, context);
+                if (result.isLeft()) {
+                    break;
+                }
+                // try again.
+            }
+        }
+
+        if (null == result) {
+            result = this.failConversion(value, type);
+        }
+        return result;
     }
 
     private final List<Converter> converters;
