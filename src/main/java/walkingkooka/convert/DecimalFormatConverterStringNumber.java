@@ -19,9 +19,8 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.Maths;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.text.ParsePosition;
 import java.util.function.Function;
@@ -45,15 +44,7 @@ final class DecimalFormatConverterStringNumber extends DecimalFormatConverter {
                               final Class<?> type,
                               final ConverterContext context) {
         return value instanceof String &&
-                (type == Byte.class ||
-                        type == Short.class ||
-                        type == Integer.class ||
-                        type == Long.class ||
-                        type == Float.class ||
-                        type == Double.class ||
-                        type == BigDecimal.class ||
-                        type == BigInteger.class ||
-                        type == Number.class);
+                (Maths.isNumber(type) || type == Number.class);
     }
 
     @Override
