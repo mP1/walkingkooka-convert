@@ -37,7 +37,7 @@ public interface ConverterTesting extends Testing {
                                   final T expected) {
         assertEquals(true,
                 converter.canConvert(value, target, context),
-                converter + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")");
+                () -> converter + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")");
 
         final Either<T, String> result = converter.convert(value, target, context);
         if (result.isRight()) {
