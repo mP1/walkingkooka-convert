@@ -70,9 +70,7 @@ public interface Converter {
                                                  final Class<T> target,
                                                  final Throwable cause) {
         final String message = cause.getMessage();
-        return CharSequences.isNullOrEmpty(message) ?
-                failConversion(value, target) :
-                Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName() + ", " + cause.getMessage());
+        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName() + ", " + (CharSequences.isNullOrEmpty(message) ? cause.getClass().getName() :cause.getMessage()));
     }
 
     /**
