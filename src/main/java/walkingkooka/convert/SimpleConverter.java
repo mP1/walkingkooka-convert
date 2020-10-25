@@ -22,6 +22,7 @@ import walkingkooka.Either;
 
 /**
  * A {@link Converter} that returns the value if the requested target type is actually the requested target type.
+ * This is unfortunate limit of J2CL the Class#isInstance is not support/available.
  */
 final class SimpleConverter implements Converter {
 
@@ -59,6 +60,6 @@ final class SimpleConverter implements Converter {
 
     @Override
     public String toString() {
-        return "value instanceof target type.";
+        return "value==target type";
     }
 }
