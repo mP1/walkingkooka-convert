@@ -18,8 +18,9 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.ToStringTesting;
 
-public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverter> {
+public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverter> implements ToStringTesting<SimpleConverter> {
 
     @Test
     public void testSameType() {
@@ -34,6 +35,11 @@ public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverte
     @Test
     public void testDifferentType() {
         this.convertFails("ABC", Number.class);
+    }
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(this.createConverter(), "value==target type");
     }
 
     @Override
