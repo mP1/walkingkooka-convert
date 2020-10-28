@@ -44,7 +44,7 @@ final class DecimalFormatConverterStringNumber extends DecimalFormatConverter {
                               final Class<?> type,
                               final ConverterContext context) {
         return value instanceof String &&
-                (Maths.isNumber(type) || type == Number.class);
+                (Maths.isNumberClass(type) || type == Number.class);
     }
 
     @Override

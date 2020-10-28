@@ -42,7 +42,7 @@ final class ConverterBooleanNumber extends Converter2 {
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
                                     final ConverterContext context) {
-        return value instanceof Boolean && Maths.isNumber(type);
+        return value instanceof Boolean && Maths.isNumberClass(type);
     }
 
     @Override
