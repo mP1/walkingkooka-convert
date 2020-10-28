@@ -43,7 +43,7 @@ final class ConverterNumberNumber extends Converter2 {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");
 
-        return value instanceof Number && (Number.class == type || Maths.isNumber(type));
+        return value instanceof Number && (Number.class == type || Maths.isNumberClass(type));
     }
 
     @Override

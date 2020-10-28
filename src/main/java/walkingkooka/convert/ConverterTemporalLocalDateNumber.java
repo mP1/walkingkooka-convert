@@ -44,7 +44,7 @@ final class ConverterTemporalLocalDateNumber extends ConverterTemporalLocalDate<
 
     @Override
     boolean isTargetType(final Class<?> type) {
-        return Number.class == type || Maths.isNumber(type);
+        return Number.class == type || Maths.isNumberClass(type);
     }
 
     @Override
