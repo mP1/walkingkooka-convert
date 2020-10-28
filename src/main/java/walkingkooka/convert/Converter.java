@@ -18,7 +18,6 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
-import walkingkooka.text.CharSequences;
 
 /**
  * Converts an object instance to a requested target {@link Class class}.
@@ -60,7 +59,7 @@ public interface Converter {
      */
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target) {
-        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName());
+        return FailConversion.handle(value, target);
     }
 
     /**
@@ -69,8 +68,7 @@ public interface Converter {
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target,
                                                  final Throwable cause) {
-        final String message = cause.getMessage();
-        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName() + ", " + (CharSequences.isNullOrEmpty(message) ? cause.getClass().getName() :cause.getMessage()));
+        return FailConversion.handle(value, target, cause);
     }
 
     /**
