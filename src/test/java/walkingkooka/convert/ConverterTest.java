@@ -17,34 +17,10 @@
 
 package walkingkooka.convert;
 
-import org.junit.jupiter.api.Test;
-import walkingkooka.Either;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public final class ConverterTest implements ClassTesting<Converter> {
-
-    @Test
-    public void testFailConversion() {
-        assertEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String"), new FakeConverter().failConversion(1, String.class));
-    }
-
-    @Test
-    public void testFailConversionNullMessage() {
-        assertEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, java.lang.NullPointerException"), new FakeConverter().failConversion(1, String.class, new NullPointerException()));
-    }
-
-    @Test
-    public void testFailConversionEmptyMessage() {
-        assertEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, java.lang.NullPointerException"), new FakeConverter().failConversion(1, String.class, new NullPointerException("")));
-    }
-
-    @Test
-    public void testFailConversionMessage() {
-        assertEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, Exception message"), new FakeConverter().failConversion(1, String.class, new NullPointerException("Exception message")));
-    }
 
     @Override
     public JavaVisibility typeVisibility() {
