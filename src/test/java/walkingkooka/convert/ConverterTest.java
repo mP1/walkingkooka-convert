@@ -17,10 +17,30 @@
 
 package walkingkooka.convert;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 public final class ConverterTest implements ClassTesting<Converter> {
+
+    @Test
+    public void testCast() {
+        final Converter<ConverterContext> converter = Converters.fake();
+        final Converter<FakeConverterContext> converterFake = converter.cast(FakeConverterContext.class);
+        assertSame(converter, converterFake);
+    }
+
+    @Test
+    public void testCast2() {
+        final Converter<ConverterContext> converter = Converters.fake();
+        final Converter<TestFakeConverterContext> converterFake = converter.cast(TestFakeConverterContext.class);
+        assertSame(converter, converterFake);
+    }
+
+    static class TestFakeConverterContext extends FakeConverterContext {
+    }
 
     @Override
     public JavaVisibility typeVisibility() {

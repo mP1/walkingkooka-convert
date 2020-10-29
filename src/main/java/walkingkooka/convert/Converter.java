@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 /**
@@ -76,5 +77,12 @@ public interface Converter<C extends ConverterContext> {
      */
     default Converter<C> setToString(final String toString) {
         return Converters.customToString(this, toString);
+    }
+
+    /**
+     * Helper that makes casting and working around generics a little less noisy.
+     */
+    default <C extends ConverterContext> Converter<C> cast(final Class<C> type) {
+        return Cast.to(this);
     }
 }
