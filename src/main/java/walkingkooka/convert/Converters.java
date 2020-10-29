@@ -297,13 +297,6 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see TryConverter}
-     */
-    public static Converter tryConverter(final List<Converter> converters) {
-        return TryConverter.with(converters);
-    }
-
-    /**
      * {@see ConverterNumberBoolean}
      */
     public static Converter truthyNumberBoolean() {
