@@ -18,12 +18,13 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
-public final class ConverterTemporalLocalDateNumberTest extends ConverterTemporalLocalDateTestCase<ConverterTemporalLocalDateNumber, Number> {
+public final class ConverterTemporalLocalDateNumberTest extends ConverterTemporalLocalDateTestCase<ConverterTemporalLocalDateNumber<ConverterContext>, Number> {
 
     // fail(overflow)....................................................................................................
 
@@ -116,7 +117,7 @@ public final class ConverterTemporalLocalDateNumberTest extends ConverterTempora
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterTemporalLocalDateNumber> type() {
-        return ConverterTemporalLocalDateNumber.class;
+    public Class<ConverterTemporalLocalDateNumber<ConverterContext>> type() {
+        return Cast.to(ConverterTemporalLocalDateNumber.class);
     }
 }

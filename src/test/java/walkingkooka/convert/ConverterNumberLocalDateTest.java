@@ -18,12 +18,13 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
-public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<ConverterNumberLocalDate, LocalDate> {
+public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<ConverterNumberLocalDate<ConverterContext>, LocalDate> {
 
     private final static byte VALUE = 123;
     private final static LocalDate DATE_VALUE = LocalDate.ofEpochDay(VALUE);
@@ -136,7 +137,7 @@ public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<
     }
 
     @Override
-    public Class<ConverterNumberLocalDate> type() {
-        return ConverterNumberLocalDate.class;
+    public Class<ConverterNumberLocalDate<ConverterContext>> type() {
+        return Cast.to(ConverterNumberLocalDate.class);
     }
 }

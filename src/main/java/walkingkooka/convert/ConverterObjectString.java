@@ -23,19 +23,28 @@ import walkingkooka.Either;
 /**
  * A {@link Converter} that invokes {@link Object#toString()} to convert any value into a {@link String}
  */
-final class ConverterObjectString extends Converter2 {
+final class ConverterObjectString<C extends ConverterContext> extends Converter2<C> {
+
+    /**
+     * Instance
+     */
+    static <C extends ConverterContext> ConverterObjectString<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    final static ConverterObjectString INSTANCE = new ConverterObjectString();
+    private final static ConverterObjectString INSTANCE = new ConverterObjectString();
 
     private ConverterObjectString() {
         super();
     }
 
     @Override
-    public boolean canConvert(final Object value, final Class<?> type, final ConverterContext context) {
+    public boolean canConvert(final Object value,
+                              final Class<?> type,
+                              final C context) {
         return String.class == type;
     }
 

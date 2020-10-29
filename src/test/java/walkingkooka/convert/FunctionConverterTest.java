@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class FunctionConverterTest extends ConverterTestCase2<FunctionConverter<String, Boolean>> {
+public final class FunctionConverterTest extends ConverterTestCase2<FunctionConverter<String, Boolean, ConverterContext>> {
 
     private final static Predicate<Object> SOURCE = (t) -> t instanceof String;
     private final static Predicate<Class<?>> TARGET = Predicate.isEqual(Boolean.class);
@@ -68,7 +68,7 @@ public final class FunctionConverterTest extends ConverterTestCase2<FunctionConv
     // Converter........................................................................................................
 
     @Override
-    public FunctionConverter<String, Boolean> createConverter() {
+    public FunctionConverter<String, Boolean, ConverterContext> createConverter() {
         return FunctionConverter.with(SOURCE, TARGET, FunctionConverterTest::stringToBoolean);
     }
 
@@ -89,7 +89,7 @@ public final class FunctionConverterTest extends ConverterTestCase2<FunctionConv
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<FunctionConverter<String, Boolean>> type() {
+    public Class<FunctionConverter<String, Boolean, ConverterContext>> type() {
         return Cast.to(FunctionConverter.class);
     }
 }

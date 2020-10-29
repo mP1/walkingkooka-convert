@@ -26,12 +26,19 @@ import java.time.LocalTime;
 /**
  * Converts {@link LocalDateTime} into {@link LocalTime} by simply returning the {@link LocalTime} component.
  */
-final class ConverterTemporalLocalDateTimeLocalTime extends ConverterTemporalLocalDateTime<LocalTime> {
+final class ConverterTemporalLocalDateTimeLocalTime<C extends ConverterContext> extends ConverterTemporalLocalDateTime<LocalTime, C> {
+
+    /**
+     * Type safe instance getter
+     */
+    static <C extends ConverterContext> ConverterTemporalLocalDateTimeLocalTime<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    final static ConverterTemporalLocalDateTimeLocalTime INSTANCE = new ConverterTemporalLocalDateTimeLocalTime();
+    private final static ConverterTemporalLocalDateTimeLocalTime INSTANCE = new ConverterTemporalLocalDateTimeLocalTime();
 
     /**
      * Private ctor use singleton

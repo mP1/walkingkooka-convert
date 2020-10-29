@@ -31,7 +31,7 @@ import java.util.function.Function;
 /**
  * A {@link Converter} which uses a {@link DateTimeFormatter} in some part of the conversion process.
  */
-abstract class DateTimeFormatterConverter<S, D> extends Converter2 {
+abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Package private to limit sub classing.
@@ -44,7 +44,7 @@ abstract class DateTimeFormatterConverter<S, D> extends Converter2 {
     @Override
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
-                                    final ConverterContext context) {
+                                    final C context) {
         return this.isSourceTypeCompatible(value) &&
                 this.targetType() == type;
     }

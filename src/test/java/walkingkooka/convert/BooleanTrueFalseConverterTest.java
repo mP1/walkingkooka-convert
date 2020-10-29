@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<BooleanTrueFalseConverter<String>> {
+public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<BooleanTrueFalseConverter<String, ConverterContext>> {
 
     private final static Predicate<Object> SOURCE_TESTER = Predicates.customToString((t) -> t instanceof Integer, "Integer");
     private final static Predicate<Object> FALSE_VALUE = Predicates.is(1);
@@ -75,7 +75,7 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     }
 
     @Override
-    public BooleanTrueFalseConverter<String> createConverter() {
+    public BooleanTrueFalseConverter<String, ConverterContext> createConverter() {
         return BooleanTrueFalseConverter.with(SOURCE_TESTER, FALSE_VALUE, TARGET_TESTER, TRUE_ANSWER, FALSE_ANSWER);
     }
 
@@ -95,7 +95,7 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<BooleanTrueFalseConverter<String>> type() {
+    public Class<BooleanTrueFalseConverter<String, ConverterContext>> type() {
         return Cast.to(BooleanTrueFalseConverter.class);
     }
 }

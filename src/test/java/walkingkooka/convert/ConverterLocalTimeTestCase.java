@@ -19,7 +19,7 @@ package walkingkooka.convert;
 
 import java.time.LocalTime;
 
-public abstract class ConverterLocalTimeTestCase<C extends ConverterLocalTime> extends ConverterTestCase2<C> {
+public abstract class ConverterLocalTimeTestCase<C extends ConverterLocalTime<ConverterContext>> extends ConverterTestCase2<C> {
 
     ConverterLocalTimeTestCase() {
         super();

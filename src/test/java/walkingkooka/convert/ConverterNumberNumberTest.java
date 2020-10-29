@@ -18,11 +18,12 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public final class ConverterNumberNumberTest extends ConverterTestCase2<ConverterNumberNumber> {
+public final class ConverterNumberNumberTest extends ConverterTestCase2<ConverterNumberNumber<ConverterContext>> {
 
     // to Number........................................................................................................
 
@@ -666,8 +667,8 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // helper............................................................................................................
 
     @Override
-    public ConverterNumberNumber createConverter() {
-        return ConverterNumberNumber.INSTANCE;
+    public ConverterNumberNumber<ConverterContext> createConverter() {
+        return ConverterNumberNumber.instance();
     }
 
     private final static Byte VALUE = 123;
@@ -721,8 +722,8 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterNumberNumber> type() {
-        return ConverterNumberNumber.class;
+    public Class<ConverterNumberNumber<ConverterContext>> type() {
+        return Cast.to(ConverterNumberNumber.class);
     }
 
     // TypeNameTesting..................................................................................................

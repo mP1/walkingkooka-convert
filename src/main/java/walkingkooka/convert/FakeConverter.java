@@ -20,18 +20,18 @@ package walkingkooka.convert;
 import walkingkooka.Either;
 import walkingkooka.test.Fake;
 
-public class FakeConverter implements Converter, Fake {
+public class FakeConverter<C extends ConverterContext> implements Converter<C>, Fake {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
-                                         final ConverterContext context) {
+                                         final C context) {
         throw new UnsupportedOperationException();
     }
 }

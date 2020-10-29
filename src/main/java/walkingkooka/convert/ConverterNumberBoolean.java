@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.math.BigDecimal;
@@ -26,12 +27,19 @@ import java.math.BigInteger;
  * A {@link Converter} that handles converting any {@link Number} to a {@link BigDecimal}, following truth conventions,
  * where zero becomes false and all other values are true.
  */
-final class ConverterNumberBoolean extends ConverterNumber<Boolean> {
+final class ConverterNumberBoolean<C extends ConverterContext> extends ConverterNumber<Boolean, C> {
+
+    /**
+     * Type safe instance getter
+     */
+    static <C extends ConverterContext> ConverterNumberBoolean<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    final static ConverterNumberBoolean INSTANCE = new ConverterNumberBoolean();
+    private final static ConverterNumberBoolean INSTANCE = new ConverterNumberBoolean();
 
     /**
      * Private ctor use singleton

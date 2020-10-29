@@ -28,11 +28,11 @@ import java.util.function.Function;
 /**
  * A {@link Converter} that parses {@link String} into {@link Number numbers}.
  */
-final class DecimalFormatConverterNumberString extends DecimalFormatConverter {
+final class DecimalFormatConverterNumberString<C extends ConverterContext> extends DecimalFormatConverter<C> {
 
-    static DecimalFormatConverterNumberString with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    static <C extends ConverterContext> DecimalFormatConverterNumberString<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         check(decimalFormat);
-        return new DecimalFormatConverterNumberString(decimalFormat);
+        return new DecimalFormatConverterNumberString<>(decimalFormat);
     }
 
     private DecimalFormatConverterNumberString(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
@@ -42,7 +42,7 @@ final class DecimalFormatConverterNumberString extends DecimalFormatConverter {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return Maths.isNumber(value) && String.class == type;
     }
 

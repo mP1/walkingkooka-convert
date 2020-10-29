@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -25,7 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestCase<ConverterNumberLocalDateTime, LocalDateTime> {
+public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestCase<ConverterNumberLocalDateTime<ConverterContext>, LocalDateTime> {
 
     private final static int VALUE = 123;
     private final static LocalTime MIDNIGHT = LocalTime.ofSecondOfDay(0);
@@ -128,7 +129,7 @@ public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestC
     }
 
     @Override
-    public ConverterNumberLocalDateTime createConverter() {
+    public ConverterNumberLocalDateTime<ConverterContext> createConverter() {
         return ConverterNumberLocalDateTime.with(Converters.JAVA_EPOCH_OFFSET);
     }
 
@@ -150,7 +151,7 @@ public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestC
     }
 
     @Override
-    public Class<ConverterNumberLocalDateTime> type() {
-        return ConverterNumberLocalDateTime.class;
+    public Class<ConverterNumberLocalDateTime<ConverterContext>> type() {
+        return Cast.to(ConverterNumberLocalDateTime.class);
     }
 }

@@ -22,7 +22,7 @@ import walkingkooka.Either;
 /**
  * Converts an object instance to a requested target {@link Class class}.
  */
-public interface Converter {
+public interface Converter<C extends ConverterContext> {
 
     /**
      * Queries whether this {@link Converter} supports converting to the requested {@link Class class}. A returned true
@@ -30,7 +30,7 @@ public interface Converter {
      */
     boolean canConvert(final Object value,
                        final Class<?> type,
-                       final ConverterContext context);
+                       final C context);
 
     /**
      * Converts the given value to the requested type returning an {@link Either} with {@link Either#leftValue()} holding
@@ -38,14 +38,14 @@ public interface Converter {
      */
     <T> Either<T, String> convert(final Object value,
                                   final Class<T> type,
-                                  final ConverterContext context);
+                                  final C context);
 
     /**
      * Converts the given value to the {@link Class target type} or throws a {@link ConversionException}
      */
     default <T> T convertOrFail(final Object value,
                                 final Class<T> target,
-                                final ConverterContext context) {
+                                final C context) {
         final Either<T, String> converted = this.convert(value, target, context);
         if (converted.isRight()) {
             throw new ConversionException(converted.rightValue());
@@ -74,7 +74,7 @@ public interface Converter {
     /**
      * Replaces the current {@link Object#toString()} with a new one.
      */
-    default Converter setToString(final String toString) {
+    default Converter<C> setToString(final String toString) {
         return Converters.customToString(this, toString);
     }
 }

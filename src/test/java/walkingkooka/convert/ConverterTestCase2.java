@@ -17,7 +17,7 @@
 
 package walkingkooka.convert;
 
-public abstract class ConverterTestCase2<C extends Converter> extends ConverterTestCase<C> implements ConverterTesting2<C> {
+public abstract class ConverterTestCase2<C extends Converter<ConverterContext>> extends ConverterTestCase<C> implements ConverterTesting2<C, ConverterContext> {
 
     ConverterTestCase2() {
         super();

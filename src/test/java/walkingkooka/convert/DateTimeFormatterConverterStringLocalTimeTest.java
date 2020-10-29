@@ -18,13 +18,14 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterStringLocalTimeTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringLocalTime, String, LocalTime> {
+public final class DateTimeFormatterConverterStringLocalTimeTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringLocalTime<ConverterContext>, String, LocalTime> {
 
     @Test
     public void testConvert2() {
@@ -36,7 +37,7 @@ public final class DateTimeFormatterConverterStringLocalTimeTest extends DateTim
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterStringLocalTime converter = this.createConverter();
+        final DateTimeFormatterConverterStringLocalTime<ConverterContext> converter = this.createConverter();
 
         this.convertAndCheck2(converter,
                 this.source(),
@@ -50,7 +51,7 @@ public final class DateTimeFormatterConverterStringLocalTimeTest extends DateTim
     }
 
     @Override
-    protected DateTimeFormatterConverterStringLocalTime createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    protected DateTimeFormatterConverterStringLocalTime<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterStringLocalTime.with(formatter);
     }
 
@@ -75,7 +76,7 @@ public final class DateTimeFormatterConverterStringLocalTimeTest extends DateTim
     }
 
     @Override
-    public Class<DateTimeFormatterConverterStringLocalTime> type() {
-        return DateTimeFormatterConverterStringLocalTime.class;
+    public Class<DateTimeFormatterConverterStringLocalTime<ConverterContext>> type() {
+        return Cast.to(DateTimeFormatterConverterStringLocalTime.class);
     }
 }

@@ -19,13 +19,12 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
  * Converts a {@link LocalDateTime} to another reflect.
  */
-abstract class ConverterTemporalLocalDateTime<D> extends ConverterTemporal<LocalDateTime, D> {
+abstract class ConverterTemporalLocalDateTime<D, C extends ConverterContext> extends ConverterTemporal<LocalDateTime, D, C> {
 
     /**
      * Package private to limit sub classing.
@@ -34,8 +33,7 @@ abstract class ConverterTemporalLocalDateTime<D> extends ConverterTemporal<Local
         super(offset);
     }
 
-    @Override
-    final boolean isSourceTypeCompatible(final Object value) {
+    @Override final boolean isSourceTypeCompatible(final Object value) {
         return value instanceof LocalDateTime;
     }
 
@@ -56,8 +54,8 @@ abstract class ConverterTemporalLocalDateTime<D> extends ConverterTemporal<Local
     }
 
     abstract <T> Either<T, String> convertFromLocalDateTime(final long days,
-                                            final double time,
-                                            final LocalDateTime localDateTime,
-                                            final Class<T> type,
-                                            final ConverterContext context);
+                                                            final double time,
+                                                            final LocalDateTime localDateTime,
+                                                            final Class<T> type,
+                                                            final ConverterContext context);
 }

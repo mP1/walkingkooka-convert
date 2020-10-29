@@ -29,14 +29,14 @@ import java.time.LocalTime;
  * A {@link Converter} that handles converting any {@link Number} to a {@link LocalDateTime}.
  * The integer value becomes the days, and the fraction is a value of a whole day.
  */
-final class ConverterNumberLocalDateTime extends ConverterNumber<LocalDateTime> {
+final class ConverterNumberLocalDateTime<C extends ConverterContext> extends ConverterNumber<LocalDateTime, C> {
 
     /**
      * Creates a new instance with the given date offset.
      * A value of zero is 1/1/1970.
      */
-    static ConverterNumberLocalDateTime with(final long offset) {
-        return new ConverterNumberLocalDateTime(offset);
+    static <C extends ConverterContext> ConverterNumberLocalDateTime<C> with(final long offset) {
+        return new ConverterNumberLocalDateTime<>(offset);
     }
 
     /**

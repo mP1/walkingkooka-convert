@@ -27,16 +27,16 @@ import java.util.stream.Collectors;
 /**
  * A {@link Converter} which tries all collectors to satisfy a request.
  */
-final class ConverterCollection implements Converter {
+final class ConverterCollection<C extends ConverterContext> implements Converter<C> {
 
     /**
      * Factory that creates a {@link ConverterCollection} if more than one converter is given.
      * Providing zero will result in an {@link IllegalArgumentException}.
      */
-    static Converter with(final List<Converter> converters) {
+    static <C extends ConverterContext> Converter<C> with(final List<Converter<C>> converters) {
         Objects.requireNonNull(converters, "converters");
 
-        final List<Converter> copy = Lists.immutable(converters);
+        final List<Converter<C>> copy = Lists.immutable(converters);
 
         Converter result;
         final int count = copy.size();
@@ -47,21 +47,21 @@ final class ConverterCollection implements Converter {
                 result = copy.get(0);
                 break;
             default:
-                result = new ConverterCollection(copy);
+                result = new ConverterCollection<>(copy);
                 break;
         }
 
         return result;
     }
 
-    private ConverterCollection(final List<Converter> converters) {
+    private ConverterCollection(final List<Converter<C>> converters) {
         this.converters = converters;
     }
 
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return this.converters.stream()
                 .anyMatch(c -> c.canConvert(value, type, context));
     }
@@ -69,10 +69,10 @@ final class ConverterCollection implements Converter {
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
-                                         final ConverterContext context) {
+                                         final C context) {
         Either<T, String> result = null;
 
-        for (final Converter possible : this.converters) {
+        for (final Converter<C> possible : this.converters) {
             if (possible.canConvert(value, type, context)) {
                 result = possible.convert(value, type, context);
                 if (result.isLeft()) {
@@ -88,7 +88,7 @@ final class ConverterCollection implements Converter {
         return result;
     }
 
-    private final List<Converter> converters;
+    private final List<Converter<C>> converters;
 
     @Override
     public String toString() {

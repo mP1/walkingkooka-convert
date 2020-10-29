@@ -18,13 +18,14 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterStringLocalDateTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringLocalDate, String, LocalDate> {
+public final class DateTimeFormatterConverterStringLocalDateTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringLocalDate<ConverterContext>, String, LocalDate> {
 
     @Test
     public void testConvert2() {
@@ -50,7 +51,7 @@ public final class DateTimeFormatterConverterStringLocalDateTest extends DateTim
     }
 
     @Override
-    protected DateTimeFormatterConverterStringLocalDate createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    protected DateTimeFormatterConverterStringLocalDate<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterStringLocalDate.with(formatter);
     }
 
@@ -75,7 +76,7 @@ public final class DateTimeFormatterConverterStringLocalDateTest extends DateTim
     }
 
     @Override
-    public Class<DateTimeFormatterConverterStringLocalDate> type() {
-        return DateTimeFormatterConverterStringLocalDate.class;
+    public Class<DateTimeFormatterConverterStringLocalDate<ConverterContext>> type() {
+        return Cast.to(DateTimeFormatterConverterStringLocalDate.class);
     }
 }

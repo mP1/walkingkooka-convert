@@ -32,7 +32,7 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ParserConverterTest extends ConverterTestCase2<ParserConverter<BigDecimal, ParserContext>> {
+public final class ParserConverterTest extends ConverterTestCase2<ParserConverter<BigDecimal, ParserContext, ConverterContext>> {
 
     @Test
     public void testWithNullTypeFails() {
@@ -70,7 +70,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Override
-    public ParserConverter<BigDecimal, ParserContext> createConverter() {
+    public ParserConverter<BigDecimal, ParserContext, ConverterContext> createConverter() {
         return ParserConverter.with(BigDecimal.class,
                 this.bigDecimalParser(),
                 parserContextAdapter());
@@ -90,7 +90,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Override
-    public Class<ParserConverter<BigDecimal, ParserContext>> type() {
+    public Class<ParserConverter<BigDecimal, ParserContext, ConverterContext>> type() {
         return Cast.to(ParserConverter.class);
     }
 }
