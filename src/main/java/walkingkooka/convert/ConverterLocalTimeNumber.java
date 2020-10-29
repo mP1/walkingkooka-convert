@@ -61,8 +61,7 @@ final class ConverterLocalTimeNumber extends ConverterLocalTime {
                                                final ConverterContext context) {
         return this.convertToNumber(BigDecimal.valueOf(seconds).add(BigDecimal.valueOf(1.0 * nano / Converters.NANOS_PER_SECOND)),
                 Cast.to(type),
-                context,
-                localTime);
+                context);
     }
 
     @Override
