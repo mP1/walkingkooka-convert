@@ -25,7 +25,7 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 
 /**
- * Converts a {@link LocalTime} into the requested {@link Number} reflect.
+ * Converts a {@link LocalTime} into the requested {@link Number} type.
  */
 final class ConverterLocalTimeNumber<C extends ConverterContext> extends ConverterLocalTime<C> {
 

@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * A {@link Converter} that handles converting {@link Number} to another {@link Number} reflect.
+ * A {@link Converter} that handles converting {@link Number} to another {@link Number} type.
  */
 abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2<C> {
 
