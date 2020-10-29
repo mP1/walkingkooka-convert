@@ -22,7 +22,7 @@ import java.time.LocalDate;
 /**
  * Converts a {@link LocalDate} into another reflect.
  */
-abstract class ConverterTemporalLocalDate<D> extends ConverterTemporal<LocalDate, D> {
+abstract class ConverterTemporalLocalDate<D, C extends ConverterContext> extends ConverterTemporal<LocalDate, D, C> {
 
     /**
      * Package private to limit sub classing.

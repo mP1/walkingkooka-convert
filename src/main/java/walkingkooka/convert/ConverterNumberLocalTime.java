@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.math.BigDecimal;
@@ -27,12 +28,19 @@ import java.time.LocalTime;
  * A {@link Converter} that handles converting any {@link Number} to a {@link LocalTime}.
  * The value is the number of seconds in a day.
  */
-final class ConverterNumberLocalTime extends ConverterNumber<LocalTime> {
+final class ConverterNumberLocalTime<C extends ConverterContext> extends ConverterNumber<LocalTime, C> {
+
+    /**
+     * Type safe instance getter
+     */
+    static <C extends ConverterContext> ConverterNumberLocalTime<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    final static ConverterNumberLocalTime INSTANCE = new ConverterNumberLocalTime();
+    private final static ConverterNumberLocalTime INSTANCE = new ConverterNumberLocalTime();
 
     /**
      * Private ctor

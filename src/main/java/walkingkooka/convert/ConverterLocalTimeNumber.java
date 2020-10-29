@@ -27,12 +27,19 @@ import java.time.LocalTime;
 /**
  * Converts a {@link LocalTime} into the requested {@link Number} reflect.
  */
-final class ConverterLocalTimeNumber extends ConverterLocalTime {
+final class ConverterLocalTimeNumber<C extends ConverterContext> extends ConverterLocalTime<C> {
+
+    /**
+     * Type safe instance getter
+     */
+    static <C extends ConverterContext> ConverterLocalTimeNumber<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    final static ConverterLocalTimeNumber INSTANCE = new ConverterLocalTimeNumber();
+    private final static ConverterLocalTimeNumber INSTANCE = new ConverterLocalTimeNumber();
 
     /**
      * Private ctor use singleton

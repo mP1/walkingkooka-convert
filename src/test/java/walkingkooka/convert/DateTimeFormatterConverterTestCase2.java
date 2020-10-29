@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeFormatterConverter<S, T>, S, T> extends ConverterTestCase2<C> {
+public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeFormatterConverter<S, T, ConverterContext>, S, T> extends ConverterTestCase2<C> {
 
     DateTimeFormatterConverterTestCase2() {
         super();

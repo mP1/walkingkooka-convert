@@ -18,12 +18,13 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalTime;
 
-public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<ConverterNumberLocalTime, LocalTime> {
+public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<ConverterNumberLocalTime<ConverterContext>, LocalTime> {
 
     private final static byte VALUE = 123;
 
@@ -98,8 +99,8 @@ public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<
     }
 
     @Override
-    public ConverterNumberLocalTime createConverter() {
-        return ConverterNumberLocalTime.INSTANCE;
+    public ConverterNumberLocalTime<ConverterContext> createConverter() {
+        return ConverterNumberLocalTime.instance();
     }
 
     @Override
@@ -108,7 +109,7 @@ public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<
     }
 
     @Override
-    public Class<ConverterNumberLocalTime> type() {
-        return ConverterNumberLocalTime.class;
+    public Class<ConverterNumberLocalTime<ConverterContext>> type() {
+        return Cast.to(ConverterNumberLocalTime.class);
     }
 }

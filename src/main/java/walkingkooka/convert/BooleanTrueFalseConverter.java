@@ -26,13 +26,13 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
-final class BooleanTrueFalseConverter<T> extends Converter2 {
+final class BooleanTrueFalseConverter<T, C extends ConverterContext> extends Converter2<C> {
 
-    static <T> BooleanTrueFalseConverter<T> with(final Predicate<Object> source,
-                                                 final Predicate<Object> falseValue,
-                                                 final Predicate<Class<?>> target,
-                                                 final T trueAnswer,
-                                                 final T falseAnswer) {
+    static <D, C extends ConverterContext> BooleanTrueFalseConverter<D, C> with(final Predicate<Object> source,
+                                                                                final Predicate<Object> falseValue,
+                                                                                final Predicate<Class<?>> target,
+                                                                                final D trueAnswer,
+                                                                                final D falseAnswer) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(falseValue, "falseValue");
         Objects.requireNonNull(target, "target");
@@ -62,7 +62,7 @@ final class BooleanTrueFalseConverter<T> extends Converter2 {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return this.source.test(value) &&
                 this.target.test(type);
     }

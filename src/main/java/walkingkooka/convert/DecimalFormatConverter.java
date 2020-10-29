@@ -33,7 +33,7 @@ import java.util.function.Function;
 /**
  * Base class for a {@link Converter} that parses or formats using a {@link DecimalFormat}.
  */
-abstract class DecimalFormatConverter extends Converter2 {
+abstract class DecimalFormatConverter<C extends ConverterContext> extends Converter2<C> {
 
     static void check(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         Objects.requireNonNull(decimalFormat, "decimalFormat");
@@ -47,7 +47,7 @@ abstract class DecimalFormatConverter extends Converter2 {
         this.decimalFormat = decimalFormat;
     }
 
-    @Override
+    @Override //
     final <T> Either<T, String> convert0(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {

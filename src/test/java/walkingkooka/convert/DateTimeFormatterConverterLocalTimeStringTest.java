@@ -18,17 +18,18 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterLocalTimeString, LocalTime, String> {
+public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterLocalTimeString<ConverterContext>, LocalTime, String> {
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterLocalTimeString converter = this.createConverter();
+        final DateTimeFormatterConverterLocalTimeString<ConverterContext> converter = this.createConverter();
         final LocalTime source = this.source();
 
         this.convertAndCheck2(converter,
@@ -43,7 +44,7 @@ public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTim
     }
 
     @Override
-    protected DateTimeFormatterConverterLocalTimeString createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    protected DateTimeFormatterConverterLocalTimeString<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterLocalTimeString.with(formatter);
     }
 
@@ -68,7 +69,7 @@ public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTim
     }
 
     @Override
-    public Class<DateTimeFormatterConverterLocalTimeString> type() {
-        return DateTimeFormatterConverterLocalTimeString.class;
+    public Class<DateTimeFormatterConverterLocalTimeString<ConverterContext>> type() {
+        return Cast.to(DateTimeFormatterConverterLocalTimeString.class);
     }
 }

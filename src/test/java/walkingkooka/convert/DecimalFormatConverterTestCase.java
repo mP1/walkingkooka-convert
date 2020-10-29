@@ -31,7 +31,7 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConverter> extends ConverterTestCase2<C> {
+public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConverter<ConverterContext>> extends ConverterTestCase2<C> {
 
     DecimalFormatConverterTestCase() {
         super();

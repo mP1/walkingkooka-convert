@@ -18,10 +18,11 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 
-public final class ConverterObjectStringTest extends ConverterTestCase2<ConverterObjectString> {
+public final class ConverterObjectStringTest extends ConverterTestCase2<ConverterObjectString<ConverterContext>> {
 
     @Test
     public void testBooleanTrue() {
@@ -44,8 +45,8 @@ public final class ConverterObjectStringTest extends ConverterTestCase2<Converte
     }
 
     @Override
-    public ConverterObjectString createConverter() {
-        return ConverterObjectString.INSTANCE;
+    public ConverterObjectString<ConverterContext> createConverter() {
+        return ConverterObjectString.instance();
     }
 
     @Override
@@ -56,8 +57,8 @@ public final class ConverterObjectStringTest extends ConverterTestCase2<Converte
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterObjectString> type() {
-        return ConverterObjectString.class;
+    public Class<ConverterObjectString<ConverterContext>> type() {
+        return Cast.to(ConverterObjectString.class);
     }
 
     // TypeNameTesting..................................................................................................

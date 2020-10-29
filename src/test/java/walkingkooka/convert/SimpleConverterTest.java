@@ -18,9 +18,10 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 
-public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverter> implements ToStringTesting<SimpleConverter> {
+public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverter<ConverterContext>> implements ToStringTesting<SimpleConverter<ConverterContext>> {
 
     @Test
     public void testSameType() {
@@ -43,8 +44,8 @@ public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverte
     }
 
     @Override
-    public SimpleConverter createConverter() {
-        return SimpleConverter.INSTANCE;
+    public SimpleConverter<ConverterContext> createConverter() {
+        return SimpleConverter.instance();
     }
 
     @Override
@@ -53,7 +54,7 @@ public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverte
     }
 
     @Override
-    public Class<SimpleConverter> type() {
-        return SimpleConverter.class;
+    public Class<SimpleConverter<ConverterContext>> type() {
+        return Cast.to(SimpleConverter.class);
     }
 }

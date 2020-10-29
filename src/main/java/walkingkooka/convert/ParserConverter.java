@@ -34,11 +34,11 @@ import java.util.function.Function;
  * A {@link Converter} that only accepts {@link String strings} and attempts to parse them and return the result from a {@link ParserToken} that has a {@link Value}.
  * If the parser fails then a {@link #failConversion(Object, Class)} happens.
  */
-final class ParserConverter<V, PC extends ParserContext> implements Converter {
+final class ParserConverter<V, P extends ParserContext, C extends ConverterContext> implements Converter<C> {
 
-    static <V, C extends ParserContext> ParserConverter<V, C> with(final Class<V> type,
-                                                                   final Parser<C> parser,
-                                                                   final Function<ConverterContext, C> context) {
+    static <V, P extends ParserContext, C extends ConverterContext> ParserConverter<V, P, C> with(final Class<V> type,
+                                                                                                  final Parser<P> parser,
+                                                                                                  final Function<C, P> context) {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(parser, "parser");
         Objects.requireNonNull(context, "context");
@@ -49,7 +49,9 @@ final class ParserConverter<V, PC extends ParserContext> implements Converter {
     /**
      * Private ctor use factory.
      */
-    private ParserConverter(final Class<V> type, final Parser<PC> parser, final Function<ConverterContext, PC> context) {
+    private ParserConverter(final Class<V> type,
+                            final Parser<P> parser,
+                            final Function<C, P> context) {
         this.type = type;
         this.parser = parser;
         this.context = context;
@@ -58,7 +60,7 @@ final class ParserConverter<V, PC extends ParserContext> implements Converter {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return value instanceof String && this.type == type;
     }
 
@@ -67,7 +69,7 @@ final class ParserConverter<V, PC extends ParserContext> implements Converter {
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
-                                         final ConverterContext context) {
+                                         final C context) {
         return value instanceof String ?
                 parseString((String) value, type, context) :
                 this.failConversion(value, type);
@@ -75,7 +77,7 @@ final class ParserConverter<V, PC extends ParserContext> implements Converter {
 
     private <T> Either<T, String> parseString(final String text,
                                               final Class<T> type,
-                                              final ConverterContext context) {
+                                              final C context) {
         final TextCursor cursor = TextCursors.charSequence(text);
         final Optional<ParserToken> result = this.parser.parse(cursor, this.context.apply(context));
         return result.isPresent() ?
@@ -83,8 +85,8 @@ final class ParserConverter<V, PC extends ParserContext> implements Converter {
                 this.failConversion(text, type);
     }
 
-    private final Parser<PC> parser;
-    private final Function<ConverterContext, PC> context;
+    private final Parser<P> parser;
+    private final Function<C, P> context;
 
     @Override
     public String toString() {

@@ -42,7 +42,7 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertAndCheckFails() {
         assertThrows(AssertionError.class,
-                () -> this.convertAndCheck(new FakeConverter() {
+                () -> this.convertAndCheck(new FakeConverter<ConverterContext>() {
                                                @Override
                                                public boolean canConvert(final Object v,
                                                                          final Class<?> t,
@@ -71,7 +71,7 @@ public final class ConverterTestingTest implements ConverterTesting {
         final String value = "xyz";
         final ConverterContext context = ConverterContexts.fake();
 
-        this.convertFails(new Converter() {
+        this.convertFails(new Converter<ConverterContext>() {
                               @Override
                               public boolean canConvert(final Object v,
                                                         final Class<?> t,
@@ -113,7 +113,7 @@ public final class ConverterTestingTest implements ConverterTesting {
                         context));
     }
 
-    private static class TestConverter implements Converter {
+    private static class TestConverter implements Converter<ConverterContext> {
         @Override
         public boolean canConvert(final Object v,
                                   final Class<?> t,
@@ -124,8 +124,8 @@ public final class ConverterTestingTest implements ConverterTesting {
 
         @Override
         public <T> Either<T, String> convert(final Object v,
-                             final Class<T> t,
-                             final ConverterContext c) {
+                                             final Class<T> t,
+                                             final ConverterContext c) {
             check(v, t, c);
             return Either.left(t.cast(EXPECTED));
         }
@@ -142,7 +142,7 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertOrFailSuccess() {
         assertEquals(1,
-                new FakeConverter() {
+                new FakeConverter<ConverterContext>() {
                     @Override
                     public <T> Either<T, String> convert(final Object value,
                                                          final Class<T> type,
@@ -155,7 +155,7 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertOrFailFailed() {
         assertThrows(ConversionException.class, () -> {
-           new FakeConverter() {
+           new FakeConverter<ConverterContext>() {
                @Override
                public <T> Either<T, String> convert(final Object value,
                                                     final Class<T> type,

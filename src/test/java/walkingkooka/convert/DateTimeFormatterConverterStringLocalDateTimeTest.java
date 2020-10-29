@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.LocalDate;
@@ -26,7 +27,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterStringLocalDateTimeTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringLocalDateTime, String, LocalDateTime> {
+public final class DateTimeFormatterConverterStringLocalDateTimeTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringLocalDateTime<ConverterContext>, String, LocalDateTime> {
 
     @Test
     public void testConvert2() {
@@ -38,7 +39,7 @@ public final class DateTimeFormatterConverterStringLocalDateTimeTest extends Dat
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterStringLocalDateTime converter = this.createConverter();
+        final DateTimeFormatterConverterStringLocalDateTime<ConverterContext> converter = this.createConverter();
 
         this.convertAndCheck2(converter,
                 this.source(),
@@ -52,7 +53,7 @@ public final class DateTimeFormatterConverterStringLocalDateTimeTest extends Dat
     }
 
     @Override
-    protected DateTimeFormatterConverterStringLocalDateTime createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    protected DateTimeFormatterConverterStringLocalDateTime<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterStringLocalDateTime.with(formatter);
     }
 
@@ -77,7 +78,7 @@ public final class DateTimeFormatterConverterStringLocalDateTimeTest extends Dat
     }
 
     @Override
-    public Class<DateTimeFormatterConverterStringLocalDateTime> type() {
-        return DateTimeFormatterConverterStringLocalDateTime.class;
+    public Class<DateTimeFormatterConverterStringLocalDateTime<ConverterContext>> type() {
+        return Cast.to(DateTimeFormatterConverterStringLocalDateTime.class);
     }
 }

@@ -27,11 +27,11 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} passes the given value to a {@link Function} such as a method handle to a static method which performs the conversion.
  */
-final class FunctionConverter<S, D> extends Converter2 {
+final class FunctionConverter<S, D, C extends ConverterContext> extends Converter2<C> {
 
-    static <S, D> FunctionConverter<S, D> with(final Predicate<Object> source,
-                                               final Predicate<Class<?>> target,
-                                               final Function<S, D> converter) {
+    static <S, D, C extends ConverterContext> FunctionConverter<S, D, C> with(final Predicate<Object> source,
+                                                                              final Predicate<Class<?>> target,
+                                                                              final Function<S, D> converter) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(target, "target");
 
@@ -52,15 +52,14 @@ final class FunctionConverter<S, D> extends Converter2 {
 
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return this.source.test(value) &&
                 this.target.test(type);
     }
 
-    @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
+    @Override <T> Either<T, String> convert0(final Object value,
+                                             final Class<T> type,
+                                             final ConverterContext context) {
         return Either.left(Cast.to(this.converter.apply(Cast.to(value))));
     }
 

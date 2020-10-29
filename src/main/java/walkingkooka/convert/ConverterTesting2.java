@@ -24,13 +24,14 @@ import walkingkooka.reflect.TypeNameTesting;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public interface ConverterTesting2<C extends Converter> extends ConverterTesting,
+public interface ConverterTesting2<C extends Converter<CC>, CC extends ConverterContext>
+        extends ConverterTesting,
         ToStringTesting<C>,
         TypeNameTesting<C> {
 
     C createConverter();
 
-    ConverterContext createContext();
+    CC createContext();
 
     default void convertAndCheck(final Object value) {
         assertSame(value, this.convertAndCheck(value, Cast.to(value.getClass()), value));

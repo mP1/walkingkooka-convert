@@ -26,19 +26,28 @@ import java.util.Objects;
 /**
  * A {@link Converter} which handles converting {@link Number} to other number types or nothing at all if the target is number.
  */
-final class ConverterNumberNumber extends Converter2 {
+final class ConverterNumberNumber<C extends ConverterContext> extends Converter2<C> {
+
+    /**
+     * Type safe instance getter
+     */
+    static <C extends ConverterContext> ConverterNumberNumber<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    final static ConverterNumberNumber INSTANCE = new ConverterNumberNumber();
+    private final static ConverterNumberNumber INSTANCE = new ConverterNumberNumber();
 
     private ConverterNumberNumber() {
         super();
     }
 
     @Override
-    public boolean canConvert(final Object value, final Class<?> type, final ConverterContext context) {
+    public boolean canConvert(final Object value,
+                              final Class<?> type,
+                              final C context) {
         Objects.requireNonNull(value, "value");
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");

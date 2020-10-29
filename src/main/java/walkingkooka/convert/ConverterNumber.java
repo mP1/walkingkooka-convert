@@ -26,14 +26,16 @@ import java.math.BigInteger;
 /**
  * A {@link Converter} that handles converting {@link Number} to another {@link Number} reflect.
  */
-abstract class ConverterNumber<T> extends Converter2 {
+abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2<C> {
 
     ConverterNumber() {
         super();
     }
 
     @Override
-    public final boolean canConvert(final Object value, final Class<?> type, final ConverterContext context) {
+    public final boolean canConvert(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
         return value instanceof Number && this.targetType() == type;
     }
 

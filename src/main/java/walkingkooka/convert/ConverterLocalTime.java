@@ -24,7 +24,7 @@ import java.time.LocalTime;
 /**
  * Converts a {@link LocalTime} to a given reflect.
  */
-abstract class ConverterLocalTime extends Converter2 {
+abstract class ConverterLocalTime<C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Package private to limit sub classing.
@@ -35,7 +35,7 @@ abstract class ConverterLocalTime extends Converter2 {
     @Override
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
-                                    final ConverterContext context) {
+                                    final C context) {
         return value instanceof LocalTime && this.isTargetType(type);
     }
 

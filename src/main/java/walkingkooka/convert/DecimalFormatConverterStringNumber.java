@@ -28,9 +28,9 @@ import java.util.function.Function;
 /**
  * A {@link Converter} that formats {@link Number numbers}.
  */
-final class DecimalFormatConverterStringNumber extends DecimalFormatConverter {
+final class DecimalFormatConverterStringNumber<C extends ConverterContext> extends DecimalFormatConverter<C> {
 
-    static DecimalFormatConverterStringNumber with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    static <C extends ConverterContext> DecimalFormatConverterStringNumber<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         check(decimalFormat);
         return new DecimalFormatConverterStringNumber(decimalFormat);
     }
@@ -42,12 +42,12 @@ final class DecimalFormatConverterStringNumber extends DecimalFormatConverter {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return value instanceof String &&
                 (Maths.isNumberClass(type) || type == Number.class);
     }
 
-    @Override
+    @Override //
     <T> Either<T, String> convertWithDecimalFormat(final DecimalFormat decimalFormat,
                                                    final Object value,
                                                    final Class<T> type,

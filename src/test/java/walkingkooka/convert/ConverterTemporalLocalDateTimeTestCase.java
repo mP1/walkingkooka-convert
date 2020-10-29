@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.Temporal;
 
-public abstract class ConverterTemporalLocalDateTimeTestCase<C extends ConverterTemporalLocalDateTime<D>, D> extends ConverterTemporalTestCase<C, LocalDateTime, D> {
+public abstract class ConverterTemporalLocalDateTimeTestCase<C extends ConverterTemporalLocalDateTime<D, ConverterContext>, D> extends ConverterTemporalTestCase<C, LocalDateTime, D> {
 
     final static int VALUE = 123;
     final static LocalDate DAY = LocalDate.ofEpochDay(VALUE);

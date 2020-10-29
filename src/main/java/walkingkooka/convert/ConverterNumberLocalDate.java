@@ -26,14 +26,14 @@ import java.time.LocalDate;
 /**
  * A {@link Converter} that handles converting any {@link Number} to a {@link LocalDate}.
  */
-final class ConverterNumberLocalDate extends ConverterNumber<LocalDate> {
+final class ConverterNumberLocalDate<C extends ConverterContext> extends ConverterNumber<LocalDate, C> {
 
     /**
      * Creates a new instance with the given date offset.
      * A value of zero is 1/1/1970.
      */
-    static ConverterNumberLocalDate with(final long offset) {
-        return new ConverterNumberLocalDate(offset);
+    static <C extends ConverterContext> ConverterNumberLocalDate<C> with(final long offset) {
+        return new ConverterNumberLocalDate<>(offset);
     }
 
     /**

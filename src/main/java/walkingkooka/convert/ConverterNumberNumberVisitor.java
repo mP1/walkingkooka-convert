@@ -29,15 +29,15 @@ import java.math.BigInteger;
  */
 final class ConverterNumberNumberVisitor<T> extends NumberVisitor {
 
-    static <T> Either<T, String> convert(final ConverterNumber<T> converter,
-                                         final Number number,
-                                         final Class<T> type) {
+    static <T, C extends ConverterContext> Either<T, String> convert(final ConverterNumber<T, ?> converter,
+                                                                     final Number number,
+                                                                     final Class<T> type) {
         final ConverterNumberNumberVisitor<T> visitor = new ConverterNumberNumberVisitor<>(converter, type);
         visitor.accept(number);
         return visitor.value;
     }
 
-    ConverterNumberNumberVisitor(final ConverterNumber<T> converter, final Class<T> type) {
+    ConverterNumberNumberVisitor(final ConverterNumber<T, ?> converter, final Class<T> type) {
         super();
         this.converter = converter;
         this.type = type;
@@ -88,7 +88,7 @@ final class ConverterNumberNumberVisitor<T> extends NumberVisitor {
         this.value = this.converter.failConversion(number, this.type);
     }
 
-    private final ConverterNumber<T> converter;
+    private final ConverterNumber<T, ?> converter;
 
     private Either<T, String> value;
     private final Class<T> type;

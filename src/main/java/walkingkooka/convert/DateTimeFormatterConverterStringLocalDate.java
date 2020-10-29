@@ -29,10 +29,10 @@ import java.util.function.Function;
 /**
  * A {@link Converter} that parses a {@link String} into a {@link LocalTime}.
  */
-final class DateTimeFormatterConverterStringLocalDate extends DateTimeFormatterConverter<String, LocalDate> {
+final class DateTimeFormatterConverterStringLocalDate<C extends ConverterContext> extends DateTimeFormatterConverter<String, LocalDate, C> {
 
-    static DateTimeFormatterConverterStringLocalDate with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return new DateTimeFormatterConverterStringLocalDate(formatter);
+    static <C extends ConverterContext> DateTimeFormatterConverterStringLocalDate<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return new DateTimeFormatterConverterStringLocalDate<>(formatter);
     }
 
     /**

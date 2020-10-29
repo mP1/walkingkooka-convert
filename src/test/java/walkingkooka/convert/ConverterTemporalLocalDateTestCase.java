@@ -20,7 +20,7 @@ package walkingkooka.convert;
 import java.time.LocalDate;
 import java.time.temporal.Temporal;
 
-public abstract class ConverterTemporalLocalDateTestCase<C extends ConverterTemporalLocalDate<D>, D> extends ConverterTemporalTestCase<C, LocalDate, D> {
+public abstract class ConverterTemporalLocalDateTestCase<C extends ConverterTemporalLocalDate<D, ConverterContext>, D> extends ConverterTemporalTestCase<C, LocalDate, D> {
 
     ConverterTemporalLocalDateTestCase() {
         super();

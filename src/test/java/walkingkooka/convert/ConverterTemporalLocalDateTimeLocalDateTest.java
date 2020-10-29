@@ -18,12 +18,13 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public final class ConverterTemporalLocalDateTimeLocalDateTest extends ConverterTemporalLocalDateTimeTestCase<ConverterTemporalLocalDateTimeLocalDate, LocalDate> {
+public final class ConverterTemporalLocalDateTimeLocalDateTest extends ConverterTemporalLocalDateTimeTestCase<ConverterTemporalLocalDateTimeLocalDate<ConverterContext>, LocalDate> {
 
     @Test
     public void testMidnightTime() {
@@ -47,8 +48,8 @@ public final class ConverterTemporalLocalDateTimeLocalDateTest extends Converter
     // ConverterTesting.................................................................................................
 
     @Override
-    public ConverterTemporalLocalDateTimeLocalDate createConverter() {
-        return ConverterTemporalLocalDateTimeLocalDate.INSTANCE;
+    public ConverterTemporalLocalDateTimeLocalDate<ConverterContext> createConverter() {
+        return ConverterTemporalLocalDateTimeLocalDate.instance();
     }
 
     @Override
@@ -59,7 +60,7 @@ public final class ConverterTemporalLocalDateTimeLocalDateTest extends Converter
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterTemporalLocalDateTimeLocalDate> type() {
-        return ConverterTemporalLocalDateTimeLocalDate.class;
+    public Class<ConverterTemporalLocalDateTimeLocalDate<ConverterContext>> type() {
+        return Cast.to(ConverterTemporalLocalDateTimeLocalDate.class);
     }
 }

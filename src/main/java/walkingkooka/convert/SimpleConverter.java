@@ -24,12 +24,19 @@ import walkingkooka.Either;
  * A {@link Converter} that returns the value if the requested target type is actually the requested target type.
  * This is unfortunate limit of J2CL the Class#isInstance is not support/available.
  */
-final class SimpleConverter implements Converter {
+final class SimpleConverter<C extends ConverterContext> implements Converter<C> {
+
+    /**
+     * Type safe getter
+     */
+    static <C extends ConverterContext> SimpleConverter<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
      */
-    static final SimpleConverter INSTANCE = new SimpleConverter();
+    private static final SimpleConverter INSTANCE = new SimpleConverter();
 
     /**
      * Private ctor
@@ -40,7 +47,7 @@ final class SimpleConverter implements Converter {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return this.canConvert0(value, type);
     }
 
@@ -52,7 +59,7 @@ final class SimpleConverter implements Converter {
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
-                                         final ConverterContext context) {
+                                         final C context) {
         return this.canConvert0(value, type) ?
                 Either.left(Cast.to(value)) :
                 this.failConversion(value, type);

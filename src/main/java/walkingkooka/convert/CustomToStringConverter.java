@@ -25,9 +25,10 @@ import java.util.Objects;
 /**
  * Wraps another {@link Converter} replacing or ignoring its {@link Converter#toString()} with the provided {@link String}.
  */
-final class CustomToStringConverter implements Converter {
+final class CustomToStringConverter<C extends ConverterContext> implements Converter<C> {
 
-    static Converter wrap(final Converter converter, final String toString) {
+    static <C extends ConverterContext> Converter<C> wrap(final Converter<C> converter,
+                                                          final String toString) {
         Objects.requireNonNull(converter, "converter");
         Whitespace.failIfNullOrEmptyOrWhitespace(toString, "toString");
 
@@ -61,14 +62,14 @@ final class CustomToStringConverter implements Converter {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return this.converter.canConvert(value, type, context);
     }
 
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
-                                         final ConverterContext context) {
+                                         final C context) {
         return this.converter.convert(value, type, context);
     }
 
@@ -86,7 +87,7 @@ final class CustomToStringConverter implements Converter {
         return this == other || other instanceof CustomToStringConverter && this.equals0(Cast.to(other));
     }
 
-    private boolean equals0(final CustomToStringConverter other) {
+    private boolean equals0(final CustomToStringConverter<?> other) {
         return this.converter.equals(other.converter) &&
                 this.toString.equals(other.toString);
     }

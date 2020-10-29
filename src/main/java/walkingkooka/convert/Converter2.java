@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * A base {@link Converter} template which most sub classes will require.
  */
-abstract class Converter2 implements Converter {
+abstract class Converter2<C extends ConverterContext> implements Converter<C> {
 
     /**
      * Package private to limit sub classing.
@@ -36,7 +36,7 @@ abstract class Converter2 implements Converter {
     @Override
     public final <T> Either<T, String> convert(final Object value,
                                                final Class<T> type,
-                                               final ConverterContext context) {
+                                               final C context) {
         Objects.requireNonNull(value, "value");
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");
@@ -60,7 +60,7 @@ abstract class Converter2 implements Converter {
     final <N> Either<N, String> convertToNumber(final Number number,
                                                 final Class<N> type,
                                                 final ConverterContext context) {
-        return ConverterNumberNumber.INSTANCE
+        return ConverterNumberNumber.instance()
                     .convert(number,
                             type,
                             context);

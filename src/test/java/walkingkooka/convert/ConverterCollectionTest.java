@@ -26,7 +26,7 @@ import walkingkooka.predicate.Predicates;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterCollectionTest extends ConverterTestCase2<ConverterCollection> {
+public final class ConverterCollectionTest extends ConverterTestCase2<ConverterCollection<ConverterContext>> {
 
     @Override
     public void testTypeNaming() {
@@ -45,7 +45,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
 
     @Test
     public void testWithOneConverter() {
-        final Converter only = Converters.objectString();
+        final Converter<ConverterContext> only = Converters.objectString();
         assertSame(only, ConverterCollection.with(Lists.of(only)));
     }
 
@@ -66,7 +66,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
 
     @Test
     public void testSkipsFailed() {
-        this.convertAndCheck(ConverterCollection.with(Lists.of(new Converter() {
+        this.convertAndCheck(ConverterCollection.with(Lists.of(new Converter<ConverterContext>() {
                                                                    @Override
                                                                    public boolean canConvert(final Object value,
                                                                                              final Class<?> type,
@@ -75,7 +75,9 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
                                                                    }
 
                                                                    @Override
-                                                                   public <T> Either<T, String> convert(Object value, Class<T> type, ConverterContext context) {
+                                                                   public <T> Either<T, String> convert(final Object value,
+                                                                                                        final Class<T> type,
+                                                                                                        final ConverterContext context) {
                                                                        return Either.right("failed!");
                                                                    }
                                                                },
@@ -91,11 +93,11 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Override
-    public ConverterCollection createConverter() {
+    public ConverterCollection<ConverterContext> createConverter() {
         return Cast.to(ConverterCollection.with(Lists.of(booleanToString().setToString("String->Boolean"), Converters.numberNumber())));
     }
 
-    private Converter booleanToString() {
+    private Converter<ConverterContext> booleanToString() {
         return Converters.<String, Boolean>function(t-> t instanceof String, Predicates.is(Boolean.class), Boolean::valueOf);
     }
 
@@ -105,7 +107,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Override
-    public Class<ConverterCollection> type() {
-        return ConverterCollection.class;
+    public Class<ConverterCollection<ConverterContext>> type() {
+        return Cast.to(ConverterCollection.class);
     }
 }

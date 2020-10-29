@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.math.DecimalNumberContext;
 
 import java.math.BigDecimal;
@@ -26,7 +27,7 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.function.Function;
 
-public final class DecimalFormatConverterStringNumberTest extends DecimalFormatConverterTestCase<DecimalFormatConverterStringNumber> {
+public final class DecimalFormatConverterStringNumberTest extends DecimalFormatConverterTestCase<DecimalFormatConverterStringNumber<ConverterContext>> {
 
     @Test
     public void testInvalidLocaleFails() {
@@ -115,13 +116,13 @@ public final class DecimalFormatConverterStringNumberTest extends DecimalFormatC
     // ConverterTesting..................................................................................................
 
     @Override
-    DecimalFormatConverterStringNumber createConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    DecimalFormatConverterStringNumber<ConverterContext> createConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         return DecimalFormatConverterStringNumber.with(decimalFormat);
     }
 
     @Override
-    public Class<DecimalFormatConverterStringNumber> type() {
-        return DecimalFormatConverterStringNumber.class;
+    public Class<DecimalFormatConverterStringNumber<ConverterContext>> type() {
+        return Cast.to(DecimalFormatConverterStringNumber.class);
     }
 
     // TypeNameTesting..................................................................................................

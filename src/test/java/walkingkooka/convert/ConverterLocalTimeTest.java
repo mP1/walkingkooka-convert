@@ -17,13 +17,15 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
+
 import java.time.LocalTime;
 
-public final class ConverterLocalTimeTest extends ConverterTestCase<ConverterLocalTime> {
+public final class ConverterLocalTimeTest extends ConverterTestCase<ConverterLocalTime<ConverterContext>> {
 
     @Override
-    public Class<ConverterLocalTime> type() {
-        return ConverterLocalTime.class;
+    public Class<ConverterLocalTime<ConverterContext>> type() {
+        return Cast.to(ConverterLocalTime.class);
     }
 
     // TypeNameTesting..................................................................................................

@@ -25,14 +25,14 @@ import java.time.LocalDateTime;
 /**
  * Converts a {@link LocalDateTime} into a {@link Number}.
  */
-final class ConverterTemporalLocalDateTimeNumber extends ConverterTemporalLocalDateTime<Number> {
+final class ConverterTemporalLocalDateTimeNumber<C extends ConverterContext> extends ConverterTemporalLocalDateTime<Number, C> {
 
     /**
      * Creates a new instance with the given date offset.
      * A value of zero = 1/1/1970.
      */
-    static ConverterTemporalLocalDateTimeNumber with(final long offset) {
-        return new ConverterTemporalLocalDateTimeNumber(offset);
+    static <C extends ConverterContext> ConverterTemporalLocalDateTimeNumber<C> with(final long offset) {
+        return new ConverterTemporalLocalDateTimeNumber<>(offset);
     }
 
     /**

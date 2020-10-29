@@ -25,11 +25,9 @@ import walkingkooka.math.NumberVisitorTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CharSequences;
 
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public final class ConverterNumberNumberVisitorTest implements NumberVisitorTesting<ConverterNumberNumberVisitor<BigDecimal>> {
+public final class ConverterNumberNumberVisitorTest implements NumberVisitorTesting<ConverterNumberNumberVisitor<Boolean>> {
 
     @Test
     public void testConvertUnsupported() {
@@ -57,25 +55,25 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
             private final static long serialVersionUID = 1L;
         };
         //noinspection unchecked
-        assertEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + BigDecimal.class.getName()),
+        assertEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
                 ConverterNumberNumberVisitor.convert(this.converter(),
                         number,
-                        BigDecimal.class));
+                        Boolean.class));
     }
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createVisitor(), this.converter() + " " + CharSequences.quoteAndEscape(BigDecimal.class.getName()));
+        this.toStringAndCheck(this.createVisitor(), this.converter() + " " + CharSequences.quoteAndEscape(Boolean.class.getName()));
     }
 
     @Override
-    public ConverterNumberNumberVisitor<BigDecimal> createVisitor() {
+    public ConverterNumberNumberVisitor<Boolean> createVisitor() {
         //noinspection unchecked
-        return new ConverterNumberNumberVisitor<>(this.converter(), BigDecimal.class);
+        return new ConverterNumberNumberVisitor<Boolean>(this.converter(), Boolean.class);
     }
 
-    private ConverterNumber converter() {
-        return ConverterNumberBoolean.INSTANCE;
+    private ConverterNumber<Boolean, ConverterContext> converter() {
+        return ConverterNumberBoolean.instance();
     }
 
     @Override
@@ -89,7 +87,7 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
     }
 
     @Override
-    public Class<ConverterNumberNumberVisitor<BigDecimal>> type() {
+    public Class<ConverterNumberNumberVisitor<Boolean>> type() {
         return Cast.to(ConverterNumberNumberVisitor.class);
     }
 

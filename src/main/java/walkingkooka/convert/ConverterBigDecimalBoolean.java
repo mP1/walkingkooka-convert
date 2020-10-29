@@ -26,7 +26,14 @@ import java.math.BigDecimal;
  * A specialized {@link Converter} that tests a {@link BigDecimal} against zero without using {@link BigDecimal#equals(Object)
  * which fails when trailing zero counts are different.
  */
-final class ConverterBigDecimalBoolean extends Converter2 {
+final class ConverterBigDecimalBoolean<C extends ConverterContext> extends Converter2<C> {
+
+    /**
+     * Type safe instance getter
+     */
+    static <C extends ConverterContext> ConverterBigDecimalBoolean<C> instance() {
+        return Cast.to(INSTANCE);
+    }
 
     /**
      * Singleton
@@ -43,7 +50,7 @@ final class ConverterBigDecimalBoolean extends Converter2 {
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
-                              final ConverterContext context) {
+                              final C context) {
         return value instanceof BigDecimal && type == Boolean.class;
     }
 

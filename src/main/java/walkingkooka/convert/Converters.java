@@ -84,8 +84,8 @@ public final class Converters implements PublicStaticHelper {
     /**
      * [@see ConverterBigDecimalBoolean}
      */
-    public static Converter bigDecimalBoolean() {
-        return ConverterBigDecimalBoolean.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> bigDecimalBoolean() {
+        return ConverterBigDecimalBoolean.instance();
     }
 
     /**
@@ -106,28 +106,28 @@ public final class Converters implements PublicStaticHelper {
     /**
      * [@see ConverterBooleanNumber}
      */
-    public static Converter booleanNumber() {
-        return ConverterBooleanNumber.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> booleanNumber() {
+        return ConverterBooleanNumber.instance();
     }
 
     /**
      * {@see ConverterCollection}
      */
-    public static Converter collection(final List<Converter> converters) {
+    public static <C extends ConverterContext> Converter<C> collection(final List<Converter<C>> converters) {
         return ConverterCollection.with(converters);
     }
 
     /**
      * {@see CustomToStringConverter}
      */
-    public static Converter customToString(final Converter converter, final String toString) {
+    public static <C extends ConverterContext> Converter<C> customToString(final Converter converter, final String toString) {
         return CustomToStringConverter.wrap(converter, toString);
     }
 
     /**
      * {@see FakeConverter}
      */
-    public static Converter fake() {
+    public static <C extends ConverterContext> Converter<C> fake() {
         return new FakeConverter();
     }
 
@@ -143,113 +143,113 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see LocalDateLocalDateTimeConverter}
      */
-    public static Converter localDateLocalDateTime() {
-        return walkingkooka.convert.ConverterTemporalLocalDateLocalDateTime.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> localDateLocalDateTime() {
+        return walkingkooka.convert.ConverterTemporalLocalDateLocalDateTime.instance();
     }
 
     /**
      * {@see ConverterTemporalLocalDateNumber}
      */
-    public static Converter localDateNumber(final long offset) {
+    public static <C extends ConverterContext> Converter<C> localDateNumber(final long offset) {
         return walkingkooka.convert.ConverterTemporalLocalDateNumber.with(offset);
     }
 
     /**
      * {@see DateTimeFormatterConverterLocalDateString}
      */
-    public static Converter localDateString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    public static <C extends ConverterContext> Converter<C> localDateString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterLocalDateString.with(formatter);
     }
 
     /**
      * {@see ConverterTemporalLocalDateTimeLocalDate}
      */
-    public static Converter localDateTimeLocalDate() {
-        return ConverterTemporalLocalDateTimeLocalDate.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> localDateTimeLocalDate() {
+        return ConverterTemporalLocalDateTimeLocalDate.instance();
     }
 
     /**
      * {@see ConverterTemporalLocalDateTimeLocalTime}
      */
-    public static Converter localDateTimeLocalTime() {
-        return ConverterTemporalLocalDateTimeLocalTime.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> localDateTimeLocalTime() {
+        return ConverterTemporalLocalDateTimeLocalTime.instance();
     }
 
     /**
      * {@see ConverterTemporalLocalDateTimeNumber}
      */
-    public static Converter localDateTimeNumber(final long offset) {
+    public static <C extends ConverterContext> Converter<C> localDateTimeNumber(final long offset) {
         return walkingkooka.convert.ConverterTemporalLocalDateTimeNumber.with(offset);
     }
 
     /**
      * {@see DateTimeFormatterConverterLocalDateTimeString}
      */
-    public static Converter localDateTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    public static <C extends ConverterContext> Converter<C> localDateTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterLocalDateTimeString.with(formatter);
     }
 
     /**
      * {@see ConverterLocalTimeLocalDateTime}
      */
-    public static Converter localTimeLocalDateTime() {
-        return ConverterLocalTimeLocalDateTime.INSTANCE;
-    }   
+    public static <C extends ConverterContext> Converter<C> localTimeLocalDateTime() {
+        return ConverterLocalTimeLocalDateTime.instance();
+    }
 
     /**
      * {@see ConverterLocalTimeNumber}
      */
-    public static Converter localTimeNumber() {
-        return ConverterLocalTimeNumber.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> localTimeNumber() {
+        return ConverterLocalTimeNumber.instance();
     }
 
     /**
      * {@see DateTimeFormatterConverterLocalTimeString}
      */
-    public static Converter localTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    public static <C extends ConverterContext> Converter<C> localTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterLocalTimeString.with(formatter);
     }
 
     /**
      * {@see ConverterNumberLocalDate}
      */
-    public static Converter numberLocalDate(final long offset) {
+    public static <C extends ConverterContext> Converter<C> numberLocalDate(final long offset) {
         return ConverterNumberLocalDate.with(offset);
     }
 
     /**
      * {@see ConverterNumberLocalDateTime}
      */
-    public static Converter numberLocalDateTime(final long offset) {
+    public static <C extends ConverterContext> Converter<C> numberLocalDateTime(final long offset) {
         return ConverterNumberLocalDateTime.with(offset);
     }
 
     /**
      * {@see ConverterNumberLocalTime}
      */
-    public static Converter numberLocalTime() {
-        return ConverterNumberLocalTime.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> numberLocalTime() {
+        return ConverterNumberLocalTime.instance();
     }
 
     /**
      * {@see ConverterNumberNumber}
      */
-    public static Converter numberNumber() {
-        return ConverterNumberNumber.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> numberNumber() {
+        return ConverterNumberNumber.instance();
     }
 
     /**
      * {@see DecimalFormatConverterNumberString}
      */
-    public static Converter numberString(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    public static <C extends ConverterContext> Converter<C> numberString(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         return DecimalFormatConverterNumberString.with(decimalFormat);
     }
 
     /**
      * [@see ConverterObjectString}
      */
-    public static Converter objectString() {
-        return ConverterObjectString.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> objectString() {
+        return ConverterObjectString.instance();
     }
     
     /**
@@ -264,43 +264,43 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see SimpleConverter}
      */
-    public static Converter simple() {
-        return SimpleConverter.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> simple() {
+        return SimpleConverter.instance();
     }
 
     /**
      * {@see DateTimeFormatterConverterStringLocalDate}
      */
-    public static Converter stringLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    public static <C extends ConverterContext> Converter<C> stringLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterStringLocalDate.with(formatter);
     }
 
     /**
      * {@see DateTimeFormatterConverterStringLocalDateTime}
      */
-    public static Converter stringLocalDateTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    public static <C extends ConverterContext> Converter<C> stringLocalDateTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterStringLocalDateTime.with(formatter);
     }
 
     /**
      * {@see DateTimeFormatterConverterStringLocalTime}
      */
-    public static Converter stringLocalTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    public static <C extends ConverterContext> Converter<C> stringLocalTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterStringLocalTime.with(formatter);
     }
 
     /**
      * {@see DecimalFormatConverterStringNumber}
      */
-    public static Converter stringNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    public static <C extends ConverterContext> Converter<C> stringNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         return DecimalFormatConverterStringNumber.with(decimalFormat);
     }
 
     /**
      * {@see ConverterNumberBoolean}
      */
-    public static Converter truthyNumberBoolean() {
-        return ConverterNumberBoolean.INSTANCE;
+    public static <C extends ConverterContext> Converter<C> truthyNumberBoolean() {
+        return ConverterNumberBoolean.instance();
     }
 
     /**

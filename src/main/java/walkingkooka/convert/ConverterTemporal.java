@@ -24,7 +24,7 @@ import walkingkooka.Either;
  * A {@link Converter} which only accepts a single source type and a single target type, with an offset which is
  * added to the date component.
  */
-abstract class ConverterTemporal<S, D> extends Converter2 {
+abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Converter2<C> {
 
     ConverterTemporal(final long offset) {
         super();
@@ -34,7 +34,7 @@ abstract class ConverterTemporal<S, D> extends Converter2 {
     @Override
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
-                                    final ConverterContext context) {
+                                    final C context) {
         return this.isSourceTypeCompatible(value) && this.isTargetType(type);
     }
 
