@@ -71,7 +71,7 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
         this.convertAndCheck(number, Number.class, number);
     }
 
-    // to same reflect.....................................................................................................
+    // to same type.....................................................................................................
 
     @Test
     public void testBigDecimalToBigDecimal() {
