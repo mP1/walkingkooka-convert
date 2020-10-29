@@ -19,9 +19,9 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalTime;
 
 /**
@@ -42,15 +42,7 @@ final class ConverterLocalTimeNumber extends ConverterLocalTime {
 
     @Override
     boolean isTargetType(final Class<?> type) {
-        return BigDecimal.class == type ||
-                BigInteger.class == type ||
-                Byte.class == type ||
-                Double.class == type ||
-                Float.class == type ||
-                Integer.class == type ||
-                Long.class == type ||
-                Number.class == type ||
-                Short.class == type;
+        return Number.class == type || Maths.isNumberClass(type);
     }
 
     @Override
