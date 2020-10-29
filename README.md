@@ -47,7 +47,6 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - stringLocalTime
 - stringNumber
 - truthyNumberBoolean Follows javascript truthy rules, zero means false, all other values are true.
-- tryConverter
 
 
 
