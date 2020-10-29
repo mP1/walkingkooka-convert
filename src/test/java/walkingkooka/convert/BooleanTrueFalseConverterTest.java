@@ -18,13 +18,14 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.predicate.Predicates;
 
 import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<BooleanTrueFalseConverter> {
+public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<BooleanTrueFalseConverter<String>> {
 
     private final static Predicate<Object> SOURCE_TESTER = Predicates.customToString((t) -> t instanceof Integer, "Integer");
     private final static Predicate<Object> FALSE_VALUE = Predicates.is(1);
@@ -74,7 +75,7 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     }
 
     @Override
-    public BooleanTrueFalseConverter createConverter() {
+    public BooleanTrueFalseConverter<String> createConverter() {
         return BooleanTrueFalseConverter.with(SOURCE_TESTER, FALSE_VALUE, TARGET_TESTER, TRUE_ANSWER, FALSE_ANSWER);
     }
 
@@ -94,7 +95,7 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<BooleanTrueFalseConverter> type() {
-        return BooleanTrueFalseConverter.class;
+    public Class<BooleanTrueFalseConverter<String>> type() {
+        return Cast.to(BooleanTrueFalseConverter.class);
     }
 }
