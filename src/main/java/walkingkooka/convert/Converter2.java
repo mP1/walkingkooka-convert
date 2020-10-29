@@ -59,8 +59,7 @@ abstract class Converter2 implements Converter {
      */
     final <N> Either<N, String> convertToNumber(final Number number,
                                                 final Class<N> type,
-                                                final ConverterContext context,
-                                                final Object value) {
+                                                final ConverterContext context) {
         return ConverterNumberNumber.INSTANCE
                     .convert(number,
                             type,

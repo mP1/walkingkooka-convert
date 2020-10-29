@@ -64,8 +64,7 @@ final class ConverterTemporalLocalDateTimeNumber extends ConverterTemporalLocalD
                                                    final ConverterContext context) {
         return this.convertToNumber(days + time,
                 type,
-                context,
-                dateTime);
+                context);
     }
 
     @Override

@@ -53,8 +53,7 @@ final class ConverterTemporalLocalDateNumber extends ConverterTemporalLocalDate<
                                    final ConverterContext context) {
         return this.convertToNumber(date.toEpochDay() + this.offset,
                 type,
-                context,
-                date);
+                context);
     }
 
     @Override

@@ -57,7 +57,6 @@ final class DecimalFormatConverterStringNumber extends DecimalFormatConverter {
                 this.failConversion(value, type) :
                 this.convertToNumber(parsed,
                         type,
-                        context,
-                        value);
+                        context);
     }
 }
