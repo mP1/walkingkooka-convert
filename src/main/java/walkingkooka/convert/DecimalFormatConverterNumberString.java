@@ -20,9 +20,8 @@ package walkingkooka.convert;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.Maths;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.function.Function;
 
@@ -44,15 +43,7 @@ final class DecimalFormatConverterNumberString extends DecimalFormatConverter {
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final ConverterContext context) {
-        return (value instanceof Byte ||
-                value instanceof Short ||
-                value instanceof Integer ||
-                value instanceof Long ||
-                value instanceof Float ||
-                value instanceof Double ||
-                value instanceof BigDecimal ||
-                value instanceof BigInteger) &&
-                type == String.class;
+        return Maths.isNumber(value) && String.class == type;
     }
 
     @Override
