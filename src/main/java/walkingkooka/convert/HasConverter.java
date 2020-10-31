@@ -20,10 +20,10 @@ package walkingkooka.convert;
 /**
  * Declares a {@link Converter} getter.
  */
-public interface HasConverter {
+public interface HasConverter<C extends ConverterContext> {
 
     /**
      * Returns a {@link Converter}.
      */
-    Converter converter();
+    Converter<C> converter();
 }
