@@ -29,9 +29,11 @@ public final class ConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicConverterContext}
      */
-    public static ConverterContext basic(final DateTimeContext dateTimeContext,
+    public static ConverterContext basic(final Converter<ConverterContext> converter,
+                                         final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
-        return BasicConverterContext.with(dateTimeContext,
+        return BasicConverterContext.with(converter,
+                dateTimeContext,
                 decimalNumberContext);
     }
 

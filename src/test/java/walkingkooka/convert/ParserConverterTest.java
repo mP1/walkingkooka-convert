@@ -82,7 +82,9 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
 
     @Override
     public ConverterContext createContext() {
-        return ConverterContexts.basic(DateTimeContexts.fake(), DecimalNumberContexts.american(MathContext.DECIMAL32));
+        return ConverterContexts.basic(Converters.fake(),
+                DateTimeContexts.fake(),
+                DecimalNumberContexts.american(MathContext.DECIMAL32));
     }
 
     private Parser<ParserContext> bigDecimalParser() {

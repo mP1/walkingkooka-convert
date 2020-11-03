@@ -77,7 +77,8 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
     }
 
     final ConverterContext createContext(final Locale locale) {
-        return ConverterContexts.basic(DateTimeContexts.fake(),
+        return ConverterContexts.basic(Converters.fake(),
+                DateTimeContexts.fake(),
                 DecimalNumberContexts.decimalFormatSymbols(new DecimalFormatSymbols(locale),
                         '+',
                         locale,

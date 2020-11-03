@@ -33,6 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
         ConverterContextTesting<BasicConverterContext> {
 
+    private final static Converter<ConverterContext> CONVERTER = Converters.objectString();
+
     private final static String CURRENCY = "$$";
     private final static char DECIMAL = 'D';
     private final static String EXPONENT = "X";
@@ -45,13 +47,29 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
 
     @Test
+    public void testWithNullConverterFails() {
+        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(null,
+                this.dateTimeContext(),
+                this.decimalNumberContext()));
+    }
+
+    @Test
     public void testWithNullDateTimeContextFails() {
-        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(null, this.decimalNumberContext()));
+        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(CONVERTER,
+                null,
+                this.decimalNumberContext()));
     }
 
     @Test
     public void testWithNullDecimalNumberContextFails() {
-        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(this.dateTimeContext(), null));
+        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(CONVERTER,
+                this.dateTimeContext(),
+                null));
+    }
+
+    @Test
+    public void testConvert() {
+        this.convertAndCheck(new StringBuilder("123"), String.class, "123");
     }
 
     @Test
@@ -67,7 +85,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     @Override
     public BasicConverterContext createContext() {
-        return BasicConverterContext.with(this.dateTimeContext(), decimalNumberContext());
+        return BasicConverterContext.with(CONVERTER, this.dateTimeContext(), decimalNumberContext());
     }
 
     private DateTimeContext dateTimeContext() {

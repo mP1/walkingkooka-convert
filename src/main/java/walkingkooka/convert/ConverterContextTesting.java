@@ -22,8 +22,17 @@ import walkingkooka.math.DecimalNumberContextTesting2;
 /**
  * Mixing testing interface for {@link ConverterContext}
  */
-public interface ConverterContextTesting<C extends ConverterContext> extends DateTimeContextTesting2<C>,
+public interface ConverterContextTesting<C extends ConverterContext> extends CanConvertTesting<C>,
+        DateTimeContextTesting2<C>,
         DecimalNumberContextTesting2<C> {
+
+    /**
+     * Delegates to {@link #createContext()}.
+     */
+    @Override
+    default C createCanConvert() {
+        return this.createContext();
+    }
 
     @Override
     default String typeNameSuffix() {

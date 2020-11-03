@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 
@@ -33,24 +34,44 @@ final class BasicConverterContext implements ConverterContext {
     /**
      * Creates a new {@link BasicConverterContext}.
      */
-    static BasicConverterContext with(final DateTimeContext dateTimeContext,
+    static BasicConverterContext with(final Converter<ConverterContext> converter,
+                                      final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
+        Objects.requireNonNull(converter, "converter");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
-        return new BasicConverterContext(dateTimeContext, decimalNumberContext);
+        return new BasicConverterContext(converter,
+                dateTimeContext,
+                decimalNumberContext);
     }
 
     /**
      * Private ctor use factory
      */
-    private BasicConverterContext(final DateTimeContext dateTimeContext,
+    private BasicConverterContext(final Converter<ConverterContext> converter,
+                                  final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
         super();
 
+        this.converter = converter;
         this.dateTimeContext = dateTimeContext;
         this.decimalNumberContext = decimalNumberContext;
     }
+
+    @Override
+    public boolean canConvert(final Object value,
+                              final Class<?> type) {
+        return this.converter.canConvert(value, type, this);
+    }
+
+    @Override
+    public <T> Either<T, String> convert(final Object value,
+                                         final Class<T> target) {
+        return this.converter.convert(value, target, this);
+    }
+
+    private final Converter<ConverterContext> converter;
 
     @Override
     public List<String> ampms() {
