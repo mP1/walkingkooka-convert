@@ -53,19 +53,6 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
         return convertedValue;
     }
 
-    default void checkEquals(final String message,
-                             final Object expected,
-                             final Object actual) {
-        if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
-            final Comparable<?> expectedComparable = Cast.to(expected);
-            if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
-                assertEquals(expected, actual, message);
-            }
-        } else {
-            assertEquals(expected, actual, message);
-        }
-    }
-
     default void convertFails(final Object value,
                               final Class<?> type) {
         this.convertFails(this.createCanConvert(), value, type);
@@ -78,6 +65,37 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
         result.mapLeft(v -> {
             throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
         });
+    }
+
+    default <T> T convertOrFailAndCheck(final Object value,
+                                        final Class<T> target,
+                                        final T expected) {
+        return this.convertOrFailAndCheck(this.createCanConvert(),
+                value,
+                target,
+                expected);
+    }
+
+    default <T> T convertOrFailAndCheck(final CanConvert can,
+                                        final Object value,
+                                        final Class<T> target,
+                                        final T expected) {
+        final T convertedValue = can.convertOrFail(value, target);
+        checkEquals("Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
+        return convertedValue;
+    }
+
+    default void checkEquals(final String message,
+                             final Object expected,
+                             final Object actual) {
+        if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
+            final Comparable<?> expectedComparable = Cast.to(expected);
+            if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
+                assertEquals(expected, actual, message);
+            }
+        } else {
+            assertEquals(expected, actual, message);
+        }
     }
 
     /**

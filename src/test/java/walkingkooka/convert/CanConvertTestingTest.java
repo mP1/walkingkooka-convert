@@ -23,6 +23,7 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class CanConvertTestingTest {
 
@@ -69,6 +70,24 @@ public final class CanConvertTestingTest {
         assertEquals(false, pass);
     }
 
+    @Test
+    public void testConvertOrFailPass() {
+        this.create(true, Either.left(CONVERTED))
+                .convertOrFailAndCheck(VALUE, TARGET, CONVERTED);
+    }
+
+    @Test
+    public void testConvertOrFailFails() {
+        assertThrows(ConversionException.class, () ->
+                this.create(true, Either.right("Failed!"))
+                        .convertOrFailAndCheck(VALUE, TARGET, CONVERTED));
+    }
+
+    @Test
+    public void testConvertOrFailDoesntThrows() {
+        this.create(true, Either.left(CONVERTED));
+    }
+
     private <T> CanConvertTesting<CanConvert> create(final boolean can,
                                                      final Either<T, String> result) {
         return new CanConvertTesting<CanConvert>() {
@@ -96,5 +115,4 @@ public final class CanConvertTestingTest {
             }
         };
     }
-
 }
