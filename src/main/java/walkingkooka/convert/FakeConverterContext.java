@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Either;
 import walkingkooka.math.FakeDecimalNumberContext;
 import walkingkooka.test.Fake;
 
@@ -26,6 +27,19 @@ import java.util.List;
  * A {@link ConverterContext} where all methods throw {@link UnsupportedOperationException}.
  */
 public class FakeConverterContext extends FakeDecimalNumberContext implements ConverterContext, Fake {
+
+    @Override
+    public boolean canConvert(final Object value,
+                              final Class<?> type) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> Either<T, String> convert(final Object value,
+                                         final Class<T> target) {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public List<String> ampms() {
         throw new UnsupportedOperationException();

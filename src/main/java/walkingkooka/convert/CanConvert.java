@@ -17,17 +17,38 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Context;
 import walkingkooka.Either;
-import walkingkooka.datetime.DateTimeContext;
-import walkingkooka.math.DecimalNumberContext;
 
 /**
- * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
+ * Interface that includes a method to convert a value to a target type.
  */
-public interface ConverterContext extends CanConvert,
-        DateTimeContext,
-        DecimalNumberContext {
+public interface CanConvert {
+
+    /**
+     * Queries whether this {@link Converter} supports converting to the requested {@link Class class}. A returned true
+     * does not actually guarantee that the convert method will success, the result should still be tested.
+     */
+    boolean canConvert(final Object value,
+                       final Class<?> type);
+
+    /**
+     * Handles converting the given value to the {@link Class target type}.
+     */
+    <T> Either<T, String> convert(final Object value,
+                                  final Class<T> target);
+
+    /**
+     * Converts the given value to the {@link Class target type} or throws a {@link ConversionException}
+     */
+    default <T> T convertOrFail(final Object value,
+                                final Class<T> target) {
+        final Either<T, String> converted = this.convert(value, target);
+        if (converted.isRight()) {
+            throw new ConversionException(converted.rightValue());
+        }
+
+        return converted.leftValue();
+    }
 
     /**
      * Useful to report a failed conversion with a standard error message.
