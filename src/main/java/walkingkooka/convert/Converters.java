@@ -211,6 +211,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterNever}
+     */
+    public static <C extends ConverterContext> Converter<C> never() {
+        return ConverterNever.instance();
+    }
+
+    /**
      * {@see ConverterNumberLocalDate}
      */
     public static <C extends ConverterContext> Converter<C> numberLocalDate(final long offset) {
