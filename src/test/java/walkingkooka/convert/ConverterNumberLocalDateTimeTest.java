@@ -122,7 +122,7 @@ public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestC
     }
 
     private void convertAndCheckExcelOffset(final Number value) {
-        this.convertAndCheck(ConverterNumberLocalDateTime.with(Converters.EXCEL_OFFSET),
+        this.convertAndCheck(ConverterNumberLocalDateTime.with(Converters.EXCEL_1900_DATE_SYSTEM_OFFSET),
                 value,
                 LocalDateTime.class,
                 DATE_TIME_EXCEL_OFFSET);
