@@ -48,6 +48,13 @@ public final class Converters implements PublicStaticHelper {
     public final static long EXCEL_1900_DATE_SYSTEM_OFFSET = LocalDate.of(1899, 12, 30).toEpochDay();
 
     /**
+     * Constant to use to convert date/datetimes to an excel/spreadsheet number.
+     * A numeric value of 0 when formatted as a date/datetime shows a date component of 1904/1/1.
+     * <a href="https://support.microsoft.com/en-us/office/date-systems-in-excel-e7fe7167-48a9-4b96-bb53-5612a800b487">Date systems in Excel</a>
+     */
+    public final static long EXCEL_1904_DATE_SYSTEM_OFFSET = LocalDate.of(1904, 1, 1).toEpochDay();
+
+    /**
      * Hours per day.
      */
     private static final long HOURS_PER_DAY = 24;
