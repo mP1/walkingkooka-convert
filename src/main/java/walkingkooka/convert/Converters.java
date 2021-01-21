@@ -22,6 +22,7 @@ import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserContext;
+import walkingkooka.text.cursor.parser.ParserToken;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -274,8 +275,14 @@ public final class Converters implements PublicStaticHelper {
             P extends ParserContext,
             C extends ConverterContext> Converter<C> parser(final Class<V> type,
                                                             final Parser<P> parser,
-                                                            final Function<C, P> context) {
-        return ParserConverter.with(type, parser, context);
+                                                            final Function<C, P> context,
+                                                            final Function<ParserToken, V> transformer) {
+        return ParserConverter.with(
+                type,
+                parser,
+                context,
+                transformer
+        );
     }
 
     /**

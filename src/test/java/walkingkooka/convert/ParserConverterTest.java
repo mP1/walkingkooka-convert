@@ -21,9 +21,11 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.cursor.parser.BigDecimalParserToken;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserContext;
 import walkingkooka.text.cursor.parser.ParserContexts;
+import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.text.cursor.parser.Parsers;
 
 import java.math.BigDecimal;
@@ -36,17 +38,22 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
 
     @Test
     public void testWithNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(null, this.bigDecimalParser(), this.parserContextAdapter()));
+        assertThrows(NullPointerException.class, () -> ParserConverter.with(null, this.bigDecimalParser(), this.parserContextAdapter(), this.transformer()));
     }
 
     @Test
     public void testWithNullParserFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, null, this.parserContextAdapter()));
+        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, null, this.parserContextAdapter(), this.transformer()));
     }
 
     @Test
     public void testWithNullParserContextAdapterFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, this.bigDecimalParser(), null));
+        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, this.bigDecimalParser(), null, this.transformer()));
+    }
+
+    @Test
+    public void testWithNullTransformerFails() {
+        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, this.bigDecimalParser(), this.parserContextAdapter(), null));
     }
 
     @Test
@@ -71,13 +78,20 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
 
     @Override
     public ParserConverter<BigDecimal, ParserContext, ConverterContext> createConverter() {
-        return ParserConverter.with(BigDecimal.class,
+        return ParserConverter.with(
+                BigDecimal.class,
                 this.bigDecimalParser(),
-                parserContextAdapter());
+                this.parserContextAdapter(),
+                this.transformer()
+        );
     }
 
     private Function<ConverterContext, ParserContext> parserContextAdapter() {
         return (c) -> ParserContexts.basic(c, c);
+    }
+
+    private Function<ParserToken, BigDecimal> transformer() {
+        return (t) -> t.cast(BigDecimalParserToken.class).value();
     }
 
     @Override
