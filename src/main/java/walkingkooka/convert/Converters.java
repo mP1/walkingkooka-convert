@@ -270,9 +270,11 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ParserConverter}
      */
-    public static <V, C extends ParserContext> Converter parser(final Class<V> type,
-                                                                final Parser<C> parser,
-                                                                final Function<ConverterContext, C> context) {
+    public static <V,
+            P extends ParserContext,
+            C extends ConverterContext> Converter<C> parser(final Class<V> type,
+                                                            final Parser<P> parser,
+                                                            final Function<C, P> context) {
         return ParserConverter.with(type, parser, context);
     }
 
