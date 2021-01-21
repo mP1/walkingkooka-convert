@@ -26,13 +26,13 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
-final class BooleanTrueFalseConverter<T, C extends ConverterContext> extends Converter2<C> {
+final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Converter2<C> {
 
-    static <D, C extends ConverterContext> BooleanTrueFalseConverter<D, C> with(final Predicate<Object> source,
+    static <V, C extends ConverterContext> BooleanTrueFalseConverter<V, C> with(final Predicate<Object> source,
                                                                                 final Predicate<Object> falseValue,
                                                                                 final Predicate<Class<?>> target,
-                                                                                final D trueAnswer,
-                                                                                final D falseAnswer) {
+                                                                                final V trueAnswer,
+                                                                                final V falseAnswer) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(falseValue, "falseValue");
         Objects.requireNonNull(target, "target");
@@ -49,8 +49,8 @@ final class BooleanTrueFalseConverter<T, C extends ConverterContext> extends Con
     private BooleanTrueFalseConverter(final Predicate<Object> source,
                                       final Predicate<Object> falseValue,
                                       final Predicate<Class<?>> target,
-                                      final T trueAnswer,
-                                      final T falseAnswer) {
+                                      final V trueAnswer,
+                                      final V falseAnswer) {
         super();
         this.source = source;
         this.falseValue = falseValue;
@@ -77,15 +77,15 @@ final class BooleanTrueFalseConverter<T, C extends ConverterContext> extends Con
         return Either.left(Cast.to(this.convert2(value)));
     }
 
-    private T convert2(final Object value) {
+    private V convert2(final Object value) {
         return this.falseValue.test(value) ?
                 this.falseAnswer :
                 this.trueAnswer;
     }
 
     private final Predicate<Object> falseValue;
-    private final T trueAnswer;
-    private final T falseAnswer;
+    private final V trueAnswer;
+    private final V falseAnswer;
 
     @Override
     public String toString() {
