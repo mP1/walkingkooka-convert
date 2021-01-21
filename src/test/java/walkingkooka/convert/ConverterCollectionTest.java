@@ -98,7 +98,11 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     private Converter<ConverterContext> booleanToString() {
-        return Converters.<String, Boolean>function(t-> t instanceof String, Predicates.is(Boolean.class), Boolean::valueOf);
+        return Converters.<String, Boolean, ConverterContext>function(
+                t-> t instanceof String,
+                Predicates.is(Boolean.class),
+                Boolean::valueOf
+        );
     }
 
     @Override
