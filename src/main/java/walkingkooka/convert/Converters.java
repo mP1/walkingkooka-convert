@@ -28,6 +28,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -279,7 +280,7 @@ public final class Converters implements PublicStaticHelper {
             C extends ConverterContext> Converter<C> parser(final Class<V> type,
                                                             final Parser<P> parser,
                                                             final Function<C, P> context,
-                                                            final Function<ParserToken, V> transformer) {
+                                                            final BiFunction<ParserToken, C, V> transformer) {
         return ParserConverter.with(
                 type,
                 parser,

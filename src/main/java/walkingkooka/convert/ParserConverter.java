@@ -27,6 +27,7 @@ import walkingkooka.text.cursor.parser.ParserToken;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
@@ -38,7 +39,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     static <V, P extends ParserContext, C extends ConverterContext> ParserConverter<V, P, C> with(final Class<V> type,
                                                                                                   final Parser<P> parser,
                                                                                                   final Function<C, P> context,
-                                                                                                  final Function<ParserToken, V> transformer) {
+                                                                                                  final BiFunction<ParserToken, C, V> transformer) {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(parser, "parser");
         Objects.requireNonNull(context, "context");
@@ -58,7 +59,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     private ParserConverter(final Class<V> type,
                             final Parser<P> parser,
                             final Function<C, P> context,
-                            final Function<ParserToken, V> transformer) {
+                            final BiFunction<ParserToken, C, V> transformer) {
         this.type = type;
         this.parser = parser;
         this.context = context;
@@ -90,7 +91,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
         final Optional<ParserToken> result = this.parser.parse(cursor, this.context.apply(context));
         return result.isPresent() && cursor.isEmpty() ?
                 Either.left(
-                        Cast.to(this.transformer.apply(result.get()))
+                        Cast.to(this.transformer.apply(result.get(), context))
                 ) :
                 this.failConversion(text, type);
     }
@@ -105,7 +106,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     /**
      * Function that is invoked with the {@link ParserToken} to return the value.
      */
-    private final Function<ParserToken, V> transformer;
+    private final BiFunction<ParserToken, C, V> transformer;
 
     @Override
     public String toString() {

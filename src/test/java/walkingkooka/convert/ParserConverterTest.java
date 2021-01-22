@@ -30,6 +30,7 @@ import walkingkooka.text.cursor.parser.Parsers;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -90,8 +91,8 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
         return (c) -> ParserContexts.basic(c, c);
     }
 
-    private Function<ParserToken, BigDecimal> transformer() {
-        return (t) -> t.cast(BigDecimalParserToken.class).value();
+    private BiFunction<ParserToken, ConverterContext, BigDecimal> transformer() {
+        return (t, c) -> t.cast(BigDecimalParserToken.class).value();
     }
 
     @Override
