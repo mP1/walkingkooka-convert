@@ -49,19 +49,3 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - truthyNumberBoolean Follows javascript truthy rules, zero means false, all other values are true.
 
 
-
-## Dependencies
-
-- junit!
-- walkingkooka
-
-
-
-## Getting the source
-
-You can either download the source using the "ZIP" button at the top
-of the github page, or you can make a clone using git:
-
-```
-git clone git://github.com/mP1/walkingkooka-convert.git
-```
