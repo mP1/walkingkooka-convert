@@ -25,7 +25,7 @@ import walkingkooka.Either;
 public interface CanConvert {
 
     /**
-     * Queries whether this {@link Converter} supports converting to the requested {@link Class class}. A returned true
+     * Queries whether this {@link CanConvert} supports converting to the requested {@link Class class}. A returned true
      * does not actually guarantee that the convert method will success, the result should still be tested.
      */
     boolean canConvert(final Object value,
