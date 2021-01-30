@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.text.CharSequences;
 
 /**
  * Converts an object instance to a requested target {@link Class class}.
@@ -32,6 +33,21 @@ public interface Converter<C extends ConverterContext> {
     boolean canConvert(final Object value,
                        final Class<?> type,
                        final C context);
+
+    /**
+     * Queries whether this {@link Converter} supports converting the value to the target type, throwing an exception
+     * if it fails, and always returning <code>true</code>
+     */
+    default boolean canConvertOrFail(final Object value,
+                                     final Class<?> target,
+                                     final C context) {
+        final boolean can = this.canConvert(value, target, context);
+        if (!can) {
+            throw new ConversionException("Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName());
+        }
+
+        return can;
+    }
 
     /**
      * Converts the given value to the requested type returning an {@link Either} with {@link Either#leftValue()} holding
