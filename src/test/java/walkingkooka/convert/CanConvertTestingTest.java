@@ -84,6 +84,35 @@ public final class CanConvertTestingTest {
     }
 
     @Test
+    public void testConvertOrFailCustomConvertThrowableFails() {
+        final String message = "message 123";
+        final RuntimeException thrown = assertThrows(RuntimeException.class,
+                () -> {
+                    new CanConvert() {
+
+                        @Override
+                        public boolean canConvert(final Object value,
+                                                  final Class<?> type) {
+                            return false;
+                        }
+
+                        @Override //
+                        public <T> Either<T, String> convert(final Object value,
+                                                             final Class<T> target) {
+                            return Either.right(message);
+                        }
+
+                        @Override
+                        public RuntimeException convertThrowable(final String message) {
+                            return new RuntimeException(message);
+                        }
+                    }.convertOrFail(this, this.getClass());
+                });
+
+        assertEquals(message, thrown.getMessage(), "message");
+    }
+
+    @Test
     public void testConvertOrFailDoesntThrows() {
         this.create(true, Either.left(CONVERTED));
     }
