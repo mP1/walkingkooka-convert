@@ -44,7 +44,7 @@ public interface CanConvert {
                                 final Class<T> target) {
         final Either<T, String> converted = this.convert(value, target);
         if (converted.isRight()) {
-            throw new ConversionException(converted.rightValue());
+            throw this.convertThrowable(converted.rightValue());
         }
 
         return converted.leftValue();
@@ -65,5 +65,12 @@ public interface CanConvert {
                                                  final Class<T> target,
                                                  final Throwable cause) {
         return FailConversion.handle(value, target, cause);
+    }
+
+    /**
+     * Creates a {@link Throwable} which may then be thrown to report a convert failure.
+     */
+    default RuntimeException convertThrowable(final String message) {
+        return new ConversionException(message);
     }
 }
