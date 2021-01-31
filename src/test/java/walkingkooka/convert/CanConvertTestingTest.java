@@ -32,6 +32,52 @@ public final class CanConvertTestingTest {
     final String CONVERTED = "*123*";
 
     @Test
+    public void testCanConvertOrFail() {
+        new CanConvert() {
+
+            @Override
+            public boolean canConvert(final Object value,
+                                      final Class<?> type) {
+                return true;
+            }
+
+            @Override //
+            public <T> Either<T, String> convert(final Object value,
+                                                 final Class<T> target) {
+                throw new UnsupportedOperationException();
+            }
+        }.canConvert(VALUE, TARGET);
+    }
+
+    @Test
+    public void testCanConvertOrFailFails() {
+        final String message = "message 1234";
+
+        final RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            new CanConvert() {
+
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return false;
+                }
+
+                @Override //
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    throw new UnsupportedOperationException();
+                }
+
+                @Override
+                public RuntimeException convertThrowable(final String ignored) {
+                    return new RuntimeException(message);
+                }
+            }.canConvertOrFail(VALUE, TARGET);
+        });
+        assertEquals(message, thrown.getMessage(), "message");
+    }
+
+    @Test
     public void testConvertFailsFails() {
 
         this.create(true, Either.right("failed message!"))
