@@ -79,6 +79,11 @@ final class BasicConverterContext implements ConverterContext {
     }
 
     @Override
+    public int defaultYear() {
+        return this.dateTimeContext.defaultYear();
+    }
+
+    @Override
     public List<String> monthNames() {
         return this.dateTimeContext.monthNames();
     }
