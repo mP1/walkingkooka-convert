@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.text.CharSequences;
 
 /**
  * Interface that includes a method to convert a value to a target type.
@@ -30,6 +31,20 @@ public interface CanConvert {
      */
     boolean canConvert(final Object value,
                        final Class<?> type);
+
+    /**
+     * Queries whether this {@link CanConvert} supports converting the value to the target type, throwing an exception
+     * if it fails, and always returning <code>true</code>
+     */
+    default boolean canConvertOrFail(final Object value,
+                                     final Class<?> target) {
+        final boolean can = this.canConvert(value, target);
+        if (!can) {
+            throw this.convertThrowable("Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName());
+        }
+
+        return can;
+    }
 
     /**
      * Handles converting the given value to the {@link Class target type}.
