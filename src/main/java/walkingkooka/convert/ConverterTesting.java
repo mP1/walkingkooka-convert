@@ -23,8 +23,6 @@ import walkingkooka.Either;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * A mixin interface with helpers to assist testing {@link Converter} converts or the conversion fails.
  */
@@ -35,9 +33,11 @@ public interface ConverterTesting extends Testing {
                                   final Class<T> target,
                                   final ConverterContext context,
                                   final T expected) {
-        assertEquals(true,
+        this.checkEquals(
+                true,
                 converter.canConvert(value, target, context),
-                () -> converter + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")");
+                () -> converter + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
+        );
 
         final Either<T, String> result = converter.convert(value, target, context);
         if (result.isRight()) {
@@ -45,20 +45,25 @@ public interface ConverterTesting extends Testing {
         }
 
         final T convertedValue = result.leftValue();
-        checkEquals("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
+        this.checkEquals(
+                expected,
+                convertedValue,
+                "Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
+        );
         return convertedValue;
     }
 
-    default void checkEquals(final String message,
-                             final Object expected,
-                             final Object actual) {
+    @Override
+    default void checkEquals(final Object expected,
+                             final Object actual,
+                             final String message) {
         if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
             final Comparable<?> expectedComparable = Cast.to(expected);
             if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
-                assertEquals(expected, actual, message);
+                Testing.super.checkEquals(expected, actual, message);
             }
         } else {
-            assertEquals(expected, actual, message);
+            Testing.super.checkEquals(expected, actual, message);
         }
     }
 

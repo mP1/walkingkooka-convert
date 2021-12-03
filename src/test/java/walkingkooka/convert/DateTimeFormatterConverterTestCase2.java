@@ -25,7 +25,6 @@ import java.time.format.DecimalStyle;
 import java.util.Locale;
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -70,12 +69,12 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
             switch (this.create++) {
                 case 0:
                 case 2:
-                    assertEquals(LOCALE1, locale, "locale");
-                    assertEquals(TWO_DIGIT_YEARS1, context.twoDigitYear(), "twoDigitYears");
+                    this.checkEquals(LOCALE1, locale, "locale");
+                    this.checkEquals(TWO_DIGIT_YEARS1, context.twoDigitYear(), "twoDigitYears");
                     break;
                 case 1:
-                    assertEquals(LOCALE2, locale, "locale");
-                    assertEquals(TWO_DIGIT_YEARS2, context.twoDigitYear(), "twoDigitYears");
+                    this.checkEquals(LOCALE2, locale, "locale");
+                    this.checkEquals(TWO_DIGIT_YEARS2, context.twoDigitYear(), "twoDigitYears");
                     break;
                 default:
                     fail();
