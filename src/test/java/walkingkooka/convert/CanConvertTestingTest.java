@@ -21,11 +21,11 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.test.Testing;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class CanConvertTestingTest {
+public final class CanConvertTestingTest implements Testing {
 
     final Object VALUE = 123;
     final Class<String> TARGET = String.class;
@@ -74,7 +74,7 @@ public final class CanConvertTestingTest {
                 }
             }.canConvertOrFail(VALUE, TARGET);
         });
-        assertEquals(message, thrown.getMessage(), "message");
+        this.checkEquals(message, thrown.getMessage(), "message");
     }
 
     @Test
@@ -94,7 +94,7 @@ public final class CanConvertTestingTest {
         } catch (final AssertionFailedError expected) {
         }
 
-        assertEquals(false, pass);
+        this.checkEquals(false, pass);
     }
 
     @Test
@@ -113,7 +113,7 @@ public final class CanConvertTestingTest {
         } catch (final AssertionFailedError expected) {
         }
 
-        assertEquals(false, pass);
+        this.checkEquals(false, pass);
     }
 
     @Test
@@ -155,7 +155,7 @@ public final class CanConvertTestingTest {
                     }.convertOrFail(this, this.getClass());
                 });
 
-        assertEquals(message, thrown.getMessage(), "message");
+        this.checkEquals(message, thrown.getMessage(), "message");
     }
 
     @Test
@@ -174,16 +174,16 @@ public final class CanConvertTestingTest {
                     @Override
                     public boolean canConvert(final Object value,
                                               final Class<?> target) {
-                        assertEquals(VALUE, value, "value");
-                        assertEquals(TARGET, target, "target");
+                        checkEquals(VALUE, value, "value");
+                        checkEquals(TARGET, target, "target");
                         return can;
                     }
 
                     @Override
                     public <T> Either<T, String> convert(final Object value,
                                                          final Class<T> target) {
-                        assertEquals(VALUE, value, "value");
-                        assertEquals(TARGET, target, "target");
+                        checkEquals(VALUE, value, "value");
+                        checkEquals(TARGET, target, "target");
                         return Cast.to(result);
                     }
                 };

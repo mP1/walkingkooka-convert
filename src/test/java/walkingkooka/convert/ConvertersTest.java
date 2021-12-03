@@ -24,13 +24,11 @@ import walkingkooka.reflect.PublicStaticHelperTesting;
 import java.lang.reflect.Method;
 import java.math.MathContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public final class ConvertersTest implements PublicStaticHelperTesting<Converters> {
 
     @Test
     public void testExcelConstantsDifference() {
-        assertEquals(Converters.EXCEL_1904_DATE_SYSTEM_OFFSET - Converters.EXCEL_1900_DATE_SYSTEM_OFFSET, 1462);
+        this.checkEquals(Converters.EXCEL_1904_DATE_SYSTEM_OFFSET - Converters.EXCEL_1900_DATE_SYSTEM_OFFSET, 1462L);
     }
 
     @Test

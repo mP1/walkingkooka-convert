@@ -22,8 +22,6 @@ import walkingkooka.Either;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * Mixing testing interface for {@link CanConvert}
  */
@@ -39,9 +37,11 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
-        assertEquals(true,
+        this.checkEquals(
+                true,
                 context.canConvert(value, target),
-                () -> context + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")");
+                () -> context + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
+        );
 
         final Either<T, String> result = context.convert(value, target);
         if (result.isRight()) {
@@ -49,7 +49,7 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
         }
 
         final T convertedValue = result.leftValue();
-        checkEquals("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
+        this.checkEquals("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
         return convertedValue;
     }
 
@@ -81,7 +81,7 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
                                         final Class<T> target,
                                         final T expected) {
         final T convertedValue = can.convertOrFail(value, target);
-        checkEquals("Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
+        this.checkEquals("Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
         return convertedValue;
     }
 
@@ -91,10 +91,10 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
         if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
             final Comparable<?> expectedComparable = Cast.to(expected);
             if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
-                assertEquals(expected, actual, message);
+                this.checkEquals(expected, actual, message);
             }
         } else {
-            assertEquals(expected, actual, message);
+            this.checkEquals(expected, actual, message);
         }
     }
 

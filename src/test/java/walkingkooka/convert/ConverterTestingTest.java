@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterTestingTest implements ConverterTesting {
@@ -71,17 +70,18 @@ public final class ConverterTestingTest implements ConverterTesting {
         final String value = "xyz";
         final ConverterContext context = ConverterContexts.fake();
 
-        this.convertFails(new Converter<ConverterContext>() {
-                              @Override
-                              public boolean canConvert(final Object v,
-                                                        final Class<?> t,
-                                                        final ConverterContext c) {
-                                  check(v, t, c);
-                                  return true;
-                              }
+        this.convertFails(
+                new Converter<ConverterContext>() {
+                    @Override
+                    public boolean canConvert(final Object v,
+                                              final Class<?> t,
+                                              final ConverterContext c) {
+                        check(v, t, c);
+                        return true;
+                    }
 
-                              @Override
-                              public <T> Either<T, String> convert(final Object v,
+                    @Override
+                    public <T> Either<T, String> convert(final Object v,
                                                                    final Class<T> t,
                                                                    final ConverterContext c) {
                                   check(v, t, c);
@@ -91,9 +91,9 @@ public final class ConverterTestingTest implements ConverterTesting {
                               private void check(final Object v,
                                                  final Class<?> t,
                                                  final ConverterContext c) {
-                                  assertEquals(value, v, "value");
-                                  assertEquals(Integer.class, t, "type");
-                                  assertEquals(context, c, "context");
+                                  checkEquals(value, v, "value");
+                                  checkEquals(Integer.class, t, "type");
+                                  checkEquals(context, c, "context");
                               }
                           },
                 value,
@@ -113,7 +113,7 @@ public final class ConverterTestingTest implements ConverterTesting {
                         context));
     }
 
-    private static class TestConverter implements Converter<ConverterContext> {
+    private class TestConverter implements Converter<ConverterContext> {
         @Override
         public boolean canConvert(final Object v,
                                   final Class<?> t,
@@ -133,15 +133,15 @@ public final class ConverterTestingTest implements ConverterTesting {
         private void check(final Object v,
                            final Class<?> t,
                            final ConverterContext c) {
-            assertEquals(VALUE, v, "value");
-            assertEquals(Integer.class, t, "type");
-            assertEquals(CONTEXT, c, "context");
+            checkEquals(VALUE, v, "value");
+            checkEquals(Integer.class, t, "type");
+            checkEquals(CONTEXT, c, "context");
         }
     }
 
     @Test
     public void testConvertOrFailSuccess() {
-        assertEquals(1,
+        this.checkEquals(1,
                 new FakeConverter<ConverterContext>() {
                     @Override
                     public <T> Either<T, String> convert(final Object value,

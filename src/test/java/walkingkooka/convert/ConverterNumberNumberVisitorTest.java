@@ -25,8 +25,6 @@ import walkingkooka.math.NumberVisitorTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CharSequences;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public final class ConverterNumberNumberVisitorTest implements NumberVisitorTesting<ConverterNumberNumberVisitor<Boolean>> {
 
     @Test
@@ -55,7 +53,7 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
             private final static long serialVersionUID = 1L;
         };
         //noinspection unchecked
-        assertEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
+        this.checkEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
                 ConverterNumberNumberVisitor.convert(this.converter(),
                         number,
                         Boolean.class));
