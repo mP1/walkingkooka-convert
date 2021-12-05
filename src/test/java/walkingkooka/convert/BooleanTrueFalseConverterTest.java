@@ -84,7 +84,7 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
         return ConverterContexts.fake();
     }
 
-    final void convertAndCheck2(final Object value,
+    void convertAndCheck2(final Object value,
                                 final String expected) {
         this.convertAndCheck(this.createConverter(),
                 value,
