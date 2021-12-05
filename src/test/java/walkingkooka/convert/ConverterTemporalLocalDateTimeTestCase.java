@@ -17,17 +17,12 @@
 
 package walkingkooka.convert;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.temporal.Temporal;
 
 public abstract class ConverterTemporalLocalDateTimeTestCase<C extends ConverterTemporalLocalDateTime<D, ConverterContext>, D> extends ConverterTemporalTestCase<C, LocalDateTime, D> {
 
     final static int VALUE = 123;
-    final static LocalDate DAY = LocalDate.ofEpochDay(VALUE);
-    final static LocalTime MIDNIGHT = LocalTime.ofSecondOfDay(0);
-    final static LocalTime QUARTER_DAY = LocalTime.of(6, 0);
 
     ConverterTemporalLocalDateTimeTestCase() {
         super();
