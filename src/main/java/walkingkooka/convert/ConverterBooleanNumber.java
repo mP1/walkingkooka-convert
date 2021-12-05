@@ -46,9 +46,9 @@ final class ConverterBooleanNumber<C extends ConverterContext> extends Converter
     }
 
     @Override
-    public final boolean canConvert(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
+    public boolean canConvert(final Object value,
+                              final Class<?> type,
+                              final C context) {
         return value instanceof Boolean && Maths.isNumberClass(type);
     }
 

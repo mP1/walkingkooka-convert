@@ -29,12 +29,12 @@ public final class ConverterNumberTest extends ConverterTestCase<ConverterNumber
     // TypeNameTesting..................................................................................................
 
     @Override
-    public final String typeNamePrefix() {
+    public String typeNamePrefix() {
         return Converter.class.getSimpleName() + Number.class.getSimpleName();
     }
 
     @Override
-    public final String typeNameSuffix() {
+    public String typeNameSuffix() {
         return "";
     }
 }
