@@ -29,7 +29,7 @@ public final class DateTimeFormatterConverterLocalDateStringTest extends DateTim
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterLocalDateString converter = this.createConverter();
+        final DateTimeFormatterConverterLocalDateString<ConverterContext> converter = this.createConverter();
         final LocalDate source = this.source();
 
         this.convertAndCheck2(converter,

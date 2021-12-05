@@ -32,7 +32,7 @@ final class CustomToStringConverter<C extends ConverterContext> implements Conve
         Objects.requireNonNull(converter, "converter");
         Whitespace.failIfNullOrEmptyOrWhitespace(toString, "toString");
 
-        Converter result;
+        Converter<C> result;
 
         for (; ; ) {
             if (converter.toString().equals(toString)) {
@@ -40,20 +40,20 @@ final class CustomToStringConverter<C extends ConverterContext> implements Conve
                 break;
             }
 
-            Converter wrap = converter;
+            Converter<C> wrap = converter;
             if (converter instanceof CustomToStringConverter) {
                 // unwrap then re-wrap the converter...
-                final CustomToStringConverter custom = Cast.to(wrap);
+                final CustomToStringConverter<C> custom = Cast.to(wrap);
                 wrap = custom.converter;
             }
-            result = new CustomToStringConverter(wrap, toString);
+            result = new CustomToStringConverter<>(wrap, toString);
             break;
         }
 
         return result;
     }
 
-    private CustomToStringConverter(final Converter converter, final String toString) {
+    private CustomToStringConverter(final Converter<C> converter, final String toString) {
         this.converter = converter;
         this.toString = toString;
     }
@@ -74,7 +74,7 @@ final class CustomToStringConverter<C extends ConverterContext> implements Conve
     }
 
     // @VisibleForTesting
-    final Converter converter;
+    final Converter<C> converter;
 
     // Object
     @Override

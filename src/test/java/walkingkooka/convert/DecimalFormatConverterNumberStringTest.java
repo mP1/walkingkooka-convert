@@ -79,7 +79,7 @@ public final class DecimalFormatConverterNumberStringTest extends DecimalFormatC
 
     @Test
     public void testLocaleChange() {
-        final DecimalFormatConverterNumberString converter = this.createConverter("$ ###.00");
+        final DecimalFormatConverterNumberString<ConverterContext> converter = this.createConverter("$ ###.00");
         this.convertAndCheck(converter,
                 1.25,
                 String.class,

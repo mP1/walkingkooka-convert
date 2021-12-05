@@ -35,7 +35,7 @@ final class ConverterNever<C extends ConverterContext> extends Converter2<C> {
     /**
      * Singleton
      */
-    private final static ConverterNever INSTANCE = new ConverterNever();
+    private final static ConverterNever<?> INSTANCE = new ConverterNever<>();
 
     private ConverterNever() {
         super();

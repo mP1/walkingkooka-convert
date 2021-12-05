@@ -141,7 +141,7 @@ public final class Converters implements PublicStaticHelper {
      * {@see FakeConverter}
      */
     public static <C extends ConverterContext> Converter<C> fake() {
-        return new FakeConverter();
+        return new FakeConverter<>();
     }
 
     /**

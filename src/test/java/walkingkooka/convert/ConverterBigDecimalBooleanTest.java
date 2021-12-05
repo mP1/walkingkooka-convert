@@ -45,8 +45,8 @@ public final class ConverterBigDecimalBooleanTest extends ConverterTestCase2<Con
     }
 
     @Override
-    public ConverterBigDecimalBoolean createConverter() {
-        return ConverterBigDecimalBoolean.INSTANCE;
+    public ConverterBigDecimalBoolean<ConverterContext> createConverter() {
+        return Cast.to(ConverterBigDecimalBoolean.INSTANCE);
     }
 
     @Override

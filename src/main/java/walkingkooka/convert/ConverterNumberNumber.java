@@ -38,7 +38,7 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
     /**
      * Singleton
      */
-    private final static ConverterNumberNumber INSTANCE = new ConverterNumberNumber();
+    private final static ConverterNumberNumber<?> INSTANCE = new ConverterNumberNumber<>();
 
     private ConverterNumberNumber() {
         super();

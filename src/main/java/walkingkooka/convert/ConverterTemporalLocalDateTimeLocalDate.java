@@ -38,7 +38,7 @@ final class ConverterTemporalLocalDateTimeLocalDate<C extends ConverterContext> 
     /**
      * Singleton
      */
-    private final static ConverterTemporalLocalDateTimeLocalDate INSTANCE = new ConverterTemporalLocalDateTimeLocalDate();
+    private final static ConverterTemporalLocalDateTimeLocalDate<?> INSTANCE = new ConverterTemporalLocalDateTimeLocalDate<>();
 
     /**
      * Private ctor use singleton

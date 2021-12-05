@@ -18,12 +18,13 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public final class ConverterTest implements ClassTesting<Converter> {
+public final class ConverterTest implements ClassTesting<Converter<?>> {
 
     @Test
     public void testCast() {
@@ -48,7 +49,7 @@ public final class ConverterTest implements ClassTesting<Converter> {
     }
 
     @Override
-    public Class<Converter> type() {
-        return Converter.class;
+    public Class<Converter<?>> type() {
+        return Cast.to(Converter.class);
     }
 }
