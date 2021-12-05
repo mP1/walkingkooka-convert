@@ -127,7 +127,7 @@ public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<
     }
 
     @Override
-    public ConverterNumberLocalDate createConverter() {
+    public ConverterNumberLocalDate<ConverterContext> createConverter() {
         return ConverterNumberLocalDate.with(Converters.JAVA_EPOCH_OFFSET);
     }
 

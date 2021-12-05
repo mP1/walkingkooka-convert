@@ -17,15 +17,17 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
+
 import java.time.temporal.Temporal;
 
-public final class ConverterTemporalTest extends ConverterTestCase<ConverterTemporal> {
+public final class ConverterTemporalTest extends ConverterTestCase<ConverterTemporal<?, ?, ?>> {
 
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterTemporal> type() {
-        return ConverterTemporal.class;
+    public Class<ConverterTemporal<?, ?, ?>> type() {
+        return Cast.to(ConverterTemporal.class);
     }
 
     // TypeNameTesting..................................................................................................

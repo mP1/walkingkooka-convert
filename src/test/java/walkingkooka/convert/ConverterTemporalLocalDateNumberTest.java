@@ -105,7 +105,7 @@ public final class ConverterTemporalLocalDateNumberTest extends ConverterTempora
     // ConverterTesting.................................................................................................
 
     @Override
-    public ConverterTemporalLocalDateNumber createConverter() {
+    public ConverterTemporalLocalDateNumber<ConverterContext> createConverter() {
         return walkingkooka.convert.ConverterTemporalLocalDateNumber.with(Converters.JAVA_EPOCH_OFFSET);
     }
 

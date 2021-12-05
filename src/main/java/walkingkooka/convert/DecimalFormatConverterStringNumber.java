@@ -32,7 +32,7 @@ final class DecimalFormatConverterStringNumber<C extends ConverterContext> exten
 
     static <C extends ConverterContext> DecimalFormatConverterStringNumber<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         check(decimalFormat);
-        return new DecimalFormatConverterStringNumber(decimalFormat);
+        return new DecimalFormatConverterStringNumber<>(decimalFormat);
     }
 
     private DecimalFormatConverterStringNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {

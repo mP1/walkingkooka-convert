@@ -38,7 +38,7 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
 
         final List<Converter<C>> copy = Lists.immutable(converters);
 
-        Converter result;
+        Converter<C> result;
         final int count = copy.size();
         switch (count) {
             case 0:

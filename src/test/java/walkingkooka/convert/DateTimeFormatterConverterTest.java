@@ -17,11 +17,13 @@
 
 package walkingkooka.convert;
 
-public final class DateTimeFormatterConverterTest extends DateTimeFormatterConverterTestCase<DateTimeFormatterConverter> {
+import walkingkooka.Cast;
+
+public final class DateTimeFormatterConverterTest extends DateTimeFormatterConverterTestCase<DateTimeFormatterConverter<?, ?, ?>> {
 
     @Override
-    public Class<DateTimeFormatterConverter> type() {
-        return DateTimeFormatterConverter.class;
+    public Class<DateTimeFormatterConverter<?, ?, ?>> type() {
+        return Cast.to(DateTimeFormatterConverter.class);
     }
 
     @Override

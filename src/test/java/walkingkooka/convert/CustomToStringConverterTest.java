@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CustomToStringConverterTest extends ConverterTestCase2<CustomToStringConverter<ConverterContext>>
         implements HashCodeEqualsDefinedTesting2<CustomToStringConverter<ConverterContext>> {
 
-    private final static Converter WRAPPED = Converters.objectString();
+    private final static Converter<ConverterContext> WRAPPED = Converters.objectString();
     private final static String CUSTOM_TO_STRING = "!!custom-to-string!!";
 
     @Test
@@ -59,8 +59,8 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
 
     @Test
     public void testUnwrapOtherCustomToStringConverter() {
-        final Converter first = CustomToStringConverter.wrap(WRAPPED, "different");
-        final CustomToStringConverter wrapped = Cast.to(CustomToStringConverter.wrap(first, CUSTOM_TO_STRING));
+        final Converter<ConverterContext> first = CustomToStringConverter.wrap(WRAPPED, "different");
+        final CustomToStringConverter<ConverterContext> wrapped = Cast.to(CustomToStringConverter.wrap(first, CUSTOM_TO_STRING));
         assertNotSame(first, wrapped);
         assertSame(WRAPPED, wrapped.converter, "wrapped converter");
         assertSame(CUSTOM_TO_STRING, wrapped.toString, "wrapped toString");
@@ -102,7 +102,7 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
     }
 
     @Override
-    public CustomToStringConverter createObject() {
+    public CustomToStringConverter<ConverterContext> createObject() {
         return this.createConverter();
     }
 }

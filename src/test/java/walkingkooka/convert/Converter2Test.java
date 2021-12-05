@@ -17,13 +17,15 @@
 
 package walkingkooka.convert;
 
-public final class Converter2Test extends ConverterTestCase<Converter2> {
+import walkingkooka.Cast;
+
+public final class Converter2Test extends ConverterTestCase<Converter2<?>> {
 
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<Converter2> type() {
-        return Converter2.class;
+    public Class<Converter2<?>> type() {
+        return Cast.to(Converter2.class);
     }
 
     // TypeNameTesting..................................................................................................

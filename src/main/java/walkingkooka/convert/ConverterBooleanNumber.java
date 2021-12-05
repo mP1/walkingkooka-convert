@@ -36,7 +36,7 @@ final class ConverterBooleanNumber<C extends ConverterContext> extends Converter
     /**
      * Singleton
      */
-    private final static ConverterBooleanNumber INSTANCE = new ConverterBooleanNumber();
+    private final static ConverterBooleanNumber<?> INSTANCE = new ConverterBooleanNumber<>();
 
     /**
      * Private ctor use singleton.

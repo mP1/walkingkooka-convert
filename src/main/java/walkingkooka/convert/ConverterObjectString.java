@@ -35,7 +35,7 @@ final class ConverterObjectString<C extends ConverterContext> extends Converter2
     /**
      * Singleton
      */
-    private final static ConverterObjectString INSTANCE = new ConverterObjectString();
+    private final static ConverterObjectString<?> INSTANCE = new ConverterObjectString<>();
 
     private ConverterObjectString() {
         super();

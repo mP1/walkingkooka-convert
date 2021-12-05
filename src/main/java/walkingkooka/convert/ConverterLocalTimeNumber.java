@@ -39,7 +39,7 @@ final class ConverterLocalTimeNumber<C extends ConverterContext> extends Convert
     /**
      * Singleton
      */
-    private final static ConverterLocalTimeNumber INSTANCE = new ConverterLocalTimeNumber();
+    private final static ConverterLocalTimeNumber<?> INSTANCE = new ConverterLocalTimeNumber<>();
 
     /**
      * Private ctor use singleton

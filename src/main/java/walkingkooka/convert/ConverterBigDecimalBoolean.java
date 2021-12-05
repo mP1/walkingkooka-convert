@@ -38,7 +38,7 @@ final class ConverterBigDecimalBoolean<C extends ConverterContext> extends Conve
     /**
      * Singleton
      */
-    final static ConverterBigDecimalBoolean INSTANCE = new ConverterBigDecimalBoolean();
+    final static ConverterBigDecimalBoolean<?> INSTANCE = new ConverterBigDecimalBoolean<>();
 
     /**
      * Private ctor use singleton

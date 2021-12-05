@@ -36,7 +36,7 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
     /**
      * Singleton
      */
-    private static final SimpleConverter INSTANCE = new SimpleConverter();
+    private static final SimpleConverter<?> INSTANCE = new SimpleConverter<>();
 
     /**
      * Private ctor
