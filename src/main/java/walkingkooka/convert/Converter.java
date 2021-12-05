@@ -98,7 +98,7 @@ public interface Converter<C extends ConverterContext> {
     /**
      * Helper that makes casting and working around generics a little less noisy.
      */
-    default <C extends ConverterContext> Converter<C> cast(final Class<C> type) {
+    default <CC extends ConverterContext> Converter<CC> cast(final Class<CC> type) {
         return Cast.to(this);
     }
 }
