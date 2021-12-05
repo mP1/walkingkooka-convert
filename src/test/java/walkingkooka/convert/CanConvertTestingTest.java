@@ -180,8 +180,8 @@ public final class CanConvertTestingTest implements Testing {
                     }
 
                     @Override
-                    public <T> Either<T, String> convert(final Object value,
-                                                         final Class<T> target) {
+                    public <TT> Either<TT, String> convert(final Object value,
+                                                           final Class<TT> target) {
                         checkEquals(VALUE, value, "value");
                         checkEquals(TARGET, target, "target");
                         return Cast.to(result);
