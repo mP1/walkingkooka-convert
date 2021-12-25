@@ -52,12 +52,12 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
 
     default <T> T convertAndCheck(final Object value,
                                   final Class<T> target,
-                                  final ConverterContext context,
+                                  final CC context,
                                   final T expected) {
         return this.convertAndCheck(this.createConverter(), value, target, context, expected);
     }
 
-    default <T> T convertAndCheck(final Converter converter,
+    default <T> T convertAndCheck(final Converter<CC> converter,
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
@@ -68,7 +68,9 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
         this.convertFails(this.createConverter(), value, type);
     }
 
-    default void convertFails(final Converter converter, final Object value, final Class<?> type) {
+    default void convertFails(final Converter<CC> converter,
+                              final Object value,
+                              final Class<?> type) {
         this.convertFails(converter, value, type, this.createContext());
     }
 

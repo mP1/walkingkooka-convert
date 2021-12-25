@@ -28,11 +28,11 @@ import walkingkooka.text.CharSequences;
  */
 public interface ConverterTesting extends Testing {
 
-    default <T> T convertAndCheck(final Converter converter,
-                                  final Object value,
-                                  final Class<T> target,
-                                  final ConverterContext context,
-                                  final T expected) {
+    default <T, C extends ConverterContext> T convertAndCheck(final Converter<C> converter,
+                                                              final Object value,
+                                                              final Class<T> target,
+                                                              final C context,
+                                                              final T expected) {
         this.checkEquals(
                 true,
                 converter.canConvert(value, target, context),
@@ -67,10 +67,10 @@ public interface ConverterTesting extends Testing {
         }
     }
 
-    default void convertFails(final Converter converter,
-                              final Object value,
-                              final Class<?> type,
-                              final ConverterContext context) {
+    default <C extends ConverterContext> void convertFails(final Converter<C> converter,
+                                                           final Object value,
+                                                           final Class<?> type,
+                                                           final C context) {
         final Either<?, String> result = converter.convert(value, type, context);
         result.mapLeft(v -> {
             throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));

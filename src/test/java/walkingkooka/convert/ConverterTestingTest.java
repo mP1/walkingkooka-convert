@@ -31,7 +31,8 @@ public final class ConverterTestingTest implements ConverterTesting {
 
     @Test
     public void testConvertAndCheck() {
-        this.convertAndCheck(new TestConverter(),
+        this.convertAndCheck(
+                new TestConverter(),
                 VALUE,
                 Integer.class,
                 CONTEXT,
