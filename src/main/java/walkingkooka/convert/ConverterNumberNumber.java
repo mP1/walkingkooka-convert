@@ -72,10 +72,23 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
 
     private <T> Either<T, String> convertNonNumber(final Object value,
                                                    final Class<T> type) {
+        Either<T, String> result;
+
+        // attempt to find a visitor for the tiven type.
         final ConverterNumberNumberNumberTypeVisitorNumber<?> visitor = ConverterNumberNumberNumberTypeVisitor.visitor(type);
-        return null == visitor ?
-                this.failConversion(value, type) :
-                Either.left(Cast.to(visitor.convert(Cast.to(value))));
+        if (null == visitor) {
+            result = this.failConversion(value, type);
+        } else {
+            // ask the visitor to convert the given value.
+            final Object converted = visitor.convert(Cast.to(value));
+            if (null == converted) {
+                result = this.failConversion(value, type);
+            } else {
+                result = Either.left(Cast.to(converted));
+            }
+        }
+
+        return result;
     }
 
     @Override
