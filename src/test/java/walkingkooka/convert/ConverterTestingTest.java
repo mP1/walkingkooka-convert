@@ -30,6 +30,30 @@ public final class ConverterTestingTest implements ConverterTesting {
     private final static ConverterContext CONTEXT = ConverterContexts.fake();
 
     @Test
+    public void testConvertAndCheckNullValue() {
+        this.convertAndCheck(
+                new Converter<>() {
+                    @Override
+                    public boolean canConvert(final Object v,
+                                              final Class<?> t,
+                                              final ConverterContext c) {
+                        return true;
+                    }
+
+                    @Override
+                    public <T> Either<T, String> convert(final Object v,
+                                                         final Class<T> t,
+                                                         final ConverterContext c) {
+                        return Either.left(null);
+                    }
+                },
+                null,
+                Integer.class,
+                CONTEXT,
+                null);
+    }
+
+    @Test
     public void testConvertAndCheck() {
         this.convertAndCheck(
                 new TestConverter(),

@@ -23,6 +23,8 @@ import walkingkooka.Either;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 
+import java.util.function.Supplier;
+
 /**
  * A mixin interface with helpers to assist testing {@link Converter} converts or the conversion fails.
  */
@@ -33,10 +35,13 @@ public interface ConverterTesting extends Testing {
                                                               final Class<T> target,
                                                               final C context,
                                                               final T expected) {
+        final Supplier<String> className = () -> null != value ?
+                " (" + value.getClass().getName() + ")" :
+                "";
         this.checkEquals(
                 true,
                 converter.canConvert(value, target, context),
-                () -> converter + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
+                () -> converter + " can convert(" + CharSequences.quoteIfChars(value) + className.get() + ", " + target.getName() + ")"
         );
 
         final Either<T, String> result = converter.convert(value, target, context);
@@ -48,7 +53,7 @@ public interface ConverterTesting extends Testing {
         this.checkEquals(
                 expected,
                 convertedValue,
-                "Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
+                "Failed to convert " + CharSequences.quoteIfChars(value) + className.get() + "= to " + target.getName()
         );
         return convertedValue;
     }
