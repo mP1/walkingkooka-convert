@@ -40,6 +40,11 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
     }
 
     @Test
+    public final void testConvertNull() {
+        this.convertAndCheck2(null, null);
+    }
+
+    @Test
     public final void testConvert() {
         this.convertAndCheck2(this.source(), this.converted());
     }
