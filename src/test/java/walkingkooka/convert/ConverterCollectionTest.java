@@ -50,6 +50,11 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Test
+    public void testNull() {
+        this.convertAndCheck(null, Void.class);
+    }
+
+    @Test
     public void testFirst() {
         this.convertAndCheck(Boolean.TRUE.toString(), Boolean.class, Boolean.TRUE);
     }
