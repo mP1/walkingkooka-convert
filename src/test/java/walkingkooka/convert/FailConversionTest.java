@@ -25,22 +25,43 @@ import walkingkooka.reflect.JavaVisibility;
 public final class FailConversionTest implements ClassTesting<FailConversion> {
     @Test
     public void testHandle() {
-        this.checkEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String"), FailConversion.handle(1, String.class));
+        this.checkEquals(
+                Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String"),
+                FailConversion.handle(1, String.class)
+        );
+    }
+
+    @Test
+    public void testHandleNullValue() {
+        this.checkEquals(
+                Either.right("Failed to convert null to java.lang.String, java.lang.NullPointerException"),
+                FailConversion.handle(null, String.class, new NullPointerException()
+                )
+        );
     }
 
     @Test
     public void testHandleNullMessage() {
-        this.checkEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, java.lang.NullPointerException"), FailConversion.handle(1, String.class, new NullPointerException()));
+        this.checkEquals(
+                Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, java.lang.NullPointerException"),
+                FailConversion.handle(1, String.class, new NullPointerException())
+        );
     }
 
     @Test
     public void testHandleEmptyMessage() {
-        this.checkEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, java.lang.NullPointerException"), FailConversion.handle(1, String.class, new NullPointerException("")));
+        this.checkEquals(
+                Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, java.lang.NullPointerException"),
+                FailConversion.handle(1, String.class, new NullPointerException(""))
+        );
     }
 
     @Test
     public void testHandleMessage() {
-        this.checkEquals(Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, Exception message"), FailConversion.handle(1, String.class, new NullPointerException("Exception message")));
+        this.checkEquals(
+                Either.right("Failed to convert 1 (java.lang.Integer) to java.lang.String, Exception message"),
+                FailConversion.handle(1, String.class, new NullPointerException("Exception message"))
+        );
     }
     
     // ClassTesting.....................................................................................................

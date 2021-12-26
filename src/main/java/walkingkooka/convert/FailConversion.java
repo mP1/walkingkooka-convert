@@ -47,8 +47,16 @@ final class FailConversion implements StaticHelper {
     private static <T> Either<T, String> handle0(final Object value,
                                                  final Class<T> target,
                                                  final String message) {
-        return Either.right("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ") to " + target.getName() +
-                (CharSequences.isNullOrEmpty(message) ? "" : ", " + message));
+        return Either.right(
+                "Failed to convert " +
+                        CharSequences.quoteIfChars(value) +
+                        (
+                                null != value ?
+                                " (" + value.getClass().getName() + ")" :
+                                ""
+                        ) +
+                        " to " + target.getName() +
+                        (CharSequences.isNullOrEmpty(message) ? "" : ", " + message));
     }
 
     /**
