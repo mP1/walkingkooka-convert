@@ -70,7 +70,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof String && this.type == type;
+        return (null == value || value instanceof String) && this.type == type;
     }
 
     private final Class<V> type;
@@ -79,7 +79,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final C context) {
-        return value instanceof String ?
+        return this.canConvert(value, type, context) ?
                 this.parseString((String) value, type, context) :
                 this.failConversion(value, type);
     }
@@ -87,6 +87,15 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     private <T> Either<T, String> parseString(final String text,
                                               final Class<T> type,
                                               final C context) {
+        return null == text ?
+                Either.left(null) :
+                this.parseNonNullString(text, type, context);
+    }
+
+
+    private <T> Either<T, String> parseNonNullString(final String text,
+                                                     final Class<T> type,
+                                                     final C context) {
         final TextCursor cursor = TextCursors.charSequence(text);
         final Optional<ParserToken> result = this.parser.parse(cursor, this.context.apply(context));
         return result.isPresent() && cursor.isEmpty() ?

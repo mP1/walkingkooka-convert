@@ -58,6 +58,11 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
+    public void testNull() {
+        this.convertAndCheck(null, BigDecimal.class, null);
+    }
+
+    @Test
     public void testParserConverts() {
         this.convertAndCheck("1.23", BigDecimal.class, BigDecimal.valueOf(1.23));
     }
