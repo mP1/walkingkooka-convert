@@ -37,7 +37,6 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
     public final <T> Either<T, String> convert(final Object value,
                                                final Class<T> type,
                                                final C context) {
-        Objects.requireNonNull(value, "value");
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");
 

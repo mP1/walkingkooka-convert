@@ -45,7 +45,7 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> exte
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
                                     final C context) {
-        return this.isSourceTypeCompatible(value) &&
+        return (null == value || this.isSourceTypeCompatible(value)) &&
                 this.targetType() == type;
     }
 
@@ -66,7 +66,13 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> exte
                                          final ConverterContext context) {
         Either<T, String> result;
         try {
-            result = Either.left(Cast.to(this.convert1(Cast.to(value), context)));
+            result = Either.left(
+                    Cast.to(
+                            null == value ?
+                                    null :
+                                    this.convert1(Cast.to(value), context)
+                    )
+            );
         } catch (final IllegalArgumentException | DateTimeException cause) {
             result = this.failConversion(value, type, cause);
         }
