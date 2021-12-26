@@ -62,7 +62,7 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return this.converters.stream()
+        return null == value || this.converters.stream()
                 .anyMatch(c -> c.canConvert(value, type, context));
     }
 
@@ -70,6 +70,16 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final C context) {
+        return this.canConvert(value, type, context) ?
+                null == value ?
+                        Either.left(null) :
+                        this.convertNonNull(value, type, context) :
+                this.failConversion(value, type);
+    }
+
+    private <T> Either<T, String> convertNonNull(final Object value,
+                                                 final Class<T> type,
+                                                 final C context) {
         Either<T, String> result = null;
 
         for (final Converter<C> possible : this.converters) {
