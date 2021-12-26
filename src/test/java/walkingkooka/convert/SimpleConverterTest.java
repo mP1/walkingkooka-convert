@@ -24,6 +24,11 @@ import walkingkooka.ToStringTesting;
 public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverter<ConverterContext>> implements ToStringTesting<SimpleConverter<ConverterContext>> {
 
     @Test
+    public void testNull() {
+        this.convertAndCheck(null, Void.class);
+    }
+
+    @Test
     public void testSameType() {
         this.convertAndCheck("ABC", String.class);
     }

@@ -53,7 +53,7 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
 
     private boolean canConvert0(final Object value,
                                 final Class<?> type) {
-        return type == value.getClass();
+        return null == value || type == value.getClass();
     }
 
     @Override
