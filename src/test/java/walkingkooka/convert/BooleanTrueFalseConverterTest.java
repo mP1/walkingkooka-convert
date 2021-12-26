@@ -49,13 +49,8 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     }
 
     @Test
-    public void testWithNullTrueAnswerFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER));
-    }
-
-    @Test
-    public void testWithNullFalseAnswerFails() {
-        assertThrows(NullPointerException.class, () -> BooleanTrueFalseConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null));
+    public void testNull() {
+        this.convertAndCheck2(null, FALSE_ANSWER);
     }
 
     @Test
@@ -64,8 +59,28 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     }
 
     @Test
+    public void testTrueNullAnswer() {
+        this.convertAndCheck(
+                BooleanTrueFalseConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
+                1,
+                String.class,
+                null
+        );
+    }
+
+    @Test
     public void testFalse() {
         this.convertAndCheck2(2, FALSE_ANSWER);
+    }
+
+    @Test
+    public void testFalseNullAnswer() {
+        this.convertAndCheck(
+                BooleanTrueFalseConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
+                2,
+                String.class,
+                null
+        );
     }
 
     @Test

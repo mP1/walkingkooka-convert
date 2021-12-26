@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 
 import java.time.temporal.Temporal;
@@ -25,6 +26,15 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
 
     ConverterTemporalTestCase() {
         super();
+    }
+
+    @Test
+    public final void testNull() {
+        this.convertAndCheck(
+                null,
+                this.targetType(),
+                null
+        );
     }
 
     @Override

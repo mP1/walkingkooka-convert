@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
 import java.math.BigDecimal;
 
@@ -48,16 +49,21 @@ final class ConverterBigDecimalBoolean<C extends ConverterContext> extends Conve
     }
 
     @Override
-    public boolean canConvert(final Object value,
+    boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof BigDecimal && type == Boolean.class;
+        return value instanceof BigDecimal;
     }
 
     @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
+    boolean canConvertType(final Class<?> type) {
+        return type == Boolean.class;
+    }
+
+    @Override
+    <T> Either<T, String> convertNonNull(final Object value,
+                                         final Class<T> type,
+                                         final ConverterContext context) {
         return Either.left(Cast.to(((BigDecimal) value).signum() != 0));
     }
 

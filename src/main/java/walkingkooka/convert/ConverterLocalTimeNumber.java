@@ -22,6 +22,7 @@ import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
@@ -48,7 +49,7 @@ final class ConverterLocalTimeNumber<C extends ConverterContext> extends Convert
     }
 
     @Override
-    boolean isTargetType(final Class<?> type) {
+    boolean canConvertType(final Class<?> type) {
         return Number.class == type || Maths.isNumberClass(type);
     }
 

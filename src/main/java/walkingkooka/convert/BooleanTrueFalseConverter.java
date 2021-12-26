@@ -26,7 +26,7 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
-final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Converter2<C> {
+final class BooleanTrueFalseConverter<V, C extends ConverterContext> implements Converter<C> {
 
     static <V, C extends ConverterContext> BooleanTrueFalseConverter<V, C> with(final Predicate<Object> source,
                                                                                 final Predicate<Class<?>> target,
@@ -36,8 +36,6 @@ final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Con
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(target, "target");
         Objects.requireNonNull(trueValue, "trueValue");
-        Objects.requireNonNull(trueAnswer, "trueAnswer");
-        Objects.requireNonNull(falseAnswer, "falseAnswer");
 
         return new BooleanTrueFalseConverter<>(
                 source,
@@ -65,7 +63,7 @@ final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Con
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return this.source.test(value) &&
+        return (value == null || this.source.test(value)) &&
                 this.target.test(type);
     }
 
@@ -73,14 +71,16 @@ final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Con
     private final Predicate<Class<?>> target;
 
     @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
-        return Cast.to(
-                this.trueValue.test(value) ?
-                this.trueAnswer :
-                this.falseAnswer
-        );
+    public <T> Either<T, String> convert(final Object value,
+                                         final Class<T> type,
+                                         final C context) {
+        return this.canConvert(value, type, context) ?
+                Cast.to(
+                        this.trueValue.test(value) ?
+                                this.trueAnswer :
+                                this.falseAnswer
+                ) :
+                this.failConversion(value, type);
     }
 
     private final Predicate<Object> trueValue;

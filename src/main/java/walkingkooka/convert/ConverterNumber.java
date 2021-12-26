@@ -19,9 +19,11 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 
 /**
  * A {@link Converter} that handles converting {@link Number} to another {@link Number} type.
@@ -33,10 +35,15 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
     }
 
     @Override
-    public final boolean canConvert(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
-        return value instanceof Number && this.targetType() == type;
+    final boolean canConvertNonNull(final Object value,
+                              final Class<?> type,
+                              final C context) {
+        return value instanceof Number;
+    }
+
+    @Override
+    final boolean canConvertType(final Class<?> type) {
+        return this.targetType() == type;
     }
 
     abstract Class<T> targetType();
@@ -46,9 +53,9 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
      * call one of four abstract methods.
      */
     @Override
-    final <U> Either<U, String> convert0(final Object value,
-                                         final Class<U> type,
-                                         final ConverterContext context) {
+    final <U> Either<U, String> convertNonNull(final Object value,
+                                               final Class<U> type,
+                                               final ConverterContext context) {
         // T and U should be the same...
         Either<U, String> result;
         try {

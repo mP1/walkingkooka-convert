@@ -32,23 +32,9 @@ abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Conve
     }
 
     @Override
-    public final boolean canConvert(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
-        return this.isSourceTypeCompatible(value) && this.isTargetType(type);
-    }
-
-    /**
-     * Performs an instanceof test. This is necessary to avoid calling {@link Class#isInstance(Object)}.
-     */
-    abstract boolean isSourceTypeCompatible(final Object value);
-
-    abstract boolean isTargetType(final Class<?> type);
-
-    @Override
-    final <T> Either<T, String> convert0(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
+    final <T> Either<T, String> convertNonNull(final Object value,
+                                               final Class<T> type,
+                                               final ConverterContext context) {
         return this.convert1(Cast.to(value),
                 type,
                 context);

@@ -45,20 +45,21 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
     }
 
     @Override
-    public boolean canConvert(final Object value,
+    boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
-        Objects.requireNonNull(value, "value");
-        Objects.requireNonNull(type, "type");
-        Objects.requireNonNull(context, "context");
-
-        return value instanceof Number && (Number.class == type || Maths.isNumberClass(type));
+        return value instanceof Number;
     }
 
     @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
+    boolean canConvertType(final Class<?> type) {
+        return Number.class == type || Maths.isNumberClass(type);
+    }
+
+    @Override
+    <T> Either<T, String> convertNonNull(final Object value,
+                                         final Class<T> type,
+                                         final ConverterContext context) {
         Either<T, String> result;
         try {
             result = type == Number.class ?

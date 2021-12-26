@@ -19,6 +19,8 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, ConverterContext>, T> extends ConverterTestCase2<C> {
@@ -50,6 +52,11 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
     @Test
     public void testDoubleMinFails() {
         this.convertFails2(Double.MIN_VALUE);
+    }
+    
+    @Test
+    public final void testNull() {
+        this.convertAndCheck(null, this.targetType(), null);
     }
 
     @Override

@@ -25,6 +25,11 @@ import java.math.BigDecimal;
 public final class ConverterBigDecimalBooleanTest extends ConverterTestCase2<ConverterBigDecimalBoolean<ConverterContext>> {
 
     @Test
+    public void testNull() {
+        this.convertAndCheck2(null, null);
+    }
+
+    @Test
     public void testTrue() {
         this.convertAndCheck2(BigDecimal.ONE, true);
     }

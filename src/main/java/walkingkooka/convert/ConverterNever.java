@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
 /**
  * A {@link Converter} that never converts.
@@ -42,16 +43,21 @@ final class ConverterNever<C extends ConverterContext> extends Converter2<C> {
     }
 
     @Override
-    public boolean canConvert(final Object value,
+    boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
         return false;
     }
 
     @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
+    boolean canConvertType(final Class<?> type) {
+        return false;
+    }
+
+    @Override
+    <T> Either<T, String> convertNonNull(final Object value,
+                                         final Class<T> type,
+                                         final ConverterContext context) {
         return this.failConversion(value, type);
     }
 

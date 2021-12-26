@@ -38,6 +38,15 @@ public final class DecimalFormatConverterStringNumberTest extends DecimalFormatC
     }
 
     @Test
+    public void testNull() {
+        this.convertAndCheck(
+                null,
+                Number.class,
+                null
+        );
+    }
+
+    @Test
     public void testByte() {
         this.convertAndCheck3(Byte.MAX_VALUE);
     }

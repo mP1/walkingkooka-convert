@@ -21,6 +21,8 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
+import java.time.LocalDate;
+
 /**
  * Handles converting {@link Number} to {@link Boolean}.
  */
@@ -46,17 +48,26 @@ final class ConverterBooleanNumber<C extends ConverterContext> extends Converter
     }
 
     @Override
-    public boolean canConvert(final Object value,
+    boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof Boolean && Maths.isNumberClass(type);
+        return value instanceof Boolean;
     }
 
     @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
-        return Either.left(Cast.to(ConverterBooleanNumberNumberTypeVisitor.convert((Boolean) value, type)));
+    boolean canConvertType(final Class<?> type) {
+        return Number.class == type || Maths.isNumberClass(type);
+    }
+
+    @Override
+    <T> Either<T, String> convertNonNull(final Object value,
+                                         final Class<T> type,
+                                         final ConverterContext context) {
+        return Either.left(
+                Cast.to(
+                        ConverterBooleanNumberNumberTypeVisitor.convert((Boolean) value, type)
+                )
+        );
     }
 
     @Override

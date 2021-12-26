@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
@@ -37,23 +38,27 @@ final class DateTimeFormatterConverterLocalTimeString<C extends ConverterContext
     }
 
     @Override
-    boolean isSourceTypeCompatible(final Object value) {
+    boolean canConvertNonNull(final Object value,
+                              final Class<?> type,
+                              final C context) {
         return value instanceof LocalTime;
     }
 
     @Override
-    Class<LocalTime> sourceType() {
-        return LocalTime.class;
-    }
-
-    @Override
-    Class<String> targetType() {
-        return String.class;
+    boolean canConvertType(final Class<?> type) {
+        return String.class == type;
     }
 
     @Override
     String parseOrFormat(final LocalTime value,
                          final DateTimeFormatter formatter) throws IllegalArgumentException {
         return value.format(formatter);
+    }
+
+    // Object...........................................................................................................
+
+    @Override
+    public String toString() {
+        return "LocalTime->String";
     }
 }

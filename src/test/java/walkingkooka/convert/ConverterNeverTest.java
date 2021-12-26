@@ -23,6 +23,11 @@ import walkingkooka.Cast;
 public final class ConverterNeverTest extends ConverterTestCase2<ConverterNever<ConverterContext>> {
 
     @Test
+    public void testNull() {
+        this.convertFails(null, Object.class);
+    }
+
+    @Test
     public void testBooleanTrue() {
         this.convertFails("cant", Object.class);
     }
