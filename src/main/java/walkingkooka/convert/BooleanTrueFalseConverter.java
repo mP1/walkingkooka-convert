@@ -29,34 +29,36 @@ import java.util.function.Predicate;
 final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Converter2<C> {
 
     static <V, C extends ConverterContext> BooleanTrueFalseConverter<V, C> with(final Predicate<Object> source,
-                                                                                final Predicate<Object> falseValue,
                                                                                 final Predicate<Class<?>> target,
+                                                                                final Predicate<Object> trueValue,
                                                                                 final V trueAnswer,
                                                                                 final V falseAnswer) {
         Objects.requireNonNull(source, "source");
-        Objects.requireNonNull(falseValue, "falseValue");
         Objects.requireNonNull(target, "target");
+        Objects.requireNonNull(trueValue, "trueValue");
         Objects.requireNonNull(trueAnswer, "trueAnswer");
         Objects.requireNonNull(falseAnswer, "falseAnswer");
 
-        return new BooleanTrueFalseConverter<>(source,
-                falseValue,
+        return new BooleanTrueFalseConverter<>(
+                source,
                 target,
+                trueValue,
                 trueAnswer,
-                falseAnswer);
+                falseAnswer
+        );
     }
 
     private BooleanTrueFalseConverter(final Predicate<Object> source,
-                                      final Predicate<Object> falseValue,
                                       final Predicate<Class<?>> target,
+                                      final Predicate<Object> trueValue,
                                       final V trueAnswer,
                                       final V falseAnswer) {
         super();
         this.source = source;
-        this.falseValue = falseValue;
         this.target = target;
-        this.trueAnswer = trueAnswer;
-        this.falseAnswer = falseAnswer;
+        this.trueValue = trueValue;
+        this.trueAnswer = Either.left(trueAnswer);
+        this.falseAnswer = Either.left(falseAnswer);
     }
 
     @Override
@@ -74,18 +76,16 @@ final class BooleanTrueFalseConverter<V, C extends ConverterContext> extends Con
     <T> Either<T, String> convert0(final Object value,
                                    final Class<T> type,
                                    final ConverterContext context) {
-        return Either.left(Cast.to(this.convert2(value)));
+        return Cast.to(
+                this.trueValue.test(value) ?
+                this.trueAnswer :
+                this.falseAnswer
+        );
     }
 
-    private V convert2(final Object value) {
-        return this.falseValue.test(value) ?
-                this.falseAnswer :
-                this.trueAnswer;
-    }
-
-    private final Predicate<Object> falseValue;
-    private final V trueAnswer;
-    private final V falseAnswer;
+    private final Predicate<Object> trueValue;
+    private final Either<V, String> trueAnswer;
+    private final Either<V, String> falseAnswer;
 
     @Override
     public String toString() {
