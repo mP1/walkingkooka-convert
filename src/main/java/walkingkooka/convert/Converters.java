@@ -102,14 +102,14 @@ public final class Converters implements PublicStaticHelper {
      * [@see BooleanTrueFalseConverter}
      */
     public static <V, C extends ConverterContext> Converter<C> booleanTrueFalse(final Predicate<Object> source,
-                                                                                final Predicate<Object> falseValue,
                                                                                 final Predicate<Class<?>> target,
+                                                                                final Predicate<Object> trueValue,
                                                                                 final V trueAnswer,
                                                                                 final V falseAnswer) {
         return BooleanTrueFalseConverter.with(
                 source,
-                falseValue,
                 target,
+                trueValue,
                 trueAnswer,
                 falseAnswer
         );
