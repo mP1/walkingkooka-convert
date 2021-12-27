@@ -103,7 +103,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     private Converter<ConverterContext> booleanToString() {
-        return Converters.<String, Boolean, ConverterContext>function(
+        return Converters.<String, Boolean, ConverterContext>mapper(
                 t-> t instanceof String,
                 Predicates.is(Boolean.class),
                 Boolean::valueOf

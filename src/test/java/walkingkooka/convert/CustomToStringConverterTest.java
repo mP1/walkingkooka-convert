@@ -73,7 +73,7 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
 
     @Test
     public void testEqualsDifferentWrappedConverter() {
-        this.checkNotEquals(CustomToStringConverter.wrap(Converters.function(t -> t instanceof String, Predicate.isEqual(Boolean.class), (String v) -> Boolean.valueOf(v)), CUSTOM_TO_STRING));
+        this.checkNotEquals(CustomToStringConverter.wrap(Converters.mapper(t -> t instanceof String, Predicate.isEqual(Boolean.class), (String v) -> Boolean.valueOf(v)), CUSTOM_TO_STRING));
     }
 
     @Test
