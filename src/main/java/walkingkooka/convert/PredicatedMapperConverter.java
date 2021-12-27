@@ -27,27 +27,27 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} passes the given value to a {@link Function} such as a method handle to a static method which performs the conversion.
  */
-final class FunctionConverter<S, D, C extends ConverterContext> implements Converter<C> {
+final class PredicatedMapperConverter<S, D, C extends ConverterContext> implements Converter<C> {
 
-    static <S, D, C extends ConverterContext> FunctionConverter<S, D, C> with(final Predicate<Object> source,
-                                                                              final Predicate<Class<?>> target,
-                                                                              final Function<S, D> converter) {
+    static <S, D, C extends ConverterContext> PredicatedMapperConverter<S, D, C> with(final Predicate<Object> source,
+                                                                                      final Predicate<Class<?>> target,
+                                                                                      final Function<S, D> mapper) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(target, "target");
 
-        return new FunctionConverter<>(source, target, converter);
+        return new PredicatedMapperConverter<>(source, target, mapper);
     }
 
     /**
      * Private ctor use static factory.
      */
-    private FunctionConverter(final Predicate<Object> source,
-                              final Predicate<Class<?>> target,
-                              final Function<S, D> converter) {
+    private PredicatedMapperConverter(final Predicate<Object> source,
+                                      final Predicate<Class<?>> target,
+                                      final Function<S, D> mapper) {
         super();
         this.source = source;
         this.target = target;
-        this.converter = converter;
+        this.mapper = mapper;
     }
 
     @Override
@@ -68,13 +68,13 @@ final class FunctionConverter<S, D, C extends ConverterContext> implements Conve
         return this.canConvert(value, type, context) ?
                 Cast.to(
                         Either.left(
-                                this.converter.apply((S)value)
+                                this.mapper.apply((S)value)
                         )
                 ) :
                 this.failConversion(value, type);
     }
 
-    private final Function<S, D> converter;
+    private final Function<S, D> mapper;
 
     @Override
     public String toString() {

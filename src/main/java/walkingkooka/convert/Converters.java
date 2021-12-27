@@ -145,15 +145,6 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * [@see FunctionConverter}
-     */
-    public static <S, D, C extends ConverterContext> Converter<C> function(final Predicate<Object> source,
-                                                                           final Predicate<Class<?>> target,
-                                                                           final Function<S, D> converter) {
-        return FunctionConverter.with(source, target, converter);
-    }
-
-    /**
      * {@see LocalDateLocalDateTimeConverter}
      */
     public static <C extends ConverterContext> Converter<C> localDateLocalDateTime() {
@@ -221,6 +212,15 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> localTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return DateTimeFormatterConverterLocalTimeString.with(formatter);
+    }
+
+    /**
+     * [@see PredicatedMapperConverter}
+     */
+    public static <S, D, C extends ConverterContext> Converter<C> mapper(final Predicate<Object> source,
+                                                                         final Predicate<Class<?>> target,
+                                                                         final Function<S, D> converter) {
+        return PredicatedMapperConverter.with(source, target, converter);
     }
 
     /**

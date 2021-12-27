@@ -25,25 +25,25 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class FunctionConverterTest extends ConverterTestCase2<FunctionConverter<String, Boolean, ConverterContext>> {
+public final class PredicatedMapperConverterTest extends ConverterTestCase2<PredicatedMapperConverter<String, Boolean, ConverterContext>> {
 
     private final static Predicate<Object> SOURCE = (t) -> t instanceof String;
     private final static Predicate<Class<?>> TARGET = Predicate.isEqual(Boolean.class);
-    private final static Function<String, Boolean> CONVERTER = Boolean::valueOf;
+    private final static Function<String, Boolean> MAPPER = Boolean::valueOf;
 
     @Test
     public void testWithNullSourceTypeFails() {
-        assertThrows(NullPointerException.class, () -> FunctionConverter.with(null, TARGET, CONVERTER));
+        assertThrows(NullPointerException.class, () -> PredicatedMapperConverter.with(null, TARGET, MAPPER));
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> FunctionConverter.with(SOURCE, null, CONVERTER));
+        assertThrows(NullPointerException.class, () -> PredicatedMapperConverter.with(SOURCE, null, MAPPER));
     }
 
     @Test
-    public void testWithNullConverterFunctionFails() {
-        assertThrows(NullPointerException.class, () -> FunctionConverter.with(null, TARGET, null));
+    public void testWithNullMapperFunctionFails() {
+        assertThrows(NullPointerException.class, () -> PredicatedMapperConverter.with(null, TARGET, null));
     }
 
     // converter........................................................................................................
@@ -73,8 +73,8 @@ public final class FunctionConverterTest extends ConverterTestCase2<FunctionConv
     // Converter........................................................................................................
 
     @Override
-    public FunctionConverter<String, Boolean, ConverterContext> createConverter() {
-        return FunctionConverter.with(SOURCE, TARGET, FunctionConverterTest::stringToBoolean);
+    public PredicatedMapperConverter<String, Boolean, ConverterContext> createConverter() {
+        return PredicatedMapperConverter.with(SOURCE, TARGET, PredicatedMapperConverterTest::stringToBoolean);
     }
 
     private static Boolean stringToBoolean(final String s) {
@@ -94,7 +94,7 @@ public final class FunctionConverterTest extends ConverterTestCase2<FunctionConv
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<FunctionConverter<String, Boolean, ConverterContext>> type() {
-        return Cast.to(FunctionConverter.class);
+    public Class<PredicatedMapperConverter<String, Boolean, ConverterContext>> type() {
+        return Cast.to(PredicatedMapperConverter.class);
     }
 }
