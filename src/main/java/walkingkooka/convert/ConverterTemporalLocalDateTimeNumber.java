@@ -43,7 +43,7 @@ final class ConverterTemporalLocalDateTimeNumber<C extends ConverterContext> ext
     }
 
     @Override
-    boolean isTargetType(final Class<?> type) {
+    boolean canConvertType(final Class<?> type) {
         return Number.class == type || Maths.isNumberClass(type);
     }
 

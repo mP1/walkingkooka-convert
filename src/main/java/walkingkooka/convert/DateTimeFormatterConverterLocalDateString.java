@@ -37,23 +37,27 @@ final class DateTimeFormatterConverterLocalDateString<C extends ConverterContext
     }
 
     @Override
-    boolean isSourceTypeCompatible(final Object value) {
+    boolean canConvertNonNull(final Object value,
+                              final Class<?> type,
+                              final C context) {
         return value instanceof LocalDate;
     }
 
     @Override
-    Class<LocalDate> sourceType() {
-        return LocalDate.class;
-    }
-
-    @Override
-    Class<String> targetType() {
-        return String.class;
+    boolean canConvertType(final Class<?> type) {
+        return String.class == type;
     }
 
     @Override
     String parseOrFormat(final LocalDate value,
                          final DateTimeFormatter formatter) throws IllegalArgumentException {
         return value.format(formatter);
+    }
+
+    // Object...........................................................................................................
+
+    @Override
+    public String toString() {
+        return "LocalDate->String";
     }
 }

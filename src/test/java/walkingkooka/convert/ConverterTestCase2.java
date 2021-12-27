@@ -17,9 +17,16 @@
 
 package walkingkooka.convert;
 
+import org.junit.jupiter.api.Test;
+
 public abstract class ConverterTestCase2<C extends Converter<ConverterContext>> extends ConverterTestCase<C> implements ConverterTesting2<C, ConverterContext> {
 
     ConverterTestCase2() {
         super();
+    }
+
+    @Test
+    public final void testNullInvalidTypeFails() {
+        this.convertFails(null, Void.class);
     }
 }

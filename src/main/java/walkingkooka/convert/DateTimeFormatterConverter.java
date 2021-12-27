@@ -41,36 +41,18 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> exte
         this.formatter = formatter;
     }
 
-    @Override
-    public final boolean canConvert(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
-        return (null == value || this.isSourceTypeCompatible(value)) &&
-                this.targetType() == type;
-    }
-
-    /**
-     * Performs an instanceof test. This is necessary to avoid calling {@link Class#isInstance(Object)}.
-     */
-    abstract boolean isSourceTypeCompatible(final Object value);
-
-    abstract Class<S> sourceType();
-
     /**
      * Wraps the {@link #convert(Object, Class, ConverterContext)} in a try/catch any exceptions will become a failure
      * using the {@link Throwable#getMessage()} as the failure message.
      */
     @Override
-    final <T> Either<T, String> convert0(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
+    final <T> Either<T, String> convertNonNull(final Object value,
+                                               final Class<T> type,
+                                               final ConverterContext context) {
         Either<T, String> result;
         try {
             result = Either.left(
-                    Cast.to(
-                            null == value ?
-                                    null :
-                                    this.convert1(Cast.to(value), context)
+                    Cast.to(this.convert1(Cast.to(value), context)
                     )
             );
         } catch (final IllegalArgumentException | DateTimeException cause) {
@@ -126,16 +108,4 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> exte
      */
     abstract D parseOrFormat(final S value,
                              final DateTimeFormatter formatter) throws IllegalArgumentException, DateTimeException;
-
-    // Object...........................................................................................................
-
-    @Override
-    public final String toString() {
-        return this.sourceType().getSimpleName() + "->" + this.targetType().getSimpleName();
-    }
-
-    /**
-     * The {@link Class target type}, all sub classes produce a single target type.
-     */
-    abstract Class<D> targetType();
 }

@@ -19,10 +19,18 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.ToStringTesting;
 
 import java.math.BigDecimal;
 
-public final class ConverterObjectStringTest extends ConverterTestCase2<ConverterObjectString<ConverterContext>> {
+public final class ConverterObjectStringTest extends ConverterTestCase<ConverterObjectString<ConverterContext>>
+        implements ConverterTesting2<ConverterObjectString<ConverterContext>, ConverterContext>,
+        ToStringTesting<ConverterObjectString<ConverterContext>> {
+
+    @Test
+    public void testNull() {
+        this.convertAndCheck(null, String.class, "null");
+    }
 
     @Test
     public void testBooleanTrue() {

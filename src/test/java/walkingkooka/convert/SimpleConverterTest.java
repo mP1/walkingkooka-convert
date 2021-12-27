@@ -21,7 +21,9 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 
-public final class SimpleConverterTest extends ConverterTestCase2<SimpleConverter<ConverterContext>> implements ToStringTesting<SimpleConverter<ConverterContext>> {
+public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter<ConverterContext>>
+        implements ConverterTesting2<SimpleConverter<ConverterContext>, ConverterContext>,
+        ToStringTesting<SimpleConverter<ConverterContext>> {
 
     @Test
     public void testNull() {

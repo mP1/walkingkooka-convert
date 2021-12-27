@@ -27,7 +27,7 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} passes the given value to a {@link Function} such as a method handle to a static method which performs the conversion.
  */
-final class FunctionConverter<S, D, C extends ConverterContext> extends Converter2<C> {
+final class FunctionConverter<S, D, C extends ConverterContext> implements Converter<C> {
 
     static <S, D, C extends ConverterContext> FunctionConverter<S, D, C> with(final Predicate<Object> source,
                                                                               final Predicate<Class<?>> target,
@@ -50,21 +50,30 @@ final class FunctionConverter<S, D, C extends ConverterContext> extends Converte
         this.converter = converter;
     }
 
+    @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return this.source.test(value) &&
+        return (value == null || this.source.test(value)) &&
                 this.target.test(type);
-    }
-
-    @Override <T> Either<T, String> convert0(final Object value,
-                                             final Class<T> type,
-                                             final ConverterContext context) {
-        return Either.left(Cast.to(this.converter.apply(Cast.to(value))));
     }
 
     private final Predicate<Object> source;
     private final Predicate<Class<?>> target;
+
+    @Override
+    public <T> Either<T, String> convert(final Object value,
+                                         final Class<T> type,
+                                         final C context) {
+        return this.canConvert(value, type, context) ?
+                Cast.to(
+                        Either.left(
+                                this.converter.apply((S)value)
+                        )
+                ) :
+                this.failConversion(value, type);
+    }
+
     private final Function<S, D> converter;
 
     @Override

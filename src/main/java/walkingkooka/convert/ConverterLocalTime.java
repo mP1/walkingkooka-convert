@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
 import java.time.LocalTime;
 
@@ -33,18 +34,16 @@ abstract class ConverterLocalTime<C extends ConverterContext> extends Converter2
     }
 
     @Override
-    public final boolean canConvert(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
-        return value instanceof LocalTime && this.isTargetType(type);
+    final boolean canConvertNonNull(final Object value,
+                              final Class<?> type,
+                              final C context) {
+        return value instanceof LocalTime;
     }
 
-    abstract boolean isTargetType(final Class<?> type);
-
     @Override
-    final <T> Either<T, String> convert0(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
+    final <T> Either<T, String> convertNonNull(final Object value,
+                                               final Class<T> type,
+                                               final ConverterContext context) {
         return this.convert1((LocalTime) value,
                 type,
                 context);

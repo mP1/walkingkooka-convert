@@ -42,23 +42,27 @@ final class DateTimeFormatterConverterStringLocalDateTime<C extends ConverterCon
     }
 
     @Override
-    boolean isSourceTypeCompatible(final Object value) {
+    boolean canConvertNonNull(final Object value,
+                              final Class<?> type,
+                              final C context) {
         return value instanceof String;
     }
 
     @Override
-    Class<String> sourceType() {
-        return String.class;
-    }
-
-    @Override
-    Class<LocalDateTime> targetType() {
-        return LocalDateTime.class;
+    boolean canConvertType(final Class<?> type) {
+        return LocalDateTime.class == type;
     }
 
     @Override
     LocalDateTime parseOrFormat(final String text,
                                 final DateTimeFormatter formatter) throws DateTimeParseException {
         return LocalDateTime.parse(text, formatter);
+    }
+
+    // Object...........................................................................................................
+
+    @Override
+    public String toString() {
+        return "String->LocalDateTime";
     }
 }

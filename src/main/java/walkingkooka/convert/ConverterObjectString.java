@@ -42,16 +42,21 @@ final class ConverterObjectString<C extends ConverterContext> extends Converter2
     }
 
     @Override
-    public boolean canConvert(final Object value,
+    boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
+        return true;
+    }
+
+    @Override
+    boolean canConvertType(final Class<?> type) {
         return String.class == type;
     }
 
     @Override
-    <T> Either<T, String> convert0(final Object value,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
+    <T> Either<T, String> convertNonNull(final Object value,
+                                         final Class<T> type,
+                                         final ConverterContext context) {
         return Either.left(Cast.to(value.toString()));
     }
 

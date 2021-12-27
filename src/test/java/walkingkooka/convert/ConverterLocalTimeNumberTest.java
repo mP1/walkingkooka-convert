@@ -22,12 +22,22 @@ import walkingkooka.Cast;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public final class ConverterLocalTimeNumberTest extends ConverterLocalTimeTestCase<ConverterLocalTimeNumber<ConverterContext>> {
 
     private final static byte VALUE = 123;
     private final static double WITH_NANOS = 123.5;
+
+    @Test
+    public void testNull() {
+        this.convertAndCheck(
+                null,
+                Number.class,
+                null
+        );
+    }
 
     @Test
     public void testLocalTimeToBigDecimal() {

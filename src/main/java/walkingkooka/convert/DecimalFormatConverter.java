@@ -48,9 +48,9 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
     }
 
     @Override //
-    final <T> Either<T, String> convert0(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
+    final <T> Either<T, String> convertNonNull(final Object value,
+                                               final Class<T> type,
+                                               final ConverterContext context) {
         Either<T, String> result;
         try {
             final ThreadLocal<Map<ConverterContext, DecimalFormat>> cache = this.cache;

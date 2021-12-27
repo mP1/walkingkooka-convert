@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.math.Maths;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,7 +49,7 @@ final class ConverterTemporalLocalDateTimeLocalDate<C extends ConverterContext> 
     }
 
     @Override
-    boolean isTargetType(final Class<?> type) {
+    boolean canConvertType(final Class<?> type) {
         return LocalDate.class == type;
     }
 

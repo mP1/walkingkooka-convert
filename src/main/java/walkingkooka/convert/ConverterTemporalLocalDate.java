@@ -32,12 +32,18 @@ abstract class ConverterTemporalLocalDate<D, C extends ConverterContext> extends
     }
 
     @Override
-    final boolean isSourceTypeCompatible(final Object value) {
+    final boolean canConvertNonNull(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
         return value instanceof LocalDate;
     }
 
-    @Override
-    final Class<LocalDate> sourceType() {
+    @Override final Class<LocalDate> sourceType() {
         return LocalDate.class;
+    }
+
+    @Override
+    boolean canConvertType(final Class<?> type) {
+        return this.targetType() == this.targetType();
     }
 }

@@ -49,6 +49,11 @@ public final class FunctionConverterTest extends ConverterTestCase2<FunctionConv
     // converter........................................................................................................
 
     @Test
+    public void testNull() {
+        this.convertAndCheck2(null, false);
+    }
+
+    @Test
     public void testTrue() {
         this.convertAndCheck2(Boolean.TRUE.toString(), true);
     }

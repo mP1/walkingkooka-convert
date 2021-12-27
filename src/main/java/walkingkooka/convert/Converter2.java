@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.util.Objects;
@@ -34,6 +35,20 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
     }
 
     @Override
+    public final boolean canConvert(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
+        return (null == value || this.canConvertNonNull(value, type, context)) &&
+                this.canConvertType(type);
+    }
+
+    abstract boolean canConvertNonNull(final Object value,
+                                       final Class<?> type,
+                                       final C context);
+
+    abstract boolean canConvertType(final Class<?> type);
+
+    @Override
     public final <T> Either<T, String> convert(final Object value,
                                                final Class<T> type,
                                                final C context) {
@@ -45,13 +60,32 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
                 this.failConversion(value, type);
     }
 
+    private <T> Either<T, String> convert0(final Object value,
+                                           final Class<T> type,
+                                           final ConverterContext context) {
+        return null == value ?
+                this.convertNull() :
+                this.convertNonNull(value, type, context);
+    }
+
+    private <T> Either<T, String> convertNull() {
+        return Cast.to(
+                this instanceof ConverterObjectString ?
+                        NULL_STRING :
+                        NULL
+        );
+    }
+
+    private final static Either<Object, String> NULL = Either.left(null);
+    private final static Either<String, String> NULL_STRING = Either.left("null");
+
     /**
      * Template method that is only called with a value that has already passed a {@link #canConvert(Object, Class, ConverterContext)
      * test and should convert successfully.
      */
-    abstract <T> Either<T, String> convert0(final Object value,
-                                            final Class<T> type,
-                                            final ConverterContext context);
+    abstract <T> Either<T, String> convertNonNull(final Object value,
+                                                  final Class<T> type,
+                                                  final ConverterContext context);
 
     /**
      * Helper that performs the last step by converting a {@link Number} to another {@link Number sub class}.
