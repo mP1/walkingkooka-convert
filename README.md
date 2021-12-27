@@ -23,7 +23,6 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - collection Tries many Converters until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing.
-- function
 - localDateLocalDateTime
 - localDateNumber
 - localDateString
@@ -34,6 +33,8 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - localTimeLocalDateTime
 - localTimeNumber
 - localTimeString
+- mapper
+- never
 - numberLocalDate
 - numberLocalDateTime
 - numberLocalTime
