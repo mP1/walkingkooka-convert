@@ -19,11 +19,9 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.math.Maths;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
 
 /**
  * A {@link Converter} that handles converting {@link Number} to another {@link Number} type.

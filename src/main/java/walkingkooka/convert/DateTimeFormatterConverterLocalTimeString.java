@@ -19,7 +19,6 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;

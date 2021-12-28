@@ -21,8 +21,6 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
-import java.util.Objects;
-
 /**
  * A {@link Converter} which handles converting {@link Number} to other number types or nothing at all if the target is number.
  */

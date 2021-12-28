@@ -19,8 +19,6 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, ConverterContext>, T> extends ConverterTestCase2<C> {
