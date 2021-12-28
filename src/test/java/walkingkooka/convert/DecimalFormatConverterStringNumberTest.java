@@ -102,7 +102,7 @@ public final class DecimalFormatConverterStringNumberTest extends DecimalFormatC
     public void testNumber2() {
         this.convertAndCheck("123.5",
                 Number.class,
-                new BigDecimal(123.5));
+                new BigDecimal("123.5"));
     }
 
     @Test
