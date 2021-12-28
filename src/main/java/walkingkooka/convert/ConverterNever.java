@@ -19,7 +19,6 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.math.Maths;
 
 /**
  * A {@link Converter} that never converts.

@@ -19,7 +19,6 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**

@@ -21,8 +21,6 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
-import java.time.LocalDate;
-
 /**
  * Handles converting {@link Number} to {@link Boolean}.
  */
