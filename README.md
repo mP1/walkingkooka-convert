@@ -43,6 +43,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - objectString Simply calls Object#toString
 - parser This accepts Strings and calls a Parser.
 - simple Returns the value if it is the same Class as the target. Note due to J2cl limitations Class.isInstance is not possible.
+- stringCharacter
 - stringLocalDate
 - stringLocalDateTime
 - stringLocalTime
