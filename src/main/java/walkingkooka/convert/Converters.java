@@ -297,6 +297,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterStringCharacter}
+     */
+    public static <C extends ConverterContext> Converter<C> stringCharacter() {
+        return ConverterStringCharacter.instance();
+    }
+
+    /**
      * {@see DateTimeFormatterConverterStringLocalDate}
      */
     public static <C extends ConverterContext> Converter<C> stringLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
