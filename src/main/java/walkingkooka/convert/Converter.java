@@ -39,11 +39,11 @@ public interface Converter<C extends ConverterContext> {
      * if it fails, and always returning <code>true</code>
      */
     default boolean canConvertOrFail(final Object value,
-                                     final Class<?> target,
+                                     final Class<?> type,
                                      final C context) {
-        final boolean can = this.canConvert(value, target, context);
+        final boolean can = this.canConvert(value, type, context);
         if (!can) {
-            throw new ConversionException("Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName());
+            throw new ConversionException("Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + type.getName());
         }
 
         return can;
@@ -61,9 +61,9 @@ public interface Converter<C extends ConverterContext> {
      * Converts the given value to the {@link Class target type} or throws a {@link ConversionException}
      */
     default <T> T convertOrFail(final Object value,
-                                final Class<T> target,
+                                final Class<T> type,
                                 final C context) {
-        final Either<T, String> converted = this.convert(value, target, context);
+        final Either<T, String> converted = this.convert(value, type, context);
         if (converted.isRight()) {
             throw new ConversionException(converted.rightValue());
         }
@@ -75,17 +75,17 @@ public interface Converter<C extends ConverterContext> {
      * Useful to report a failed conversion with a standard error message.
      */
     default <T> Either<T, String> failConversion(final Object value,
-                                                 final Class<T> target) {
-        return FailConversion.handle(value, target);
+                                                 final Class<T> type) {
+        return FailConversion.handle(value, type);
     }
 
     /**
      * Useful to report a failed conversion with a standard error message, which includes a {@link Throwable#getMessage()}.
      */
     default <T> Either<T, String> failConversion(final Object value,
-                                                 final Class<T> target,
+                                                 final Class<T> type,
                                                  final Throwable cause) {
-        return FailConversion.handle(value, target, cause);
+        return FailConversion.handle(value, type, cause);
     }
 
     /**

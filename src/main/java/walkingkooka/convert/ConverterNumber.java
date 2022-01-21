@@ -34,8 +34,8 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
 
     @Override
     final boolean canConvertNonNull(final Object value,
-                              final Class<?> type,
-                              final C context) {
+                                    final Class<?> type,
+                                    final C context) {
         return value instanceof Number;
     }
 
