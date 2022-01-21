@@ -44,6 +44,6 @@ abstract class ConverterTemporalLocalDate<D, C extends ConverterContext> extends
 
     @Override
     boolean canConvertType(final Class<?> type) {
-        return this.targetType() == this.targetType();
+        return this.targetType() == type;
     }
 }
