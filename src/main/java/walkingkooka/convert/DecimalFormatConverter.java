@@ -86,10 +86,12 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
                 map.put(context, format);
             }
 
-            result = this.convertWithDecimalFormat(format,
+            result = this.convertWithDecimalFormat(
+                    format,
                     value,
                     type,
-                    context);
+                    context
+            );
         } catch (final RuntimeException cause) {
             result = this.failConversion(value, type, cause);
         }

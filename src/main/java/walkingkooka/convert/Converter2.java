@@ -94,8 +94,10 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
                                                 final Class<N> type,
                                                 final ConverterContext context) {
         return ConverterNumberNumber.instance()
-                    .convert(number,
+                    .convert(
+                            number,
                             type,
-                            context);
+                            context
+                    );
     }
 }
