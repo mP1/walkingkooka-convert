@@ -20,7 +20,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - bigDecimalBoolean
 - booleanNumber
 - booleanTrueFalse Performs a test and uses that result to pick one of two values.
-- characterStringConverter converts characters to a String and then passes that String to a wrapped Converter.
+- characterStringConverter converts characters to a String if necessary and then passes that String to a wrapped Converter.
 - collection Tries many Converters until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing.

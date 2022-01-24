@@ -25,10 +25,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterCharacterStringConverterTest implements ConverterTesting2<ConverterCharacterStringConverter<FakeConverterContext>, FakeConverterContext> {
 
-    private final static Converter<FakeConverterContext> STRING_TO_NUMBER = Converters.mapper(
+    private final static Integer NULL_VALUE = 999;
+
+    private final static Converter<FakeConverterContext> STRING_TO_INTEGER = Converters.mapper(
             (s) -> s instanceof String,
             (t) -> t == Integer.class,
-            (s) -> Integer.parseInt((String) s)
+            (s) -> null == s ? NULL_VALUE : Integer.parseInt((String) s)
     );
 
     @Test
@@ -52,7 +54,7 @@ public final class ConverterCharacterStringConverterTest implements ConverterTes
     @Test
     public void testConvertNonCharacterFails() {
         this.convertFails(
-                "Not a character",
+                777,
                 Integer.class
         );
     }
@@ -83,20 +85,38 @@ public final class ConverterCharacterStringConverterTest implements ConverterTes
         );
     }
 
+    @Test
+    public void testConvertStringSupportedTargetType2() {
+        this.convertAndCheck(
+                "3",
+                Integer.class,
+                3
+        );
+    }
+
+    @Test
+    public void testConvertNull() {
+        this.convertAndCheck(
+                null,
+                Integer.class,
+                NULL_VALUE
+        );
+    }
+
     // toString.........................................................................................................
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
                 this.createConverter(),
-                "Character->" + STRING_TO_NUMBER
+                "Character->" + STRING_TO_INTEGER
         );
     }
 
     @Override
     public ConverterCharacterStringConverter<FakeConverterContext> createConverter() {
         return ConverterCharacterStringConverter.with(
-                STRING_TO_NUMBER
+                STRING_TO_INTEGER
         );
     }
 
