@@ -130,6 +130,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterConverterStringCharacter}
+     */
+    public static <C extends ConverterContext> Converter<C> converterStringCharacter(final Converter<C> converter) {
+        return ConverterConverterStringCharacter.with(converter);
+    }
+
+    /**
      * {@see ConverterCollection}
      */
     public static <C extends ConverterContext> Converter<C> collection(final List<Converter<C>> converters) {
