@@ -92,14 +92,14 @@ public final class Converters implements PublicStaticHelper {
     static final long NANOS_PER_DAY = NANOS_PER_HOUR * HOURS_PER_DAY;
 
     /**
-     * [@see ConverterBigDecimalBoolean}
+     * {@see ConverterBigDecimalBoolean}
      */
     public static <C extends ConverterContext> Converter<C> bigDecimalBoolean() {
         return ConverterBigDecimalBoolean.instance();
     }
 
     /**
-     * [@see BooleanTrueFalseConverter}
+     * {@see BooleanTrueFalseConverter}
      */
     public static <V, C extends ConverterContext> Converter<C> booleanTrueFalse(final Predicate<Object> source,
                                                                                 final Predicate<Class<?>> target,
@@ -116,7 +116,7 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * [@see ConverterBooleanNumber}
+     * {@see ConverterBooleanNumber}
      */
     public static <C extends ConverterContext> Converter<C> booleanNumber() {
         return ConverterBooleanNumber.instance();
@@ -215,7 +215,7 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * [@see PredicatedMapperConverter}
+     * {@see PredicatedMapperConverter}
      */
     public static <S, D, C extends ConverterContext> Converter<C> mapper(final Predicate<Object> source,
                                                                          final Predicate<Class<?>> target,
@@ -266,7 +266,7 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * [@see ConverterObjectString}
+     * {@see ConverterObjectString}
      */
     public static <C extends ConverterContext> Converter<C> objectString() {
         return ConverterObjectString.instance();
