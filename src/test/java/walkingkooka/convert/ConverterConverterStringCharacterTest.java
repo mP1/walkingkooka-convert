@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterConverterStringCharacterTest implements ConverterTesting2<ConverterConverterStringCharacter<FakeConverterContext>, FakeConverterContext> {
 
-    private final static Converter<FakeConverterContext> TO_STRING_CONVERTER = Converters.mapper(
+    private final static Converter<FakeConverterContext> INTEGER_TO_STRING_CONVERTER = Converters.mapper(
             (s) -> s instanceof Integer,
             (t) -> t == String.class,
             (v) -> {
@@ -103,6 +103,16 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     }
 
     @Test
+    public void testConvertCharacterToCharacter2() {
+        this.convertAndCheck(
+                ConverterConverterStringCharacter.with(Converters.fake()),
+                'A',
+                Character.class,
+                'A'
+        );
+    }
+
+    @Test
     public void testConvertStringToString() {
         this.convertAndCheck(
                 "ABC123",
@@ -111,8 +121,28 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     }
 
     @Test
+    public void testConvertStringToString2() {
+        this.convertAndCheck(
+                ConverterConverterStringCharacter.with(Converters.fake()),
+                "ABC123",
+                String.class,
+                "ABC123"
+        );
+    }
+
+    @Test
     public void testConvertStringToCharacter() {
         this.convertAndCheck(
+                "Z",
+                Character.class,
+                'Z'
+        );
+    }
+
+    @Test
+    public void testConvertStringToCharacter2() {
+        this.convertAndCheck(
+                ConverterConverterStringCharacter.with(Converters.fake()),
                 "Z",
                 Character.class,
                 'Z'
@@ -143,7 +173,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     public void testToString() {
         this.toStringAndCheck(
                 this.createConverter(),
-                TO_STRING_CONVERTER + "->Character|String"
+                INTEGER_TO_STRING_CONVERTER + "->Character|String"
         );
     }
 
@@ -157,7 +187,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     @Override
     public ConverterConverterStringCharacter<FakeConverterContext> createConverter() {
         return ConverterConverterStringCharacter.with(
-                TO_STRING_CONVERTER
+                INTEGER_TO_STRING_CONVERTER
         );
     }
 
