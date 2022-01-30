@@ -23,10 +23,16 @@ import walkingkooka.Either;
 import java.util.Objects;
 
 /**
- * A {@link Converter} that converts any value and uses a {@link Converter} to a {@link String}. That {@link String}
- * is then converted to a {@link Character}.
+ * A {@link Converter} that may be used to convert values to a {@link Character} or {@link String}, possibly
+ * using the provided {@link Converter} where necessary.
  * <br>
- * This has the effect of promoting a {@link Character} so it's equivalent to a {@link String} as a convert target.
+ * Examples of handled conversions include:
+ * <ul>
+ *     <li>{@link Character} to {@link String}</li>
+ *     <li>{@link String} to {@link String}</li>
+ *     <li>any type to {@link String} using the {@link Converter}</li>
+ *     <li>any type to {@link String} using the {@link Converter} then to {@link Character}</li>
+ * </ul>
  */
 final class ConverterConverterStringCharacter<C extends ConverterContext> implements Converter<C> {
 
