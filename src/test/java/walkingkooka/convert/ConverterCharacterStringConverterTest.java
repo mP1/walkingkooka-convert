@@ -60,6 +60,30 @@ public final class ConverterCharacterStringConverterTest implements ConverterTes
     }
 
     @Test
+    public void testConvertCharacterToStringFails() {
+        this.convertFails(
+                'Q',
+                String.class
+        );
+    }
+
+    @Test
+    public void testConvertStringToStringFails() {
+        this.convertFails(
+                "Hello",
+                String.class
+        );
+    }
+
+    @Test
+    public void testConvertStringToCharacterFails() {
+        this.convertFails(
+                "Z",
+                Character.class
+        );
+    }
+
+    @Test
     public void testConvertUnsupportedTargetTypeFails() {
         this.convertFails(
                 '1',
