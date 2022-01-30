@@ -32,6 +32,8 @@ import java.util.Objects;
  *     <li>{@link String} to {@link String}</li>
  *     <li>any type to {@link String} using the {@link Converter}</li>
  *     <li>any type to {@link String} using the {@link Converter} then to {@link Character}</li>
+ *     <li>null to {@link String} using the {@link Converter}</li>
+ *     <li>null to {@link String} using the {@link Converter} then to {@link Character}</li>
  * </ul>
  */
 final class ConverterConverterStringCharacter<C extends ConverterContext> implements Converter<C> {
@@ -85,29 +87,12 @@ final class ConverterConverterStringCharacter<C extends ConverterContext> implem
                 type,
                 context
         ) ?
-                this.convertNullOrCharacterOrString(
+                this.convertCharacterOrString(
                         value,
                         type,
                         context
                 ) :
                 this.failConversion(value, type);
-    }
-
-    /**
-     * Guard that short circuits a null value, and then continues for non null values.
-     */
-    private <T> Either<T, String> convertNullOrCharacterOrString(final Object value,
-                                                                 final Class<T> type,
-                                                                 final C context) {
-        return null == value ?
-                Cast.to(
-                        Either.left(null) // null to Character | String
-                ) :
-                this.convertCharacterOrString(
-                        value,
-                        type,
-                        context
-                );
     }
 
     private <T> Either<T, String> convertCharacterOrString(final Object value,
@@ -149,7 +134,6 @@ final class ConverterConverterStringCharacter<C extends ConverterContext> implem
      */
     private <T> Either<T, String> convertStringToCharacter(final Object value,
                                                            final String stringValue,
-                                                           //final Class<T> type,
                                                            final C context) {
         final Either<Character, String> character = this.stringToCharacter.convert(
                 stringValue,

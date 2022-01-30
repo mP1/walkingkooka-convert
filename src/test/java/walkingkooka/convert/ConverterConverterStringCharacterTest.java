@@ -25,12 +25,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterConverterStringCharacterTest implements ConverterTesting2<ConverterConverterStringCharacter<FakeConverterContext>, FakeConverterContext> {
 
+    private final static Character NULL_TO_CHARACTER = '!';
+    private final static String NULL_TO_STRING = NULL_TO_CHARACTER.toString();
+
     private final static Converter<FakeConverterContext> INTEGER_TO_STRING_CONVERTER = Converters.mapper(
             (s) -> s instanceof Integer,
             (t) -> t == String.class,
             (v) -> {
-                final int integer = (Integer) v + 1;
-                return String.valueOf((char) integer);
+                final Integer integer = (Integer) v;
+                if (null == integer) {
+                    return NULL_TO_STRING;
+                }
+
+                return String.valueOf(
+                        (char) (integer + 1)
+                );
             }
     );
 
@@ -81,7 +90,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
         this.convertAndCheck(
                 null,
                 Character.class,
-                null
+                NULL_TO_CHARACTER
         );
     }
 
@@ -90,7 +99,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
         this.convertAndCheck(
                 null,
                 String.class,
-                null
+                NULL_TO_STRING
         );
     }
 
