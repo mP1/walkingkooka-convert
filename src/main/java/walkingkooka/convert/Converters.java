@@ -280,6 +280,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterObject}
+     */
+    public static <C extends ConverterContext> Converter<C> object() {
+        return ConverterObject.instance();
+    }
+    
+    /**
      * {@see ConverterObjectString}
      */
     public static <C extends ConverterContext> Converter<C> objectString() {
