@@ -58,7 +58,10 @@ final class ConverterTemporalLocalDateTimeLocalTime<C extends ConverterContext> 
                                                    final LocalDateTime localDateTime,
                                                    final Class<T> type,
                                                    final ConverterContext context) {
-        return Either.left(Cast.to(localDateTime.toLocalTime()));
+        return this.successfulConversion(
+                localDateTime.toLocalTime(),
+                type
+        );
     }
 
     @Override

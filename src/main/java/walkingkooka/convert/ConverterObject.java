@@ -57,7 +57,7 @@ final class ConverterObject<C extends ConverterContext> extends Converter2<C> {
     <T> Either<T, String> convertNonNull(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {
-        return Cast.to(Either.left(value));
+        return this.successfulConversion(value, type);
     }
 
     @Override

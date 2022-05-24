@@ -56,7 +56,10 @@ final class ConverterLocalTimeLocalDateTime<C extends ConverterContext> extends 
                                                final LocalTime localTime,
                                                final Class<T> type,
                                                final ConverterContext context) {
-        return Either.left(Cast.to(LocalDateTime.of(DATE, localTime)));
+        return this.successfulConversion(
+                LocalDateTime.of(DATE, localTime),
+                type
+        );
     }
 
     private final static LocalDate DATE = LocalDate.EPOCH;

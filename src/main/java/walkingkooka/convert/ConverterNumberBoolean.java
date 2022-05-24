@@ -50,24 +50,28 @@ final class ConverterNumberBoolean<C extends ConverterContext> extends Converter
 
     @Override
     Either<Boolean, String> bigDecimal(final BigDecimal value) {
-        return Either.left(value.signum() != 0);
+        return this.successfulConversion(value.signum() != 0);
     }
 
     @Override
     Either<Boolean, String> bigInteger(final BigInteger value) {
-        return Either.left(value.signum() != 0);
+        return this.successfulConversion(value.signum() != 0);
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
     Either<Boolean, String> doubleValue(final Double value) {
-        return Either.left(!value.isInfinite() && !value.isNaN() && 0 != value.doubleValue());
+        return this.successfulConversion(!value.isInfinite() && !value.isNaN() && 0 != value.doubleValue());
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
     Either<Boolean, String> longValue(final Long value) {
-        return Either.left(0 != value.longValue());
+        return this.successfulConversion(0 != value.longValue());
+    }
+
+    private Either<Boolean, String> successfulConversion(final Object value) {
+        return this.successfulConversion(value, Boolean.class);
     }
 
     @Override

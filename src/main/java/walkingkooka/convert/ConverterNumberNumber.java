@@ -61,7 +61,7 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
         Either<T, String> result;
         try {
             result = type == Number.class ?
-                    Either.left(Cast.to(value)) :
+                    this.successfulConversion(value, type) :
                     this.convertNonNumber(value, type);
         } catch (final RuntimeException cause) {
             result = this.failConversion(value, type, cause);
@@ -83,7 +83,10 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
             if (null == converted) {
                 result = this.failConversion(value, type);
             } else {
-                result = Either.left(Cast.to(converted));
+                result = this.successfulConversion(
+                        converted,
+                        type
+                );
             }
         }
 

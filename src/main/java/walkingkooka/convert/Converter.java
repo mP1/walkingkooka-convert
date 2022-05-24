@@ -72,6 +72,14 @@ public interface Converter<C extends ConverterContext> {
     }
 
     /**
+     * Type safe helper without any casts that wraps a successful conversion value.
+     */
+    default <T> Either<T, String> successfulConversion(final Object value,
+                                                       final Class<T> type) {
+        return Either.left((T) value);
+    }
+
+    /**
      * Useful to report a failed conversion with a standard error message.
      */
     default <T> Either<T, String> failConversion(final Object value,

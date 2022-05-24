@@ -68,7 +68,10 @@ final class ConverterNumberLocalDate<C extends ConverterContext> extends Convert
     }
 
     private Either<LocalDate, String> localDate(final long value) {
-        return Either.left(LocalDate.ofEpochDay(value + this.offset));
+        return this.successfulConversion(
+                LocalDate.ofEpochDay(value + this.offset),
+                LocalDate.class
+        );
     }
 
     private final long offset;

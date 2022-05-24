@@ -92,9 +92,12 @@ final class ConverterNumberLocalDateTime<C extends ConverterContext> extends Con
         final long nano = (long) doubleNano;
         return nano != doubleNano ?
                 this.failConversion(value, LocalDateTime.class) :
-                Either.left(LocalDateTime.of(
-                        LocalDate.ofEpochDay(day + this.offset),
-                        LocalTime.ofNanoOfDay(nano)));
+                this.successfulConversion(
+                        LocalDateTime.of(
+                                LocalDate.ofEpochDay(day + this.offset),
+                                LocalTime.ofNanoOfDay(nano)),
+                        LocalDateTime.class
+                );
     }
 
     private final long offset;

@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.Maths;
@@ -56,6 +55,9 @@ final class DecimalFormatConverterNumberString<C extends ConverterContext> exten
                                                    final Object value,
                                                    final Class<T> type,
                                                    final ConverterContext context) {
-        return Either.left(Cast.to(decimalFormat.format(value)));
+        return this.successfulConversion(
+                decimalFormat.format(value),
+                type
+        );
     }
 }
