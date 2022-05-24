@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.util.Objects;
@@ -66,10 +65,9 @@ final class PredicatedMapperConverter<S, D, C extends ConverterContext> implemen
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert(value, type, context) ?
-                Cast.to(
-                        Either.left(
-                                this.mapper.apply((S)value)
-                        )
+                this.successfulConversion(
+                        this.mapper.apply((S) value),
+                        type
                 ) :
                 this.failConversion(value, type);
     }

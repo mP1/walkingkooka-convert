@@ -54,7 +54,10 @@ final class ConverterTemporalLocalDateLocalDateTime<C extends ConverterContext> 
     <T> Either<T, String> convert1(final LocalDate date,
                                    final Class<T> type,
                                    final ConverterContext context) {
-        return Either.left(Cast.to(LocalDateTime.of(date, TIME)));
+        return this.successfulConversion(
+                LocalDateTime.of(date, TIME),
+                type
+        );
     }
 
     private final static LocalTime TIME = LocalTime.MIDNIGHT;

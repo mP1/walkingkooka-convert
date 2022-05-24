@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.text.cursor.TextCursors;
@@ -88,7 +87,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
                                               final Class<T> type,
                                               final C context) {
         return null == text ?
-                Either.left(null) :
+                this.successfulConversion(null, type) :
                 this.parseNonNullString(text, type, context);
     }
 
@@ -99,8 +98,9 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
         final TextCursor cursor = TextCursors.charSequence(text);
         final Optional<ParserToken> result = this.parser.parse(cursor, this.context.apply(context));
         return result.isPresent() && cursor.isEmpty() ?
-                Either.left(
-                        Cast.to(this.transformer.apply(result.get(), context))
+                this.successfulConversion(
+                        this.transformer.apply(result.get(), context),
+                        type
                 ) :
                 this.failConversion(text, type);
     }

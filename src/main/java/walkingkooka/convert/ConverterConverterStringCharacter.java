@@ -100,7 +100,7 @@ final class ConverterConverterStringCharacter<C extends ConverterContext> implem
                                                            final C context) {
         return type == Character.class ?
                 this.convertCharacter(value, type, context) :
-                this.convertString(value, context);
+                this.convertString(value, type, context);
     }
 
     private <T> Either<T, String> convertCharacter(final Object value,
@@ -108,7 +108,7 @@ final class ConverterConverterStringCharacter<C extends ConverterContext> implem
                                                    final C context) {
         return Cast.to(
                 value instanceof Character ?
-                        Either.left(value) : // already Character (aka Character -> Character):
+                        this.successfulConversion(value, type) : // already Character (aka Character -> Character):
                         value instanceof String ?
                                 this.convertStringToCharacter(value, value.toString(), context) : //
                                 this.convertStringThenCharacter(value, context) // convert the String -> Character
@@ -157,17 +157,17 @@ final class ConverterConverterStringCharacter<C extends ConverterContext> implem
      * Convert the given value to a {@link String} and returns that result.
      */
     private <T> Either<T, String> convertString(final Object value,
+                                                final Class<T> type,
                                                 final C context) {
         return value instanceof String ?
-                Cast.to(
-                        Either.left(value) // value is already a String
+                this.successfulConversion(
+                        value, // value is already a String
+                        type
                 ) :
-                Cast.to(
-                        this.converter.convert(
-                                value,
-                                String.class,
-                                context
-                        )
+                this.converter.convert(
+                        value,
+                        type,
+                        context
                 );
     }
 

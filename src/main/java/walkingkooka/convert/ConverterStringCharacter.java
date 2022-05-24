@@ -64,10 +64,9 @@ final class ConverterStringCharacter<C extends ConverterContext> extends Convert
         final int length = string.length();
 
         return length == 1 ?
-                Either.left(
-                        Cast.to(
-                                string.charAt(0)
-                        )
+                this.successfulConversion(
+                        string.charAt(0),
+                        type
                 ) :
                 Either.right("String length must be one but was " + length);
     }

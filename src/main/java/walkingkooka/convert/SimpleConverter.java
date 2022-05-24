@@ -61,7 +61,7 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert0(value, type) ?
-                Either.left(Cast.to(value)) :
+                this.successfulConversion(value, type) :
                 this.failConversion(value, type);
     }
 

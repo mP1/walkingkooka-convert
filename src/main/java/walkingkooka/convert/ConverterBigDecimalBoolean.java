@@ -63,7 +63,10 @@ final class ConverterBigDecimalBoolean<C extends ConverterContext> extends Conve
     <T> Either<T, String> convertNonNull(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {
-        return Either.left(Cast.to(((BigDecimal) value).signum() != 0));
+        return this.successfulConversion(
+                ((BigDecimal) value).signum() != 0,
+                type
+        );
     }
 
     @Override

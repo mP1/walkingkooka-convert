@@ -61,10 +61,12 @@ final class ConverterBooleanNumber<C extends ConverterContext> extends Converter
     <T> Either<T, String> convertNonNull(final Object value,
                                          final Class<T> type,
                                          final ConverterContext context) {
-        return Either.left(
-                Cast.to(
-                        ConverterBooleanNumberNumberTypeVisitor.convert((Boolean) value, type)
-                )
+        return this.successfulConversion(
+                ConverterBooleanNumberNumberTypeVisitor.convert(
+                        (Boolean) value,
+                        type
+                ),
+                type
         );
     }
 

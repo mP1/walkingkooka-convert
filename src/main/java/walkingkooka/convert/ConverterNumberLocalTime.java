@@ -74,7 +74,10 @@ final class ConverterNumberLocalTime<C extends ConverterContext> extends Convert
     }
 
     private Either<LocalTime, String> localTime(final long value) {
-        return Either.left(LocalTime.ofSecondOfDay(value));
+        return this.successfulConversion(
+                LocalTime.ofSecondOfDay(value),
+                LocalTime.class
+        );
     }
 
     private Either<LocalTime, String> localTime(final double value) {
@@ -82,7 +85,10 @@ final class ConverterNumberLocalTime<C extends ConverterContext> extends Convert
         final long nanos = (long) doubleNanos;
         return nanos != doubleNanos ?
                 this.failConversion(value, LocalTime.class) :
-                Either.left(LocalTime.ofNanoOfDay(nanos));
+                this.successfulConversion(
+                        LocalTime.ofNanoOfDay(nanos),
+                        LocalTime.class
+                );
     }
 
     @Override
