@@ -18,8 +18,16 @@
 package walkingkooka.convert;
 
 import walkingkooka.SystemException;
+import walkingkooka.Value;
 
-public class ConversionException extends SystemException {
+import java.util.Objects;
+
+/**
+ * An {@link RuntimeException} that reports that a value could not be converted to type.
+ * <br>
+ * This is typically thrown by {@link CanConvert#convertThrowable(String)} or {@link Converter#convertOrFail(Object, Class, ConverterContext)}
+ */
+public class ConversionException extends SystemException implements Value<Object> {
 
     private static final long serialVersionUID = 1;
 
@@ -27,11 +35,32 @@ public class ConversionException extends SystemException {
         super();
     }
 
-    public ConversionException(final String message) {
+    public ConversionException(final String message,
+                               final Object value,
+                               final Class<?> type) {
         super(message);
+        this.value = value;
+        this.type = Objects.requireNonNull(type, "type");
     }
 
-    public ConversionException(final String message, final Throwable cause) {
+    public ConversionException(final String message,
+                               final Object value,
+                               final Class<?> type,
+                               final Throwable cause) {
         super(message, cause);
+        this.value = value;
+        this.type = Objects.requireNonNull(type, "type");
+    }
+
+    private Object value;
+
+    public Object value() {
+        return this.value;
+    }
+
+    private Class<?> type;
+
+    public Class<?> type() {
+        return this.type;
     }
 }

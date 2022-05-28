@@ -17,19 +17,64 @@
 
 package walkingkooka.convert;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
 
 public final class ConversionExceptionTest implements StandardThrowableTesting<ConversionException> {
 
+    private final static Object VALUE = 123;
+
+    private final static Class<?> TYPE = Void.class;
+
+    @Test
+    public void testNew() {
+        final ConversionException exception =  new ConversionException(
+                MESSAGE,
+                VALUE,
+                TYPE
+        );
+
+        this.checkMessage(exception, MESSAGE);
+        this.checkEquals(VALUE, exception.value(), "value");
+        this.checkEquals(TYPE, exception.type(), "type");
+        this.checkCause(exception, null);
+    }
+
+    @Test
+    public void testNewWithCause() {
+        final Throwable cause = new Throwable();
+
+        final ConversionException exception =  new ConversionException(
+                MESSAGE,
+                VALUE,
+                TYPE,
+                cause
+        );
+
+        this.checkMessage(exception, MESSAGE);
+        this.checkEquals(VALUE, exception.value(), "value");
+        this.checkEquals(TYPE, exception.type(), "type");
+        this.checkCause(exception, cause);
+    }
+
     @Override
     public ConversionException createThrowable(final String message) {
-        return new ConversionException(message);
+        return new ConversionException(
+                message,
+                VALUE,
+                TYPE
+        );
     }
 
     @Override
     public ConversionException createThrowable(final String message, final Throwable cause) {
-        return new ConversionException(message, cause);
+        return new ConversionException(
+                message,
+                VALUE,
+                TYPE,
+                cause
+        );
     }
     
     @Override

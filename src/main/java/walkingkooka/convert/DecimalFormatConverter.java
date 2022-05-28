@@ -70,7 +70,12 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
                 try {
                     format.setCurrency(Currency.getInstance(locale));
                 } catch (final IllegalArgumentException cause) {
-                    throw new ConversionException("Unable to set currency, probably an invalid locale " + CharSequences.quoteAndEscape(locale.toLanguageTag()));
+                    throw new ConversionException(
+                            "Unable to set currency, probably an invalid locale " + CharSequences.quoteAndEscape(locale.toLanguageTag()),
+                            value,
+                            type,
+                            cause
+                    );
                 }
 
                 final DecimalFormatSymbols symbols = new DecimalFormatSymbols(locale);
