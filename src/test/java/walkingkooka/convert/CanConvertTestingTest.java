@@ -69,7 +69,9 @@ public final class CanConvertTestingTest implements Testing {
                 }
 
                 @Override
-                public RuntimeException convertThrowable(final String ignored) {
+                public RuntimeException convertThrowable(final String ignored,
+                                                         final Object value,
+                                                         final Class<?> type) {
                     return new RuntimeException(message);
                 }
             }.canConvertOrFail(VALUE, TARGET);
@@ -149,7 +151,9 @@ public final class CanConvertTestingTest implements Testing {
                         }
 
                         @Override
-                        public RuntimeException convertThrowable(final String message) {
+                        public RuntimeException convertThrowable(final String message,
+                                                                 final Object value,
+                                                                 final Class<?> type) {
                             return new RuntimeException(message);
                         }
                     }.convertOrFail(this, this.getClass());

@@ -43,7 +43,11 @@ public interface Converter<C extends ConverterContext> {
                                      final C context) {
         final boolean can = this.canConvert(value, type, context);
         if (!can) {
-            throw new ConversionException("Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + type.getName());
+            throw new ConversionException(
+                    "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + type.getName(),
+                    value,
+                    type
+            );
         }
 
         return can;
@@ -65,7 +69,11 @@ public interface Converter<C extends ConverterContext> {
                                 final C context) {
         final Either<T, String> converted = this.convert(value, type, context);
         if (converted.isRight()) {
-            throw new ConversionException(converted.rightValue());
+            throw new ConversionException(
+                    converted.rightValue(), // message
+                    value,
+                    type
+            );
         }
 
         return converted.leftValue();

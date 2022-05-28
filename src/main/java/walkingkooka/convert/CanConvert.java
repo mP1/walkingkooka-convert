@@ -40,7 +40,11 @@ public interface CanConvert {
                                      final Class<?> target) {
         final boolean can = this.canConvert(value, target);
         if (!can) {
-            throw this.convertThrowable("Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName());
+            throw this.convertThrowable(
+                    "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName(),
+                    value,
+                    target
+            );
         }
 
         return can;
@@ -59,7 +63,11 @@ public interface CanConvert {
                                 final Class<T> target) {
         final Either<T, String> converted = this.convert(value, target);
         if (converted.isRight()) {
-            throw this.convertThrowable(converted.rightValue());
+            throw this.convertThrowable(
+                    converted.rightValue(),
+                    value,
+                    target
+            );
         }
 
         return converted.leftValue();
@@ -93,7 +101,13 @@ public interface CanConvert {
     /**
      * Creates a {@link Throwable} which may then be thrown to report a convert failure.
      */
-    default RuntimeException convertThrowable(final String message) {
-        return new ConversionException(message);
+    default RuntimeException convertThrowable(final String message,
+                                              final Object value,
+                                              final Class<?> type) {
+        return new ConversionException(
+                message,
+                value,
+                type
+        );
     }
 }
