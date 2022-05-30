@@ -22,6 +22,7 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -91,6 +92,11 @@ final class BasicConverterContext implements ConverterContext {
     @Override
     public List<String> monthNameAbbreviations() {
         return this.dateTimeContext.monthNameAbbreviations();
+    }
+
+    @Override
+    public LocalDateTime now() {
+        return this.dateTimeContext.now();
     }
 
     @Override

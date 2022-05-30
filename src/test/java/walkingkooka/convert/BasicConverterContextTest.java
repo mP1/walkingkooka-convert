@@ -26,6 +26,7 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -92,7 +93,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         return DateTimeContexts.locale(
                 Locale.FRANCE,
                 1900,
-                20
+                20,
+                LocalDateTime::now
         );
     }
 
