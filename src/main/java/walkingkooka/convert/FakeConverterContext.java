@@ -21,6 +21,7 @@ import walkingkooka.Either;
 import walkingkooka.math.FakeDecimalNumberContext;
 import walkingkooka.test.Fake;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -72,6 +73,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
 
     @Override
     public String monthNameAbbreviation(final int month) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public LocalDateTime now() {
         throw new UnsupportedOperationException();
     }
 
