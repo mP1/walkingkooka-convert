@@ -41,9 +41,10 @@ public final class ConverterLocalTimeLocalDateTimeTest extends ConverterLocalTim
 
     @Test
     public void testLocalTime() {
-        this.convertAndCheck(LocalTime.of(12, 58, 59, 789),
-                LocalDateTime.class,
-                LocalDateTime.of(1970, 1, 1, 12, 58, 59, 789));
+        this.convertAndCheck(
+                LocalTime.of(12, 58, 59, 789),
+                LocalDateTime.of(1970, 1, 1, 12, 58, 59, 789)
+        );
     }
 
     @Override

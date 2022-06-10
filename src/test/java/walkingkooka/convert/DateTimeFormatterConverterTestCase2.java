@@ -41,12 +41,16 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
 
     @Test
     public final void testConvertNull() {
-        this.convertAndCheck2(null, null);
+        this.convertAndCheck(
+                null,
+                this.targetType(),
+                null
+        );
     }
 
     @Test
     public final void testConvert() {
-        this.convertAndCheck2(this.source(), this.converted());
+        this.convertAndCheck(this.source(), this.converted());
     }
 
     @Test
@@ -150,14 +154,6 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
     abstract S source();
 
     abstract T converted();
-
-    final void convertAndCheck2(final S source,
-                                final T converted) {
-        this.convertAndCheck2(this.createConverter(),
-                source,
-                this.createContext(),
-                converted);
-    }
 
     final void convertAndCheck2(final C converter,
                                 final S source,
