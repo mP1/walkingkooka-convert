@@ -114,12 +114,6 @@ public final class ConverterBooleanNumberTest extends ConverterTestCase2<Convert
         this.convertAndCheck(false, (short) 0);
     }
 
-    private void convertAndCheck(final boolean value, final Number expected) {
-        this.convertAndCheck(value,
-                Cast.to(expected.getClass()),
-                expected);
-    }
-
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createConverter(), "Boolean->Number");

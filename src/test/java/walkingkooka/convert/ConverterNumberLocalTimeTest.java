@@ -45,7 +45,7 @@ public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<
 
     @Test
     public void testBigDecimalWithFraction() {
-        this.convertAndCheck2(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
+        this.convertAndCheck(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
     }
 
     @Test
@@ -65,7 +65,7 @@ public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<
 
     @Test
     public void testDoubleWithFraction() {
-        this.convertAndCheck2(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
+        this.convertAndCheck(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class ConverterNumberLocalTimeTest extends ConverterNumberTestCase<
     }
 
     private void convertAndCheck2(final Object value) {
-        this.convertAndCheck2(value, LocalTime.ofSecondOfDay(VALUE));
+        this.convertAndCheck(value, LocalTime.ofSecondOfDay(VALUE));
     }
 
     @Override

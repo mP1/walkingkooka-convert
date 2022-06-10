@@ -29,17 +29,26 @@ public final class ConverterObjectStringTest extends ConverterTestCase<Converter
 
     @Test
     public void testNull() {
-        this.convertAndCheck(null, String.class, "null");
+        this.convertAndCheck(
+                null,
+                "null"
+        );
     }
 
     @Test
     public void testBooleanTrue() {
-        this.convertAndCheck(Boolean.TRUE, String.class, Boolean.TRUE.toString());
+        this.convertAndCheck(
+                Boolean.TRUE,
+                Boolean.TRUE.toString()
+        );
     }
 
     @Test
     public void testLong() {
-        this.convertAndCheck(123L, String.class, "123");
+        this.convertAndCheck(
+                123L,
+                "123"
+        );
     }
 
     @Test

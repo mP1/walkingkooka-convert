@@ -67,14 +67,6 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
         assertSame(value, this.convertAndCheck(value, this.targetType(), this.targetType().cast(value)));
     }
 
-    final T convertAndCheck2(final Object value, final T expected) {
-        final Class<T> targetType = this.targetType();
-        return targetType.cast(this.convertAndCheck(this.createConverter(),
-                value,
-                targetType,
-                expected));
-    }
-
     final void convertFails2(final Object value) {
         this.convertFails(value, this.targetType());
     }

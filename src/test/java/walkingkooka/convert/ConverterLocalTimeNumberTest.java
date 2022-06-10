@@ -124,9 +124,10 @@ public final class ConverterLocalTimeNumberTest extends ConverterLocalTimeTestCa
     }
 
     private void convertAndCheck2(final Number expected) {
-        this.convertAndCheck(LocalTime.ofSecondOfDay(VALUE),
-                Cast.to(expected.getClass()),
-                expected);
+        this.convertAndCheck(
+                LocalTime.ofSecondOfDay(VALUE),
+                expected
+        );
     }
 
     private void convertAndCheck3(final Number expected) {

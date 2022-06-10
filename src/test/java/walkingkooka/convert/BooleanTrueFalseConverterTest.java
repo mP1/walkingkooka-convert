@@ -50,12 +50,18 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
 
     @Test
     public void testNull() {
-        this.convertAndCheck2(null, FALSE_ANSWER);
+        this.convertAndCheck(
+                null,
+                FALSE_ANSWER
+        );
     }
 
     @Test
     public void testTrue() {
-        this.convertAndCheck2(1, TRUE_ANSWER);
+        this.convertAndCheck(
+                1,
+                TRUE_ANSWER
+        );
     }
 
     @Test
@@ -70,7 +76,10 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
 
     @Test
     public void testFalse() {
-        this.convertAndCheck2(2, FALSE_ANSWER);
+        this.convertAndCheck(
+                2,
+                FALSE_ANSWER
+        );
     }
 
     @Test
@@ -97,16 +106,6 @@ public final class BooleanTrueFalseConverterTest extends ConverterTestCase2<Bool
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.fake();
-    }
-
-    void convertAndCheck2(final Object value,
-                          final String expected) {
-        this.convertAndCheck(
-                this.createConverter(),
-                value,
-                String.class,
-                expected
-        );
     }
 
     // ClassTesting.....................................................................................................

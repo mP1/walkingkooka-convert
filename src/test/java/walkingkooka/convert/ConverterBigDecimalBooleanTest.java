@@ -26,22 +26,26 @@ public final class ConverterBigDecimalBooleanTest extends ConverterTestCase2<Con
 
     @Test
     public void testNull() {
-        this.convertAndCheck2(null, null);
+        this.convertAndCheck(
+                null,
+                Boolean.class,
+                null
+        );
     }
 
     @Test
     public void testTrue() {
-        this.convertAndCheck2(BigDecimal.ONE, true);
+        this.convertAndCheck(BigDecimal.ONE, true);
     }
 
     @Test
     public void testFalse() {
-        this.convertAndCheck2(BigDecimal.ZERO, false);
+        this.convertAndCheck(BigDecimal.ZERO, false);
     }
 
     @Test
     public void testExtraZeroesFalse() {
-        this.convertAndCheck2(new BigDecimal("000000"), false);
+        this.convertAndCheck(new BigDecimal("000000"), false);
     }
 
     @Test
@@ -57,11 +61,6 @@ public final class ConverterBigDecimalBooleanTest extends ConverterTestCase2<Con
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.fake();
-    }
-
-    private void convertAndCheck2(final BigDecimal value,
-                                  final Boolean expected) {
-        this.convertAndCheck(value, Boolean.class, expected);
     }
 
     // ClassTesting.....................................................................................................

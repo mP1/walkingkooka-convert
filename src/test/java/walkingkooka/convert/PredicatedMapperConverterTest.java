@@ -50,17 +50,26 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
 
     @Test
     public void testNull() {
-        this.convertAndCheck2(null, false);
+        this.convertAndCheck(
+                null,
+                false
+        );
     }
 
     @Test
     public void testTrue() {
-        this.convertAndCheck2(Boolean.TRUE.toString(), true);
+        this.convertAndCheck(
+                Boolean.TRUE.toString(),
+                true
+        );
     }
 
     @Test
     public void testFalse() {
-        this.convertAndCheck2(Boolean.FALSE.toString(), false);
+        this.convertAndCheck(
+                Boolean.FALSE.toString(),
+                false
+        );
     }
 
     // toString.........................................................................................................
@@ -84,11 +93,6 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.fake();
-    }
-
-    private void convertAndCheck2(final String value,
-                                  final boolean expected) {
-        this.convertAndCheck(value, Boolean.class, expected);
     }
 
     // ClassTesting.....................................................................................................

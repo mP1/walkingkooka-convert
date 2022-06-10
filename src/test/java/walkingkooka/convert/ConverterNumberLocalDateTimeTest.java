@@ -49,7 +49,7 @@ public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestC
 
     @Test
     public void testBigDecimalWithFraction() {
-        this.convertAndCheck2(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
+        this.convertAndCheck(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
     }
 
     @Test
@@ -79,7 +79,7 @@ public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestC
 
     @Test
     public void testDoubleWithFraction() {
-        this.convertAndCheck2(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
+        this.convertAndCheck(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
     }
 
     @Test
@@ -118,7 +118,7 @@ public final class ConverterNumberLocalDateTimeTest extends ConverterNumberTestC
     }
 
     private void convertAndCheck2(final Object value) {
-        this.convertAndCheck2(value, this.localDateTime(VALUE, MIDNIGHT));
+        this.convertAndCheck(value, this.localDateTime(VALUE, MIDNIGHT));
     }
 
     private void convertAndCheckExcelOffset(final Number value) {

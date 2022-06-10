@@ -82,7 +82,7 @@ public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<
 
     @Test
     public void testLong() {
-        this.convertAndCheck2((long)VALUE, LocalDate.ofEpochDay(VALUE));
+        this.convertAndCheck((long)VALUE, LocalDate.ofEpochDay(VALUE));
     }
 
     @Test
@@ -116,7 +116,7 @@ public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<
     }
 
     private void convertAndCheck2(final Number value) {
-        this.convertAndCheck2(value, DATE_VALUE);
+        this.convertAndCheck(value, DATE_VALUE);
     }
 
     private void convertAndCheckExcelOffset(final Number value) {

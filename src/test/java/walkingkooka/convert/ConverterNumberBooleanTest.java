@@ -148,15 +148,17 @@ public final class ConverterNumberBooleanTest extends ConverterNumberTestCase<Co
     // helper............................................................................................................
 
     private void convertAndCheckTrue(final Number number) {
-        this.convertAndCheck2(number, true);
+        this.convertAndCheck(
+                number,
+                true
+        );
     }
 
     private void convertAndCheckFalse(final Number number) {
-        this.convertAndCheck2(number, false);
-    }
-
-    private void convertAndCheck2(final Number number, final boolean expected) {
-        this.convertAndCheck(number, Boolean.class, expected);
+        this.convertAndCheck(
+                number,
+                false
+        );
     }
 
     @Override

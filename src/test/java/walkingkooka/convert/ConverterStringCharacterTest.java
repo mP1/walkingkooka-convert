@@ -24,7 +24,11 @@ public final class ConverterStringCharacterTest extends ConverterTestCase2<Conve
 
     @Test
     public void testNull() {
-        this.convertAndCheck2(null, null);
+        this.convertAndCheck(
+                null,
+                Character.class,
+                null
+        );
     }
 
     @Test
@@ -39,12 +43,18 @@ public final class ConverterStringCharacterTest extends ConverterTestCase2<Conve
 
     @Test
     public void testOne() {
-        this.convertAndCheck2("!", '!');
+        this.convertAndCheck(
+                "!",
+                '!'
+        );
     }
 
     @Test
     public void testOne2() {
-        this.convertAndCheck2("A", 'A');
+        this.convertAndCheck(
+                "A",
+                'A'
+        );
     }
 
     @Test
@@ -60,11 +70,6 @@ public final class ConverterStringCharacterTest extends ConverterTestCase2<Conve
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.fake();
-    }
-
-    private void convertAndCheck2(final String value,
-                                  final Character expected) {
-        this.convertAndCheck(value, Character.class, expected);
     }
 
     // ClassTesting.....................................................................................................
