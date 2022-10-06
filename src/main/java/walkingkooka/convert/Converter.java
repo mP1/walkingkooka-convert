@@ -43,7 +43,7 @@ public interface Converter<C extends ConverterContext> {
                                      final C context) {
         final boolean can = this.canConvert(value, type, context);
         if (!can) {
-            throw new ConversionException(
+            this.convertThrowable(
                     "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + type.getName(),
                     value,
                     type
@@ -69,7 +69,7 @@ public interface Converter<C extends ConverterContext> {
                                 final C context) {
         final Either<T, String> converted = this.convert(value, type, context);
         if (converted.isRight()) {
-            throw new ConversionException(
+            throw this.convertThrowable(
                     converted.rightValue(), // message
                     value,
                     type
@@ -102,6 +102,19 @@ public interface Converter<C extends ConverterContext> {
                                                  final Class<T> type,
                                                  final Throwable cause) {
         return FailConversion.handle(value, type, cause);
+    }
+
+    /**
+     * Creates a {@link Throwable} which may then be thrown to report a convert failure.
+     */
+    default RuntimeException convertThrowable(final String message,
+                                              final Object value,
+                                              final Class<?> type) {
+        return new ConversionException(
+                message,
+                value,
+                type
+        );
     }
 
     /**
