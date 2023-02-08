@@ -17,10 +17,13 @@
 package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
-import walkingkooka.convert.Converters;
 import walkingkooka.convert.ConverterContexts;
+import walkingkooka.convert.Converters;
+import walkingkooka.j2cl.locale.LocaleAware;
 
+@LocaleAware
 public class TestGwtTest extends GWTTestCase {
+
     @Override
     public String getModuleName() {
         return "test.Test";
