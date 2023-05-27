@@ -41,7 +41,7 @@ public interface ConverterTesting extends Testing {
         this.checkEquals(
                 true,
                 converter.canConvert(value, target, context),
-                () -> converter + " can convert(" + CharSequences.quoteIfChars(value) + className.get() + ", " + target.getName() + ")"
+                () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
         );
 
         final Either<T, String> result = converter.convert(value, target, context);
