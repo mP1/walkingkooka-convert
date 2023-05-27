@@ -71,13 +71,13 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert(value, type, context) ?
-                this.convertNonNull(value, type, context) :
+                this.convert0(value, type, context) :
                 this.failConversion(value, type);
     }
 
-    private <T> Either<T, String> convertNonNull(final Object value,
-                                                 final Class<T> type,
-                                                 final C context) {
+    private <T> Either<T, String> convert0(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
         Either<T, String> result = null;
 
         for (final Converter<C> possible : this.converters) {
