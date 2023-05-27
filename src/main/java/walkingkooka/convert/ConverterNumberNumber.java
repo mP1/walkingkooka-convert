@@ -73,7 +73,7 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
                                                    final Class<T> type) {
         Either<T, String> result;
 
-        // attempt to find a visitor for the tiven type.
+        // attempt to find a visitor for the given type.
         final ConverterNumberNumberNumberTypeVisitorNumber<?> visitor = ConverterNumberNumberNumberTypeVisitor.visitor(type);
         if (null == visitor) {
             result = this.failConversion(value, type);
