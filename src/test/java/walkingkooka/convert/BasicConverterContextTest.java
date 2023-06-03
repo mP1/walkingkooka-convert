@@ -39,7 +39,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static String CURRENCY = "$$";
     private final static char DECIMAL = 'D';
     private final static String EXPONENT = "X";
-    private final static char GROUPING = 'G';
+    private final static char GROUP_SEPARATOR = 'G';
     private final static char MINUS = 'M';
     private final static char PERCENTAGE = 'R';
     private final static char PLUS = 'P';
@@ -102,7 +102,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         return DecimalNumberContexts.basic(CURRENCY,
                 DECIMAL,
                 EXPONENT,
-                GROUPING,
+                GROUP_SEPARATOR,
                 MINUS,
                 PERCENTAGE,
                 PLUS,
@@ -126,8 +126,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     @Override
-    public char groupingSeparator() {
-        return GROUPING;
+    public char groupSeparator() {
+        return GROUP_SEPARATOR;
     }
 
     @Override
