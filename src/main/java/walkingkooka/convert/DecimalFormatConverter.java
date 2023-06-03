@@ -82,7 +82,7 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
                 symbols.setCurrencySymbol(context.currencySymbol());
                 symbols.setDecimalSeparator(context.decimalSeparator());
                 symbols.setExponentSeparator(String.valueOf(context.exponentSymbol()));
-                symbols.setGroupingSeparator(context.groupingSeparator());
+                symbols.setGroupingSeparator(context.groupSeparator());
                 symbols.setMinusSign(context.negativeSign());
                 symbols.setPercent(context.percentageSymbol());
 

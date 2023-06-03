@@ -83,7 +83,7 @@ public class JunitTest {
                     }
 
                     @Override
-                    public char groupingSeparator() {
+                    public char groupSeparator() {
                         return ',';
                     }
 
