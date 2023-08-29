@@ -53,7 +53,7 @@ public interface ConverterTesting extends Testing {
         this.checkEquals(
                 expected,
                 convertedValue,
-                "Failed to convert " + CharSequences.quoteIfChars(value) + className.get() + "= to " + target.getName()
+                () -> "Failed to convert " + CharSequences.quoteIfChars(value) + className.get() + "= to " + target.getName()
         );
         return convertedValue;
     }
@@ -61,7 +61,7 @@ public interface ConverterTesting extends Testing {
     @Override
     default void checkEquals(final Object expected,
                              final Object actual,
-                             final String message) {
+                             final Supplier<String> message) {
         if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
             final Comparable<?> expectedComparable = Cast.to(expected);
             if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
