@@ -20,15 +20,15 @@ package walkingkooka.convert;
 import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.function.Supplier;
 
 /**
  * A mixin interface with helpers to assist testing {@link Converter} converts or the conversion fails.
  */
-public interface ConverterTesting extends Testing {
+public interface ConverterTesting extends TreePrintableTesting {
 
     default <T, C extends ConverterContext> T convertAndCheck(final Converter<C> converter,
                                                               final Object value,
@@ -65,10 +65,10 @@ public interface ConverterTesting extends Testing {
         if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
             final Comparable<?> expectedComparable = Cast.to(expected);
             if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
-                Testing.super.checkEquals(expected, actual, message);
+                TreePrintableTesting.super.checkEquals(expected, actual, message);
             }
         } else {
-            Testing.super.checkEquals(expected, actual, message);
+            TreePrintableTesting.super.checkEquals(expected, actual, message);
         }
     }
 
