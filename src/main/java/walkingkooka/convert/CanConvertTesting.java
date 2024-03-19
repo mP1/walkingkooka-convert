@@ -17,7 +17,6 @@
 package walkingkooka.convert;
 
 import org.opentest4j.AssertionFailedError;
-import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
@@ -49,7 +48,11 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
         }
 
         final T convertedValue = result.leftValue();
-        this.checkEquals("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
+        this.checkEquals(
+                expected,
+                convertedValue,
+                () -> "Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
+        );
         return convertedValue;
     }
 
@@ -81,21 +84,12 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
                                         final Class<T> target,
                                         final T expected) {
         final T convertedValue = can.convertOrFail(value, target);
-        this.checkEquals("Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(), expected, convertedValue);
+        this.checkEquals(
+                expected,
+                convertedValue,
+                () -> "Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
+        );
         return convertedValue;
-    }
-
-    default void checkEquals(final String message,
-                             final Object expected,
-                             final Object actual) {
-        if (expected instanceof Comparable && expected.getClass().isInstance(actual)) {
-            final Comparable<?> expectedComparable = Cast.to(expected);
-            if (expectedComparable.compareTo(Cast.to(actual)) != 0) {
-                this.checkEquals(expected, actual, message);
-            }
-        } else {
-            this.checkEquals(expected, actual, message);
-        }
     }
 
     /**
