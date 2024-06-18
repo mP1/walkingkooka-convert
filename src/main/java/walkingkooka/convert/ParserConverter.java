@@ -31,48 +31,48 @@ import java.util.function.Function;
 
 /**
  * A {@link Converter} that accepts only {@link String} and then invokes a {@link Parser}. If the parser is successful,
- * the {@link Function transformer} is used to make the {@link ParserToken} into the target value.
+ * the {@link Function parserTokenToValue} is used to make the {@link ParserToken} into the target value.
  */
 final class ParserConverter<V, P extends ParserContext, C extends ConverterContext> implements Converter<C> {
 
-    static <V, P extends ParserContext, C extends ConverterContext> ParserConverter<V, P, C> with(final Class<V> type,
+    static <V, P extends ParserContext, C extends ConverterContext> ParserConverter<V, P, C> with(final Class<V> parserValueType,
                                                                                                   final Parser<P> parser,
-                                                                                                  final Function<C, P> context,
-                                                                                                  final BiFunction<ParserToken, C, V> transformer) {
-        Objects.requireNonNull(type, "type");
+                                                                                                  final Function<C, P> converterContextToParserContext,
+                                                                                                  final BiFunction<ParserToken, C, V> parserTokenToValue) {
+        Objects.requireNonNull(parserValueType, "parserValueType");
         Objects.requireNonNull(parser, "parser");
-        Objects.requireNonNull(context, "context");
-        Objects.requireNonNull(transformer, "transformer");
+        Objects.requireNonNull(converterContextToParserContext, "converterContextToParserContext");
+        Objects.requireNonNull(parserTokenToValue, "parserTokenToValue");
 
         return new ParserConverter<>(
-                type,
+                parserValueType,
                 parser,
-                context,
-                transformer
+                converterContextToParserContext,
+                parserTokenToValue
         );
     }
 
     /**
      * Private ctor use factory.
      */
-    private ParserConverter(final Class<V> type,
+    private ParserConverter(final Class<V> parserValueType,
                             final Parser<P> parser,
-                            final Function<C, P> context,
-                            final BiFunction<ParserToken, C, V> transformer) {
-        this.type = type;
+                            final Function<C, P> converterContextToParserContext,
+                            final BiFunction<ParserToken, C, V> parserTokenToValue) {
+        this.parserValueType = parserValueType;
         this.parser = parser;
-        this.context = context;
-        this.transformer = transformer;
+        this.converterContextToParserContext = converterContextToParserContext;
+        this.parserTokenToValue = parserTokenToValue;
     }
 
     @Override
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return (null == value || value instanceof String) && this.type == type;
+        return (null == value || value instanceof String) && this.parserValueType == type;
     }
 
-    private final Class<V> type;
+    private final Class<V> parserValueType;
 
     @Override
     public <T> Either<T, String> convert(final Object value,
@@ -96,29 +96,39 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
                                                      final Class<T> type,
                                                      final C context) {
         final TextCursor cursor = TextCursors.charSequence(text);
-        final Optional<ParserToken> result = this.parser.parse(cursor, this.context.apply(context));
+        final Optional<ParserToken> result = this.parser.parse(
+                cursor,
+                this.converterContextToParserContext.apply(context)
+        );
         return result.isPresent() && cursor.isEmpty() ?
                 this.successfulConversion(
-                        this.transformer.apply(result.get(), context),
+                        this.parserTokenToValue.apply(
+                                result.get(),
+                                context
+                        ),
                         type
                 ) :
-                this.failConversion(text, type);
+                this.failConversion(
+                        text,
+                        type
+                );
     }
 
     private final Parser<P> parser;
 
     /**
-     * This function adapts the {@link ConverterContext} into a {@link ParserContext} for the {@link Parser}.
+     * This {@link Function} adapts the {@link ConverterContext} into a {@link ParserContext} for the {@link Parser} to
+     * use when it parses the given {@link String text}.
      */
-    private final Function<C, P> context;
+    private final Function<C, P> converterContextToParserContext;
 
     /**
-     * Function that is invoked with the {@link ParserToken} to return the value.
+     * A {@link Function} that is invoked with the {@link ParserToken} to give the converted result value.
      */
-    private final BiFunction<ParserToken, C, V> transformer;
+    private final BiFunction<ParserToken, C, V> parserTokenToValue;
 
     @Override
     public String toString() {
-        return "String->" + this.type.getSimpleName();
+        return "String->" + this.parserValueType.getSimpleName();
     }
 }
