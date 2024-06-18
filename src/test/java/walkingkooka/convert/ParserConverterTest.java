@@ -38,43 +38,89 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class ParserConverterTest extends ConverterTestCase2<ParserConverter<BigDecimal, ParserContext, ConverterContext>> {
 
     @Test
-    public void testWithNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(null, this.bigDecimalParser(), this.parserContextAdapter(), this.transformer()));
+    public void testWithNullParserValueTypeFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> ParserConverter.with(
+                        null,
+                        this.parser(),
+                        this.converterContextToParserContext(),
+                        this.parserTokenToValue()
+                )
+        );
     }
 
     @Test
     public void testWithNullParserFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, null, this.parserContextAdapter(), this.transformer()));
+        assertThrows(
+                NullPointerException.class,
+                () -> ParserConverter.with(
+                        BigDecimal.class,
+                        null,
+                        this.converterContextToParserContext(),
+                        this.parserTokenToValue()
+                )
+        );
     }
 
     @Test
-    public void testWithNullParserContextAdapterFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, this.bigDecimalParser(), null, this.transformer()));
+    public void testWithNullConverterContextToParserContextFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> ParserConverter.with(
+                        BigDecimal.class,
+                        this.parser(),
+                        null,
+                        this.parserTokenToValue()
+                )
+        );
     }
 
     @Test
-    public void testWithNullTransformerFails() {
-        assertThrows(NullPointerException.class, () -> ParserConverter.with(BigDecimal.class, this.bigDecimalParser(), this.parserContextAdapter(), null));
+    public void testWithNullParserTokenToValueFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> ParserConverter.with(
+                        BigDecimal.class,
+                        this.parser(),
+                        this.converterContextToParserContext(),
+                        null
+                )
+        );
     }
 
     @Test
-    public void testNull() {
-        this.convertAndCheck(null, BigDecimal.class, null);
+    public void testConvertNull() {
+        this.convertAndCheck(
+                null,
+                BigDecimal.class,
+                null
+        );
     }
 
     @Test
-    public void testParserConverts() {
-        this.convertAndCheck("1.23", BigDecimal.class, BigDecimal.valueOf(1.23));
+    public void testConvertParsed() {
+        this.convertAndCheck(
+                "1.23",
+                BigDecimal.class,
+                BigDecimal.valueOf(1.23)
+        );
     }
 
     @Test
-    public void testParserNonStringFails() {
-        this.convertFails(Integer.MAX_VALUE, BigDecimal.class);
+    public void testConvertParserNonStringFails() {
+        this.convertFails(
+                Integer.MAX_VALUE,
+                BigDecimal.class
+        );
     }
 
     @Test
-    public void testParserFails() {
-        this.convertFails("FAILS", BigDecimal.class);
+    public void testConvertParserFails() {
+        this.convertFails(
+                "FAILS",
+                BigDecimal.class
+        );
     }
 
     @Test
@@ -86,17 +132,17 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public ParserConverter<BigDecimal, ParserContext, ConverterContext> createConverter() {
         return ParserConverter.with(
                 BigDecimal.class,
-                this.bigDecimalParser(),
-                this.parserContextAdapter(),
-                this.transformer()
+                this.parser(),
+                this.converterContextToParserContext(),
+                this.parserTokenToValue()
         );
     }
 
-    private Function<ConverterContext, ParserContext> parserContextAdapter() {
+    private Function<ConverterContext, ParserContext> converterContextToParserContext() {
         return (c) -> ParserContexts.basic(c, c);
     }
 
-    private BiFunction<ParserToken, ConverterContext, BigDecimal> transformer() {
+    private BiFunction<ParserToken, ConverterContext, BigDecimal> parserTokenToValue() {
         return (t, c) -> t.cast(BigDecimalParserToken.class).value();
     }
 
@@ -107,7 +153,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
                 DecimalNumberContexts.american(MathContext.DECIMAL32));
     }
 
-    private Parser<ParserContext> bigDecimalParser() {
+    private Parser<ParserContext> parser() {
         return Parsers.bigDecimal();
     }
 
