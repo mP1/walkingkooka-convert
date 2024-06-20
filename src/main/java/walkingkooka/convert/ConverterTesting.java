@@ -72,13 +72,56 @@ public interface ConverterTesting extends TreePrintableTesting {
         }
     }
 
+    // convertFails.....................................................................................................
+
     default <C extends ConverterContext> void convertFails(final Converter<C> converter,
                                                            final Object value,
                                                            final Class<?> type,
                                                            final C context) {
+        this.convertFails(
+                converter,
+                value,
+                type,
+                context,
+                (String) null // no expected message.
+        );
+    }
+
+    default <C extends ConverterContext> void convertFails(final Converter<C> converter,
+                                                           final Object value,
+                                                           final Class<?> type,
+                                                           final C context,
+                                                           final String expected) {
+        this.convertFails(
+                converter,
+                value,
+                Cast.to(type),
+                context,
+                null != expected ?
+                        () -> expected :
+                        null
+        );
+    }
+
+    default <C extends ConverterContext, T> void convertFails(final Converter<C> converter,
+                                                              final Object value,
+                                                              final Class<T> type,
+                                                              final C context,
+                                                              final Supplier<String> expected) {
         final Either<?, String> result = converter.convert(value, type, context);
-        result.mapLeft(v -> {
-            throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
-        });
+        if (null != expected) {
+            this.checkEquals(
+                    Either.right(
+                            expected.get()
+                    ),
+                    result
+            );
+        } else {
+            result.mapLeft(
+                    v -> {
+                        throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
+                    }
+            );
+        }
     }
 }
