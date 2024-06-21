@@ -32,19 +32,29 @@ final class ConverterNumberNumberNumberTypeVisitorFloat extends ConverterNumberN
 
     @Override
     protected void visit(final BigDecimal number) {
-        final float converted = number.floatValue();
-        if (0 == new BigDecimal(converted).compareTo(number)) {
-            this.save(converted);
+        if (number.compareTo(BIG_DECIMAL_DOUBLE_MIN) >= 0 && number.compareTo(BIG_DECIMAL_DOUBLE_MAX) <= 0) {
+            this.save(
+                    number.floatValue()
+            );
         }
     }
 
+    private final static BigDecimal BIG_DECIMAL_DOUBLE_MIN = BigDecimal.valueOf(-Float.MAX_VALUE);
+
+    private final static BigDecimal BIG_DECIMAL_DOUBLE_MAX = BigDecimal.valueOf(Float.MAX_VALUE);
+
     @Override
     protected void visit(final BigInteger number) {
-        final float converted = number.floatValue();
-        if (new BigDecimal(converted).toBigIntegerExact().equals(number)) {
-            this.save(converted);
+        if (number.compareTo(BIG_INTEGER_DOUBLE_MIN) >= 0 && number.compareTo(BIG_INTEGER_DOUBLE_MAX) <= 0) {
+            this.save(
+                    number.floatValue()
+            );
         }
     }
+
+    private final static BigInteger BIG_INTEGER_DOUBLE_MIN = BIG_DECIMAL_DOUBLE_MIN.toBigInteger();
+
+    private final static BigInteger BIG_INTEGER_DOUBLE_MAX = BIG_DECIMAL_DOUBLE_MAX.toBigInteger();
 
     @Override
     protected void visit(final Byte number) {
@@ -53,18 +63,19 @@ final class ConverterNumberNumberNumberTypeVisitorFloat extends ConverterNumberN
 
     @Override
     protected void visit(final Double number) {
-        final float converted = number.floatValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= -Float.MAX_VALUE && number <= Float.MAX_VALUE) {
+            this.save(
+                    number.floatValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
         this.save(number);// dead code because Float to Float is short circuited earlier by ConverterNumberNumber.
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
         this.saveFloat(number);
     }
@@ -72,13 +83,10 @@ final class ConverterNumberNumberNumberTypeVisitorFloat extends ConverterNumberN
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
     protected void visit(final Long number) {
-        final float converted = number.floatValue();
-        if (Float.valueOf(converted).longValue() == number.longValue()) {
-            this.save(converted);
-        }
+        this.save(number.floatValue()); // ??? not sure if precision lost should matter
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
         this.saveFloat(number);
     }

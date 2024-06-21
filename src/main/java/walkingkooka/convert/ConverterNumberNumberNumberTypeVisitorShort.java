@@ -35,7 +35,7 @@ final class ConverterNumberNumberNumberTypeVisitorShort extends ConverterNumberN
         this.save(number.shortValueExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
         this.save(number.shortValueExact());
     }
@@ -47,37 +47,41 @@ final class ConverterNumberNumberNumberTypeVisitorShort extends ConverterNumberN
 
     @Override
     protected void visit(final Double number) {
-        final short converted = number.shortValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+            this.save(
+                    number.shortValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
-        final short converted = number.shortValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+            this.save(
+                    number.shortValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
-        final short converted = number.shortValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+            this.save(
+                    number.shortValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
-        final short converted = number.shortValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+            this.save(
+                    number.shortValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
         this.save(number);// dead code because Short to Short is short circuited earlier by ConverterNumberNumber.
     }
