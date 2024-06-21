@@ -28,42 +28,42 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // to Number........................................................................................................
 
     @Test
-    public void testBigDecimalToNumber() {
+    public void testConvertBigDecimalToNumber() {
         this.convertToNumberAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigIntegerToNumber() {
+    public void testConvertBigIntegerToNumber() {
         this.convertToNumberAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testByteToNumber() {
+    public void testConvertByteToNumber() {
         this.convertToNumberAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToNumber() {
+    public void testConvertDoubleToNumber() {
         this.convertToNumberAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testFloatToNumber() {
+    public void testConvertFloatToNumber() {
         this.convertToNumberAndCheck(this.floatValue());
     }
 
     @Test
-    public void testIntegerToNumber() {
+    public void testConvertIntegerToNumber() {
         this.convertToNumberAndCheck(this.integerValue());
     }
 
     @Test
-    public void testLongToNumber() {
+    public void testConvertLongToNumber() {
         this.convertToNumberAndCheck(this.longValue());
     }
 
     @Test
-    public void testShortToNumber() {
+    public void testConvertShortToNumber() {
         this.convertToNumberAndCheck(this.shortValue());
     }
 
@@ -74,42 +74,42 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // to same type.....................................................................................................
 
     @Test
-    public void testBigDecimalToBigDecimal() {
+    public void testConvertBigDecimalToBigDecimal() {
         this.convertToSameTypeAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigIntegerToBigInteger() {
+    public void testConvertBigIntegerToBigInteger() {
         this.convertToSameTypeAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testByteToByte() {
+    public void testConvertByteToByte() {
         this.convertToSameTypeAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToDouble() {
+    public void testConvertDoubleToDouble() {
         this.convertToSameTypeAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testFloatToFloat() {
+    public void testConvertFloatToFloat() {
         this.convertToSameTypeAndCheck(this.floatValue());
     }
 
     @Test
-    public void testIntegerToInteger() {
+    public void testConvertIntegerToInteger() {
         this.convertToSameTypeAndCheck(this.integerValue());
     }
 
     @Test
-    public void testLongToLong() {
+    public void testConvertLongToLong() {
         this.convertToSameTypeAndCheck(this.longValue());
     }
 
     @Test
-    public void testShortToShort() {
+    public void testConvertShortToShort() {
         this.convertToSameTypeAndCheck(this.shortValue());
     }
 
@@ -120,37 +120,37 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toBigDecimal.....................................................................................................
 
     @Test
-    public void testBigIntegerToBigDecimal() {
+    public void testConvertBigIntegerToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testByteToBigDecimal() {
+    public void testConvertByteToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.byteValue());
     }
     
     @Test
-    public void testDoubleToBigDecimal() {
+    public void testConvertDoubleToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testFloatToBigDecimal() {
+    public void testConvertFloatToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.floatValue());
     }
     
     @Test
-    public void testIntegerToBigDecimal() {
+    public void testConvertIntegerToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.integerValue());
     }
     
     @Test
-    public void testLongToBigDecimal() {
+    public void testConvertLongToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.longValue());
     }
 
     @Test
-    public void testShortToBigDecimal() {
+    public void testConvertShortToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.shortValue());
     }
     
@@ -161,52 +161,52 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toBigInteger.....................................................................................................
 
     @Test
-    public void testBigDecimalToBigInteger() {
+    public void testConvertBigDecimalToBigInteger() {
         this.convertToBigIntegerAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigDecimalToBigIntegerFails() {
+    public void testConvertBigDecimalToBigIntegerFails() {
         this.convertToBigIntegerFails(BigDecimal.valueOf(1.5));
     }
 
     @Test
-    public void testByteToBigInteger() {
+    public void testConvertByteToBigInteger() {
         this.convertToBigIntegerAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToBigInteger() {
+    public void testConvertDoubleToBigInteger() {
         this.convertToBigIntegerAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testDoubleToBigIntegerFails() {
+    public void testConvertDoubleToBigIntegerFails() {
         this.convertToBigIntegerFails(1.5);
     }
 
     @Test
-    public void testFloatToBigInteger() {
+    public void testConvertFloatToBigInteger() {
         this.convertToBigIntegerAndCheck(this.floatValue());
     }
 
     @Test
-    public void testFloatToBigIntegerFails() {
+    public void testConvertFloatToBigIntegerFails() {
         this.convertToBigIntegerFails(1.5f);
     }
 
     @Test
-    public void testIntegerToBigInteger() {
+    public void testConvertIntegerToBigInteger() {
         this.convertToBigIntegerAndCheck(this.integerValue());
     }
 
     @Test
-    public void testLongToBigInteger() {
+    public void testConvertLongToBigInteger() {
         this.convertToBigIntegerAndCheck(this.longValue());
     }
 
     @Test
-    public void testShortToBigInteger() {
+    public void testConvertShortToBigInteger() {
         this.convertToBigIntegerAndCheck(this.shortValue());
     }
 
@@ -221,37 +221,37 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toByte...........................................................................................................
 
     @Test
-    public void testBigDecimalToByte() {
+    public void testConvertBigDecimalToByte() {
         this.convertToByteAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigDecimalToByteFails() {
+    public void testConvertBigDecimalToByteFails() {
         this.convertToByteFails(this.bigDecimalDoubleMax2());
     }
 
     @Test
-    public void testBigDecimalToByteFails2() {
+    public void testConvertBigDecimalToByteFails2() {
         this.convertToByteFails(BigDecimal.valueOf(0.5));
     }
 
     @Test
-    public void testBigIntegerToByte() {
+    public void testConvertBigIntegerToByte() {
         this.convertToByteAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testBigIntegerToByteFails() {
+    public void testConvertBigIntegerToByteFails() {
         this.convertToByteFails(this.bigIntegerLongMax2());
     }
 
     @Test
-    public void testDoubleToByte() {
+    public void testConvertDoubleToByte() {
         this.convertToByteAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testDoubleToByteWithPrecisionLoss() {
+    public void testConvertDoubleToByteWithPrecisionLoss() {
         this.convertToByteAndCheck(
                 1.5,
                 (byte)1
@@ -259,17 +259,17 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testDoubleToByteFails() {
+    public void testConvertDoubleToByteFails() {
         this.convertToByteFails(Double.MAX_VALUE);
     }
 
     @Test
-    public void testFloatToByte() {
+    public void testConvertFloatToByte() {
         this.convertToByteAndCheck(this.floatValue());
     }
 
     @Test
-    public void testFloatToByteWithPrecisionLoss() {
+    public void testConvertFloatToByteWithPrecisionLoss() {
         this.convertToByteAndCheck(
                 1.5f,
                 (byte)1
@@ -277,37 +277,37 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToByteFails() {
+    public void testConvertFloatToByteFails() {
         this.convertToByteFails(Float.MAX_VALUE);
     }
 
     @Test
-    public void testIntegerToByte() {
+    public void testConvertIntegerToByte() {
         this.convertToByteAndCheck(this.integerValue());
     }
 
     @Test
-    public void testIntegerToByteFails() {
+    public void testConvertIntegerToByteFails() {
         this.convertToByteFails(Integer.MAX_VALUE);
     }
 
     @Test
-    public void testLongToByte() {
+    public void testConvertLongToByte() {
         this.convertToByteAndCheck(this.longValue());
     }
 
     @Test
-    public void testLongToByteFails() {
+    public void testConvertLongToByteFails() {
         this.convertToByteFails(Long.MAX_VALUE);
     }
 
     @Test
-    public void testShortToByte() {
+    public void testConvertShortToByte() {
         this.convertToByteAndCheck(this.shortValue());
     }
 
     @Test
-    public void testShortToByteFails() {
+    public void testConvertShortToByteFails() {
         this.convertToByteFails(Short.MAX_VALUE);
     }
 
@@ -334,37 +334,37 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toDouble........................................................................................................
 
     @Test
-    public void testBigDecimalToDouble() {
+    public void testConvertBigDecimalToDouble() {
         this.convertToDoubleAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigIntegerToDouble() {
+    public void testConvertBigIntegerToDouble() {
         this.convertToDoubleAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testByteToDouble() {
+    public void testConvertByteToDouble() {
         this.convertToDoubleAndCheck(this.byteValue());
     }
 
     @Test
-    public void testFloatToDouble() {
+    public void testConvertFloatToDouble() {
         this.convertToDoubleAndCheck(this.floatValue());
     }
 
     @Test
-    public void testLongToDouble() {
+    public void testConvertLongToDouble() {
         this.convertToDoubleAndCheck(this.longValue());
     }
 
 //    @Test // Long -> Double -> Long should be lossy but isnt at runtime.
-//    public void testLongToDoubleFails() {
+//    public void testConvertLongToDoubleFails() {
 //        this.convertToDoubleFails(Long.MAX_VALUE);
 //    }
 
     @Test
-    public void testShortToDouble() {
+    public void testConvertShortToDouble() {
         this.convertToDoubleAndCheck(this.shortValue());
     }
 
@@ -375,22 +375,22 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toFloat..........................................................................................................
 
     @Test
-    public void testBigDecimalToFloat() {
+    public void testConvertBigDecimalToFloat() {
         this.convertToFloatAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigDecimalToFloatFails() {
+    public void testConvertBigDecimalToFloatFails() {
         this.convertToFloatFails(this.bigDecimalDoubleMax2());
     }
 
     @Test
-    public void testBigIntegerToFloat() {
+    public void testConvertBigIntegerToFloat() {
         this.convertToFloatAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testBigIntegerToFloatWithPrecisionLoss() {
+    public void testConvertBigIntegerToFloatWithPrecisionLoss() {
         this.convertToFloatAndCheck(
                 this.bigIntegerLongMax2(),
                 8.507059E37f
@@ -398,27 +398,27 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testByteToFloat() {
+    public void testConvertByteToFloat() {
         this.convertToFloatAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToFloat() {
+    public void testConvertDoubleToFloat() {
         this.convertToFloatAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testDoubleToFloatFails() {
+    public void testConvertDoubleToFloatFails() {
         this.convertToFloatFails(Double.MAX_VALUE);
     }
 
     @Test
-    public void testLongToFloat() {
+    public void testConvertLongToFloat() {
         this.convertToFloatAndCheck(this.longValue());
     }
 
     @Test
-    public void testShortToFloat() {
+    public void testConvertShortToFloat() {
         this.convertToFloatAndCheck(this.shortValue());
     }
 
@@ -445,47 +445,47 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toInteger........................................................................................................
 
     @Test
-    public void testBigDecimalToInteger() {
+    public void testConvertBigDecimalToInteger() {
         this.convertToIntegerAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigDecimalToIntegerFails() {
+    public void testConvertBigDecimalToIntegerFails() {
         this.convertToIntegerFails(this.bigDecimalDoubleMax2());
     }
 
     @Test
-    public void testBigDecimalToIntegerFails2() {
+    public void testConvertBigDecimalToIntegerFails2() {
         this.convertToIntegerFails(BigDecimal.valueOf(0.5));
     }
 
     @Test
-    public void testBigIntegerToInteger() {
+    public void testConvertBigIntegerToInteger() {
         this.convertToIntegerAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testBigIntegerToIntegerFails() {
+    public void testConvertBigIntegerToIntegerFails() {
         this.convertToIntegerFails(this.bigIntegerLongMax2());
     }
 
     @Test
-    public void testByteToInteger() {
+    public void testConvertByteToInteger() {
         this.convertToIntegerAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToInteger() {
+    public void testConvertDoubleToInteger() {
         this.convertToIntegerAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testDoubleToIntegerFails() {
+    public void testConvertDoubleToIntegerFails() {
         this.convertToIntegerFails(Double.MAX_VALUE);
     }
 
     @Test
-    public void testDoubleToIntegerWithPrecisionLoss() {
+    public void testConvertDoubleToIntegerWithPrecisionLoss() {
         this.convertToIntegerAndCheck(
                 1.5,
                 1
@@ -493,17 +493,17 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToInteger() {
+    public void testConvertFloatToInteger() {
         this.convertToIntegerAndCheck(this.floatValue());
     }
 
     @Test
-    public void testFloatToIntegerFails() {
+    public void testConvertFloatToIntegerFails() {
         this.convertToIntegerFails(Float.MAX_VALUE);
     }
 
     @Test
-    public void testFloatToIntegerWithPrecisionLoss() {
+    public void testConvertFloatToIntegerWithPrecisionLoss() {
         this.convertToIntegerAndCheck(
                 2.5f,
                 2
@@ -511,17 +511,17 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testLongToInteger() {
+    public void testConvertLongToInteger() {
         this.convertToIntegerAndCheck(this.longValue());
     }
 
     @Test
-    public void testLongToIntegerFails() {
+    public void testConvertLongToIntegerFails() {
         this.convertToIntegerFails(Long.MAX_VALUE);
     }
 
     @Test
-    public void testShortToInteger() {
+    public void testConvertShortToInteger() {
         this.convertToIntegerAndCheck(this.shortValue());
     }
 
@@ -548,47 +548,47 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toLong...........................................................................................................
 
     @Test
-    public void testBigDecimalToLong() {
+    public void testConvertBigDecimalToLong() {
         this.convertToLongAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigDecimalToLongFails() {
+    public void testConvertBigDecimalToLongFails() {
         this.convertToLongFails(this.bigDecimalDoubleMax2());
     }
 
     @Test
-    public void testBigDecimalToLongFails2() {
+    public void testConvertBigDecimalToLongFails2() {
         this.convertToLongFails(BigDecimal.valueOf(0.5));
     }
 
     @Test
-    public void testBigIntegerToLong() {
+    public void testConvertBigIntegerToLong() {
         this.convertToLongAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testBigIntegerToLongFails() {
+    public void testConvertBigIntegerToLongFails() {
         this.convertToLongFails(this.bigIntegerLongMax2());
     }
 
     @Test
-    public void testByteToLong() {
+    public void testConvertByteToLong() {
         this.convertToLongAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToLong() {
+    public void testConvertDoubleToLong() {
         this.convertToLongAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testDoubleToLongFails() {
+    public void testConvertDoubleToLongFails() {
         this.convertToLongFails(Double.MAX_VALUE);
     }
 
     @Test
-    public void testDoubleToLongWithPrecisionLoss() {
+    public void testConvertDoubleToLongWithPrecisionLoss() {
         this.convertToLongAndCheck(
                 1.5,
                 1L
@@ -596,17 +596,17 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToLong() {
+    public void testConvertFloatToLong() {
         this.convertToLongAndCheck(this.floatValue());
     }
 
     @Test
-    public void testFloatToLongFails() {
+    public void testConvertFloatToLongFails() {
         this.convertToLongFails(Float.MAX_VALUE);
     }
 
     @Test
-    public void testFloatToLongWithPrecisionLoss() {
+    public void testConvertFloatToLongWithPrecisionLoss() {
         this.convertToLongAndCheck(
                 2.5f,
                 2L
@@ -614,12 +614,12 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testIntegerToLong() {
+    public void testConvertIntegerToLong() {
         this.convertToLongAndCheck(this.integerValue());
     }
 
     @Test
-    public void testShortToLong() {
+    public void testConvertShortToLong() {
         this.convertToLongAndCheck(this.shortValue());
     }
 
@@ -646,47 +646,47 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // toShort..........................................................................................................
 
     @Test
-    public void testBigDecimalToShort() {
+    public void testConvertBigDecimalToShort() {
         this.convertToShortAndCheck(this.bigDecimal());
     }
 
     @Test
-    public void testBigDecimalToShortFails() {
+    public void testConvertBigDecimalToShortFails() {
         this.convertToShortFails(this.bigDecimalDoubleMax2());
     }
 
     @Test
-    public void testBigDecimalToShortFails2() {
+    public void testConvertBigDecimalToShortFails2() {
         this.convertToShortFails(BigDecimal.valueOf(0.5));
     }
 
     @Test
-    public void testBigIntegerToShort() {
+    public void testConvertBigIntegerToShort() {
         this.convertToShortAndCheck(this.bigInteger());
     }
 
     @Test
-    public void testBigIntegerToShortFails() {
+    public void testConvertBigIntegerToShortFails() {
         this.convertToShortFails(this.bigIntegerLongMax2());
     }
 
     @Test
-    public void testByteToShort() {
+    public void testConvertByteToShort() {
         this.convertToShortAndCheck(this.byteValue());
     }
 
     @Test
-    public void testDoubleToShort() {
+    public void testConvertDoubleToShort() {
         this.convertToShortAndCheck(this.doubleValue());
     }
 
     @Test
-    public void testDoubleToShortFails() {
+    public void testConvertDoubleToShortFails() {
         this.convertToShortFails(Double.MAX_VALUE);
     }
 
     @Test
-    public void testDoubleToShortWithPrecisionLoss() {
+    public void testConvertDoubleToShortWithPrecisionLoss() {
         this.convertToShortAndCheck(
                 1.5,
                 (short)1
@@ -694,17 +694,17 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToShort() {
+    public void testConvertFloatToShort() {
         this.convertToShortAndCheck(this.floatValue());
     }
 
     @Test
-    public void testFloatToShortFails() {
+    public void testConvertFloatToShortFails() {
         this.convertToShortFails(Float.MAX_VALUE);
     }
 
     @Test
-    public void testFloatToShortWithPrecisionLoss() {
+    public void testConvertFloatToShortWithPrecisionLoss() {
         this.convertToShortAndCheck(
                 2.5f,
                 (short)2
@@ -712,22 +712,22 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testIntegerToShort() {
+    public void testConvertIntegerToShort() {
         this.convertToShortAndCheck(this.integerValue());
     }
 
     @Test
-    public void testIntegerToShortFails() {
+    public void testConvertIntegerToShortFails() {
         this.convertToShortFails(Integer.MAX_VALUE);
     }
 
     @Test
-    public void testLongToShort() {
+    public void testConvertLongToShort() {
         this.convertToShortAndCheck(this.longValue());
     }
 
     @Test
-    public void testLongToShortFails() {
+    public void testConvertLongToShortFails() {
         this.convertToShortFails(Long.MAX_VALUE);
     }
 
