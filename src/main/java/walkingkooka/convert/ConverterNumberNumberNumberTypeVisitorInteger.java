@@ -35,52 +35,55 @@ final class ConverterNumberNumberNumberTypeVisitorInteger extends ConverterNumbe
         this.save(number.intValueExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
         this.save(number.intValueExact());
     }
 
     @Override
     protected void visit(final Byte number) {
-        this.saveInteger(number);
+        this.save(number.intValue());
     }
 
     @Override
     protected void visit(final Double number) {
-        final int converted = number.intValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+            this.save(
+                    number.intValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
-        final int converted = number.intValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+            this.save(
+                    number.intValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
         this.save(number);
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
-        final int converted = number.intValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+            this.save(
+                    number.intValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
-        this.saveInteger(number);
-    }
-
-    private void saveInteger(final Number number) {
-        this.save(number.intValue());
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+            this.save(
+                    number.intValue()
+            );
+        }
     }
 
     @Override

@@ -32,19 +32,29 @@ final class ConverterNumberNumberNumberTypeVisitorDouble extends ConverterNumber
 
     @Override
     protected void visit(final BigDecimal number) {
-        final double converted = number.doubleValue();
-        if (0 == new BigDecimal(converted).compareTo(number)) {
-            this.save(converted);
+        if (number.compareTo(BIG_DECIMAL_DOUBLE_MIN) >= 0 && number.compareTo(BIG_DECIMAL_DOUBLE_MAX) <= 0) {
+            this.save(
+                    number.doubleValue()
+            );
         }
     }
 
-    @Override 
+    private final static BigDecimal BIG_DECIMAL_DOUBLE_MIN = BigDecimal.valueOf(-Double.MAX_VALUE);
+
+    private final static BigDecimal BIG_DECIMAL_DOUBLE_MAX = BigDecimal.valueOf(Double.MAX_VALUE);
+
+    @Override
     protected void visit(final BigInteger number) {
-        final double converted = number.doubleValue();
-        if (new BigDecimal(converted).toBigInteger().equals(number)) {
-            this.save(converted);
+        if (number.compareTo(BIG_INTEGER_DOUBLE_MIN) >= 0 && number.compareTo(BIG_INTEGER_DOUBLE_MAX) <= 0) {
+            this.save(
+                    number.doubleValue()
+            );
         }
     }
+
+    private final static BigInteger BIG_INTEGER_DOUBLE_MIN = BIG_DECIMAL_DOUBLE_MIN.toBigInteger();
+
+    private final static BigInteger BIG_INTEGER_DOUBLE_MAX = BIG_DECIMAL_DOUBLE_MAX.toBigInteger();
 
     @Override
     protected void visit(final Byte number) {
@@ -56,25 +66,25 @@ final class ConverterNumberNumberNumberTypeVisitorDouble extends ConverterNumber
         this.save(number);
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
         this.saveDouble(number);
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
         this.saveDouble(number);
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
         final double converted = number.doubleValue();
-        if ((long)converted == number) {
+        if ((long) converted == number) {
             this.save(converted);
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
         this.saveDouble(number);
     }

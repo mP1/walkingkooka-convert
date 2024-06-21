@@ -23,6 +23,8 @@ import walkingkooka.math.Maths;
 
 /**
  * A {@link Converter} which handles converting {@link Number} to other number types or nothing at all if the target is number.
+ * Note attempts to convert out of range values that is too small or too large will fail, however conversions that result in precision being lost
+ * will succeed, eg a decimal float such as 2.5 will be converted to integer 2.
  */
 final class ConverterNumberNumber<C extends ConverterContext> extends Converter2<C> {
 

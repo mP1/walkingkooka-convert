@@ -35,7 +35,7 @@ final class ConverterNumberNumberNumberTypeVisitorLong extends ConverterNumberNu
         this.save(number.longValueExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
         this.save(number.longValueExact());
     }
@@ -47,25 +47,33 @@ final class ConverterNumberNumberNumberTypeVisitorLong extends ConverterNumberNu
 
     @Override
     protected void visit(final Double number) {
-        this.visit(new BigDecimal(number));
+        if (number >= Long.MIN_VALUE && number <= Long.MAX_VALUE) {
+            this.save(
+                    number.longValue()
+            );
+        }
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
-        this.visit(new BigDecimal(number));
+        if (number >= Long.MIN_VALUE && number <= Long.MAX_VALUE) {
+            this.save(
+                    number.longValue()
+            );
+        }
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
         this.save(number.longValue());
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
         this.save(number);
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
         this.saveLong(number);
     }

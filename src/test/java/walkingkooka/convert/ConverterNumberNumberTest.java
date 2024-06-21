@@ -251,13 +251,16 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testDoubleToByteFails() {
-        this.convertToByteFails(Double.MAX_VALUE);
+    public void testDoubleToByteWithPrecisionLoss() {
+        this.convertToByteAndCheck(
+                1.5,
+                (byte)1
+        );
     }
 
     @Test
-    public void testDoubleToByteFails2() {
-        this.convertToByteFails(0.5);
+    public void testDoubleToByteFails() {
+        this.convertToByteFails(Double.MAX_VALUE);
     }
 
     @Test
@@ -266,13 +269,16 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToByteFails() {
-        this.convertToByteFails(Float.MAX_VALUE);
+    public void testFloatToByteWithPrecisionLoss() {
+        this.convertToByteAndCheck(
+                1.5f,
+                (byte)1
+        );
     }
 
     @Test
-    public void testFloatToByteFails2() {
-        this.convertToByteFails(2.5f);
+    public void testFloatToByteFails() {
+        this.convertToByteFails(Float.MAX_VALUE);
     }
 
     @Test
@@ -306,7 +312,19 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     private void convertToByteAndCheck(final Number number) {
-        this.convertAndCheck(number, Byte.class, this.byteValue());
+        this.convertAndCheck(
+                number,
+                this.byteValue()
+        );
+    }
+
+    private void convertToByteAndCheck(final Number number,
+                                       final Byte expected) {
+        this.convertAndCheck(
+                number,
+                Byte.class,
+                expected
+        );
     }
 
     private void convertToByteFails(final Number number) {
@@ -372,8 +390,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testBigIntegerToFloatFails() {
-        this.convertToFloatFails(this.bigIntegerLongMax2());
+    public void testBigIntegerToFloatWithPrecisionLoss() {
+        this.convertToFloatAndCheck(
+                this.bigIntegerLongMax2(),
+                8.507059E37f
+        );
     }
 
     @Test
@@ -402,7 +423,19 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     private void convertToFloatAndCheck(final Number number) {
-        this.convertAndCheck(number, Float.class, this.floatValue());
+        this.convertToFloatAndCheck(
+                number,
+                this.floatValue()
+        );
+    }
+
+    private void convertToFloatAndCheck(final Number number,
+                                        final Float expected) {
+        this.convertAndCheck(
+                number,
+                Float.class,
+                expected
+        );
     }
 
     private void convertToFloatFails(final Number number) {
@@ -452,8 +485,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testDoubleToIntegerFails2() {
-        this.convertToIntegerFails(0.5);
+    public void testDoubleToIntegerWithPrecisionLoss() {
+        this.convertToIntegerAndCheck(
+                1.5,
+                1
+        );
     }
 
     @Test
@@ -467,8 +503,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToIntegerFails2() {
-        this.convertToIntegerFails(2.5f);
+    public void testFloatToIntegerWithPrecisionLoss() {
+        this.convertToIntegerAndCheck(
+                2.5f,
+                2
+        );
     }
 
     @Test
@@ -487,7 +526,19 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     private void convertToIntegerAndCheck(final Number number) {
-        this.convertAndCheck(number, Integer.class, this.integerValue());
+        this.convertToIntegerAndCheck(
+                number,
+                this.integerValue()
+        );
+    }
+
+    private void convertToIntegerAndCheck(final Number number,
+                                          final Integer expected) {
+        this.convertAndCheck(
+                number,
+                Integer.class,
+                expected
+        );
     }
 
     private void convertToIntegerFails(final Number number) {
@@ -537,8 +588,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testDoubleToLongFails2() {
-        this.convertToLongFails(0.5);
+    public void testDoubleToLongWithPrecisionLoss() {
+        this.convertToLongAndCheck(
+                1.5,
+                1L
+        );
     }
 
     @Test
@@ -552,8 +606,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToLongFails2() {
-        this.convertToLongFails(2.5f);
+    public void testFloatToLongWithPrecisionLoss() {
+        this.convertToLongAndCheck(
+                2.5f,
+                2L
+        );
     }
 
     @Test
@@ -567,7 +624,19 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     private void convertToLongAndCheck(final Number number) {
-        this.convertAndCheck(number, Long.class, this.longValue());
+        this.convertToLongAndCheck(
+                number,
+                this.longValue()
+        );
+    }
+
+    private void convertToLongAndCheck(final Number number,
+                                       final long expected) {
+        this.convertAndCheck(
+                number,
+                Long.class,
+                expected
+        );
     }
 
     private void convertToLongFails(final Number number) {
@@ -617,8 +686,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testDoubleToShortFails2() {
-        this.convertToShortFails(0.5);
+    public void testDoubleToShortWithPrecisionLoss() {
+        this.convertToShortAndCheck(
+                1.5,
+                (short)1
+        );
     }
 
     @Test
@@ -632,8 +704,11 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     @Test
-    public void testFloatToShortFails2() {
-        this.convertToShortFails(2.5f);
+    public void testFloatToShortWithPrecisionLoss() {
+        this.convertToShortAndCheck(
+                2.5f,
+                (short)2
+        );
     }
 
     @Test
@@ -657,7 +732,19 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     }
 
     private void convertToShortAndCheck(final Number number) {
-        this.convertAndCheck(number, Short.class, this.shortValue());
+        this.convertToShortAndCheck(
+                number,
+                this.shortValue()
+        );
+    }
+
+    private void convertToShortAndCheck(final Number number,
+                                        final short expected) {
+        this.convertAndCheck(
+                number,
+                Short.class,
+                expected
+        );
     }
 
     private void convertToShortFails(final Number number) {

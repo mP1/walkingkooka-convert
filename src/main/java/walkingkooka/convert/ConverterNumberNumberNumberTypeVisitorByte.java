@@ -35,7 +35,7 @@ final class ConverterNumberNumberNumberTypeVisitorByte extends ConverterNumberNu
         this.save(number.byteValueExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
         this.save(number.byteValueExact());
     }
@@ -47,41 +47,46 @@ final class ConverterNumberNumberNumberTypeVisitorByte extends ConverterNumberNu
 
     @Override
     protected void visit(final Double number) {
-        final byte converted = number.byteValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+            this.save(
+                    number.byteValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
-        final byte converted = number.byteValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+            this.save(
+                    number.byteValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
-        final byte converted = number.byteValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+            this.save(
+                    number.byteValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
-        final byte converted = number.byteValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+            this.save(
+                    number.byteValue()
+            );
         }
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
-        final byte converted = number.byteValue();
-        if (converted == number) {
-            this.save(converted);
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+            this.save(
+                    number.byteValue()
+            );
         }
     }
 
