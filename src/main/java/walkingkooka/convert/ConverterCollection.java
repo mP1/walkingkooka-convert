@@ -70,24 +70,14 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final C context) {
-        return this.canConvert(value, type, context) ?
-                this.convert0(value, type, context) :
-                this.failConversion(value, type);
-    }
-
-    private <T> Either<T, String> convert0(final Object value,
-                                           final Class<T> type,
-                                           final C context) {
         Either<T, String> result = null;
 
         for (final Converter<C> possible : this.converters) {
-            if (possible.canConvert(value, type, context)) {
-                result = possible.convert(value, type, context);
-                if (result.isLeft()) {
-                    break;
-                }
-                // try again.
+            result = possible.convert(value, type, context);
+            if (result.isLeft()) {
+                break;
             }
+            // try again.
         }
 
         if (null == result) {
