@@ -50,7 +50,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 false
@@ -58,7 +58,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Test
-    public void testFirst() {
+    public void testConvertByFirstConverter() {
         this.convertAndCheck(
                 Boolean.TRUE.toString(),
                 Boolean.TRUE
@@ -66,7 +66,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Test
-    public void testLast() {
+    public void testConvertByLastConverter() {
         this.convertAndCheck(
                 1.0,
                 1L
