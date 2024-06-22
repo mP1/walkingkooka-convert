@@ -35,83 +35,131 @@ public final class ConverterBooleanToNumberTest extends ConverterTestCase2<Conve
     }
 
     @Test
-    public void testBigDecimalTrue() {
-        this.convertAndCheck(true, BigDecimal.ONE);
+    public void testConvertTrueToBigDecimal() {
+        this.convertAndCheck(
+                true,
+                BigDecimal.ONE
+        );
     }
 
     @Test
-    public void testBigDecimalFalse() {
-        this.convertAndCheck(false, BigDecimal.ZERO);
+    public void testConvertFalseToBigDecimal() {
+        this.convertAndCheck(
+                false,
+                BigDecimal.ZERO
+        );
     }
 
     @Test
-    public void testBigIntegerTrue() {
-        this.convertAndCheck(true, BigInteger.ONE);
+    public void testConvertTrueToBigInteger() {
+        this.convertAndCheck(
+                true,
+                BigInteger.ONE
+        );
     }
 
     @Test
-    public void testBigIntegerFalse() {
-        this.convertAndCheck(false, BigInteger.ZERO);
+    public void testConvertFalseToBigInteger() {
+        this.convertAndCheck(
+                false,
+                BigInteger.ZERO
+        );
     }
 
     @Test
-    public void testByteTrue() {
-        this.convertAndCheck(true, (byte) 1);
+    public void testConvertTrueToByte() {
+        this.convertAndCheck(
+                true,
+                (byte) 1
+        );
     }
 
     @Test
-    public void testByteFalse() {
-        this.convertAndCheck(false, (byte) 0);
+    public void testConvertFalseToByte() {
+        this.convertAndCheck(
+                false,
+                (byte) 0
+        );
     }
 
     @Test
-    public void testDoubleTrue() {
-        this.convertAndCheck(true, 1.0);
+    public void testConvertTrueToDouble() {
+        this.convertAndCheck(
+                true,
+                1.0
+        );
     }
 
     @Test
-    public void testDoubleFalse() {
-        this.convertAndCheck(false, 0.0);
+    public void testConvertFalseToDouble() {
+        this.convertAndCheck(
+                false,
+                0.0
+        );
     }
 
     @Test
-    public void testFloatTrue() {
-        this.convertAndCheck(true, 1.0f);
+    public void testConvertTrueFloat() {
+        this.convertAndCheck(
+                true,
+                1.0f
+        );
     }
 
     @Test
-    public void testFloatFalse() {
-        this.convertAndCheck(false, 0.0f);
+    public void testConvertFalseToFloat() {
+        this.convertAndCheck(
+                false,
+                0.0f
+        );
     }
 
     @Test
-    public void testIntegerTrue() {
-        this.convertAndCheck(true, 1);
+    public void testConvertTrueToInteger() {
+        this.convertAndCheck(
+                true,
+                1
+        );
     }
 
     @Test
-    public void testIntegerFalse() {
-        this.convertAndCheck(false, 0);
+    public void testConvertFalseToInteger() {
+        this.convertAndCheck(
+                false,
+                0
+        );
     }
 
     @Test
-    public void testLongTrue() {
-        this.convertAndCheck(true, 1L);
+    public void testConvertTrueToLong() {
+        this.convertAndCheck(
+                true,
+                1L
+        );
     }
 
     @Test
-    public void testLongFalse() {
-        this.convertAndCheck(false, 0L);
+    public void testConvertFalseToLong() {
+        this.convertAndCheck(
+                false,
+                0L
+        );
     }
 
     @Test
-    public void testShortTrue() {
-        this.convertAndCheck(true, (short) 1);
+    public void testConvertTrueToShort() {
+        this.convertAndCheck(
+                true,
+                (short) 1
+        );
     }
 
     @Test
-    public void testShortFalse() {
-        this.convertAndCheck(false, (short) 0);
+    public void testConvertFalseToShort() {
+        this.convertAndCheck(
+                false,
+                (short) 0
+        );
     }
 
     @Test
