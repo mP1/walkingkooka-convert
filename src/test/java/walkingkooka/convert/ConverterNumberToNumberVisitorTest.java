@@ -71,7 +71,7 @@ public final class ConverterNumberToNumberVisitorTest implements NumberVisitorTe
     }
 
     private ConverterNumber<Boolean, ConverterContext> converter() {
-        return ConverterNumberBoolean.instance();
+        return ConverterNumberToBoolean.instance();
     }
 
     @Override

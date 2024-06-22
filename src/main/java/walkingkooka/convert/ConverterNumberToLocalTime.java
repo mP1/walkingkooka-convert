@@ -28,24 +28,24 @@ import java.time.LocalTime;
  * A {@link Converter} that handles converting any {@link Number} to a {@link LocalTime}.
  * The value is the number of seconds in a day.
  */
-final class ConverterNumberLocalTime<C extends ConverterContext> extends ConverterNumber<LocalTime, C> {
+final class ConverterNumberToLocalTime<C extends ConverterContext> extends ConverterNumber<LocalTime, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterNumberLocalTime<C> instance() {
+    static <C extends ConverterContext> ConverterNumberToLocalTime<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterNumberLocalTime<?> INSTANCE = new ConverterNumberLocalTime<>();
+    private final static ConverterNumberToLocalTime<?> INSTANCE = new ConverterNumberToLocalTime<>();
 
     /**
      * Private ctor
      */
-    private ConverterNumberLocalTime() {
+    private ConverterNumberToLocalTime() {
         super();
     }
 

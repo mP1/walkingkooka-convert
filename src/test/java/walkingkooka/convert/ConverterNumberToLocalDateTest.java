@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 
-public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<ConverterNumberLocalDate<ConverterContext>, LocalDate> {
+public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCase<ConverterNumberToLocalDate<ConverterContext>, LocalDate> {
 
     private final static byte VALUE = 123;
     private final static LocalDate DATE_VALUE = LocalDate.ofEpochDay(VALUE);
@@ -120,15 +120,15 @@ public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<
     }
 
     private void convertAndCheckExcelOffset(final Number value) {
-        this.convertAndCheck(ConverterNumberLocalDate.with(Converters.EXCEL_1900_DATE_SYSTEM_OFFSET),
+        this.convertAndCheck(ConverterNumberToLocalDate.with(Converters.EXCEL_1900_DATE_SYSTEM_OFFSET),
                 value,
                 LocalDate.class,
                 DATE_VALUE_EXCEL_OFFSET);
     }
 
     @Override
-    public ConverterNumberLocalDate<ConverterContext> createConverter() {
-        return ConverterNumberLocalDate.with(Converters.JAVA_EPOCH_OFFSET);
+    public ConverterNumberToLocalDate<ConverterContext> createConverter() {
+        return ConverterNumberToLocalDate.with(Converters.JAVA_EPOCH_OFFSET);
     }
 
     @Override
@@ -137,7 +137,7 @@ public final class ConverterNumberLocalDateTest extends ConverterNumberTestCase<
     }
 
     @Override
-    public Class<ConverterNumberLocalDate<ConverterContext>> type() {
-        return Cast.to(ConverterNumberLocalDate.class);
+    public Class<ConverterNumberToLocalDate<ConverterContext>> type() {
+        return Cast.to(ConverterNumberToLocalDate.class);
     }
 }

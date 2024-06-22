@@ -245,24 +245,24 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterNumberLocalDate}
+     * {@see ConverterNumberToLocalDate}
      */
-    public static <C extends ConverterContext> Converter<C> numberLocalDate(final long offset) {
-        return ConverterNumberLocalDate.with(offset);
+    public static <C extends ConverterContext> Converter<C> numberToLocalDate(final long offset) {
+        return ConverterNumberToLocalDate.with(offset);
     }
 
     /**
-     * {@see ConverterNumberLocalDateTime}
+     * {@see ConverterNumberToLocalDateTime}
      */
-    public static <C extends ConverterContext> Converter<C> numberLocalDateTime(final long offset) {
-        return ConverterNumberLocalDateTime.with(offset);
+    public static <C extends ConverterContext> Converter<C> numberToLocalDateTime(final long offset) {
+        return ConverterNumberToLocalDateTime.with(offset);
     }
 
     /**
-     * {@see ConverterNumberLocalTime}
+     * {@see ConverterNumberToLocalTime}
      */
-    public static <C extends ConverterContext> Converter<C> numberLocalTime() {
-        return ConverterNumberLocalTime.instance();
+    public static <C extends ConverterContext> Converter<C> numberToLocalTime() {
+        return ConverterNumberToLocalTime.instance();
     }
 
     /**
@@ -353,10 +353,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterNumberBoolean}
+     * {@see ConverterNumberToBoolean}
      */
     public static <C extends ConverterContext> Converter<C> truthyNumberBoolean() {
-        return ConverterNumberBoolean.instance();
+        return ConverterNumberToBoolean.instance();
     }
 
     /**
