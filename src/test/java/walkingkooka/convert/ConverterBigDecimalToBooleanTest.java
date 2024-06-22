@@ -34,18 +34,27 @@ public final class ConverterBigDecimalToBooleanTest extends ConverterTestCase2<C
     }
 
     @Test
-    public void testTrue() {
-        this.convertAndCheck(BigDecimal.ONE, true);
+    public void testConvertOneToTrue() {
+        this.convertAndCheck(
+                BigDecimal.ONE,
+                true
+        );
     }
 
     @Test
-    public void testFalse() {
-        this.convertAndCheck(BigDecimal.ZERO, false);
+    public void testConvertZeroToFalse() {
+        this.convertAndCheck(
+                BigDecimal.ZERO,
+                false
+        );
     }
 
     @Test
-    public void testExtraZeroesFalse() {
-        this.convertAndCheck(new BigDecimal("000000"), false);
+    public void testConvertExtraZeroesToFalse() {
+        this.convertAndCheck(
+                new BigDecimal("000000"),
+                false
+        );
     }
 
     @Test
