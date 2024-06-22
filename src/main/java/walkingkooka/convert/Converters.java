@@ -92,10 +92,10 @@ public final class Converters implements PublicStaticHelper {
     static final long NANOS_PER_DAY = NANOS_PER_HOUR * HOURS_PER_DAY;
 
     /**
-     * {@see ConverterBigDecimalBoolean}
+     * {@see ConverterBigDecimalToBoolean}
      */
-    public static <C extends ConverterContext> Converter<C> bigDecimalBoolean() {
-        return ConverterBigDecimalBoolean.instance();
+    public static <C extends ConverterContext> Converter<C> bigDecimalToBoolean() {
+        return ConverterBigDecimalToBoolean.instance();
     }
 
     /**
