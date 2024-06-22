@@ -23,21 +23,21 @@ import walkingkooka.Either;
 /**
  * A {@link Converter} that invokes {@link Object#toString()} to convert any value into a {@link String}
  */
-final class ConverterObjectString<C extends ConverterContext> extends Converter2<C> {
+final class ConverterObjectToString<C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Instance
      */
-    static <C extends ConverterContext> ConverterObjectString<C> instance() {
+    static <C extends ConverterContext> ConverterObjectToString<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterObjectString<?> INSTANCE = new ConverterObjectString<>();
+    private final static ConverterObjectToString<?> INSTANCE = new ConverterObjectToString<>();
 
-    private ConverterObjectString() {
+    private ConverterObjectToString() {
         super();
     }
 

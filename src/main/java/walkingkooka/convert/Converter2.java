@@ -70,7 +70,7 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
 
     private <T> Either<T, String> convertNull() {
         return Cast.to(
-                this instanceof ConverterObjectString ?
+                this instanceof ConverterObjectToString ?
                         NULL_STRING :
                         NULL
         );

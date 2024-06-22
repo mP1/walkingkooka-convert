@@ -23,9 +23,9 @@ import walkingkooka.ToStringTesting;
 
 import java.math.BigDecimal;
 
-public final class ConverterObjectStringTest extends ConverterTestCase<ConverterObjectString<ConverterContext>>
-        implements ConverterTesting2<ConverterObjectString<ConverterContext>, ConverterContext>,
-        ToStringTesting<ConverterObjectString<ConverterContext>> {
+public final class ConverterObjectToStringTest extends ConverterTestCase<ConverterObjectToString<ConverterContext>>
+        implements ConverterTesting2<ConverterObjectToString<ConverterContext>, ConverterContext>,
+        ToStringTesting<ConverterObjectToString<ConverterContext>> {
 
     @Test
     public void testNull() {
@@ -62,8 +62,8 @@ public final class ConverterObjectStringTest extends ConverterTestCase<Converter
     }
 
     @Override
-    public ConverterObjectString<ConverterContext> createConverter() {
-        return ConverterObjectString.instance();
+    public ConverterObjectToString<ConverterContext> createConverter() {
+        return ConverterObjectToString.instance();
     }
 
     @Override
@@ -74,8 +74,8 @@ public final class ConverterObjectStringTest extends ConverterTestCase<Converter
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterObjectString<ConverterContext>> type() {
-        return Cast.to(ConverterObjectString.class);
+    public Class<ConverterObjectToString<ConverterContext>> type() {
+        return Cast.to(ConverterObjectToString.class);
     }
 
     // TypeNameTesting..................................................................................................
@@ -87,6 +87,6 @@ public final class ConverterObjectStringTest extends ConverterTestCase<Converter
 
     @Override
     public String typeNameSuffix() {
-        return Object.class.getSimpleName() + String.class.getSimpleName();
+        return Object.class.getSimpleName() + "To" + String.class.getSimpleName();
     }
 }

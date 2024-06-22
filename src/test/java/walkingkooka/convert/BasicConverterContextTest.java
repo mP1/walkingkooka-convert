@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
         ConverterContextTesting<BasicConverterContext> {
 
-    private final static Converter<ConverterContext> CONVERTER = Converters.objectString();
+    private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
 
     private final static String CURRENCY = "$$";
     private final static char DECIMAL = 'D';
