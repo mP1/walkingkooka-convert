@@ -57,9 +57,11 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
         // T and U should be the same...
         Either<U, String> result;
         try {
-            result = ConverterNumberNumberVisitor.convert(Cast.to(this),
+            result = ConverterNumberToNumberVisitor.convert(
+                    Cast.to(this),
                     (Number) value,
-                    type);
+                    type
+            );
         } catch (final Exception cause) {
             result = Either.right(cause.getMessage());
         }

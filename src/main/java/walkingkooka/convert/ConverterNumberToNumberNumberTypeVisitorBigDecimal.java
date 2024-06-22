@@ -20,70 +20,58 @@ package walkingkooka.convert;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-final class ConverterNumberNumberNumberTypeVisitorLong extends ConverterNumberNumberNumberTypeVisitorNumber<Long> {
+final class ConverterNumberToNumberNumberTypeVisitorBigDecimal extends ConverterNumberToNumberNumberTypeVisitorNumber<BigDecimal> {
 
-    static ConverterNumberNumberNumberTypeVisitorLong with() {
-        return new ConverterNumberNumberNumberTypeVisitorLong();
+    static ConverterNumberToNumberNumberTypeVisitorBigDecimal with() {
+        return new ConverterNumberToNumberNumberTypeVisitorBigDecimal();
     }
 
-    ConverterNumberNumberNumberTypeVisitorLong() {
+    ConverterNumberToNumberNumberTypeVisitorBigDecimal() {
         super();
     }
 
     @Override
     protected void visit(final BigDecimal number) {
-        this.save(number.longValueExact());
+        this.save(number);
     }
 
-    @Override
+    @Override 
     protected void visit(final BigInteger number) {
-        this.save(number.longValueExact());
+        this.save(new BigDecimal(number));
     }
 
     @Override
     protected void visit(final Byte number) {
-        this.save(number.longValue());
+        this.save(BigDecimal.valueOf(number));
     }
 
     @Override
     protected void visit(final Double number) {
-        if (number >= Long.MIN_VALUE && number <= Long.MAX_VALUE) {
-            this.save(
-                    number.longValue()
-            );
-        }
+        this.save(BigDecimal.valueOf(number));
     }
 
-    @Override
+    @Override 
     protected void visit(final Float number) {
-        if (number >= Long.MIN_VALUE && number <= Long.MAX_VALUE) {
-            this.save(
-                    number.longValue()
-            );
-        }
+        this.save(BigDecimal.valueOf(number));
     }
 
-    @Override
+    @Override 
     protected void visit(final Integer number) {
-        this.save(number.longValue());
+        this.save(BigDecimal.valueOf(number));
     }
 
-    @Override
+    @Override 
     protected void visit(final Long number) {
-        this.save(number);
+        this.save(BigDecimal.valueOf(number));
     }
 
-    @Override
+    @Override 
     protected void visit(final Short number) {
-        this.saveLong(number);
-    }
-
-    private void saveLong(final Number number) {
-        this.save(number.longValue());
+        this.save(BigDecimal.valueOf(number));
     }
 
     @Override
-    Class<Long> targetType() {
-        return Long.class;
+    Class<BigDecimal> targetType() {
+        return BigDecimal.class;
     }
 }

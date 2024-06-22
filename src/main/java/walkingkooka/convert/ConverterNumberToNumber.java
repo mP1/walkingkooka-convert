@@ -26,21 +26,21 @@ import walkingkooka.math.Maths;
  * Note attempts to convert out of range values that is too small or too large will fail, however conversions that result in precision being lost
  * will succeed, eg a decimal float such as 2.5 will be converted to integer 2.
  */
-final class ConverterNumberNumber<C extends ConverterContext> extends Converter2<C> {
+final class ConverterNumberToNumber<C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterNumberNumber<C> instance() {
+    static <C extends ConverterContext> ConverterNumberToNumber<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterNumberNumber<?> INSTANCE = new ConverterNumberNumber<>();
+    private final static ConverterNumberToNumber<?> INSTANCE = new ConverterNumberToNumber<>();
 
-    private ConverterNumberNumber() {
+    private ConverterNumberToNumber() {
         super();
     }
 
@@ -76,7 +76,7 @@ final class ConverterNumberNumber<C extends ConverterContext> extends Converter2
         Either<T, String> result;
 
         // attempt to find a visitor for the given type.
-        final ConverterNumberNumberNumberTypeVisitorNumber<?> visitor = ConverterNumberNumberNumberTypeVisitor.visitor(type);
+        final ConverterNumberToNumberNumberTypeVisitorNumber<?> visitor = ConverterNumberToNumberNumberTypeVisitor.visitor(type);
         if (null == visitor) {
             result = this.failConversion(value, type);
         } else {

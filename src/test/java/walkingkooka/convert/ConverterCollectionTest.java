@@ -108,7 +108,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
 
     @Override
     public ConverterCollection<ConverterContext> createConverter() {
-        return Cast.to(ConverterCollection.with(Lists.of(booleanToString().setToString("String->Boolean"), Converters.numberNumber())));
+        return Cast.to(ConverterCollection.with(Lists.of(booleanToString().setToString("String->Boolean"), Converters.numberToNumber())));
     }
 
     private Converter<ConverterContext> booleanToString() {

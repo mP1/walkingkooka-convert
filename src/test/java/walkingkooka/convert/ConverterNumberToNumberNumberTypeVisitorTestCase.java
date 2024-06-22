@@ -23,10 +23,10 @@ import walkingkooka.math.NumberTypeVisitor;
 import walkingkooka.math.NumberVisitorTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public abstract class ConverterNumberNumberNumberTypeVisitorTestCase<V extends ConverterNumberNumberNumberTypeVisitorNumber<N>, N extends Number> implements NumberVisitorTesting<V>,
+public abstract class ConverterNumberToNumberNumberTypeVisitorTestCase<V extends ConverterNumberToNumberNumberTypeVisitorNumber<N>, N extends Number> implements NumberVisitorTesting<V>,
         ToStringTesting<V> {
 
-    ConverterNumberNumberNumberTypeVisitorTestCase() {
+    ConverterNumberToNumberNumberTypeVisitorTestCase() {
         super();
     }
 
@@ -41,7 +41,7 @@ public abstract class ConverterNumberNumberNumberTypeVisitorTestCase<V extends C
 
     @Override
     public final String typeNamePrefix() {
-        return ConverterNumberNumber.class.getSimpleName() + NumberTypeVisitor.class.getSimpleName();
+        return ConverterNumberToNumber.class.getSimpleName() + NumberTypeVisitor.class.getSimpleName();
     }
 
     @Override

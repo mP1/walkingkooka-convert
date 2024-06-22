@@ -23,7 +23,7 @@ import walkingkooka.Cast;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public final class ConverterNumberNumberTest extends ConverterTestCase2<ConverterNumberNumber<ConverterContext>> {
+public final class ConverterNumberToNumberTest extends ConverterTestCase2<ConverterNumberToNumber<ConverterContext>> {
 
     // to Number........................................................................................................
 
@@ -754,8 +754,8 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // helper............................................................................................................
 
     @Override
-    public ConverterNumberNumber<ConverterContext> createConverter() {
-        return ConverterNumberNumber.instance();
+    public ConverterNumberToNumber<ConverterContext> createConverter() {
+        return ConverterNumberToNumber.instance();
     }
 
     private final static Byte VALUE = 123;
@@ -809,19 +809,19 @@ public final class ConverterNumberNumberTest extends ConverterTestCase2<Converte
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterNumberNumber<ConverterContext>> type() {
-        return Cast.to(ConverterNumberNumber.class);
+    public Class<ConverterNumberToNumber<ConverterContext>> type() {
+        return Cast.to(ConverterNumberToNumber.class);
     }
 
     // TypeNameTesting..................................................................................................
 
     @Override
     public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
+        return ConverterNumberToNumber.class.getSimpleName();
     }
 
     @Override
     public String typeNameSuffix() {
-        return Number.class.getSimpleName() + Number.class.getSimpleName();
+        return Number.class.getSimpleName() + "To" + Number.class.getSimpleName();
     }
 }

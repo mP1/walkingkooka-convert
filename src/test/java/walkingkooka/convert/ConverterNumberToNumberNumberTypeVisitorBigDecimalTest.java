@@ -17,23 +17,22 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Cast;
-import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
+import java.math.BigDecimal;
 
-public final class ConverterNumberNumberNumberTypeVisitorNumberTest implements ClassTesting2<ConverterNumberNumberNumberTypeVisitorNumber<?>> {
+public final class ConverterNumberToNumberNumberTypeVisitorBigDecimalTest extends ConverterNumberToNumberNumberTypeVisitorTestCase<ConverterNumberToNumberNumberTypeVisitorBigDecimal, BigDecimal> {
 
-    ConverterNumberNumberNumberTypeVisitorNumberTest() {
-        super();
+    @Override
+    public ConverterNumberToNumberNumberTypeVisitorBigDecimal createVisitor() {
+        return new ConverterNumberToNumberNumberTypeVisitorBigDecimal();
     }
 
     @Override
-    public Class<ConverterNumberNumberNumberTypeVisitorNumber<?>> type() {
-        return Cast.to(ConverterNumberNumberNumberTypeVisitorNumber.class);
+    public Class<ConverterNumberToNumberNumberTypeVisitorBigDecimal> type() {
+        return ConverterNumberToNumberNumberTypeVisitorBigDecimal.class;
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
+    Class<BigDecimal> targetType() {
+        return BigDecimal.class;
     }
 }
