@@ -95,7 +95,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
                                                                        return Either.right("failed!");
                                                                    }
                                                                },
-                Converters.truthyNumberBoolean())),
+                Converters.numberToBoolean())),
                 1,
                 Boolean.class,
                 true);

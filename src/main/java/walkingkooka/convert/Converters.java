@@ -228,6 +228,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterNumberToBoolean}
+     */
+    public static <C extends ConverterContext> Converter<C> numberToBoolean() {
+        return ConverterNumberToBoolean.instance();
+    }
+
+    /**
      * {@see ConverterNumberToLocalDate}
      */
     public static <C extends ConverterContext> Converter<C> numberToLocalDate(final long offset) {
@@ -350,13 +357,6 @@ public final class Converters implements PublicStaticHelper {
                 trueAnswer,
                 falseAnswer
         );
-    }
-
-    /**
-     * {@see ConverterNumberToBoolean}
-     */
-    public static <C extends ConverterContext> Converter<C> truthyNumberBoolean() {
-        return ConverterNumberToBoolean.instance();
     }
 
     /**
