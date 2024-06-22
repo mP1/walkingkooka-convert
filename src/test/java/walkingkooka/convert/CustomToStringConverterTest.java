@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class CustomToStringConverterTest extends ConverterTestCase2<CustomToStringConverter<ConverterContext>>
         implements HashCodeEqualsDefinedTesting2<CustomToStringConverter<ConverterContext>> {
 
-    private final static Converter<ConverterContext> WRAPPED = Converters.objectString();
+    private final static Converter<ConverterContext> WRAPPED = Converters.objectToString();
     private final static String CUSTOM_TO_STRING = "!!custom-to-string!!";
 
     @Test
