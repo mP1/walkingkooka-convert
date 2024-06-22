@@ -26,18 +26,18 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
-final class BooleanTrueFalseConverter<V, C extends ConverterContext> implements Converter<C> {
+final class ToBooleanConverter<V, C extends ConverterContext> implements Converter<C> {
 
-    static <V, C extends ConverterContext> BooleanTrueFalseConverter<V, C> with(final Predicate<Object> source,
-                                                                                final Predicate<Class<?>> target,
-                                                                                final Predicate<Object> trueValue,
-                                                                                final V trueAnswer,
-                                                                                final V falseAnswer) {
+    static <V, C extends ConverterContext> ToBooleanConverter<V, C> with(final Predicate<Object> source,
+                                                                         final Predicate<Class<?>> target,
+                                                                         final Predicate<Object> trueValue,
+                                                                         final V trueAnswer,
+                                                                         final V falseAnswer) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(target, "target");
         Objects.requireNonNull(trueValue, "trueValue");
 
-        return new BooleanTrueFalseConverter<>(
+        return new ToBooleanConverter<>(
                 source,
                 target,
                 trueValue,
@@ -46,11 +46,11 @@ final class BooleanTrueFalseConverter<V, C extends ConverterContext> implements 
         );
     }
 
-    private BooleanTrueFalseConverter(final Predicate<Object> source,
-                                      final Predicate<Class<?>> target,
-                                      final Predicate<Object> trueValue,
-                                      final V trueAnswer,
-                                      final V falseAnswer) {
+    private ToBooleanConverter(final Predicate<Object> source,
+                               final Predicate<Class<?>> target,
+                               final Predicate<Object> trueValue,
+                               final V trueAnswer,
+                               final V falseAnswer) {
         super();
         this.source = source;
         this.target = target;
