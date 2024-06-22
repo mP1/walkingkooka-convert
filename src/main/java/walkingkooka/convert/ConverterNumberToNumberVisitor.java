@@ -27,17 +27,17 @@ import java.math.BigInteger;
 /**
  * {@link NumberVisitor} that dispatches based on the {@link Number} type back to the {@link ConverterNumber} to convert.
  */
-final class ConverterNumberNumberVisitor<T> extends NumberVisitor {
+final class ConverterNumberToNumberVisitor<T> extends NumberVisitor {
 
     static <T, C extends ConverterContext> Either<T, String> convert(final ConverterNumber<T, ?> converter,
                                                                      final Number number,
                                                                      final Class<T> type) {
-        final ConverterNumberNumberVisitor<T> visitor = new ConverterNumberNumberVisitor<>(converter, type);
+        final ConverterNumberToNumberVisitor<T> visitor = new ConverterNumberToNumberVisitor<>(converter, type);
         visitor.accept(number);
         return visitor.value;
     }
 
-    ConverterNumberNumberVisitor(final ConverterNumber<T, ?> converter, final Class<T> type) {
+    ConverterNumberToNumberVisitor(final ConverterNumber<T, ?> converter, final Class<T> type) {
         super();
         this.converter = converter;
         this.type = type;

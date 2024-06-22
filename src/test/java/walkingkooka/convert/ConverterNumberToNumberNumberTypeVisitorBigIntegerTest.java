@@ -17,22 +17,22 @@
 
 package walkingkooka.convert;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
 
-public final class ConverterNumberNumberNumberTypeVisitorBigDecimalTest extends ConverterNumberNumberNumberTypeVisitorTestCase<ConverterNumberNumberNumberTypeVisitorBigDecimal, BigDecimal> {
+public final class ConverterNumberToNumberNumberTypeVisitorBigIntegerTest extends ConverterNumberToNumberNumberTypeVisitorTestCase<ConverterNumberToNumberNumberTypeVisitorBigInteger, BigInteger> {
 
     @Override
-    public ConverterNumberNumberNumberTypeVisitorBigDecimal createVisitor() {
-        return new ConverterNumberNumberNumberTypeVisitorBigDecimal();
+    public ConverterNumberToNumberNumberTypeVisitorBigInteger createVisitor() {
+        return new ConverterNumberToNumberNumberTypeVisitorBigInteger();
     }
 
     @Override
-    public Class<ConverterNumberNumberNumberTypeVisitorBigDecimal> type() {
-        return ConverterNumberNumberNumberTypeVisitorBigDecimal.class;
+    public Class<ConverterNumberToNumberNumberTypeVisitorBigInteger> type() {
+        return ConverterNumberToNumberNumberTypeVisitorBigInteger.class;
     }
 
     @Override
-    Class<BigDecimal> targetType() {
-        return BigDecimal.class;
+    Class<BigInteger> targetType() {
+        return BigInteger.class;
     }
 }

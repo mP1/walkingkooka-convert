@@ -20,13 +20,13 @@ package walkingkooka.convert;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-final class ConverterNumberNumberNumberTypeVisitorFloat extends ConverterNumberNumberNumberTypeVisitorNumber<Float> {
+final class ConverterNumberToNumberNumberTypeVisitorFloat extends ConverterNumberToNumberNumberTypeVisitorNumber<Float> {
 
-    static ConverterNumberNumberNumberTypeVisitorFloat with() {
-        return new ConverterNumberNumberNumberTypeVisitorFloat();
+    static ConverterNumberToNumberNumberTypeVisitorFloat with() {
+        return new ConverterNumberToNumberNumberTypeVisitorFloat();
     }
 
-    ConverterNumberNumberNumberTypeVisitorFloat() {
+    ConverterNumberToNumberNumberTypeVisitorFloat() {
         super();
     }
 
@@ -72,7 +72,7 @@ final class ConverterNumberNumberNumberTypeVisitorFloat extends ConverterNumberN
 
     @Override
     protected void visit(final Float number) {
-        this.save(number);// dead code because Float to Float is short circuited earlier by ConverterNumberNumber.
+        this.save(number);// dead code because Float to Float is short circuited earlier by ConverterNumberToNumber.
     }
 
     @Override

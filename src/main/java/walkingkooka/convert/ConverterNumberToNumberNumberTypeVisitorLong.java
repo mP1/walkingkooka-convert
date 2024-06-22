@@ -20,58 +20,70 @@ package walkingkooka.convert;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-final class ConverterNumberNumberNumberTypeVisitorBigInteger extends ConverterNumberNumberNumberTypeVisitorNumber<BigInteger> {
+final class ConverterNumberToNumberNumberTypeVisitorLong extends ConverterNumberToNumberNumberTypeVisitorNumber<Long> {
 
-    static ConverterNumberNumberNumberTypeVisitorBigInteger with() {
-        return new ConverterNumberNumberNumberTypeVisitorBigInteger();
+    static ConverterNumberToNumberNumberTypeVisitorLong with() {
+        return new ConverterNumberToNumberNumberTypeVisitorLong();
     }
 
-    ConverterNumberNumberNumberTypeVisitorBigInteger() {
+    ConverterNumberToNumberNumberTypeVisitorLong() {
         super();
     }
 
     @Override
     protected void visit(final BigDecimal number) {
-        this.save(number.toBigIntegerExact());
+        this.save(number.longValueExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
-        this.save(number); // dead code because BigInteger to BigInteger is short circuited earlier by ConverterNumberNumber.
+        this.save(number.longValueExact());
     }
 
     @Override
     protected void visit(final Byte number) {
-        this.save(BigInteger.valueOf(number));
+        this.save(number.longValue());
     }
 
     @Override
     protected void visit(final Double number) {
-        this.save(new BigDecimal(number).toBigIntegerExact());
-    }
-
-    @Override 
-    protected void visit(final Float number) {
-        this.visit(new BigDecimal(number));
-    }
-
-    @Override 
-    protected void visit(final Integer number) {
-        this.save(BigInteger.valueOf(number));
-    }
-
-    @Override 
-    protected void visit(final Long number) {
-        this.save(BigInteger.valueOf(number));
-    }
-
-    @Override 
-    protected void visit(final Short number) {
-        this.save(BigInteger.valueOf(number));
+        if (number >= Long.MIN_VALUE && number <= Long.MAX_VALUE) {
+            this.save(
+                    number.longValue()
+            );
+        }
     }
 
     @Override
-    Class<BigInteger> targetType() {
-        return BigInteger.class;
+    protected void visit(final Float number) {
+        if (number >= Long.MIN_VALUE && number <= Long.MAX_VALUE) {
+            this.save(
+                    number.longValue()
+            );
+        }
+    }
+
+    @Override
+    protected void visit(final Integer number) {
+        this.save(number.longValue());
+    }
+
+    @Override
+    protected void visit(final Long number) {
+        this.save(number);
+    }
+
+    @Override
+    protected void visit(final Short number) {
+        this.saveLong(number);
+    }
+
+    private void saveLong(final Number number) {
+        this.save(number.longValue());
+    }
+
+    @Override
+    Class<Long> targetType() {
+        return Long.class;
     }
 }

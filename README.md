@@ -40,7 +40,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - numberLocalDate
 - numberLocalDateTime
 - numberLocalTime
-- numberNumber
+- numberToNumber
 - numberString
 - object // converts anything when target type is Object
 - objectString Simply calls Object#toString

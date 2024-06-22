@@ -266,10 +266,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterNumberNumber}
+     * {@see ConverterNumberToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> numberNumber() {
-        return ConverterNumberNumber.instance();
+    public static <C extends ConverterContext> Converter<C> numberToNumber() {
+        return ConverterNumberToNumber.instance();
     }
 
     /**

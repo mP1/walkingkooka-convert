@@ -93,7 +93,7 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
     final <N> Either<N, String> convertToNumber(final Number number,
                                                 final Class<N> type,
                                                 final ConverterContext context) {
-        return ConverterNumberNumber.instance()
+        return ConverterNumberToNumber.instance()
                     .convert(
                             number,
                             type,

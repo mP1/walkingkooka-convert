@@ -24,29 +24,29 @@ import walkingkooka.reflect.JavaVisibility;
 
 import java.math.BigInteger;
 
-public class ConverterNumberNumberNumberTypeVisitorTest implements NumberTypeVisitorTesting<ConverterNumberNumberNumberTypeVisitor>,
-        ToStringTesting<ConverterNumberNumberNumberTypeVisitor> {
+public class ConverterNumberToNumberNumberTypeVisitorTest implements NumberTypeVisitorTesting<ConverterNumberToNumberNumberTypeVisitor>,
+        ToStringTesting<ConverterNumberToNumberNumberTypeVisitor> {
 
     @Test
     public void testToString() {
-        final ConverterNumberNumberNumberTypeVisitor visitor = new ConverterNumberNumberNumberTypeVisitor();
+        final ConverterNumberToNumberNumberTypeVisitor visitor = new ConverterNumberToNumberNumberTypeVisitor();
         visitor.accept(BigInteger.class);
         this.toStringAndCheck(visitor, "Number->BigInteger");
     }
 
     @Override
-    public ConverterNumberNumberNumberTypeVisitor createVisitor() {
-        return new ConverterNumberNumberNumberTypeVisitor();
+    public ConverterNumberToNumberNumberTypeVisitor createVisitor() {
+        return new ConverterNumberToNumberNumberTypeVisitor();
     }
 
     @Override
     public String typeNamePrefix() {
-        return ConverterNumberNumber.class.getSimpleName();
+        return ConverterNumberToNumber.class.getSimpleName();
     }
 
     @Override
-    public Class<ConverterNumberNumberNumberTypeVisitor> type() {
-        return ConverterNumberNumberNumberTypeVisitor.class;
+    public Class<ConverterNumberToNumberNumberTypeVisitor> type() {
+        return ConverterNumberToNumberNumberTypeVisitor.class;
     }
 
     @Override

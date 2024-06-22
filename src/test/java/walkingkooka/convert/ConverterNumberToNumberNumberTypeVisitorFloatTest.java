@@ -17,29 +17,20 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.math.NumberVisitor;
-
-abstract class ConverterNumberNumberNumberTypeVisitorNumber<N extends Number> extends NumberVisitor {
-
-    ConverterNumberNumberNumberTypeVisitorNumber() {
-        super();
-    }
-
-    final N convert(final Number number) {
-        this.accept(number);
-        return converted;
-    }
-
-    final void save(final N number) {
-        this.converted = number;
-    }
-
-    private N converted;
-
-    abstract Class<N> targetType();
+public final class ConverterNumberToNumberNumberTypeVisitorFloatTest extends ConverterNumberToNumberNumberTypeVisitorTestCase<ConverterNumberToNumberNumberTypeVisitorFloat, Float> {
 
     @Override
-    public final String toString() {
-        return Number.class.getSimpleName() + "->" + this.targetType().getSimpleName();
+    public ConverterNumberToNumberNumberTypeVisitorFloat createVisitor() {
+        return new ConverterNumberToNumberNumberTypeVisitorFloat();
+    }
+
+    @Override
+    public Class<ConverterNumberToNumberNumberTypeVisitorFloat> type() {
+        return ConverterNumberToNumberNumberTypeVisitorFloat.class;
+    }
+
+    @Override
+    Class<Float> targetType() {
+        return Float.class;
     }
 }

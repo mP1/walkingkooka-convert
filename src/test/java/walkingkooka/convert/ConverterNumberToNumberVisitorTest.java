@@ -25,7 +25,7 @@ import walkingkooka.math.NumberVisitorTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CharSequences;
 
-public final class ConverterNumberNumberVisitorTest implements NumberVisitorTesting<ConverterNumberNumberVisitor<Boolean>> {
+public final class ConverterNumberToNumberVisitorTest implements NumberVisitorTesting<ConverterNumberToNumberVisitor<Boolean>> {
 
     @Test
     public void testConvertUnsupported() {
@@ -54,7 +54,7 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
         };
         //noinspection unchecked
         this.checkEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
-                ConverterNumberNumberVisitor.convert(this.converter(),
+                ConverterNumberToNumberVisitor.convert(this.converter(),
                         number,
                         Boolean.class));
     }
@@ -65,9 +65,9 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
     }
 
     @Override
-    public ConverterNumberNumberVisitor<Boolean> createVisitor() {
+    public ConverterNumberToNumberVisitor<Boolean> createVisitor() {
         //noinspection unchecked
-        return new ConverterNumberNumberVisitor<Boolean>(this.converter(), Boolean.class);
+        return new ConverterNumberToNumberVisitor<Boolean>(this.converter(), Boolean.class);
     }
 
     private ConverterNumber<Boolean, ConverterContext> converter() {
@@ -85,8 +85,8 @@ public final class ConverterNumberNumberVisitorTest implements NumberVisitorTest
     }
 
     @Override
-    public Class<ConverterNumberNumberVisitor<Boolean>> type() {
-        return Cast.to(ConverterNumberNumberVisitor.class);
+    public Class<ConverterNumberToNumberVisitor<Boolean>> type() {
+        return Cast.to(ConverterNumberToNumberVisitor.class);
     }
 
     @Override

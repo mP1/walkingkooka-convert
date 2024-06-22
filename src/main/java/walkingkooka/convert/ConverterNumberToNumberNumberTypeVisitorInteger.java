@@ -20,78 +20,74 @@ package walkingkooka.convert;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-final class ConverterNumberNumberNumberTypeVisitorShort extends ConverterNumberNumberNumberTypeVisitorNumber<Short> {
+final class ConverterNumberToNumberNumberTypeVisitorInteger extends ConverterNumberToNumberNumberTypeVisitorNumber<Integer> {
 
-    static ConverterNumberNumberNumberTypeVisitorShort with() {
-        return new ConverterNumberNumberNumberTypeVisitorShort();
+    static ConverterNumberToNumberNumberTypeVisitorInteger with() {
+        return new ConverterNumberToNumberNumberTypeVisitorInteger();
     }
 
-    ConverterNumberNumberNumberTypeVisitorShort() {
+    ConverterNumberToNumberNumberTypeVisitorInteger() {
         super();
     }
 
     @Override
     protected void visit(final BigDecimal number) {
-        this.save(number.shortValueExact());
+        this.save(number.intValueExact());
     }
 
     @Override
     protected void visit(final BigInteger number) {
-        this.save(number.shortValueExact());
+        this.save(number.intValueExact());
     }
 
     @Override
     protected void visit(final Byte number) {
-        this.saveShort(number);
+        this.save(number.intValue());
     }
 
     @Override
     protected void visit(final Double number) {
-        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.shortValue()
+                    number.intValue()
             );
         }
     }
 
     @Override
     protected void visit(final Float number) {
-        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.shortValue()
+                    number.intValue()
             );
         }
     }
 
     @Override
     protected void visit(final Integer number) {
-        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
-            this.save(
-                    number.shortValue()
-            );
-        }
+        this.save(number);
     }
 
     @Override
     protected void visit(final Long number) {
-        if (number >= Short.MIN_VALUE && number <= Short.MAX_VALUE) {
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.shortValue()
+                    number.intValue()
             );
         }
     }
 
     @Override
     protected void visit(final Short number) {
-        this.save(number);// dead code because Short to Short is short circuited earlier by ConverterNumberNumber.
-    }
-
-    private void saveShort(final Number number) {
-        this.save(number.shortValue());
+        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+            this.save(
+                    number.intValue()
+            );
+        }
     }
 
     @Override
-    Class<Short> targetType() {
-        return Short.class;
+    Class<Integer> targetType() {
+        return Integer.class;
     }
 }

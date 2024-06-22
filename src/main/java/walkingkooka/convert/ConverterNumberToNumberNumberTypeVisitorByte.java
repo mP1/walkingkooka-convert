@@ -20,74 +20,78 @@ package walkingkooka.convert;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-final class ConverterNumberNumberNumberTypeVisitorInteger extends ConverterNumberNumberNumberTypeVisitorNumber<Integer> {
+final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumberToNumberNumberTypeVisitorNumber<Byte> {
 
-    static ConverterNumberNumberNumberTypeVisitorInteger with() {
-        return new ConverterNumberNumberNumberTypeVisitorInteger();
+    static ConverterNumberToNumberNumberTypeVisitorByte with() {
+        return new ConverterNumberToNumberNumberTypeVisitorByte();
     }
 
-    ConverterNumberNumberNumberTypeVisitorInteger() {
+    ConverterNumberToNumberNumberTypeVisitorByte() {
         super();
     }
 
     @Override
     protected void visit(final BigDecimal number) {
-        this.save(number.intValueExact());
+        this.save(number.byteValueExact());
     }
 
     @Override
     protected void visit(final BigInteger number) {
-        this.save(number.intValueExact());
+        this.save(number.byteValueExact());
     }
 
     @Override
     protected void visit(final Byte number) {
-        this.save(number.intValue());
+        this.save(number);// dead code because Byte to Byte is short circuited earlier by ConverterNumberToNumber.
     }
 
     @Override
     protected void visit(final Double number) {
-        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                    number.byteValue()
             );
         }
     }
 
     @Override
     protected void visit(final Float number) {
-        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                    number.byteValue()
             );
         }
     }
 
     @Override
     protected void visit(final Integer number) {
-        this.save(number);
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+            this.save(
+                    number.byteValue()
+            );
+        }
     }
 
     @Override
     protected void visit(final Long number) {
-        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                    number.byteValue()
             );
         }
     }
 
     @Override
     protected void visit(final Short number) {
-        if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
+        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                    number.byteValue()
             );
         }
     }
 
     @Override
-    Class<Integer> targetType() {
-        return Integer.class;
+    Class<Byte> targetType() {
+        return Byte.class;
     }
 }

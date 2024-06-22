@@ -20,59 +20,59 @@ package walkingkooka.convert;
 import walkingkooka.ToStringBuilder;
 import walkingkooka.math.NumberTypeVisitor;
 
-final class ConverterNumberNumberNumberTypeVisitor extends NumberTypeVisitor {
+final class ConverterNumberToNumberNumberTypeVisitor extends NumberTypeVisitor {
 
-    static ConverterNumberNumberNumberTypeVisitorNumber<?> visitor(final Class<?> type) {
-        final ConverterNumberNumberNumberTypeVisitor visitor = new ConverterNumberNumberNumberTypeVisitor();
+    static ConverterNumberToNumberNumberTypeVisitorNumber<?> visitor(final Class<?> type) {
+        final ConverterNumberToNumberNumberTypeVisitor visitor = new ConverterNumberToNumberNumberTypeVisitor();
         visitor.accept(type);
         return visitor.visitor;
     }
 
-    ConverterNumberNumberNumberTypeVisitor() {
+    ConverterNumberToNumberNumberTypeVisitor() {
         super();
     }
 
     @Override
     protected void visitBigDecimal() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorBigDecimal.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorBigDecimal.with();
     }
 
     @Override
     protected void visitBigInteger() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorBigInteger.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorBigInteger.with();
     }
 
     @Override
     protected void visitByte() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorByte.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorByte.with();
     }
 
     @Override
     protected void visitDouble() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorDouble.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorDouble.with();
     }
 
     @Override
     protected void visitFloat() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorFloat.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorFloat.with();
     }
 
     @Override
     protected void visitInteger() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorInteger.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorInteger.with();
     }
 
     @Override
     protected void visitLong() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorLong.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorLong.with();
     }
 
     @Override
     protected void visitShort() {
-        this.visitor = ConverterNumberNumberNumberTypeVisitorShort.with();
+        this.visitor = ConverterNumberToNumberNumberTypeVisitorShort.with();
     }
 
-    private ConverterNumberNumberNumberTypeVisitorNumber<?> visitor;
+    private ConverterNumberToNumberNumberTypeVisitorNumber<?> visitor;
 
     @Override
     public String toString() {
