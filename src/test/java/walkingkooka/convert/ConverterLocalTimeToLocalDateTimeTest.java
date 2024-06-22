@@ -31,7 +31,7 @@ public final class ConverterLocalTimeToLocalDateTimeTest extends ConverterLocalT
     }
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 LocalDateTime.class,
@@ -40,7 +40,7 @@ public final class ConverterLocalTimeToLocalDateTimeTest extends ConverterLocalT
     }
 
     @Test
-    public void testLocalTime() {
+    public void testConvertLocalTime() {
         this.convertAndCheck(
                 LocalTime.of(12, 58, 59, 789),
                 LocalDateTime.of(1970, 1, 1, 12, 58, 59, 789)
