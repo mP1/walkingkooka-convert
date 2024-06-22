@@ -17,10 +17,9 @@ The [Converters](https://github.com/mP1/walkingkooka-convert/blob/master/src/mai
 class contains many static factory methods. The methods are camel case named in the style of source to destination type.
 Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal).
 
-- bigDecimalBoolean
-- booleanNumber
-- booleanTrueFalse Performs a test and uses that result to pick one of two values.
-- characterStringConverter converts characters to a String if necessary and then passes that String to a wrapped Converter.
+- bigDecimalToBoolean
+- booleanToNumber
+- characterOrStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
 - converterStringCharacter converts any value to String if necessary and then that to Character.
 - collection Tries many Converters until success.
 - customToString Wraps a Converter providing a custom #toString
@@ -37,9 +36,9 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - localTimeString
 - mapper
 - never
-- numberLocalDate
-- numberLocalDateTime
-- numberLocalTime
+- numberToLocalDate
+- numberToLocalDateTime
+- numberToLocalTime
 - numberToNumber
 - numberString
 - object // converts anything when target type is Object
@@ -51,6 +50,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - stringLocalDateTime
 - stringLocalTime
 - stringNumber
+- toBoolean Performs a test and uses that result to pick one of two values.
 - truthyNumberBoolean Follows javascript truthy rules, zero means false, all other values are true.
 
 
