@@ -19,7 +19,6 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -28,16 +27,16 @@ import java.util.function.Function;
 /**
  * A {@link Converter} that parses a {@link String} into a {@link LocalTime}.
  */
-final class DateTimeFormatterConverterStringLocalDate<C extends ConverterContext> extends DateTimeFormatterConverter<String, LocalDate, C> {
+final class DateTimeFormatterConverterStringToLocalTime<C extends ConverterContext> extends DateTimeFormatterConverter<String, LocalTime, C> {
 
-    static <C extends ConverterContext> DateTimeFormatterConverterStringLocalDate<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return new DateTimeFormatterConverterStringLocalDate<>(formatter);
+    static <C extends ConverterContext> DateTimeFormatterConverterStringToLocalTime<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return new DateTimeFormatterConverterStringToLocalTime<>(formatter);
     }
 
     /**
      * Private ctor use static factory
      */
-    private DateTimeFormatterConverterStringLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    private DateTimeFormatterConverterStringToLocalTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         super(formatter);
     }
 
@@ -50,19 +49,19 @@ final class DateTimeFormatterConverterStringLocalDate<C extends ConverterContext
 
     @Override
     boolean canConvertType(final Class<?> type) {
-        return LocalDate.class == type;
+        return LocalTime.class == type;
     }
 
     @Override
-    LocalDate parseOrFormat(final String text,
+    LocalTime parseOrFormat(final String text,
                             final DateTimeFormatter formatter) throws DateTimeParseException {
-        return LocalDate.parse(text, formatter);
+        return LocalTime.parse(text, formatter);
     }
 
     // Object...........................................................................................................
 
     @Override
     public String toString() {
-        return "String->LocalDate";
+        return "String->LocalTime";
     }
 }

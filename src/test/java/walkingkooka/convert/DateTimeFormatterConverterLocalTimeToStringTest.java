@@ -25,11 +25,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterLocalTimeString<ConverterContext>, LocalTime, String> {
+public final class DateTimeFormatterConverterLocalTimeToStringTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterLocalTimeToString<ConverterContext>, LocalTime, String> {
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterLocalTimeString<ConverterContext> converter = this.createConverter();
+        final DateTimeFormatterConverterLocalTimeToString<ConverterContext> converter = this.createConverter();
         final LocalTime source = this.source();
 
         this.convertAndCheck2(converter,
@@ -44,8 +44,8 @@ public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTim
     }
 
     @Override
-    protected DateTimeFormatterConverterLocalTimeString<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return DateTimeFormatterConverterLocalTimeString.with(formatter);
+    protected DateTimeFormatterConverterLocalTimeToString<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return DateTimeFormatterConverterLocalTimeToString.with(formatter);
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class DateTimeFormatterConverterLocalTimeStringTest extends DateTim
     }
 
     @Override
-    public Class<DateTimeFormatterConverterLocalTimeString<ConverterContext>> type() {
-        return Cast.to(DateTimeFormatterConverterLocalTimeString.class);
+    public Class<DateTimeFormatterConverterLocalTimeToString<ConverterContext>> type() {
+        return Cast.to(DateTimeFormatterConverterLocalTimeToString.class);
     }
 }
