@@ -27,24 +27,24 @@ import java.math.BigInteger;
  * A {@link Converter} that handles converting any {@link Number} to a {@link BigDecimal}, following truth conventions,
  * where zero becomes false and all other values are true.
  */
-final class ConverterNumberBoolean<C extends ConverterContext> extends ConverterNumber<Boolean, C> {
+final class ConverterNumberToBoolean<C extends ConverterContext> extends ConverterNumber<Boolean, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterNumberBoolean<C> instance() {
+    static <C extends ConverterContext> ConverterNumberToBoolean<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterNumberBoolean<?> INSTANCE = new ConverterNumberBoolean<>();
+    private final static ConverterNumberToBoolean<?> INSTANCE = new ConverterNumberToBoolean<>();
 
     /**
      * Private ctor use singleton
      */
-    private ConverterNumberBoolean() {
+    private ConverterNumberToBoolean() {
         super();
     }
 
