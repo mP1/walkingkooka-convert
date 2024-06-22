@@ -44,15 +44,18 @@ public class JunitTest {
     public void testLocaleDateToLong() {
         final long value = 123;
 
-        this.convertAndCheck(Converters.localDateNumber(Converters.JAVA_EPOCH_OFFSET),
+        this.convertAndCheck(
+                Converters.localDateToNumber(Converters.JAVA_EPOCH_OFFSET),
                 LocalDate.ofEpochDay(value),
                 Long.class,
-                Long.valueOf(value));
+                Long.valueOf(value)
+        );
     }
 
     @Test
     public void testStringToBigDecimal() {
-        this.convertAndCheck(Converters.stringNumber((c) -> new DecimalFormat("#.#", DecimalFormatSymbols.getInstance(LOCALE))),
+        this.convertAndCheck(
+                Converters.stringNumber((c) -> new DecimalFormat("#.#", DecimalFormatSymbols.getInstance(LOCALE))),
                 "1.5",
                 BigDecimal.class,
                 BigDecimal.valueOf(1.5));
