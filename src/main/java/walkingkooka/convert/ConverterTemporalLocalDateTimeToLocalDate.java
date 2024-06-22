@@ -17,49 +17,55 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.math.Maths;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
- * Converts a {@link LocalDateTime} into a {@link Number}.
+ * Accepts {@link LocalDateTime} and returns the {@link java.time.LocalDate}
  */
-final class ConverterTemporalLocalDateTimeNumber<C extends ConverterContext> extends ConverterTemporalLocalDateTime<Number, C> {
+final class ConverterTemporalLocalDateTimeToLocalDate<C extends ConverterContext> extends ConverterTemporalLocalDateTime<LocalDate, C> {
 
     /**
-     * Creates a new instance with the given date offset.
-     * A value of zero = 1/1/1970.
+     * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterTemporalLocalDateTimeNumber<C> with(final long offset) {
-        return new ConverterTemporalLocalDateTimeNumber<>(offset);
+    static <C extends ConverterContext> ConverterTemporalLocalDateTimeToLocalDate<C> instance() {
+        return Cast.to(INSTANCE);
     }
 
     /**
-     * Private ctor use factory
+     * Singleton
      */
-    private ConverterTemporalLocalDateTimeNumber(final long offset) {
-        super(offset);
+    private final static ConverterTemporalLocalDateTimeToLocalDate<?> INSTANCE = new ConverterTemporalLocalDateTimeToLocalDate<>();
+
+    /**
+     * Private ctor use singleton
+     */
+    private ConverterTemporalLocalDateTimeToLocalDate() {
+        super(0);
     }
 
     @Override
     boolean canConvertType(final Class<?> type) {
-        return Number.class == type || Maths.isNumberClass(type);
+        return LocalDate.class == type;
     }
 
     @Override
     <T> Either<T, String> convertFromLocalDateTime(final long days,
                                                    final double time,
-                                                   final LocalDateTime dateTime,
+                                                   final LocalDateTime localDateTime,
                                                    final Class<T> type,
                                                    final ConverterContext context) {
-        return this.convertToNumber(days + time,
-                type,
-                context);
+        return this.successfulConversion(
+                localDateTime.toLocalDate(),
+                type
+        );
     }
 
     @Override
-    Class<Number> targetType() {
-        return Number.class;
+    Class<LocalDate> targetType() {
+        return LocalDate.class;
     }
 }

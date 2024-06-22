@@ -24,7 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public final class ConverterTemporalLocalDateTimeLocalDateTest extends ConverterTemporalLocalDateTimeTestCase<ConverterTemporalLocalDateTimeLocalDate<ConverterContext>, LocalDate> {
+public final class ConverterTemporalLocalDateTimeToLocalDateTest extends ConverterTemporalLocalDateTimeTestCase<ConverterTemporalLocalDateTimeToLocalDate<ConverterContext>, LocalDate> {
 
     @Test
     public void testMidnightTime() {
@@ -48,8 +48,8 @@ public final class ConverterTemporalLocalDateTimeLocalDateTest extends Converter
     // ConverterTesting.................................................................................................
 
     @Override
-    public ConverterTemporalLocalDateTimeLocalDate<ConverterContext> createConverter() {
-        return ConverterTemporalLocalDateTimeLocalDate.instance();
+    public ConverterTemporalLocalDateTimeToLocalDate<ConverterContext> createConverter() {
+        return ConverterTemporalLocalDateTimeToLocalDate.instance();
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class ConverterTemporalLocalDateTimeLocalDateTest extends Converter
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterTemporalLocalDateTimeLocalDate<ConverterContext>> type() {
-        return Cast.to(ConverterTemporalLocalDateTimeLocalDate.class);
+    public Class<ConverterTemporalLocalDateTimeToLocalDate<ConverterContext>> type() {
+        return Cast.to(ConverterTemporalLocalDateTimeToLocalDate.class);
     }
 }

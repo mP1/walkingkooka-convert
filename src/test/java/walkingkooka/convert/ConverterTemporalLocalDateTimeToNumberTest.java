@@ -26,7 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public final class ConverterTemporalLocalDateTimeNumberTest extends ConverterTemporalLocalDateTimeTestCase<ConverterTemporalLocalDateTimeNumber<ConverterContext>, Number> {
+public final class ConverterTemporalLocalDateTimeToNumberTest extends ConverterTemporalLocalDateTimeTestCase<ConverterTemporalLocalDateTimeToNumber<ConverterContext>, Number> {
 
     // fail(overflow)....................................................................................................
 
@@ -166,7 +166,7 @@ public final class ConverterTemporalLocalDateTimeNumberTest extends ConverterTem
     }
 
     private void convertWithOffsetAndCheck3(final Number expected) {
-        this.convertAndCheck(walkingkooka.convert.ConverterTemporalLocalDateTimeNumber.with(OFFSET),
+        this.convertAndCheck(ConverterTemporalLocalDateTimeToNumber.with(OFFSET),
                 LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.MIDNIGHT),
                 Cast.to(expected.getClass()),
                 expected);
@@ -174,7 +174,7 @@ public final class ConverterTemporalLocalDateTimeNumberTest extends ConverterTem
 
     @Test
     public void testWithOffsetToNumber() {
-        this.convertAndCheck(walkingkooka.convert.ConverterTemporalLocalDateTimeNumber.with(OFFSET),
+        this.convertAndCheck(ConverterTemporalLocalDateTimeToNumber.with(OFFSET),
                 LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.MIDNIGHT),
                 Number.class,
                 (double)(BYTE_VALUE + OFFSET));
@@ -190,8 +190,8 @@ public final class ConverterTemporalLocalDateTimeNumberTest extends ConverterTem
     // ConverterTesting.................................................................................................
 
     @Override
-    public ConverterTemporalLocalDateTimeNumber<ConverterContext> createConverter() {
-        return walkingkooka.convert.ConverterTemporalLocalDateTimeNumber.with(Converters.JAVA_EPOCH_OFFSET);
+    public ConverterTemporalLocalDateTimeToNumber<ConverterContext> createConverter() {
+        return ConverterTemporalLocalDateTimeToNumber.with(Converters.JAVA_EPOCH_OFFSET);
     }
 
     @Override
@@ -202,7 +202,7 @@ public final class ConverterTemporalLocalDateTimeNumberTest extends ConverterTem
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterTemporalLocalDateTimeNumber<ConverterContext>> type() {
-        return Cast.to(ConverterTemporalLocalDateTimeNumber.class);
+    public Class<ConverterTemporalLocalDateTimeToNumber<ConverterContext>> type() {
+        return Cast.to(ConverterTemporalLocalDateTimeToNumber.class);
     }
 }

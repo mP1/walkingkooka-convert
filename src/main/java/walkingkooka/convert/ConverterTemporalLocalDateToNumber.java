@@ -25,20 +25,20 @@ import java.time.LocalDate;
 /**
  * Converts {@link java.time.LocalDate} to {@link Number}
  */
-final class ConverterTemporalLocalDateNumber<C extends ConverterContext> extends ConverterTemporalLocalDate<Number, C> {
+final class ConverterTemporalLocalDateToNumber<C extends ConverterContext> extends ConverterTemporalLocalDate<Number, C> {
 
     /**
      * Factory that creates a new instance with the given date offset.
      * A value of zero = 1/1/1970.
      */
-    static <C extends ConverterContext> ConverterTemporalLocalDateNumber<C> with(final long offset) {
-        return new ConverterTemporalLocalDateNumber<>(offset);
+    static <C extends ConverterContext> ConverterTemporalLocalDateToNumber<C> with(final long offset) {
+        return new ConverterTemporalLocalDateToNumber<>(offset);
     }
 
     /**
      * Private ctor use factory
      */
-    private ConverterTemporalLocalDateNumber(final long offset) {
+    private ConverterTemporalLocalDateToNumber(final long offset) {
         super(offset);
     }
 
@@ -48,12 +48,14 @@ final class ConverterTemporalLocalDateNumber<C extends ConverterContext> extends
     }
 
     @Override
-    <T> Either<T, String> convert1(final LocalDate date,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
-        return this.convertToNumber(date.toEpochDay() + this.offset,
+    <T> Either<T, String> convertNonNull0(final LocalDate date,
+                                          final Class<T> type,
+                                          final ConverterContext context) {
+        return this.convertToNumber(
+                date.toEpochDay() + this.offset,
                 type,
-                context);
+                context
+        );
     }
 
     @Override
