@@ -23,7 +23,7 @@ import walkingkooka.Cast;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterConverterStringCharacterTest implements ConverterTesting2<ConverterConverterStringCharacter<FakeConverterContext>, FakeConverterContext> {
+public final class ConverterToStringOrCharacterTest implements ConverterTesting2<ConverterToStringOrCharacter<FakeConverterContext>, FakeConverterContext> {
 
     private final static Character NULL_TO_CHARACTER = '!';
     private final static String NULL_TO_STRING = NULL_TO_CHARACTER.toString();
@@ -47,17 +47,17 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     public void testWithNullConverterFails() {
         assertThrows(
                 NullPointerException.class,
-                () -> ConverterConverterStringCharacter.with(null)
+                () -> ConverterToStringOrCharacter.with(null)
         );
     }
 
     @Test
     public void testWithConverterConverterStringCharacter() {
-        final ConverterConverterStringCharacter<?> converter = this.createConverter();
+        final ConverterToStringOrCharacter<?> converter = this.createConverter();
 
         assertSame(
                 converter,
-                ConverterConverterStringCharacter.with(converter)
+                ConverterToStringOrCharacter.with(converter)
         );
     }
 
@@ -114,7 +114,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     @Test
     public void testConvertCharacterToCharacter2() {
         this.convertAndCheck(
-                ConverterConverterStringCharacter.with(Converters.fake()),
+                ConverterToStringOrCharacter.with(Converters.fake()),
                 'A',
                 Character.class,
                 'A'
@@ -132,7 +132,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     @Test
     public void testConvertStringToString2() {
         this.convertAndCheck(
-                ConverterConverterStringCharacter.with(Converters.fake()),
+                ConverterToStringOrCharacter.with(Converters.fake()),
                 "ABC123",
                 String.class,
                 "ABC123"
@@ -151,7 +151,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     @Test
     public void testConvertStringToCharacter2() {
         this.convertAndCheck(
-                ConverterConverterStringCharacter.with(Converters.fake()),
+                ConverterToStringOrCharacter.with(Converters.fake()),
                 "Z",
                 Character.class,
                 'Z'
@@ -194,8 +194,8 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     }
 
     @Override
-    public ConverterConverterStringCharacter<FakeConverterContext> createConverter() {
-        return ConverterConverterStringCharacter.with(
+    public ConverterToStringOrCharacter<FakeConverterContext> createConverter() {
+        return ConverterToStringOrCharacter.with(
                 INTEGER_TO_STRING_CONVERTER
         );
     }
@@ -206,7 +206,7 @@ public final class ConverterConverterStringCharacterTest implements ConverterTes
     }
 
     @Override
-    public Class<ConverterConverterStringCharacter<FakeConverterContext>> type() {
-        return Cast.to(ConverterConverterStringCharacter.class);
+    public Class<ConverterToStringOrCharacter<FakeConverterContext>> type() {
+        return Cast.to(ConverterToStringOrCharacter.class);
     }
 }

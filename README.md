@@ -20,7 +20,6 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - bigDecimalToBoolean
 - booleanToNumber
 - characterStringConverter converts characters to a String if necessary and then passes that String to a wrapped Converter.
-- converterStringCharacter converts any value to String if necessary and then that to Character.
 - collection Tries many Converters until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing.
@@ -51,6 +50,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - stringLocalTime
 - stringNumber
 - toBoolean Performs a test and uses that result to pick one of two values.
+- toStringOrCharacter converts any value to String if necessary and then that to Character.
 - truthyNumberBoolean Follows javascript truthy rules, zero means false, all other values are true.
 
 
