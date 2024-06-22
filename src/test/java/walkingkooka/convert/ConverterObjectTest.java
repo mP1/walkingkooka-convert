@@ -26,7 +26,7 @@ public final class ConverterObjectTest extends ConverterTestCase<ConverterObject
         ToStringTesting<ConverterObject<ConverterContext>> {
 
     @Test
-    public void testNullToObject() {
+    public void testConvertNullToObject() {
         this.convertAndCheck(
                 null,
                 Object.class
@@ -34,7 +34,7 @@ public final class ConverterObjectTest extends ConverterTestCase<ConverterObject
     }
 
     @Test
-    public void testNonNullObject() {
+    public void testConvertNonNullObject() {
         this.convertAndCheck(
                 Boolean.TRUE,
                 Object.class
@@ -42,7 +42,7 @@ public final class ConverterObjectTest extends ConverterTestCase<ConverterObject
     }
 
     @Test
-    public void testNullToNonObject() {
+    public void testConvertNullToNonObject() {
         this.convertFails(
                 null,
                 Void.class
@@ -50,7 +50,7 @@ public final class ConverterObjectTest extends ConverterTestCase<ConverterObject
     }
 
     @Test
-    public void testNonNullToNonObject() {
+    public void testConvertNonNullToNonObject() {
         this.convertFails(
                 "1",
                 Void.class
