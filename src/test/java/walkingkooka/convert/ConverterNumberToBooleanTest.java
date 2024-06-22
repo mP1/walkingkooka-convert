@@ -28,34 +28,34 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     // BigDecimal..................................................
 
     @Test
-    public void testBigDecimalNumberNonZero() {
+    public void testConvertBigDecimalNumberNonZero() {
         this.convertAndCheckTrue(BigDecimal.valueOf(+1));
     }
 
     @Test
-    public void testBigDecimalNumberNonZero2() {
+    public void testConvertBigDecimalNumberNonZero2() {
         this.convertAndCheckTrue(BigDecimal.valueOf(-1));
     }
 
     @Test
-    public void testBigDecimalNumberZero() {
+    public void testConvertBigDecimalNumberZero() {
         this.convertAndCheckFalse(BigDecimal.valueOf(0));
     }
 
     // BigInteger..............................................................................
 
     @Test
-    public void testBigIntegerNumberNonZero() {
+    public void testConvertBigIntegerNumberNonZero() {
         this.convertAndCheckTrue(BigInteger.valueOf(+1));
     }
 
     @Test
-    public void testBigIntegerNumberNonZero2() {
+    public void testConvertBigIntegerNumberNonZero2() {
         this.convertAndCheckTrue(BigInteger.valueOf(-1));
     }
 
     @Test
-    public void testBigIntegerNumberZero() {
+    public void testConvertBigIntegerNumberZero() {
         this.convertAndCheckFalse(BigInteger.valueOf(0));
     }
 
@@ -70,7 +70,7 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     }
 
     @Test
-    public void testDoubleNegativeInfinityFails() {
+    public void testConvertDoubleNegativeInfinityFails() {
     }
 
     @Override
@@ -82,59 +82,59 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     }
 
     @Test
-    public void testDoubleNan() {
+    public void testConvertDoubleNan() {
         this.convertAndCheckFalse(Double.NaN);
     }
 
     @Test
-    public void testDoublePositiveInfinity() {
+    public void testConvertDoublePositiveInfinity() {
         this.convertAndCheckFalse(Double.POSITIVE_INFINITY);
     }
 
     @Test
-    public void testDoubleNegativeInfinity() {
+    public void testConvertDoubleNegativeInfinity() {
         this.convertAndCheckFalse(Double.NEGATIVE_INFINITY);
     }
 
     @Test
-    public void testDoubleMax() {
+    public void testConvertDoubleMax() {
         this.convertAndCheckTrue(Double.MAX_VALUE);
     }
 
     @Test
-    public void testDoubleMin() {
+    public void testConvertDoubleMin() {
         this.convertAndCheckTrue(Double.MIN_VALUE);
     }
 
     @Test
-    public void testDoubleNumberNonZero() {
+    public void testConvertDoubleNumberNonZero() {
         this.convertAndCheckTrue(-1.0);
     }
 
     @Test
-    public void testDoubleNumberNonZero2() {
+    public void testConvertDoubleNumberNonZero2() {
         this.convertAndCheckTrue(1.0);
     }
 
     @Test
-    public void testDoubleNumberZero() {
+    public void testConvertDoubleNumberZero() {
         this.convertAndCheckFalse(0.0);
     }
 
     // Long..............................................................................
 
     @Test
-    public void testLongNumberNonZero() {
+    public void testConvertLongNumberNonZero() {
         this.convertAndCheckTrue(-1L);
     }
 
     @Test
-    public void testLongNumberNonZero2() {
+    public void testConvertLongNumberNonZero2() {
         this.convertAndCheckTrue(1L);
     }
 
     @Test
-    public void testLongNumberZero() {
+    public void testConvertLongNumberZero() {
         this.convertAndCheckFalse(0L);
     }
 
