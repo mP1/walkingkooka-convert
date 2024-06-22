@@ -39,72 +39,72 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
     }
 
     @Test
-    public void testLocalTimeToBigDecimal() {
+    public void testConvertLocalTimeToBigDecimal() {
         this.convertAndCheck2(BigDecimal.valueOf(VALUE));
     }
 
     @Test
-    public void testLocalTimeToBigDecimal2() {
+    public void testConvertLocalTimeToBigDecimal2() {
         this.convertAndCheck3(BigDecimal.valueOf(WITH_NANOS));
     }
 
     @Test
-    public void testLocalTimeToBigInteger() {
+    public void testConvertLocalTimeToBigInteger() {
         this.convertAndCheck2(BigInteger.valueOf(VALUE));
     }
 
     @Test
-    public void testLocalTimeWithNanosToBigIntegerFails() {
+    public void testConvertLocalTimeWithNanosToBigIntegerFails() {
         this.convertFails2(BigInteger.class);
     }
 
     @Test
-    public void testLocalTimeToByte() {
+    public void testConvertLocalTimeToByte() {
         this.convertAndCheck2(VALUE);
     }
 
     @Test
-    public void testLocalTimeWithNanosToByteFails() {
+    public void testConvertLocalTimeWithNanosToByteFails() {
         this.convertFails2(Byte.class);
     }
 
     @Test
-    public void testLocalTimeToShort() {
+    public void testConvertLocalTimeToShort() {
         this.convertAndCheck2((short) VALUE);
     }
 
     @Test
-    public void testLocalTimeWithNanosToShortFails() {
+    public void testConvertLocalTimeWithNanosToShortFails() {
         this.convertFails2(Short.class);
     }
 
     @Test
-    public void testLocalTimeToInteger() {
+    public void testConvertLocalTimeToInteger() {
         this.convertAndCheck2((int) VALUE);
     }
 
     @Test
-    public void testLocalTimeWithNanosToIntegerFails() {
+    public void testConvertLocalTimeWithNanosToIntegerFails() {
         this.convertFails2(Integer.class);
     }
 
     @Test
-    public void testLocalTimeToLong() {
+    public void testConvertLocalTimeToLong() {
         this.convertAndCheck2((long) VALUE);
     }
 
     @Test
-    public void testLocalTimeWithNanosToLongFails() {
+    public void testConvertLocalTimeWithNanosToLongFails() {
         this.convertFails2(Long.class);
     }
 
     @Test
-    public void testLocalTimeToFloat() {
+    public void testConvertLocalTimeToFloat() {
         this.convertAndCheck2((float) VALUE);
     }
 
     @Test
-    public void testLocalTimeToDouble() {
+    public void testConvertLocalTimeToDouble() {
         this.convertAndCheck2((double) VALUE);
     }
 
