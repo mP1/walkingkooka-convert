@@ -111,7 +111,7 @@ public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCas
     }
 
     @Override
-    public void testDoubleMaxFails() {
+    public void testConvertDoubleMaxFails() {
         throw new UnsupportedOperationException();
     }
 

@@ -62,11 +62,11 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     // Double..............................................................................
 
     @Override
-    public void testDoubleNanFails() {
+    public void testConvertDoubleNanFails() {
     }
 
     @Override
-    public void testDoublePositiveInfinityFails() {
+    public void testConvertDoublePositiveInfinityFails() {
     }
 
     @Test
@@ -74,11 +74,11 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     }
 
     @Override
-    public void testDoubleMaxFails() {
+    public void testConvertDoubleMaxFails() {
     }
 
     @Override
-    public void testDoubleMinFails() {
+    public void testConvertDoubleMinFails() {
     }
 
     @Test
