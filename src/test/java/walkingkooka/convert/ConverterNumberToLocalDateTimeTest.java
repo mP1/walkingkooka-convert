@@ -33,57 +33,57 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
     private final static LocalDateTime DATE_TIME_EXCEL_OFFSET = LocalDateTime.of(1900, 5, 2, 0, 0, 0);
 
     @Test
-    public void testNonNumberTypeFails() {
+    public void testConvertNonNumberTypeFails() {
         this.convertFails2("fail!");
     }
 
     @Test
-    public void testFromLocalDateTimeFails() {
+    public void testConvertFromLocalDateTimeFails() {
         this.convertFails2(LocalDateTime.of(1, 2, 3, 4, 5));
     }
 
     @Test
-    public void testBigDecimal() {
+    public void testConvertBigDecimal() {
         this.convertAndCheck2(BigDecimal.valueOf(123));
     }
 
     @Test
-    public void testBigDecimalWithFraction() {
+    public void testConvertBigDecimalWithFraction() {
         this.convertAndCheck(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
     }
 
     @Test
-    public void testBigDecimalWithExcelOffset() {
+    public void testConvertBigDecimalWithExcelOffset() {
         this.convertAndCheckExcelOffset(BigDecimal.valueOf(VALUE));
     }
 
     @Test
-    public void testBigInteger() {
+    public void testConvertBigInteger() {
         this.convertAndCheck2(BigInteger.valueOf(VALUE));
     }
 
     @Test
-    public void testBigIntegerWithExcelOffset() {
+    public void testConvertBigIntegerWithExcelOffset() {
         this.convertAndCheckExcelOffset(BigInteger.valueOf(VALUE));
     }
 
     @Test
-    public void testFloat() {
+    public void testConvertFloat() {
         this.convertAndCheck2(123.0f);
     }
 
     @Test
-    public void testDouble() {
+    public void testConvertDouble() {
         this.convertAndCheck2(123.0);
     }
 
     @Test
-    public void testDoubleWithFraction() {
+    public void testConvertDoubleWithFraction() {
         this.convertAndCheck(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
     }
 
     @Test
-    public void testDoubleWithExcelOffset() {
+    public void testConvertDoubleWithExcelOffset() {
         this.convertAndCheckExcelOffset(BigDecimal.valueOf(VALUE));
     }
 
@@ -93,22 +93,22 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
     }
 
     @Test
-    public void testByte() {
+    public void testConvertByte() {
         this.convertAndCheck2((byte) 123);
     }
 
     @Test
-    public void testShort() {
+    public void testConvertShort() {
         this.convertAndCheck2((short) 123);
     }
 
     @Test
-    public void testInteger() {
+    public void testConvertInteger() {
         this.convertAndCheck2(123);
     }
 
     @Test
-    public void testLong() {
+    public void testConvertLong() {
         this.convertAndCheck2((long)VALUE);
     }
 
