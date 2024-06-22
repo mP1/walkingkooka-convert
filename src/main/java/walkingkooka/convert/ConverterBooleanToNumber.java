@@ -24,24 +24,24 @@ import walkingkooka.math.Maths;
 /**
  * Handles converting {@link Number} to {@link Boolean}.
  */
-final class ConverterBooleanNumber<C extends ConverterContext> extends Converter2<C> {
+final class ConverterBooleanToNumber<C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterBooleanNumber<C> instance() {
+    static <C extends ConverterContext> ConverterBooleanToNumber<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterBooleanNumber<?> INSTANCE = new ConverterBooleanNumber<>();
+    private final static ConverterBooleanToNumber<?> INSTANCE = new ConverterBooleanToNumber<>();
 
     /**
      * Private ctor use singleton.
      */
-    private ConverterBooleanNumber() {
+    private ConverterBooleanToNumber() {
         super();
     }
 
@@ -62,7 +62,7 @@ final class ConverterBooleanNumber<C extends ConverterContext> extends Converter
                                          final Class<T> type,
                                          final ConverterContext context) {
         return this.successfulConversion(
-                ConverterBooleanNumberNumberTypeVisitor.convert(
+                ConverterBooleanToNumberNumberTypeVisitor.convert(
                         (Boolean) value,
                         type
                 ),

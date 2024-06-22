@@ -99,10 +99,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterBooleanNumber}
+     * {@see ConverterBooleanToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> booleanNumber() {
-        return ConverterBooleanNumber.instance();
+    public static <C extends ConverterContext> Converter<C> booleanToNumber() {
+        return ConverterBooleanToNumber.instance();
     }
 
     /**
