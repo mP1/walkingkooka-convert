@@ -19,20 +19,20 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
 /**
- * A {@link Converter} that formats a {@link LocalTime} into a {@link String}
+ * A {@link Converter} that formats a {@link LocalDate} into a {@link String}
  */
-final class DateTimeFormatterConverterLocalTimeString<C extends ConverterContext> extends DateTimeFormatterConverter<LocalTime, String, C> {
+final class DateTimeFormatterConverterLocalDateToString<C extends ConverterContext> extends DateTimeFormatterConverter<LocalDate, String, C> {
 
-    static <C extends ConverterContext> DateTimeFormatterConverterLocalTimeString<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return new DateTimeFormatterConverterLocalTimeString<>(formatter);
+    static <C extends ConverterContext> DateTimeFormatterConverterLocalDateToString<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return new DateTimeFormatterConverterLocalDateToString<>(formatter);
     }
 
-    private DateTimeFormatterConverterLocalTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    private DateTimeFormatterConverterLocalDateToString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         super(formatter);
     }
 
@@ -40,7 +40,7 @@ final class DateTimeFormatterConverterLocalTimeString<C extends ConverterContext
     boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof LocalTime;
+        return value instanceof LocalDate;
     }
 
     @Override
@@ -49,7 +49,7 @@ final class DateTimeFormatterConverterLocalTimeString<C extends ConverterContext
     }
 
     @Override
-    String parseOrFormat(final LocalTime value,
+    String parseOrFormat(final LocalDate value,
                          final DateTimeFormatter formatter) throws IllegalArgumentException {
         return value.format(formatter);
     }
@@ -58,6 +58,6 @@ final class DateTimeFormatterConverterLocalTimeString<C extends ConverterContext
 
     @Override
     public String toString() {
-        return "LocalTime->String";
+        return "LocalDate->String";
     }
 }

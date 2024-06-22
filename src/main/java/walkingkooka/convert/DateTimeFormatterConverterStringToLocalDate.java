@@ -20,24 +20,24 @@ package walkingkooka.convert;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.function.Function;
 
 /**
- * A {@link Converter} that parses a {@link String} into a {@link LocalDate}.
+ * A {@link Converter} that parses a {@link String} into a {@link LocalTime}.
  */
-final class DateTimeFormatterConverterStringLocalDateTime<C extends ConverterContext> extends DateTimeFormatterConverter<String, LocalDateTime, C> {
+final class DateTimeFormatterConverterStringToLocalDate<C extends ConverterContext> extends DateTimeFormatterConverter<String, LocalDate, C> {
 
-    static <C extends ConverterContext> DateTimeFormatterConverterStringLocalDateTime<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return new DateTimeFormatterConverterStringLocalDateTime<>(formatter);
+    static <C extends ConverterContext> DateTimeFormatterConverterStringToLocalDate<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return new DateTimeFormatterConverterStringToLocalDate<>(formatter);
     }
 
     /**
      * Private ctor use static factory
      */
-    private DateTimeFormatterConverterStringLocalDateTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    private DateTimeFormatterConverterStringToLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         super(formatter);
     }
 
@@ -50,19 +50,19 @@ final class DateTimeFormatterConverterStringLocalDateTime<C extends ConverterCon
 
     @Override
     boolean canConvertType(final Class<?> type) {
-        return LocalDateTime.class == type;
+        return LocalDate.class == type;
     }
 
     @Override
-    LocalDateTime parseOrFormat(final String text,
-                                final DateTimeFormatter formatter) throws DateTimeParseException {
-        return LocalDateTime.parse(text, formatter);
+    LocalDate parseOrFormat(final String text,
+                            final DateTimeFormatter formatter) throws DateTimeParseException {
+        return LocalDate.parse(text, formatter);
     }
 
     // Object...........................................................................................................
 
     @Override
     public String toString() {
-        return "String->LocalDateTime";
+        return "String->LocalDate";
     }
 }

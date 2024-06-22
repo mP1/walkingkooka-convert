@@ -25,14 +25,14 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - fake Useful for testing.
 - localDateToLocalDateTime
 - localDateToNumber
-- localDateString
+- localDateToString
 - localDateTimeToLocalDate
 - localDateTimeToLocalTime
 - localDateTimeToNumber
-- localDateTimeString
+- localDateTimeToString
 - localTimeLocalDateTime
 - localTimeNumber
-- localTimeString
+- localTimeToString
 - mapper
 - never
 - numberToLocalDate
@@ -45,9 +45,9 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - parser This accepts Strings and calls a Parser.
 - simple Returns the value if it is the same Class as the target. Note due to J2cl limitations Class.isInstance is not possible.
 - stringCharacter
-- stringLocalDate
-- stringLocalDateTime
-- stringLocalTime
+- stringToLocalDate
+- stringToLocalDateTime
+- stringToLocalTime
 - stringNumber
 - toBoolean Performs a test and uses that result to pick one of two values.
 - toStringOrCharacter converts any value to String if necessary and then that to Character.

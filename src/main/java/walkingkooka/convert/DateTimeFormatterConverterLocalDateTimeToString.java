@@ -26,13 +26,13 @@ import java.util.function.Function;
 /**
  * A {@link Converter} that formats a {@link LocalDateTime} into a {@link String}
  */
-final class DateTimeFormatterConverterLocalDateTimeString<C extends ConverterContext> extends DateTimeFormatterConverter<LocalDateTime, String, C> {
+final class DateTimeFormatterConverterLocalDateTimeToString<C extends ConverterContext> extends DateTimeFormatterConverter<LocalDateTime, String, C> {
 
-    static <C extends ConverterContext> DateTimeFormatterConverterLocalDateTimeString<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return new DateTimeFormatterConverterLocalDateTimeString<>(formatter);
+    static <C extends ConverterContext> DateTimeFormatterConverterLocalDateTimeToString<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return new DateTimeFormatterConverterLocalDateTimeToString<>(formatter);
     }
 
-    private DateTimeFormatterConverterLocalDateTimeString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    private DateTimeFormatterConverterLocalDateTimeToString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         super(formatter);
     }
 
