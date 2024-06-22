@@ -36,26 +36,26 @@ import java.util.Objects;
  *     <li>null to {@link String} using the {@link Converter} then to {@link Character}</li>
  * </ul>
  */
-final class ConverterConverterStringCharacter<C extends ConverterContext> implements Converter<C> {
+final class ConverterToStringOrCharacter<C extends ConverterContext> implements Converter<C> {
 
     /**
-     * Factory that creates a {@link ConverterConverterStringCharacter} with the given {@link Converter}.
+     * Factory that creates a {@link ConverterToStringOrCharacter} with the given {@link Converter}.
      */
-    static <C extends ConverterContext> ConverterConverterStringCharacter<C> with(final Converter<C> converter) {
+    static <C extends ConverterContext> ConverterToStringOrCharacter<C> with(final Converter<C> converter) {
         Objects.requireNonNull(converter, "converter");
 
-        ConverterConverterStringCharacter<C> result;
+        ConverterToStringOrCharacter<C> result;
 
-        if (converter instanceof ConverterConverterStringCharacter) {
+        if (converter instanceof ConverterToStringOrCharacter) {
             result = Cast.to(converter);
         } else {
-            result = new ConverterConverterStringCharacter<>(converter);
+            result = new ConverterToStringOrCharacter<>(converter);
         }
 
         return result;
     }
 
-    private ConverterConverterStringCharacter(final Converter<C> converter) {
+    private ConverterToStringOrCharacter(final Converter<C> converter) {
         super();
         this.converter = converter;
         this.stringToCharacter = Converters.stringCharacter();
