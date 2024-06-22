@@ -39,7 +39,7 @@ public class TestGwtTest extends GWTTestCase {
     public void testConvertStringToCharacter() {
         assertEquals(
                 Character.valueOf('A'),
-                Converters.stringCharacter()
+                Converters.stringToCharacter()
                         .convertOrFail(
                                 "A",
                                 Character.class,
