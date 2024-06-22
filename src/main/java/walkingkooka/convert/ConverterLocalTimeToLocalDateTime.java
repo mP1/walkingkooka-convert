@@ -27,21 +27,21 @@ import java.time.LocalTime;
 /**
  * A {@link Converter} that converts {@link LocalTime} into {@link LocalDateTime}.
  */
-final class ConverterLocalTimeLocalDateTime<C extends ConverterContext> extends ConverterLocalTime<C> {
+final class ConverterLocalTimeToLocalDateTime<C extends ConverterContext> extends ConverterLocalTime<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterLocalTimeLocalDateTime<C> instance() {
+    static <C extends ConverterContext> ConverterLocalTimeToLocalDateTime<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterLocalTimeLocalDateTime<?> INSTANCE = new ConverterLocalTimeLocalDateTime<>();
+    private final static ConverterLocalTimeToLocalDateTime<?> INSTANCE = new ConverterLocalTimeToLocalDateTime<>();
 
-    private ConverterLocalTimeLocalDateTime() {
+    private ConverterLocalTimeToLocalDateTime() {
         super();
     }
 

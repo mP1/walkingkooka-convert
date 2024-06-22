@@ -191,17 +191,17 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterLocalTimeLocalDateTime}
+     * {@see ConverterLocalTimeToLocalDateTime}
      */
-    public static <C extends ConverterContext> Converter<C> localTimeLocalDateTime() {
-        return ConverterLocalTimeLocalDateTime.instance();
+    public static <C extends ConverterContext> Converter<C> localTimeLocalToDateTime() {
+        return ConverterLocalTimeToLocalDateTime.instance();
     }
 
     /**
-     * {@see ConverterLocalTimeNumber}
+     * {@see ConverterLocalTimeToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> localTimeNumber() {
-        return ConverterLocalTimeNumber.instance();
+    public static <C extends ConverterContext> Converter<C> localTimeToNumber() {
+        return ConverterLocalTimeToNumber.instance();
     }
 
     /**

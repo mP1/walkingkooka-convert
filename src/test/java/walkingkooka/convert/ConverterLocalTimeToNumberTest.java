@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalTime;
 
-public final class ConverterLocalTimeNumberTest extends ConverterLocalTimeTestCase<ConverterLocalTimeNumber<ConverterContext>> {
+public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTestCase<ConverterLocalTimeToNumber<ConverterContext>> {
 
     private final static byte VALUE = 123;
     private final static double WITH_NANOS = 123.5;
@@ -114,8 +114,8 @@ public final class ConverterLocalTimeNumberTest extends ConverterLocalTimeTestCa
     }
 
     @Override
-    public ConverterLocalTimeNumber<ConverterContext> createConverter() {
-        return ConverterLocalTimeNumber.instance();
+    public ConverterLocalTimeToNumber<ConverterContext> createConverter() {
+        return ConverterLocalTimeToNumber.instance();
     }
 
     @Override
@@ -147,8 +147,8 @@ public final class ConverterLocalTimeNumberTest extends ConverterLocalTimeTestCa
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterLocalTimeNumber<ConverterContext>> type() {
-        return Cast.to(ConverterLocalTimeNumber.class);
+    public Class<ConverterLocalTimeToNumber<ConverterContext>> type() {
+        return Cast.to(ConverterLocalTimeToNumber.class);
     }
 
     // TypeNameTesting..................................................................................................
