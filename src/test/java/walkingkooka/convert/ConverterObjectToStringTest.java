@@ -28,7 +28,7 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
         ToStringTesting<ConverterObjectToString<ConverterContext>> {
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 "null"
@@ -36,7 +36,7 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
     }
 
     @Test
-    public void testBooleanTrue() {
+    public void testConvertBooleanTrue() {
         this.convertAndCheck(
                 Boolean.TRUE,
                 Boolean.TRUE.toString()
@@ -44,7 +44,7 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
     }
 
     @Test
-    public void testLong() {
+    public void testConvertLong() {
         this.convertAndCheck(
                 123L,
                 "123"
