@@ -26,24 +26,24 @@ import java.math.BigDecimal;
  * A specialized {@link Converter} that tests a {@link BigDecimal} against zero without using {@link BigDecimal#equals(Object)
  * which fails when trailing zero counts are different.
  */
-final class ConverterBigDecimalBoolean<C extends ConverterContext> extends Converter2<C> {
+final class ConverterBigDecimalToBoolean<C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterBigDecimalBoolean<C> instance() {
+    static <C extends ConverterContext> ConverterBigDecimalToBoolean<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    final static ConverterBigDecimalBoolean<?> INSTANCE = new ConverterBigDecimalBoolean<>();
+    final static ConverterBigDecimalToBoolean<?> INSTANCE = new ConverterBigDecimalToBoolean<>();
 
     /**
      * Private ctor use singleton
      */
-    private ConverterBigDecimalBoolean() {
+    private ConverterBigDecimalToBoolean() {
         super();
     }
 
