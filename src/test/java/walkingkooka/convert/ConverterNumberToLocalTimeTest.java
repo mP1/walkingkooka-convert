@@ -29,42 +29,46 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     private final static byte VALUE = 123;
 
     @Test
-    public void testNonNumberTypeFails() {
+    public void testConvertNonNumberTypeFails() {
         this.convertFails2("fail!");
     }
 
     @Test
-    public void testFromLocalTimeFails() {
+    public void testConvertFromLocalTimeFails() {
         this.convertFails2(LocalTime.of(12, 59));
     }
 
     @Test
-    public void testBigDecimal() {
+    public void testConvertBigDecimal() {
         this.convertAndCheck2(BigDecimal.valueOf(VALUE));
     }
 
     @Test
-    public void testBigDecimalWithFraction() {
-        this.convertAndCheck(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
+    public void testConvertBigDecimalWithFraction() {
+        this.convertAndCheck(
+                BigDecimal.valueOf(123.5),
+                LocalTime.ofSecondOfDay(VALUE)
+                        .plusNanos(Converters.NANOS_PER_SECOND / 2)
+        );
     }
 
     @Test
-    public void testBigInteger() {
+    public void testConvertBigInteger() {
         this.convertAndCheck2(BigInteger.valueOf(123));
     }
 
     @Test
-    public void testFloat() {
+    public void testConvertFloat() {
         this.convertAndCheck2((float) VALUE);
     }
 
     @Test
-    public void testDouble() {
+    public void testConvertDouble() {
         this.convertAndCheck2((double) VALUE);
     }
 
     @Test
-    public void testDoubleWithFraction() {
+    public void testConvertDoubleWithFraction() {
         this.convertAndCheck(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
     }
 
@@ -75,22 +79,22 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
 
     @SuppressWarnings("RedundantCast")
     @Test
-    public void testByte() {
+    public void testConvertByte() {
         this.convertAndCheck2((byte) VALUE);
     }
 
     @Test
-    public void testShort() {
+    public void testConvertShort() {
         this.convertAndCheck2((short) VALUE);
     }
 
     @Test
-    public void testInteger() {
+    public void testConvertInteger() {
         this.convertAndCheck2((int) VALUE);
     }
 
     @Test
-    public void testLong() {
+    public void testConvertLong() {
         this.convertAndCheck2((long) VALUE);
     }
 
