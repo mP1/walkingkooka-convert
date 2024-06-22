@@ -55,10 +55,12 @@ public class JunitTest {
     @Test
     public void testStringToBigDecimal() {
         this.convertAndCheck(
-                Converters.stringNumber((c) -> new DecimalFormat("#.#", DecimalFormatSymbols.getInstance(LOCALE))),
+                Converters.stringToNumber(
+                        (c) -> new DecimalFormat("#.#", DecimalFormatSymbols.getInstance(LOCALE))),
                 "1.5",
                 BigDecimal.class,
-                BigDecimal.valueOf(1.5));
+                BigDecimal.valueOf(1.5)
+        );
     }
 
     private <T> void convertAndCheck(final Converter converter,
