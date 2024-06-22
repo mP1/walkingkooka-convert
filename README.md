@@ -23,12 +23,12 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - collection Tries many Converters until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing.
-- localDateLocalDateTime
-- localDateNumber
+- localDateToLocalDateTime
+- localDateToNumber
 - localDateString
-- localDateTimeLocalDate
-- localDateTimeLocalTime
-- localDateTimeNumber
+- localDateTimeToLocalDate
+- localDateTimeToLocalTime
+- localDateTimeToNumber
 - localDateTimeString
 - localTimeLocalDateTime
 - localTimeNumber

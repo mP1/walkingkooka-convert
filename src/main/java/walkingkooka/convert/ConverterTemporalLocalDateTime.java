@@ -47,9 +47,9 @@ abstract class ConverterTemporalLocalDateTime<D, C extends ConverterContext> ext
     }
 
     @Override
-    final <T> Either<T, String> convert1(final LocalDateTime value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
+    final <T> Either<T, String> convertNonNull0(final LocalDateTime value,
+                                                final Class<T> type,
+                                                final ConverterContext context) {
         return this.convertFromLocalDateTime(value.toLocalDate().toEpochDay() + this.offset,
                 (double) value.toLocalTime().toNanoOfDay() / Converters.NANOS_PER_DAY,
                 value,

@@ -27,21 +27,21 @@ import java.time.LocalTime;
 /**
  * A {@link Converter} that converts {@link LocalDate} into {@link LocalDateTime}.
  */
-final class ConverterTemporalLocalDateLocalDateTime<C extends ConverterContext> extends ConverterTemporalLocalDate<LocalDateTime, C> {
+final class ConverterTemporalLocalDateToLocalDateTime<C extends ConverterContext> extends ConverterTemporalLocalDate<LocalDateTime, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterTemporalLocalDateLocalDateTime<C> instance() {
+    static <C extends ConverterContext> ConverterTemporalLocalDateToLocalDateTime<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterTemporalLocalDateLocalDateTime<?> INSTANCE = new ConverterTemporalLocalDateLocalDateTime<>();
+    private final static ConverterTemporalLocalDateToLocalDateTime<?> INSTANCE = new ConverterTemporalLocalDateToLocalDateTime<>();
 
-    private ConverterTemporalLocalDateLocalDateTime() {
+    private ConverterTemporalLocalDateToLocalDateTime() {
         super(0);
     }
 
@@ -51,9 +51,9 @@ final class ConverterTemporalLocalDateLocalDateTime<C extends ConverterContext> 
     }
 
     @Override
-    <T> Either<T, String> convert1(final LocalDate date,
-                                   final Class<T> type,
-                                   final ConverterContext context) {
+    <T> Either<T, String> convertNonNull0(final LocalDate date,
+                                          final Class<T> type,
+                                          final ConverterContext context) {
         return this.successfulConversion(
                 LocalDateTime.of(date, TIME),
                 type

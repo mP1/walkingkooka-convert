@@ -35,14 +35,16 @@ abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Conve
     final <T> Either<T, String> convertNonNull(final Object value,
                                                final Class<T> type,
                                                final ConverterContext context) {
-        return this.convert1(Cast.to(value),
+        return this.convertNonNull0(
+                Cast.to(value),
                 type,
-                context);
+                context
+        );
     }
 
-    abstract <T> Either<T, String> convert1(final S value,
-                                            final Class<T> type,
-                                            final ConverterContext context);
+    abstract <T> Either<T, String> convertNonNull0(final S value,
+                                                   final Class<T> type,
+                                                   final ConverterContext context);
 
     final long offset;
 

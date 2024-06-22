@@ -144,15 +144,15 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see LocalDateLocalDateTimeConverter}
      */
-    public static <C extends ConverterContext> Converter<C> localDateLocalDateTime() {
-        return walkingkooka.convert.ConverterTemporalLocalDateLocalDateTime.instance();
+    public static <C extends ConverterContext> Converter<C> localDateToLocalDateTime() {
+        return ConverterTemporalLocalDateToLocalDateTime.instance();
     }
 
     /**
-     * {@see ConverterTemporalLocalDateNumber}
+     * {@see ConverterTemporalLocalDateToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> localDateNumber(final long offset) {
-        return walkingkooka.convert.ConverterTemporalLocalDateNumber.with(offset);
+    public static <C extends ConverterContext> Converter<C> localDateToNumber(final long offset) {
+        return ConverterTemporalLocalDateToNumber.with(offset);
     }
 
     /**
@@ -163,24 +163,24 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTemporalLocalDateTimeLocalDate}
+     * {@see ConverterTemporalLocalDateTimeToLocalDate}
      */
-    public static <C extends ConverterContext> Converter<C> localDateTimeLocalDate() {
-        return ConverterTemporalLocalDateTimeLocalDate.instance();
+    public static <C extends ConverterContext> Converter<C> localDateTimeToLocalDate() {
+        return ConverterTemporalLocalDateTimeToLocalDate.instance();
     }
 
     /**
-     * {@see ConverterTemporalLocalDateTimeLocalTime}
+     * {@see ConverterTemporalLocalDateTimeToLocalTime}
      */
-    public static <C extends ConverterContext> Converter<C> localDateTimeLocalTime() {
-        return ConverterTemporalLocalDateTimeLocalTime.instance();
+    public static <C extends ConverterContext> Converter<C> localDateTimeToLocalTime() {
+        return ConverterTemporalLocalDateTimeToLocalTime.instance();
     }
 
     /**
-     * {@see ConverterTemporalLocalDateTimeNumber}
+     * {@see ConverterTemporalLocalDateTimeToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> localDateTimeNumber(final long offset) {
-        return walkingkooka.convert.ConverterTemporalLocalDateTimeNumber.with(offset);
+    public static <C extends ConverterContext> Converter<C> localDateTimeToNumber(final long offset) {
+        return ConverterTemporalLocalDateTimeToNumber.with(offset);
     }
 
     /**
@@ -193,7 +193,7 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterLocalTimeLocalDateTime}
      */
-    public static <C extends ConverterContext> Converter<C> localTimeLocalDateTime() {
+    public static <C extends ConverterContext> Converter<C> localTimeLocalToDateTime() {
         return ConverterLocalTimeLocalDateTime.instance();
     }
 
