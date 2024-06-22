@@ -73,7 +73,7 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     }
 
     @Override
-    public void testDoubleMaxFails() {
+    public void testConvertDoubleMaxFails() {
         throw new UnsupportedOperationException();
     }
 

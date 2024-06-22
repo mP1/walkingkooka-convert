@@ -28,33 +28,37 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
     }
 
     @Test
-    public void testDoubleNanFails() {
+    public void testConvertDoubleNanFails() {
         this.convertFails2(Double.NaN);
     }
 
     @Test
-    public void testDoublePositiveInfinityFails() {
+    public void testConvertDoublePositiveInfinityFails() {
         this.convertFails2(Double.POSITIVE_INFINITY);
     }
 
     @Test
-    public void testDoubleNegativeInfinityFails() {
+    public void testConvertDoubleNegativeInfinityFails() {
         this.convertFails2(Double.NEGATIVE_INFINITY);
     }
 
     @Test
-    public void testDoubleMaxFails() {
+    public void testConvertDoubleMaxFails() {
         this.convertFails2(Double.MAX_VALUE);
     }
 
     @Test
-    public void testDoubleMinFails() {
+    public void testConvertDoubleMinFails() {
         this.convertFails2(Double.MIN_VALUE);
     }
     
     @Test
-    public final void testNull() {
-        this.convertAndCheck(null, this.targetType(), null);
+    public final void testConvertNull() {
+        this.convertAndCheck(
+                null,
+                this.targetType(),
+                null
+        );
     }
 
     @Override

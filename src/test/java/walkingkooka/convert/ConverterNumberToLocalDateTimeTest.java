@@ -88,7 +88,7 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
     }
 
     @Override
-    public void testDoubleMaxFails() {
+    public void testConvertDoubleMaxFails() {
         throw new UnsupportedOperationException();
     }
 
