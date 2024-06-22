@@ -19,7 +19,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 
 - bigDecimalToBoolean
 - booleanToNumber
-- characterStringConverter converts characters to a String if necessary and then passes that String to a wrapped Converter.
+- characterOrStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
 - collection Tries many Converters until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing.
