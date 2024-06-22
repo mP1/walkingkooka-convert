@@ -23,7 +23,7 @@ import walkingkooka.Cast;
 public final class ConverterStringToCharacterTest extends ConverterTestCase2<ConverterStringToCharacter<ConverterContext>> {
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 Character.class,
@@ -32,17 +32,17 @@ public final class ConverterStringToCharacterTest extends ConverterTestCase2<Con
     }
 
     @Test
-    public void testEmptyFails() {
+    public void testConvertEmptyFails() {
         this.convertFails("", Character.class);
     }
 
     @Test
-    public void testLength2Fails() {
+    public void testConvertLength2Fails() {
         this.convertFails("ab", Character.class);
     }
 
     @Test
-    public void testOne() {
+    public void testConvertOne() {
         this.convertAndCheck(
                 "!",
                 '!'
@@ -50,7 +50,7 @@ public final class ConverterStringToCharacterTest extends ConverterTestCase2<Con
     }
 
     @Test
-    public void testOne2() {
+    public void testConvertOne2() {
         this.convertAndCheck(
                 "A",
                 'A'
