@@ -99,23 +99,6 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see BooleanTrueFalseConverter}
-     */
-    public static <V, C extends ConverterContext> Converter<C> booleanTrueFalse(final Predicate<Object> source,
-                                                                                final Predicate<Class<?>> target,
-                                                                                final Predicate<Object> trueValue,
-                                                                                final V trueAnswer,
-                                                                                final V falseAnswer) {
-        return BooleanTrueFalseConverter.with(
-                source,
-                target,
-                trueValue,
-                trueAnswer,
-                falseAnswer
-        );
-    }
-
-    /**
      * {@see ConverterBooleanNumber}
      */
     public static <C extends ConverterContext> Converter<C> booleanNumber() {
@@ -350,6 +333,23 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> stringNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         return DecimalFormatConverterStringNumber.with(decimalFormat);
+    }
+
+    /**
+     * {@see ToBooleanConverter}
+     */
+    public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
+                                                                         final Predicate<Class<?>> target,
+                                                                         final Predicate<Object> trueValue,
+                                                                         final V trueAnswer,
+                                                                         final V falseAnswer) {
+        return ToBooleanConverter.with(
+                source,
+                target,
+                trueValue,
+                trueAnswer,
+                falseAnswer
+        );
     }
 
     /**
