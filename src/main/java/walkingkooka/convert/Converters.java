@@ -193,7 +193,7 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterLocalTimeToLocalDateTime}
      */
-    public static <C extends ConverterContext> Converter<C> localTimeLocalToDateTime() {
+    public static <C extends ConverterContext> Converter<C> localTimeToLocalDateTime() {
         return ConverterLocalTimeToLocalDateTime.instance();
     }
 
