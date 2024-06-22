@@ -58,7 +58,7 @@ final class ConverterToStringOrCharacter<C extends ConverterContext> implements 
     private ConverterToStringOrCharacter(final Converter<C> converter) {
         super();
         this.converter = converter;
-        this.stringToCharacter = Converters.stringCharacter();
+        this.stringToCharacter = Converters.stringToCharacter();
     }
 
     @Override

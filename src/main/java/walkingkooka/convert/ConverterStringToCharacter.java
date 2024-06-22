@@ -23,25 +23,25 @@ import walkingkooka.Either;
 /**
  * A Converter that converts a String with one character into a {@link Character}. Strings of other length will fail.
  */
-final class ConverterStringCharacter<C extends ConverterContext> extends Converter2<C> {
+final class ConverterStringToCharacter<C extends ConverterContext> extends Converter2<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterStringCharacter<C> instance() {
+    static <C extends ConverterContext> ConverterStringToCharacter<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterStringCharacter<?> INSTANCE = new ConverterStringCharacter<>();
+    private final static ConverterStringToCharacter<?> INSTANCE = new ConverterStringToCharacter<>();
 
 
     /**
      * Private to stop sub classing.
      */
-    private ConverterStringCharacter() {
+    private ConverterStringToCharacter() {
         super();
     }
 

@@ -20,7 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 
-public final class ConverterStringCharacterTest extends ConverterTestCase2<ConverterStringCharacter<ConverterContext>> {
+public final class ConverterStringToCharacterTest extends ConverterTestCase2<ConverterStringToCharacter<ConverterContext>> {
 
     @Test
     public void testNull() {
@@ -63,8 +63,8 @@ public final class ConverterStringCharacterTest extends ConverterTestCase2<Conve
     }
 
     @Override
-    public ConverterStringCharacter<ConverterContext> createConverter() {
-        return ConverterStringCharacter.instance();
+    public ConverterStringToCharacter<ConverterContext> createConverter() {
+        return ConverterStringToCharacter.instance();
     }
 
     @Override
@@ -75,8 +75,8 @@ public final class ConverterStringCharacterTest extends ConverterTestCase2<Conve
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterStringCharacter<ConverterContext>> type() {
-        return Cast.to(ConverterStringCharacter.class);
+    public Class<ConverterStringToCharacter<ConverterContext>> type() {
+        return Cast.to(ConverterStringToCharacter.class);
     }
 
     // TypeNameTesting..................................................................................................
@@ -88,6 +88,6 @@ public final class ConverterStringCharacterTest extends ConverterTestCase2<Conve
 
     @Override
     public String typeNameSuffix() {
-        return String.class.getSimpleName() + Character.class.getSimpleName();
+        return String.class.getSimpleName() + "To" + Character.class.getSimpleName();
     }
 }
