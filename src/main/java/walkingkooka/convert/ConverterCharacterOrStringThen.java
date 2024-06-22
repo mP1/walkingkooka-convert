@@ -23,33 +23,34 @@ import walkingkooka.Either;
 import java.util.Objects;
 
 /**
- * A {@link Converter} that supports considering {@link Character} as equivalent to {@link String} to convert to a type.
+ * A {@link Converter} that supports considering {@link Character} as equivalent to {@link String} before passing
+ * the {@link String} to a wrapped converter for conversion.
  * <br>
  * This supports the following conversion requests.
  * <ul>
  *     <li>{@link String} to the types supported by the {@link Converter}</li>
- *     <li>{link Character} to {@link String} to the types supported by the {@link Converter}</li>
+ *     <li>{link Character} to {@link String} followed by the types supported by the wrapped {@link Converter}</li>
  * </ul>
  * <br>
  * Note converting {@link Character} or {@link String }to {@link String} is not supported.
  */
-final class ConverterCharacterStringConverter<C extends ConverterContext> implements Converter<C> {
+final class ConverterCharacterOrStringThen<C extends ConverterContext> implements Converter<C> {
 
-    static <C extends ConverterContext> ConverterCharacterStringConverter<C> with(final Converter<C> converter) {
+    static <C extends ConverterContext> ConverterCharacterOrStringThen<C> with(final Converter<C> converter) {
         Objects.requireNonNull(converter, "converter");
 
-        ConverterCharacterStringConverter<C> result;
+        ConverterCharacterOrStringThen<C> result;
 
-        if (converter instanceof ConverterCharacterStringConverter) {
+        if (converter instanceof ConverterCharacterOrStringThen) {
             result = Cast.to(converter);
         } else {
-            result = new ConverterCharacterStringConverter<>(converter);
+            result = new ConverterCharacterOrStringThen<>(converter);
         }
 
         return result;
     }
 
-    private ConverterCharacterStringConverter(final Converter<C> converter) {
+    private ConverterCharacterOrStringThen(final Converter<C> converter) {
         super();
         this.converter = converter;
     }
