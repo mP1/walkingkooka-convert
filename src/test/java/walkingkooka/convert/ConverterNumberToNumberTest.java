@@ -114,7 +114,11 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     private void convertToSameTypeAndCheck(final Number number) {
-        this.convertAndCheck(number, Number.class, number);
+        this.convertAndCheck(
+                number,
+                Cast.to(number.getClass()),
+                number
+        );
     }
 
     // toBigDecimal.....................................................................................................
