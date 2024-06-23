@@ -26,28 +26,23 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
         ToStringTesting<SimpleConverter<ConverterContext>> {
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(null, Void.class);
     }
 
     @Test
-    public void testSameType() {
+    public void testConvertSameType() {
         this.convertAndCheck("ABC", String.class);
     }
 
     @Test
-    public void testInstanceOfTargetType() {
+    public void testConvertInstanceOfTargetType() {
         this.convertFails("ABC", CharSequence.class);
     }
 
     @Test
-    public void testDifferentType() {
+    public void testConvertDifferentType() {
         this.convertFails("ABC", Number.class);
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "value==target type");
     }
 
     @Override
@@ -59,6 +54,15 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
     public ConverterContext createContext() {
         return ConverterContexts.fake();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(this.createConverter(), "value==target type");
+    }
+
+    // Class............................................................................................................
 
     @Override
     public Class<SimpleConverter<ConverterContext>> type() {
