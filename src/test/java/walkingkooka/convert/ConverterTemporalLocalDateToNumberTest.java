@@ -29,16 +29,16 @@ public final class ConverterTemporalLocalDateToNumberTest extends ConverterTempo
     // fail(overflow)....................................................................................................
 
     @Test
-    public void testToByteOverflowFails() {
-        this.convertFails3(Byte.class);
+    public void testConvertLocalDateToByteOverflowFails() {
+        this.convertLocalDateToFails3(Byte.class);
     }
 
     @Test
-    public void testToShortOverflowFails() {
-        this.convertFails3(Byte.class);
+    public void testConvertLocalDateToShortOverflowFails() {
+        this.convertLocalDateToFails3(Byte.class);
     }
 
-    private void convertFails3(final Class<? extends Number> type) {
+    private void convertLocalDateToFails3(final Class<? extends Number> type) {
         this.convertFails(LocalDate.MAX, type);
     }
 
@@ -47,62 +47,60 @@ public final class ConverterTemporalLocalDateToNumberTest extends ConverterTempo
     private final byte BYTE_VALUE = 123;
 
     @Test
-    public void testToBigDecimal() {
+    public void testConvertLocalDateToBigDecimal() {
         this.convertAndCheck3(BigDecimal.valueOf(BYTE_VALUE));
     }
 
     @Test
-    public void testToBigInteger() {
+    public void testConvertLocalDateToBigInteger() {
         this.convertAndCheck3(BigInteger.valueOf(BYTE_VALUE));
     }
 
     @Test
-    public void testToByte() {
+    public void testConvertLocalDateToByte() {
         this.convertAndCheck3(BYTE_VALUE);
     }
 
     @Test
-    public void testToShort() {
+    public void testConvertLocalDateToShort() {
         this.convertAndCheck3((short)BYTE_VALUE);
     }
 
     @Test
-    public void testToInteger() {
+    public void testConvertLocalDateToInteger() {
         this.convertAndCheck3((int)BYTE_VALUE);
     }
 
     @Test
-    public void testToLong() {
+    public void testConvertLocalDateToLong() {
         this.convertAndCheck3((long)BYTE_VALUE);
     }
 
     @Test
-    public void testToFloat() {
+    public void testConvertLocalDateToFloat() {
         this.convertAndCheck3((float)BYTE_VALUE);
     }
 
     @Test
-    public void testToDouble() {
+    public void testConvertLocalDateToDouble() {
         this.convertAndCheck3((double)BYTE_VALUE);
     }
 
     private void convertAndCheck3(final Number expected) {
-        this.convertAndCheck2(LocalDate.ofEpochDay(BYTE_VALUE), expected);
+        this.convertAndCheck2(
+                LocalDate.ofEpochDay(BYTE_VALUE),
+                expected
+        );
     }
 
     @Test
-    public void testToNumber() {
-        this.convertAndCheck(LocalDate.ofEpochDay(BYTE_VALUE), Number.class, (long)BYTE_VALUE);
+    public void testConvertLocalDateToNumber() {
+        this.convertAndCheck(
+                LocalDate.ofEpochDay(BYTE_VALUE),
+                Number.class,
+                (long)BYTE_VALUE
+        );
     }
-
-    // toString.........................................................................................................
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "LocalDate->Number");
-    }
-
-    // ConverterTesting.................................................................................................
 
     @Override
     public ConverterTemporalLocalDateToNumber<ConverterContext> createConverter() {
@@ -112,6 +110,13 @@ public final class ConverterTemporalLocalDateToNumberTest extends ConverterTempo
     @Override
     Class<Number> targetType() {
         return Number.class;
+    }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(this.createConverter(), "LocalDate->Number");
     }
 
     // ClassTesting.....................................................................................................
