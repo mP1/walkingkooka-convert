@@ -29,7 +29,7 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
     }
 
     @Test
-    public final void testNull() {
+    public final void testConvertNull() {
         this.convertAndCheck(
                 null,
                 this.targetType(),
@@ -42,8 +42,13 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
         return ConverterContexts.fake();
     }
 
-    final void convertAndCheck2(final Object value, final Object expected) {
-        this.convertAndCheck(value, Cast.to(expected.getClass()), expected);
+    final void convertAndCheck2(final Object value,
+                                final Object expected) {
+        this.convertAndCheck(
+                value,
+                Cast.to(expected.getClass()),
+                expected
+        );
     }
 
     abstract Class<D> targetType();
