@@ -49,7 +49,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     }
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 FALSE_ANSWER
@@ -57,7 +57,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     }
 
     @Test
-    public void testTrue() {
+    public void testConvertTrue() {
         this.convertAndCheck(
                 1,
                 TRUE_ANSWER
@@ -65,7 +65,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     }
 
     @Test
-    public void testTrueNullAnswer() {
+    public void testConvertTrueNullAnswer() {
         this.convertAndCheck(
                 ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
                 1,
@@ -75,7 +75,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     }
 
     @Test
-    public void testFalse() {
+    public void testConvertFalse() {
         this.convertAndCheck(
                 2,
                 FALSE_ANSWER
@@ -83,19 +83,13 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     }
 
     @Test
-    public void testFalseNullAnswer() {
+    public void testConvertFalseNullAnswer() {
         this.convertAndCheck(
                 ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
                 2,
                 String.class,
                 null
         );
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createConverter(),
-                "Integer->String");
     }
 
     @Override
@@ -106,6 +100,14 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.fake();
+    }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(this.createConverter(),
+                "Integer->String");
     }
 
     // ClassTesting.....................................................................................................
