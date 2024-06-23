@@ -35,22 +35,22 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - localTimeToString
 - mapper
 - never
+- numberToBoolean Follows javascript truthy rules, zero means false, all other values are true.
 - numberToLocalDate
 - numberToLocalDateTime
 - numberToLocalTime
 - numberToNumber
 - numberString
 - object // converts anything when target type is Object
-- objectString Simply calls Object#toString
+- objectToString Simply calls Object#toString
 - parser This accepts Strings and calls a Parser.
 - simple Returns the value if it is the same Class as the target. Note due to J2cl limitations Class.isInstance is not possible.
-- stringCharacter
+- stringToCharacter
 - stringToLocalDate
 - stringToLocalDateTime
 - stringToLocalTime
-- stringNumber
+- stringToNumber
 - toBoolean Performs a test and uses that result to pick one of two values.
 - toStringOrCharacter converts any value to String if necessary and then that to Character.
-- truthyNumberBoolean Follows javascript truthy rules, zero means false, all other values are true.
 
 
