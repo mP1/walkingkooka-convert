@@ -49,7 +49,7 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     // converter........................................................................................................
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 false
@@ -57,7 +57,7 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     }
 
     @Test
-    public void testTrue() {
+    public void testConvertTrue() {
         this.convertAndCheck(
                 Boolean.TRUE.toString(),
                 true
@@ -65,21 +65,12 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     }
 
     @Test
-    public void testFalse() {
+    public void testConvertFalse() {
         this.convertAndCheck(
                 Boolean.FALSE.toString(),
                 false
         );
     }
-
-    // toString.........................................................................................................
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createConverter().setToString("String->Boolean"), "String->Boolean");
-    }
-
-    // Converter........................................................................................................
 
     @Override
     public PredicatedMapperConverter<String, Boolean, ConverterContext> createConverter() {
@@ -93,6 +84,13 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.fake();
+    }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(this.createConverter().setToString("String->Boolean"), "String->Boolean");
     }
 
     // ClassTesting.....................................................................................................
