@@ -31,12 +31,12 @@ public final class ConverterTemporalLocalDateTimeToNumberTest extends ConverterT
     // fail(overflow)....................................................................................................
 
     @Test
-    public void testToByteOverflowFails() {
+    public void testConvertDateTimeToByteOverflowFails() {
         this.convertFails3(Byte.class);
     }
 
     @Test
-    public void testToShortOverflowFails() {
+    public void testConvertDateTimeToShortOverflowFails() {
         this.convertFails3(Byte.class);
     }
 
@@ -49,75 +49,94 @@ public final class ConverterTemporalLocalDateTimeToNumberTest extends ConverterT
     private final static byte BYTE_VALUE = 12;
 
     @Test
-    public void testToBigDecimal() {
-        this.convertAndCheck3(BigDecimal.valueOf(BYTE_VALUE));
+    public void testConvertDateTimeToBigDecimal() {
+        this.convertDateTimeToNumberAndCheck(
+                BigDecimal.valueOf(BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testToBigDecimalQuarter() {
-        this.convertAndCheck4(BigDecimal.valueOf(BYTE_VALUE).add(BigDecimal.valueOf(0.25)));
+    public void testConvertDateTimeToBigDecimalQuarter() {
+        this.convertDateTimeToNumberAndCheck2(
+                BigDecimal.valueOf(BYTE_VALUE).add(BigDecimal.valueOf(0.25))
+        );
     }
 
     @Test
-    public void testToBigInteger() {
-        this.convertAndCheck3(BigInteger.valueOf(BYTE_VALUE));
+    public void testConvertDateTimeToBigInteger() {
+        this.convertDateTimeToNumberAndCheck(BigInteger.valueOf(BYTE_VALUE));
     }
 
     @Test
-    public void testToByte() {
-        this.convertAndCheck3(BYTE_VALUE);
+    public void testConvertDateTimeToByte() {
+        this.convertDateTimeToNumberAndCheck(BYTE_VALUE);
     }
 
     @Test
-    public void testToShort() {
-        this.convertAndCheck3((short)BYTE_VALUE);
+    public void testConvertDateTimeToShort() {
+        this.convertDateTimeToNumberAndCheck((short)BYTE_VALUE);
     }
 
     @Test
-    public void testToInteger() {
-        this.convertAndCheck3((int)BYTE_VALUE);
+    public void testConvertDateTimeToInteger() {
+        this.convertDateTimeToNumberAndCheck((int)BYTE_VALUE);
     }
 
     @Test
-    public void testToLong() {
-        this.convertAndCheck3((long)BYTE_VALUE);
+    public void testConvertDateTimeToLong() {
+        this.convertDateTimeToNumberAndCheck((long)BYTE_VALUE);
     }
 
     @Test
-    public void testToFloat() {
-        this.convertAndCheck3((float)BYTE_VALUE);
+    public void testConvertDateTimeToFloat() {
+        this.convertDateTimeToNumberAndCheck((float)BYTE_VALUE);
     }
 
     @Test
-    public void testToFloatQuarter() {
-        this.convertAndCheck4(BYTE_VALUE + 0.25f);
+    public void testConvertDateTimeToFloatQuarter() {
+        this.convertDateTimeToNumberAndCheck2(BYTE_VALUE + 0.25f);
     }
 
     @Test
-    public void testToDouble() {
-        this.convertAndCheck3((double)BYTE_VALUE);
+    public void testConvertDateTimeToDouble() {
+        this.convertDateTimeToNumberAndCheck((double)BYTE_VALUE);
     }
 
     @Test
-    public void testToDoubleQuarter() {
-        this.convertAndCheck4(BYTE_VALUE + 0.25);
+    public void testConvertDateTimeToDoubleQuarter() {
+        this.convertDateTimeToNumberAndCheck2(BYTE_VALUE + 0.25);
     }
 
-    private void convertAndCheck3(final Number expected) {
-        this.convertAndCheck2(LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.MIDNIGHT),
-                expected);
+    private void convertDateTimeToNumberAndCheck(final Number expected) {
+        this.convertAndCheck2(
+                LocalDateTime.of(
+                        LocalDate.ofEpochDay(BYTE_VALUE), 
+                        LocalTime.MIDNIGHT
+                ),
+                expected
+        );
     }
 
-    private void convertAndCheck4(final Number expected) {
-        this.convertAndCheck2(LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.of(6, 0)),
-                expected);
+    private void convertDateTimeToNumberAndCheck2(final Number expected) {
+        this.convertAndCheck2(
+                LocalDateTime.of(
+                        LocalDate.ofEpochDay(BYTE_VALUE), 
+                        LocalTime.of(6, 0)
+                ),
+                expected
+        );
     }
 
     @Test
-    public void testToNumber() {
-        this.convertAndCheck(LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.MIDNIGHT),
+    public void testConvertDateTimeToNumber() {
+        this.convertAndCheck(
+                LocalDateTime.of(
+                        LocalDate.ofEpochDay(BYTE_VALUE), 
+                        LocalTime.MIDNIGHT
+                ),
                 Number.class,
-                (double)BYTE_VALUE);
+                (double)BYTE_VALUE
+        );
     }
 
     // withOffset.......................................................................................................
@@ -125,59 +144,82 @@ public final class ConverterTemporalLocalDateTimeToNumberTest extends ConverterT
     private final static int OFFSET = 100;
 
     @Test
-    public void testWithOffsetToBigDecimal() {
-        this.convertWithOffsetAndCheck3(BigDecimal.valueOf(OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToBigDecimal() {
+        this.convertDateTimeWithOffsetAndCheck(
+                BigDecimal.valueOf(OFFSET + BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testWithOffsetToBigInteger() {
-        this.convertWithOffsetAndCheck3(BigInteger.valueOf(OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToBigInteger() {
+        this.convertDateTimeWithOffsetAndCheck(
+                BigInteger.valueOf(OFFSET + BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testWithOffsetToByte() {
-        this.convertWithOffsetAndCheck3((byte) (OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToByte() {
+        this.convertDateTimeWithOffsetAndCheck(
+                (byte) (OFFSET + BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testWithOffsetToShort() {
-        this.convertWithOffsetAndCheck3((short)((byte) (OFFSET + BYTE_VALUE)));
+    public void testConvertDateTimeWithOffsetToShort() {
+        this.convertDateTimeWithOffsetAndCheck(
+                (short)((byte) (OFFSET + BYTE_VALUE))
+        );
     }
 
     @SuppressWarnings("RedundantCast")
     @Test
-    public void testWithOffsetToInteger() {
-        this.convertWithOffsetAndCheck3((int)(OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToInteger() {
+        this.convertDateTimeWithOffsetAndCheck(
+                (int)(OFFSET + BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testWithOffsetToLong() {
-        this.convertWithOffsetAndCheck3((long)(OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToLong() {
+        this.convertDateTimeWithOffsetAndCheck(
+                (long)(OFFSET + BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testWithOffsetToFloat() {
-        this.convertWithOffsetAndCheck3((float)(OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToFloat() {
+        this.convertDateTimeWithOffsetAndCheck(
+                (float)(OFFSET + BYTE_VALUE)
+        );
     }
 
     @Test
-    public void testWithOffsetToDouble() {
-        this.convertWithOffsetAndCheck3((double)(OFFSET + BYTE_VALUE));
+    public void testConvertDateTimeWithOffsetToDouble() {
+        this.convertDateTimeWithOffsetAndCheck(
+                (double)(OFFSET + BYTE_VALUE)
+        );
     }
 
-    private void convertWithOffsetAndCheck3(final Number expected) {
-        this.convertAndCheck(ConverterTemporalLocalDateTimeToNumber.with(OFFSET),
-                LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.MIDNIGHT),
+    private void convertDateTimeWithOffsetAndCheck(final Number expected) {
+        this.convertAndCheck(
+                ConverterTemporalLocalDateTimeToNumber.with(OFFSET),
+                LocalDateTime.of(
+                        LocalDate.ofEpochDay(BYTE_VALUE), 
+                        LocalTime.MIDNIGHT
+                ),
                 Cast.to(expected.getClass()),
-                expected);
+                expected
+        );
     }
 
     @Test
-    public void testWithOffsetToNumber() {
-        this.convertAndCheck(ConverterTemporalLocalDateTimeToNumber.with(OFFSET),
+    public void testConvertDateTimeWithOffsetToNumber() {
+        this.convertAndCheck(
+                ConverterTemporalLocalDateTimeToNumber.with(OFFSET),
                 LocalDateTime.of(LocalDate.ofEpochDay(BYTE_VALUE), LocalTime.MIDNIGHT),
                 Number.class,
-                (double)(BYTE_VALUE + OFFSET));
+                (double)(BYTE_VALUE + OFFSET)
+        );
     }
 
     // toString.........................................................................................................
