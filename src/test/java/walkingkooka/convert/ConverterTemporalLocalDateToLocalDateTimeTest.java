@@ -27,15 +27,27 @@ import java.time.LocalTime;
 public final class ConverterTemporalLocalDateToLocalDateTimeTest extends ConverterTemporalLocalDateTestCase<ConverterTemporalLocalDateToLocalDateTime<ConverterContext>, LocalDateTime> {
 
     @Test
-    public void testLocalDate() {
+    public void testConvertLocalDateToLocalDateTime() {
         final LocalDate date = LocalDate.of(2000, 1, 31);
-        this.convertAndCheck2(date, LocalDateTime.of(date, LocalTime.MIDNIGHT));
+        this.convertAndCheck2(
+                date,
+                LocalDateTime.of(
+                        date,
+                        LocalTime.MIDNIGHT
+                )
+        );
     }
 
     @Test
-    public void testLocalDate2() {
+    public void testConvertLocalDateToLocalDateTime2() {
         final LocalDate date = LocalDate.of(1999, 12, 31);
-        this.convertAndCheck2(date, LocalDateTime.of(date, LocalTime.MIDNIGHT));
+        this.convertAndCheck2(
+                date,
+                LocalDateTime.of(
+                        date,
+                        LocalTime.MIDNIGHT
+                )
+        );
     }
 
     // toString.........................................................................................................
