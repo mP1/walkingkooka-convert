@@ -38,7 +38,7 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     }
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 String.class,
@@ -47,47 +47,47 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     }
 
     @Test
-    public void testByte() {
+    public void testConvertByte() {
         this.convertAndCheck2("#.000", Byte.MAX_VALUE, "127.000");
     }
 
     @Test
-    public void testShort() {
+    public void testConvertShort() {
         this.convertAndCheck2("#.000", Short.MAX_VALUE, "32767.000");
     }
 
     @Test
-    public void testInteger() {
+    public void testConvertInteger() {
         this.convertAndCheck2("$ #.000", 123, "$ 123.000");
     }
 
     @Test
-    public void testLong() {
+    public void testConvertLong() {
         this.convertAndCheck2("$ #.000", 123L, "$ 123.000");
     }
 
     @Test
-    public void testFloat() {
+    public void testConvertFloat() {
         this.convertAndCheck2("$ #.000", 123.5f, "$ 123.500");
     }
 
     @Test
-    public void testDouble() {
+    public void testConvertDouble() {
         this.convertAndCheck2("$ #.000", 123.5, "$ 123.500");
     }
 
     @Test
-    public void testBigDecimal() {
+    public void testConvertBigDecimal() {
         this.convertAndCheck2("$ #.000", BigDecimal.valueOf(123.5), "$ 123.500");
     }
 
     @Test
-    public void testBigInteger() {
+    public void testConvertBigInteger() {
         this.convertAndCheck2("$ #.000", BigInteger.valueOf(123), "$ 123.000");
     }
 
     @Test
-    public void testLocaleChange() {
+    public void testConvertLocaleChange() {
         final DecimalFormatConverterNumberToString<ConverterContext> converter = this.createConverter("$ ###.00");
         this.convertAndCheck(converter,
                 1.25,
