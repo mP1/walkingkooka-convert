@@ -38,7 +38,7 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     }
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
                 Number.class,
@@ -47,42 +47,42 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     }
 
     @Test
-    public void testByte() {
+    public void testConvertByte() {
         this.convertAndCheck3(Byte.MAX_VALUE);
     }
 
     @Test
-    public void testShort() {
+    public void testConvertShort() {
         this.convertAndCheck3(Short.MAX_VALUE);
     }
 
     @Test
-    public void testInteger() {
+    public void testConvertInteger() {
         this.convertAndCheck3(Integer.MAX_VALUE);
     }
 
     @Test
-    public void testLong() {
+    public void testConvertLong() {
         this.convertAndCheck3(Long.MAX_VALUE);
     }
 
     @Test
-    public void testFloat() {
+    public void testConvertFloat() {
         this.convertAndCheck3(1.5f);
     }
 
     @Test
-    public void testDouble() {
+    public void testConvertDouble() {
         this.convertAndCheck3(1.5);
     }
 
     @Test
-    public void testBigDecimal() {
+    public void testConvertBigDecimal() {
         this.convertAndCheck3(BigDecimal.valueOf(123.5));
     }
 
     @Test
-    public void testBigInteger() {
+    public void testConvertBigInteger() {
         this.convertAndCheck3(BigInteger.valueOf(123));
     }
 
@@ -91,7 +91,7 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     }
 
     @Test
-    public void testNumber() {
+    public void testConvertNumber() {
         final String text = "1234567890123456789012345678901234567890.5";
         this.convertAndCheck(text,
                 Number.class,
@@ -99,27 +99,31 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     }
 
     @Test
-    public void testNumber2() {
+    public void testConvertNumber2() {
         this.convertAndCheck("123.5",
                 Number.class,
                 new BigDecimal("123.5"));
     }
 
     @Test
-    public void testCurrency() {
-        this.convertAndCheck2("$ #",
+    public void testConvertCurrency() {
+        this.convertAndCheck2(
+                "$ #",
                 "$ 123.5",
                 BigDecimal.class,
                 Locale.UK,
-                BigDecimal.valueOf(123.5));
+                BigDecimal.valueOf(123.5)
+        );
     }
 
     @Test
-    public void testPercentage() {
-        this.convertAndCheck2("#%",
+    public void testConvertPercentage() {
+        this.convertAndCheck2(
+                "#%",
                 "123.5%",
                 BigDecimal.class,
-                BigDecimal.valueOf(1.235));
+                BigDecimal.valueOf(1.235)
+        );
     }
 
     // ConverterTesting..................................................................................................
