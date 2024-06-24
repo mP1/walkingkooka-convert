@@ -13,16 +13,18 @@ Converters may be used to convert values of one type to another. This is particu
 
 # Converters
 
-The [Converters](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/Converters.java)
-class contains many static factory methods. The methods are camel case named in the style of source to destination type.
-Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal).
+The [Converters](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/Converters.java) class contains many static factory methods to fetch a {@link Converter} which converts a source
+to a requested target type. Different Converters only support a small limited source and target types and can be combined 
+into sequence which are tried one by one [ConverterCollect](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCollection.java).
+
+*Number* in the names below means any of the JRE `java.lang.Number` sub-classes (Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal).
 
 - bigDecimalToBoolean
 - booleanToNumber
 - characterOrStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
-- collection Tries many Converters until success.
+- collection Tries each of the given `Converter` until success.
 - customToString Wraps a Converter providing a custom #toString
-- fake Useful for testing.
+- fake Useful for testing, such as situations where a Converter should never be called.
 - localDateToLocalDateTime
 - localDateToNumber
 - localDateToString
@@ -30,8 +32,8 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - localDateTimeToLocalTime
 - localDateTimeToNumber
 - localDateTimeToString
-- localTimeLocalDateTime
-- localTimeNumber
+- localTimeToLocalDateTime
+- localTimeToNumber
 - localTimeToString
 - mapper
 - never
@@ -40,7 +42,7 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - numberToLocalDateTime
 - numberToLocalTime
 - numberToNumber
-- numberString
+- numberToString
 - object // converts anything when target type is Object
 - objectToString Simply calls Object#toString
 - parser This accepts Strings and calls a Parser.
@@ -53,4 +55,4 @@ Number means any of the JRE Number sub classes (Byte, Short, Integer, Long, Floa
 - toBoolean Performs a test and uses that result to pick one of two values.
 - toStringOrCharacter converts any value to String if necessary and then that to Character.
 
-
+Note more `Converter` implementations are available in many different repos to support useful conversions.
