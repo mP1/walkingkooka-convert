@@ -58,6 +58,6 @@ final class DateTimeFormatterConverterLocalDateTimeToString<C extends ConverterC
 
     @Override
     public String toString() {
-        return "LocalDateTime->String";
+        return "LocalDateTime to String";
     }
 }

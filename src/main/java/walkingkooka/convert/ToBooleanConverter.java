@@ -89,6 +89,6 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements Convert
 
     @Override
     public String toString() {
-        return this.source + "->" + this.target;
+        return this.source + " to " + this.target;
     }
 }

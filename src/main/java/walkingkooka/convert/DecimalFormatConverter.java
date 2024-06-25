@@ -111,9 +111,4 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
                                                             final Object value,
                                                             final Class<T> type,
                                                             final ConverterContext context);
-
-    @Override
-    public final String toString() {
-        return this.decimalFormat.toString();
-    }
 }

@@ -50,7 +50,7 @@ abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Conve
 
     @Override
     public final String toString() {
-        return this.sourceType().getSimpleName() + "->" + this.targetType().getSimpleName() + toStringOffset(this.offset);
+        return this.sourceType().getSimpleName() + " to " + this.targetType().getSimpleName() + toStringOffset(this.offset);
     }
 
     abstract Class<S> sourceType();

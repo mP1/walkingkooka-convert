@@ -44,12 +44,6 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
 
     // toString.........................................................................................................
 
-    @Test
-    public final void testToString() {
-        final Function<DecimalNumberContext, DecimalFormat> decimalFormat = this::decimalFormat;
-        this.toStringAndCheck(this.createConverter(decimalFormat), decimalFormat.toString());
-    }
-
     @Override
     public final C createConverter() {
         return this.createConverter(this::decimalFormat);

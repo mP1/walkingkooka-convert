@@ -62,6 +62,6 @@ final class ConverterObject<C extends ConverterContext> extends Converter2<C> {
 
     @Override
     public String toString() {
-        return "*->" + Object.class.getSimpleName();
+        return "* to " + Object.class.getSimpleName();
     }
 }

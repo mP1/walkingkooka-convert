@@ -106,14 +106,4 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
     Class<LocalDateTime> targetType() {
         return LocalDateTime.class;
     }
-
-    @Override
-    String toStringPrefix() {
-        return "";
-    }
-
-    @Override
-    String toStringSuffix() {
-        return toStringOffset(this.offset);
-    }
 }

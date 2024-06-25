@@ -95,14 +95,4 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
     Class<LocalTime> targetType() {
         return LocalTime.class;
     }
-
-    @Override
-    String toStringPrefix() {
-        return "";
-    }
-
-    @Override
-    String toStringSuffix() {
-        return "";
-    }
 }

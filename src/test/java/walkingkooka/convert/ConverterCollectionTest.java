@@ -103,12 +103,22 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "String->Boolean | Number->Number");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "String to Boolean | Number to Number"
+        );
     }
 
     @Override
     public ConverterCollection<ConverterContext> createConverter() {
-        return Cast.to(ConverterCollection.with(Lists.of(booleanToString().setToString("String->Boolean"), Converters.numberToNumber())));
+        return Cast.to(
+                ConverterCollection.with(
+                        Lists.of(
+                                booleanToString().setToString("String to Boolean"),
+                                Converters.numberToNumber()
+                        )
+                )
+        );
     }
 
     private Converter<ConverterContext> booleanToString() {

@@ -58,7 +58,10 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "*->String");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "* to String"
+        );
     }
 
     @Override

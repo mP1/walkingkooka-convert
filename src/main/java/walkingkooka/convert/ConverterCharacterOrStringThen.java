@@ -103,6 +103,6 @@ final class ConverterCharacterOrStringThen<C extends ConverterContext> implement
 
     @Override
     public String toString() {
-        return "Character->" + this.converter;
+        return "Character to " + this.converter;
     }
 }

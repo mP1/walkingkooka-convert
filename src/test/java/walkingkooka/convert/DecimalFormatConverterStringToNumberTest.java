@@ -138,6 +138,16 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
         return Cast.to(DecimalFormatConverterStringToNumber.class);
     }
 
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+                this.createConverter(),
+                "DecimalFormat String to Number"
+        );
+    }
+
     // TypeNameTesting..................................................................................................
 
     @Override

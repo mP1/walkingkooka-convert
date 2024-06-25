@@ -88,35 +88,6 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
 
     @Override
     public final String toString() {
-        return this.toStringPrefix() +
-                "BigDecimal|BigInteger|Byte|Short|Integer|Long|Float|Double->" +
-                this.targetType().getSimpleName() +
-                this.toStringSuffix();
-    }
-
-    abstract String toStringPrefix();
-
-    abstract String toStringSuffix();
-
-    /**
-     * Returns the {@link String} as a signed offset including a plus or minus when the value is non zero.
-     */
-    static String toStringOffset(final long offset) {
-        return 0 == offset ?
-                "" :
-                toStringOffset0(offset);
-    }
-
-    private static String toStringOffset0(final long offset) {
-        final StringBuilder b = new StringBuilder();
-        b.append('(');
-
-        if (offset > 0) {
-            b.append('+');
-        }
-        b.append(offset);
-        b.append(')');
-
-        return b.toString();
+        return "Number to " + this.targetType().getSimpleName();
     }
 }

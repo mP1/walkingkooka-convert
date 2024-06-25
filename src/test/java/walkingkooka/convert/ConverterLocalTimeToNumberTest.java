@@ -110,7 +110,10 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "LocalTime->Number");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "LocalTime to Number"
+        );
     }
 
     @Override

@@ -73,6 +73,6 @@ final class ConverterStringToCharacter<C extends ConverterContext> extends Conve
 
     @Override
     public String toString() {
-        return "String->Character";
+        return "String to Character";
     }
 }

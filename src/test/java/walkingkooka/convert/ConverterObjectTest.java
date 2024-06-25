@@ -61,7 +61,7 @@ public final class ConverterObjectTest extends ConverterTestCase<ConverterObject
     public void testToString() {
         this.toStringAndCheck(
                 this.createConverter(),
-                "*->Object"
+                "* to Object"
         );
     }
 

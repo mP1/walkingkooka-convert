@@ -182,7 +182,7 @@ public final class ConverterToStringOrCharacterTest implements ConverterTesting2
     public void testToString() {
         this.toStringAndCheck(
                 this.createConverter(),
-                INTEGER_TO_STRING_CONVERTER + "->Character|String"
+                INTEGER_TO_STRING_CONVERTER + " to Character | String"
         );
     }
 

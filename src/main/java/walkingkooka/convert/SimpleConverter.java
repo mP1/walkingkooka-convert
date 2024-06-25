@@ -67,6 +67,6 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
 
     @Override
     public String toString() {
-        return "value==target type";
+        return "if type";
     }
 }

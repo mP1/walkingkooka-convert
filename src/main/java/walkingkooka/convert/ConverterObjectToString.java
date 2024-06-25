@@ -65,6 +65,6 @@ final class ConverterObjectToString<C extends ConverterContext> extends Converte
 
     @Override
     public String toString() {
-        return "*->String";
+        return "* to String";
     }
 }

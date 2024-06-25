@@ -106,8 +106,10 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(),
-                "Integer->String");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "Integer to String"
+        );
     }
 
     // ClassTesting.....................................................................................................
