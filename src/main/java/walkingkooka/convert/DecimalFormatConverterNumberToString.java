@@ -60,4 +60,9 @@ final class DecimalFormatConverterNumberToString<C extends ConverterContext> ext
                 type
         );
     }
+
+    @Override
+    public String toString() {
+        return "DecimalFormat Number to String";
+    }
 }

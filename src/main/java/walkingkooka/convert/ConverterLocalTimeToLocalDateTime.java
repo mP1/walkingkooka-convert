@@ -66,6 +66,6 @@ final class ConverterLocalTimeToLocalDateTime<C extends ConverterContext> extend
 
     @Override
     public String toString() {
-        return "LocalTime->LocalDateTime";
+        return "LocalTime to LocalDateTime";
     }
 }

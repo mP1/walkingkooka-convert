@@ -58,7 +58,10 @@ public final class ConverterTemporalLocalDateTimeToLocalTimeTest extends Convert
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "LocalDateTime->LocalTime");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "LocalDateTime to LocalTime"
+        );
     }
 
     // ConverterTesting.................................................................................................

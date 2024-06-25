@@ -65,6 +65,6 @@ final class ConverterLocalTimeToNumber<C extends ConverterContext> extends Conve
 
     @Override
     public String toString() {
-        return "LocalTime->Number";
+        return "LocalTime to Number";
     }
 }

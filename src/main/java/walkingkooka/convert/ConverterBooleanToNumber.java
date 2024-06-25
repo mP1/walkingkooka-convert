@@ -72,6 +72,6 @@ final class ConverterBooleanToNumber<C extends ConverterContext> extends Convert
 
     @Override
     public String toString() {
-        return "Boolean->Number";
+        return "Boolean to Number";
     }
 }

@@ -97,6 +97,6 @@ final class ConverterNumberToNumber<C extends ConverterContext> extends Converte
 
     @Override
     public String toString() {
-        return "Number->Number";
+        return "Number to Number";
     }
 }

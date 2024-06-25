@@ -133,7 +133,7 @@ public final class ConverterCharacterOrStringThenTest implements ConverterTestin
     public void testToString() {
         this.toStringAndCheck(
                 this.createConverter(),
-                "Character->" + STRING_TO_INTEGER
+                "Character to " + STRING_TO_INTEGER
         );
     }
 

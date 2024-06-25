@@ -71,6 +71,6 @@ final class ConverterBigDecimalToBoolean<C extends ConverterContext> extends Con
 
     @Override
     public String toString() {
-        return "BigDecimal->Boolean";
+        return "BigDecimal to Boolean";
     }
 }

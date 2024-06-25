@@ -164,7 +164,10 @@ public final class ConverterBooleanToNumberTest extends ConverterTestCase2<Conve
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "Boolean->Number");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "Boolean to Number"
+        );
     }
 
     @Override

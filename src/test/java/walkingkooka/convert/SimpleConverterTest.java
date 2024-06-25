@@ -59,7 +59,10 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "value==target type");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "if type"
+        );
     }
 
     // Class............................................................................................................

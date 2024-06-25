@@ -80,14 +80,4 @@ final class ConverterNumberToLocalDate<C extends ConverterContext> extends Conve
     Class<LocalDate> targetType() {
         return LocalDate.class;
     }
-
-    @Override
-    String toStringPrefix() {
-        return "";
-    }
-
-    @Override
-    String toStringSuffix() {
-        return toStringOffset(this.offset);
-    }
 }

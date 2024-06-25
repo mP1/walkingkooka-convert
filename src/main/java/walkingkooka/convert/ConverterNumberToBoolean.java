@@ -75,16 +75,6 @@ final class ConverterNumberToBoolean<C extends ConverterContext> extends Convert
     }
 
     @Override
-    String toStringPrefix() {
-        return "Truthy ";
-    }
-
-    @Override
-    String toStringSuffix() {
-        return "";
-    }
-
-    @Override
     Class<Boolean> targetType() {
         return Boolean.class;
     }

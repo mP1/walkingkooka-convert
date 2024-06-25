@@ -142,7 +142,10 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "Truthy BigDecimal|BigInteger|Byte|Short|Integer|Long|Float|Double->Boolean");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "Number to Boolean"
+        );
     }
 
     // helper............................................................................................................

@@ -180,6 +180,6 @@ final class ConverterToStringOrCharacter<C extends ConverterContext> implements 
 
     @Override
     public String toString() {
-        return this.converter + "->Character|String";
+        return this.converter + " to Character | String";
     }
 }

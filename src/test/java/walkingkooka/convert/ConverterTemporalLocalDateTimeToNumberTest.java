@@ -226,7 +226,10 @@ public final class ConverterTemporalLocalDateTimeToNumberTest extends ConverterT
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "LocalDateTime->Number");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "LocalDateTime to Number"
+        );
     }
 
     // ConverterTesting.................................................................................................

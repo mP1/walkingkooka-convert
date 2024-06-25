@@ -59,7 +59,10 @@ public final class ConverterBigDecimalToBooleanTest extends ConverterTestCase2<C
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "BigDecimal->Boolean");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "BigDecimal to Boolean"
+        );
     }
 
     @Override

@@ -59,7 +59,10 @@ public final class ConverterStringToCharacterTest extends ConverterTestCase2<Con
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "String->Character");
+        this.toStringAndCheck(
+                this.createConverter(),
+                "String to Character"
+        );
     }
 
     @Override
