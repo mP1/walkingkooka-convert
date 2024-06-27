@@ -108,9 +108,9 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ChainConverter}
      */
-    static <C extends ConverterContext> Converter<C> chain(final Converter<C> first,
-                                                           final Class<?> intermediateType,
-                                                           final Converter<C> second) {
+    public static <C extends ConverterContext> Converter<C> chain(final Converter<C> first,
+                                                                  final Class<?> intermediateType,
+                                                                  final Converter<C> second) {
         return ChainConverter.with(
                 first,
                 intermediateType,
