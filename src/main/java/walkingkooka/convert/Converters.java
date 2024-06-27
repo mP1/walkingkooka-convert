@@ -106,6 +106,19 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ChainConverter}
+     */
+    static <C extends ConverterContext> Converter<C> chain(final Converter<C> first,
+                                                           final Class<?> intermediateType,
+                                                           final Converter<C> second) {
+        return ChainConverter.with(
+                first,
+                intermediateType,
+                second
+        );
+    }
+
+    /**
      * {@see ConverterCharacterOrStringToStringThen}
      */
     public static <C extends ConverterContext> Converter<C> characterOrStringToStringThen(final Converter<C> converter) {
