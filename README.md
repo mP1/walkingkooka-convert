@@ -25,6 +25,7 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 - collection Tries each of the given `Converter` until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing, such as situations where a Converter should never be called.
+- hasTextToString
 - localDateToLocalDateTime
 - localDateToNumber
 - localDateToString
