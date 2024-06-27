@@ -142,6 +142,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterHasTextToString}
+     */
+    public static <C extends ConverterContext> Converter<C> hasTextToString() {
+        return ConverterHasTextToString.instance();
+    }
+
+    /**
      * {@see LocalDateLocalDateTimeConverter}
      */
     public static <C extends ConverterContext> Converter<C> localDateToLocalDateTime() {
