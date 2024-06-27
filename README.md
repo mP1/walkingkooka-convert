@@ -19,7 +19,6 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 
 *Number* in the names below means any of the JRE `java.lang.Number` sub-classes (Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal).
 
-- bigDecimalToBoolean
 - booleanToNumber
 - characterOrStringToStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
 - chain A `Converter` which converts a value to some intermediate type and then converts success values to another `Converter` using the original target type.
