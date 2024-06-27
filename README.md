@@ -21,7 +21,7 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 
 - bigDecimalToBoolean
 - booleanToNumber
-- characterOrStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
+- characterOrStringToStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
 - collection Tries each of the given `Converter` until success.
 - customToString Wraps a Converter providing a custom #toString
 - fake Useful for testing, such as situations where a Converter should never be called.

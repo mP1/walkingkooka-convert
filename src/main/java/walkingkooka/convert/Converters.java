@@ -106,10 +106,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterCharacterOrStringThen}
+     * {@see ConverterCharacterOrStringToStringThen}
      */
-    public static <C extends ConverterContext> Converter<C> characterOrStringThen(final Converter<C> converter) {
-        return ConverterCharacterOrStringThen.with(converter);
+    public static <C extends ConverterContext> Converter<C> characterOrStringToStringThen(final Converter<C> converter) {
+        return ConverterCharacterOrStringToStringThen.with(converter);
     }
 
     /**

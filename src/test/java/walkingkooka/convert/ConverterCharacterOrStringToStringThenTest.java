@@ -23,7 +23,7 @@ import walkingkooka.Cast;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterCharacterOrStringThenTest implements ConverterTesting2<ConverterCharacterOrStringThen<FakeConverterContext>, FakeConverterContext> {
+public final class ConverterCharacterOrStringToStringThenTest implements ConverterTesting2<ConverterCharacterOrStringToStringThen<FakeConverterContext>, FakeConverterContext> {
 
     private final static Integer NULL_VALUE = 999;
 
@@ -37,17 +37,17 @@ public final class ConverterCharacterOrStringThenTest implements ConverterTestin
     public void testWithNullConverterFails() {
         assertThrows(
                 NullPointerException.class,
-                () -> ConverterCharacterOrStringThen.with(null)
+                () -> ConverterCharacterOrStringToStringThen.with(null)
         );
     }
 
     @Test
     public void testWithConverterCharacterStringConverter() {
-        final ConverterCharacterOrStringThen<?> converter = this.createConverter();
+        final ConverterCharacterOrStringToStringThen<?> converter = this.createConverter();
 
         assertSame(
                 converter,
-                ConverterCharacterOrStringThen.with(converter)
+                ConverterCharacterOrStringToStringThen.with(converter)
         );
     }
 
@@ -138,8 +138,8 @@ public final class ConverterCharacterOrStringThenTest implements ConverterTestin
     }
 
     @Override
-    public ConverterCharacterOrStringThen<FakeConverterContext> createConverter() {
-        return ConverterCharacterOrStringThen.with(
+    public ConverterCharacterOrStringToStringThen<FakeConverterContext> createConverter() {
+        return ConverterCharacterOrStringToStringThen.with(
                 STRING_TO_INTEGER
         );
     }
@@ -150,8 +150,8 @@ public final class ConverterCharacterOrStringThenTest implements ConverterTestin
     }
 
     @Override
-    public Class<ConverterCharacterOrStringThen<FakeConverterContext>> type() {
-        return Cast.to(ConverterCharacterOrStringThen.class);
+    public Class<ConverterCharacterOrStringToStringThen<FakeConverterContext>> type() {
+        return Cast.to(ConverterCharacterOrStringToStringThen.class);
     }
 
     // TypeNaming.......................................................................................................
