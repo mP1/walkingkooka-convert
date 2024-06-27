@@ -34,23 +34,23 @@ import java.util.Objects;
  * <br>
  * Note converting {@link Character} or {@link String }to {@link String} is not supported.
  */
-final class ConverterCharacterOrStringThen<C extends ConverterContext> implements Converter<C> {
+final class ConverterCharacterOrStringToStringThen<C extends ConverterContext> implements Converter<C> {
 
-    static <C extends ConverterContext> ConverterCharacterOrStringThen<C> with(final Converter<C> converter) {
+    static <C extends ConverterContext> ConverterCharacterOrStringToStringThen<C> with(final Converter<C> converter) {
         Objects.requireNonNull(converter, "converter");
 
-        ConverterCharacterOrStringThen<C> result;
+        ConverterCharacterOrStringToStringThen<C> result;
 
-        if (converter instanceof ConverterCharacterOrStringThen) {
+        if (converter instanceof ConverterCharacterOrStringToStringThen) {
             result = Cast.to(converter);
         } else {
-            result = new ConverterCharacterOrStringThen<>(converter);
+            result = new ConverterCharacterOrStringToStringThen<>(converter);
         }
 
         return result;
     }
 
-    private ConverterCharacterOrStringThen(final Converter<C> converter) {
+    private ConverterCharacterOrStringToStringThen(final Converter<C> converter) {
         super();
         this.converter = converter;
     }
