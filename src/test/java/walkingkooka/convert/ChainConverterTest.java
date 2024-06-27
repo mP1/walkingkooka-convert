@@ -96,7 +96,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     public void testConvertFirstConverterFails() {
         this.convertFails(
                 ChainConverter.with(
-                        Converters.bigDecimalToBoolean(),
+                        Converters.numberToBoolean(),
                         String.class,
                         Converters.stringToCharacter()
                 ),
