@@ -130,4 +130,16 @@ public interface Converter<C extends ConverterContext> {
     default <CC extends ConverterContext> Converter<CC> cast(final Class<CC> type) {
         return Cast.to(this);
     }
+
+    /**
+     * Chains the given {@link Converter}.
+     */
+    default Converter<C> to(final Class<?> intermediateType,
+                            final Converter<C> next) {
+        return Converters.chain(
+                this,
+                intermediateType,
+                next
+        );
+    }
 }
