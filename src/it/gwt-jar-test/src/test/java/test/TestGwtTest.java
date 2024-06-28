@@ -36,10 +36,10 @@ public class TestGwtTest extends GWTTestCase {
         );
     }
 
-    public void testConvertStringToCharacter() {
+    public void testConvertStringToCharacterOrString() {
         assertEquals(
                 Character.valueOf('A'),
-                Converters.stringToCharacter()
+                Converters.stringToCharacterOrString()
                         .convertOrFail(
                                 "A",
                                 Character.class,
