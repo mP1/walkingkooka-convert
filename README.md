@@ -20,7 +20,7 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 *Number* in the names below means any of the JRE `java.lang.Number` sub-classes (Byte, Short, Integer, Long, Float, Double, BigInteger, BigDecimal).
 
 - booleanToNumber
-- characterOrStringToStringThen converts characters to a String if necessary and then passes that String to a wrapped Converter.
+- characterOrStringToString converts characters to a String if necessary and then passes that String to a wrapped Converter.
 - chain A `Converter` which converts a value to some intermediate type and then converts success values to another `Converter` using the original target type.
 - collection Tries each of the given `Converter` until success.
 - customToString Wraps a Converter providing a custom #toString
@@ -48,12 +48,11 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 - objectToString Simply calls Object#toString
 - parser This accepts Strings and calls a Parser.
 - simple Returns the value if it is the same Class as the target. Note due to J2cl limitations Class.isInstance is not possible.
-- stringToCharacter
+- stringToStringOrCharacter converts any value to String if necessary and then that to Character.
 - stringToLocalDate
 - stringToLocalDateTime
 - stringToLocalTime
 - stringToNumber
 - toBoolean Performs a test and uses that result to pick one of two values.
-- toStringOrCharacter converts any value to String if necessary and then that to Character.
 
 Note more `Converter` implementations are available in many different repos to support useful conversions.
