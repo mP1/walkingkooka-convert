@@ -136,9 +136,41 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
 
     @Test
     public void testToString() {
+        this.toStringAndCheck2(
+                "HasText to String",
+                "String to Character",
+                "HasText to String to Character"
+        );
+    }
+
+    @Test
+    public void testToString1() {
+        this.toStringAndCheck2(
+                "Magic",
+                "String to Character",
+                "Magic to String to Character"
+        );
+    }
+
+    @Test
+    public void testToString2() {
+        this.toStringAndCheck2(
+                "HasText to String",
+                "Magic",
+                "HasText to String to Magic"
+        );
+    }
+
+    private void toStringAndCheck2(final String firstToString,
+                                   final String secondToString,
+                                   final String expected) {
         this.toStringAndCheck(
-               this.createConverter(),
-               "HasText to String to String to Character"
+                ChainConverter.with(
+                        Converters.fake().setToString(firstToString),
+                        String.class,
+                        Converters.fake().setToString(secondToString)
+                ),
+                expected
         );
     }
 

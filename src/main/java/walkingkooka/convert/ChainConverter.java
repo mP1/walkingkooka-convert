@@ -111,6 +111,33 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
 
     @Override
     public String toString() {
-        return this.first + " to " + this.second;
+        if (null == this.toString) {
+            final String first = this.first.toString();
+            final String second = this.second.toString();
+
+            String toString = null;
+
+            final int firstToIndex = first.lastIndexOf(" to ");
+            if (-1 != firstToIndex) {
+                final int secondToIndex = second.indexOf(" to ");
+                if (-1 != secondToIndex) {
+                    final String firstTo = first.substring(firstToIndex + 4);
+                    final String secondTO = second.substring(0, secondToIndex);
+
+                    if (firstTo.equals(secondTO)) {
+                        toString = first + second.substring(secondToIndex);
+                    }
+                }
+            }
+
+            if (null == toString) {
+                toString = first + " to " + second;
+            }
+            this.toString = toString;
+        }
+
+        return this.toString;
     }
+
+    private transient String toString;
 }
