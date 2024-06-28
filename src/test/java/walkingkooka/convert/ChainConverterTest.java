@@ -34,7 +34,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
                 () -> ChainConverter.with(
                         null,
                         String.class,
-                        Converters.stringToCharacter()
+                        Converters.stringToCharacterOrString()
                 )
         );
     }
@@ -46,7 +46,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
                 () -> ChainConverter.with(
                         Converters.hasTextToString(),
                         null,
-                        Converters.stringToCharacter()
+                        Converters.stringToCharacterOrString()
                 )
         );
     }
@@ -98,7 +98,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
                 ChainConverter.with(
                         Converters.numberToBoolean(),
                         String.class,
-                        Converters.stringToCharacter()
+                        Converters.stringToCharacterOrString()
                 ),
                 BigDecimal.TEN,
                 Character.class
@@ -111,7 +111,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
                 ChainConverter.with(
                         Converters.objectToString(),
                         String.class,
-                        Converters.stringToCharacter()
+                        Converters.stringToCharacterOrString()
                 ),
                 123,
                 Character.class
@@ -123,7 +123,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
         return ChainConverter.with(
                 Converters.hasTextToString(),
                 String.class,
-                Converters.stringToCharacter()
+                Converters.stringToCharacterOrString()
         );
     }
 
