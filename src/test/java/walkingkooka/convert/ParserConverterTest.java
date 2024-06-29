@@ -123,11 +123,6 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
         );
     }
 
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "String->BigDecimal");
-    }
-
     @Override
     public ParserConverter<BigDecimal, ParserContext, ConverterContext> createConverter() {
         return ParserConverter.with(
@@ -156,6 +151,18 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     private Parser<ParserContext> parser() {
         return Parsers.bigDecimal();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+                this.createConverter(),
+                "String to BigDecimal"
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<ParserConverter<BigDecimal, ParserContext, ConverterContext>> type() {
