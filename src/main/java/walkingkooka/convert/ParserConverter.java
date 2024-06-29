@@ -129,6 +129,6 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
 
     @Override
     public String toString() {
-        return "String->" + this.parserValueType.getSimpleName();
+        return "String to " + this.parserValueType.getSimpleName();
     }
 }
