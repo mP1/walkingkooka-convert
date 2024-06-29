@@ -34,6 +34,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
         ConverterContextTesting<BasicConverterContext> {
 
+    private final static long NUMBER_TO_DATE_OFFSET = 0;
+
     private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
 
     private final static String CURRENCY = "$$";
@@ -49,24 +51,42 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     @Test
     public void testWithNullConverterFails() {
-        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(null,
-                this.dateTimeContext(),
-                this.decimalNumberContext()));
+        assertThrows(
+                NullPointerException.class,
+                () -> BasicConverterContext.with(
+                        NUMBER_TO_DATE_OFFSET,
+                        null,
+                        this.dateTimeContext(),
+                        this.decimalNumberContext()
+                )
+        );
     }
 
     @Test
     public void testWithNullDateTimeContextFails() {
-        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(CONVERTER,
-                null,
-                this.decimalNumberContext()));
+        assertThrows(
+                NullPointerException.class,
+                () -> BasicConverterContext.with(
+                        NUMBER_TO_DATE_OFFSET,
+                        CONVERTER,
+                        null,
+                        this.decimalNumberContext())
+        );
     }
 
     @Test
     public void testWithNullDecimalNumberContextFails() {
-        assertThrows(NullPointerException.class, () -> BasicConverterContext.with(CONVERTER,
-                this.dateTimeContext(),
-                null));
+        assertThrows(
+                NullPointerException.class,
+                () -> BasicConverterContext.with(
+                        NUMBER_TO_DATE_OFFSET,
+                        CONVERTER,
+                        this.dateTimeContext(),
+                        null)
+        );
     }
+
+    // convert..........................................................................................................
 
     @Test
     public void testConvert() {
@@ -86,7 +106,12 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     @Override
     public BasicConverterContext createContext() {
-        return BasicConverterContext.with(CONVERTER, this.dateTimeContext(), decimalNumberContext());
+        return BasicConverterContext.with(
+                NUMBER_TO_DATE_OFFSET,
+                CONVERTER,
+                this.dateTimeContext(),
+                decimalNumberContext()
+        );
     }
 
     private DateTimeContext dateTimeContext() {

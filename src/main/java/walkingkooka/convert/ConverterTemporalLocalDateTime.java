@@ -29,8 +29,8 @@ abstract class ConverterTemporalLocalDateTime<D, C extends ConverterContext> ext
     /**
      * Package private to limit sub classing.
      */
-    ConverterTemporalLocalDateTime(final long offset) {
-        super(offset);
+    ConverterTemporalLocalDateTime() {
+        super();
     }
 
 
@@ -50,11 +50,13 @@ abstract class ConverterTemporalLocalDateTime<D, C extends ConverterContext> ext
     final <T> Either<T, String> convertNonNull0(final LocalDateTime value,
                                                 final Class<T> type,
                                                 final ConverterContext context) {
-        return this.convertFromLocalDateTime(value.toLocalDate().toEpochDay() + this.offset,
+        return this.convertFromLocalDateTime(
+                value.toLocalDate().toEpochDay() ,
                 (double) value.toLocalTime().toNanoOfDay() / Converters.NANOS_PER_DAY,
                 value,
                 type,
-                context);
+                context
+        );
     }
 
     abstract <T> Either<T, String> convertFromLocalDateTime(final long days,

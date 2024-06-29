@@ -62,11 +62,6 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
     }
 
     @Override
-    public final ConverterContext createContext() {
-        return ConverterContexts.fake();
-    }
-
-    @Override
     public void convertAndCheck(final Object value) {
         assertSame(value, this.convertAndCheck(value, this.targetType(), this.targetType().cast(value)));
     }

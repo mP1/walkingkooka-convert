@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
@@ -31,15 +32,17 @@ final class ConverterTemporalLocalDateToNumber<C extends ConverterContext> exten
      * Factory that creates a new instance with the given date offset.
      * A value of zero = 1/1/1970.
      */
-    static <C extends ConverterContext> ConverterTemporalLocalDateToNumber<C> with(final long offset) {
-        return new ConverterTemporalLocalDateToNumber<>(offset);
+    static <C extends ConverterContext> ConverterTemporalLocalDateToNumber<C> instance() {
+        return Cast.to(INSTANCE);
     }
+
+    private final static ConverterTemporalLocalDateToNumber<ConverterContext> INSTANCE = new ConverterTemporalLocalDateToNumber<>();
 
     /**
      * Private ctor use factory
      */
-    private ConverterTemporalLocalDateToNumber(final long offset) {
-        super(offset);
+    private ConverterTemporalLocalDateToNumber() {
+        super();
     }
 
     @Override
@@ -52,7 +55,7 @@ final class ConverterTemporalLocalDateToNumber<C extends ConverterContext> exten
                                           final Class<T> type,
                                           final ConverterContext context) {
         return this.convertToNumber(
-                date.toEpochDay() + this.offset,
+                date.toEpochDay() + context.dateOffset(),
                 type,
                 context
         );

@@ -113,6 +113,11 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     }
 
     @Override
+    public ConverterContext createContext() {
+        return ConverterContexts.fake();
+    }
+
+    @Override
     public Class<ConverterNumberToLocalTime<ConverterContext>> type() {
         return Cast.to(ConverterNumberToLocalTime.class);
     }

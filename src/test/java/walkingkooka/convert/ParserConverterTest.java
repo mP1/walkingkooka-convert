@@ -143,9 +143,12 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
 
     @Override
     public ConverterContext createContext() {
-        return ConverterContexts.basic(Converters.fake(),
+        return ConverterContexts.basic(
+                0, // dateOffset
+                Converters.fake(),
                 DateTimeContexts.fake(),
-                DecimalNumberContexts.american(MathContext.DECIMAL32));
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
+        );
     }
 
     private Parser<ParserContext> parser() {

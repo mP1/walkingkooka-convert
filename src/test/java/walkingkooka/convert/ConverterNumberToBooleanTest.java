@@ -175,6 +175,11 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     }
 
     @Override
+    public ConverterContext createContext() {
+        return ConverterContexts.fake();
+    }
+
+    @Override
     public Class<ConverterNumberToBoolean<ConverterContext>> type() {
         return Cast.to(ConverterNumberToBoolean.class);
     }

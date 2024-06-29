@@ -27,6 +27,8 @@ import walkingkooka.text.CharSequences;
 
 public final class ConverterNumberToNumberVisitorTest implements NumberVisitorTesting<ConverterNumberToNumberVisitor<Boolean>> {
 
+    private final static ConverterContext CONTEXT = ConverterContexts.fake();
+
     @Test
     public void testConvertUnsupported() {
         final Number number = new Number() {
@@ -53,21 +55,33 @@ public final class ConverterNumberToNumberVisitorTest implements NumberVisitorTe
             private final static long serialVersionUID = 1L;
         };
         //noinspection unchecked
-        this.checkEquals(Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
-                ConverterNumberToNumberVisitor.convert(this.converter(),
+        this.checkEquals(
+                Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
+                ConverterNumberToNumberVisitor.convert(
+                        this.converter(),
                         number,
-                        Boolean.class));
+                        Boolean.class,
+                        ConverterContexts.fake()
+                )
+        );
     }
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createVisitor(), this.converter() + " " + CharSequences.quoteAndEscape(Boolean.class.getName()));
+        this.toStringAndCheck(
+                this.createVisitor(),
+                this.converter() + " " + CharSequences.quoteAndEscape(Boolean.class.getName()) + " " + CONTEXT
+        );
     }
 
     @Override
     public ConverterNumberToNumberVisitor<Boolean> createVisitor() {
         //noinspection unchecked
-        return new ConverterNumberToNumberVisitor<Boolean>(this.converter(), Boolean.class);
+        return new ConverterNumberToNumberVisitor<>(
+                this.converter(),
+                Boolean.class,
+                CONTEXT
+        );
     }
 
     private ConverterNumber<Boolean, ConverterContext> converter() {

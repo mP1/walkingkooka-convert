@@ -50,7 +50,8 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
     }
 
     @Override
-    Either<LocalTime, String> bigDecimal(final BigDecimal value) {
+    Either<LocalTime, String> bigDecimal(final BigDecimal value,
+                                         final ConverterContext context) {
         final double doubleValue = value.doubleValue();
         return 0 != BigDecimal.valueOf(doubleValue).compareTo(value) ?
                 this.failConversion(value, LocalTime.class) :
@@ -58,18 +59,21 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
     }
 
     @Override
-    Either<LocalTime, String> bigInteger(final BigInteger value) {
+    Either<LocalTime, String> bigInteger(final BigInteger value,
+                                         final ConverterContext context) {
         return this.localTime(value.longValueExact());
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
-    Either<LocalTime, String> doubleValue(final Double value) {
+    Either<LocalTime, String> doubleValue(final Double value,
+                                          final ConverterContext context) {
         return this.localTime(value.doubleValue());
     }
 
     @Override
-    Either<LocalTime, String> longValue(final Long value) {
+    Either<LocalTime, String> longValue(final Long value,
+                                        final ConverterContext context) {
         return this.localTime(value);
     }
 

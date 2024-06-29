@@ -49,24 +49,30 @@ final class ConverterNumberToBoolean<C extends ConverterContext> extends Convert
     }
 
     @Override
-    Either<Boolean, String> bigDecimal(final BigDecimal value) {
+    Either<Boolean, String> bigDecimal(final BigDecimal value,
+                                       final ConverterContext context) {
         return this.successfulConversion(value.signum() != 0);
     }
 
     @Override
-    Either<Boolean, String> bigInteger(final BigInteger value) {
+    Either<Boolean, String> bigInteger(final BigInteger value,
+                                       final ConverterContext context) {
         return this.successfulConversion(value.signum() != 0);
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
-    Either<Boolean, String> doubleValue(final Double value) {
-        return this.successfulConversion(!value.isInfinite() && !value.isNaN() && 0 != value.doubleValue());
+    Either<Boolean, String> doubleValue(final Double value,
+                                        final ConverterContext context) {
+        return this.successfulConversion(
+                false == value.isInfinite() && false == value.isNaN() && 0 != value.doubleValue()
+        );
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
-    Either<Boolean, String> longValue(final Long value) {
+    Either<Boolean, String> longValue(final Long value,
+                                      final ConverterContext context) {
         return this.successfulConversion(0 != value.longValue());
     }
 

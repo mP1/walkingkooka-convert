@@ -26,9 +26,8 @@ import walkingkooka.Either;
  */
 abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Converter2<C> {
 
-    ConverterTemporal(final long offset) {
+    ConverterTemporal() {
         super();
-        this.offset = offset;
     }
 
     @Override
@@ -46,36 +45,12 @@ abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Conve
                                                    final Class<T> type,
                                                    final ConverterContext context);
 
-    final long offset;
-
     @Override
     public final String toString() {
-        return this.sourceType().getSimpleName() + " to " + this.targetType().getSimpleName() + toStringOffset(this.offset);
+        return this.sourceType().getSimpleName() + " to " + this.targetType().getSimpleName();
     }
 
     abstract Class<S> sourceType();
 
     abstract Class<D> targetType();
-
-    /**
-     * Returns the {@link String} as a signed offset including a plus or minus when the value is non zero.
-     */
-    private static String toStringOffset(final long offset) {
-        return 0 == offset ?
-                "" :
-                toStringOffset0(offset);
-    }
-
-    private static String toStringOffset0(final long offset) {
-        final StringBuilder b = new StringBuilder();
-        b.append('(');
-
-        if (offset > 0) {
-            b.append('+');
-        }
-        b.append(offset);
-        b.append(')');
-
-        return b.toString();
-    }
 }

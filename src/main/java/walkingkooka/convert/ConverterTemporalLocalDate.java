@@ -27,8 +27,8 @@ abstract class ConverterTemporalLocalDate<D, C extends ConverterContext> extends
     /**
      * Package private to limit sub classing.
      */
-    ConverterTemporalLocalDate(final long offset) {
-        super(offset);
+    ConverterTemporalLocalDate() {
+        super();
     }
 
     @Override
