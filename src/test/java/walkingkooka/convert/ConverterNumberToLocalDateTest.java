@@ -28,85 +28,85 @@ public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCas
 
     private final static byte VALUE = 123;
     private final static LocalDate DATE_VALUE = LocalDate.ofEpochDay(VALUE);
-    private final static LocalDate DATE_VALUE_EXCEL_OFFSET = LocalDate.of(1900, 5, 2);
+    private final static LocalDate DATE_VALUE_WITH_1900_EXCEL_OFFSET = LocalDate.of(1900, 5, 2);
 
     @Test
-    public void testNonNumberTypeFails() {
+    public void testConvertNonNumberTypeFails() {
         this.convertFails2("fail!");
     }
 
     @Test
-    public void testFromLocalDateFails() {
+    public void testConvertLocalDateToFails() {
         this.convertFails2(LocalDate.ofEpochDay(VALUE));
     }
 
     @Test
-    public void testBigDecimal() {
+    public void testConvertBigDecimal() {
         this.convertAndCheck2(BigDecimal.valueOf(VALUE));
     }
 
     @Test
-    public void testBigDecimalWithFraction() {
+    public void testConvertBigDecimalWithFraction() {
         this.convertFails2(BigDecimal.valueOf(123.5));
     }
 
     @Test
-    public void testBigDecimalWithExcelOffset() {
+    public void testConvertBigDecimalWithExcelOffset() {
         this.convertAndCheckExcelOffset(BigDecimal.valueOf(VALUE));
     }
 
     @Test
-    public void testBigInteger() {
+    public void testConvertBigInteger() {
         this.convertAndCheck2(BigInteger.valueOf(VALUE));
     }
 
     @Test
-    public void testBigIntegerWithExcelOffset() {
+    public void testConvertBigIntegerWithExcelOffset() {
         this.convertAndCheckExcelOffset(BigInteger.valueOf(VALUE));
     }
 
     @Test
-    public void testByte() {
+    public void testConvertByte() {
         this.convertAndCheck2(VALUE);
     }
 
     @Test
-    public void testShort() {
+    public void testConvertShort() {
         this.convertAndCheck2((short)VALUE);
     }
 
     @Test
-    public void testInteger() {
+    public void testConvertInteger() {
         this.convertAndCheck2((int)VALUE);
     }
 
     @Test
-    public void testLong() {
+    public void testConvertLong() {
         this.convertAndCheck((long)VALUE, LocalDate.ofEpochDay(VALUE));
     }
 
     @Test
-    public void testLongWithExcelOffset() {
+    public void testConvertLongWithExcelOffset() {
         this.convertAndCheckExcelOffset((long)VALUE);
     }
 
     @Test
-    public void testFloat() {
+    public void testConvertFloat() {
         this.convertAndCheck2((float)VALUE);
     }
 
     @Test
-    public void testDouble() {
+    public void testConvertDouble() {
         this.convertAndCheck2((double)VALUE);
     }
 
     @Test
-    public void testDoubleWithFraction() {
+    public void testConvertDoubleWithFraction() {
         this.convertFails2(123.75);
     }
 
     @Test
-    public void testDoubleWithExcelOffset() {
+    public void testConvertDoubleWithExcelOffset() {
         this.convertAndCheckExcelOffset((double)VALUE);
     }
 
@@ -120,20 +120,39 @@ public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCas
     }
 
     private void convertAndCheckExcelOffset(final Number value) {
-        this.convertAndCheck(ConverterNumberToLocalDate.with(Converters.EXCEL_1900_DATE_SYSTEM_OFFSET),
+        this.convertAndCheck(
+                ConverterNumberToLocalDate.instance(),
                 value,
                 LocalDate.class,
-                DATE_VALUE_EXCEL_OFFSET);
+                new FakeConverterContext() {
+
+                    @Override
+                    public long dateOffset() {
+                        return -Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
+                    }
+                },
+                DATE_VALUE_WITH_1900_EXCEL_OFFSET
+        );
     }
 
     @Override
     public ConverterNumberToLocalDate<ConverterContext> createConverter() {
-        return ConverterNumberToLocalDate.with(Converters.JAVA_EPOCH_OFFSET);
+        return ConverterNumberToLocalDate.instance();
     }
 
     @Override
     protected Class<LocalDate> targetType() {
         return LocalDate.class;
+    }
+
+    @Override
+    public ConverterContext createContext() {
+        return new FakeConverterContext() {
+            @Override
+            public long dateOffset() {
+                return Converters.JAVA_EPOCH_OFFSET;
+            }
+        };
     }
 
     @Override

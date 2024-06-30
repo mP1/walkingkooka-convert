@@ -30,6 +30,11 @@ public interface ConverterContext extends CanConvert,
         DecimalNumberContext {
 
     /**
+     * THe offset added when converting a {@link java.time.LocalDate} to a number.
+     */
+    long dateOffset();
+
+    /**
      * Useful to report a failed conversion with a standard error message.
      */
     default <T> Either<T, String> failConversion(final Object value,

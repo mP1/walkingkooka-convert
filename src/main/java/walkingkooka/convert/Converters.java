@@ -157,8 +157,8 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterTemporalLocalDateToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> localDateToNumber(final long offset) {
-        return ConverterTemporalLocalDateToNumber.with(offset);
+    public static <C extends ConverterContext> Converter<C> localDateToNumber() {
+        return ConverterTemporalLocalDateToNumber.instance();
     }
 
     /**
@@ -185,8 +185,8 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterTemporalLocalDateTimeToNumber}
      */
-    public static <C extends ConverterContext> Converter<C> localDateTimeToNumber(final long offset) {
-        return ConverterTemporalLocalDateTimeToNumber.with(offset);
+    public static <C extends ConverterContext> Converter<C> localDateTimeToNumber() {
+        return ConverterTemporalLocalDateTimeToNumber.instance();
     }
 
     /**
@@ -243,15 +243,15 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterNumberToLocalDate}
      */
-    public static <C extends ConverterContext> Converter<C> numberToLocalDate(final long offset) {
-        return ConverterNumberToLocalDate.with(offset);
+    public static <C extends ConverterContext> Converter<C> numberToLocalDate() {
+        return ConverterNumberToLocalDate.instance();
     }
 
     /**
      * {@see ConverterNumberToLocalDateTime}
      */
-    public static <C extends ConverterContext> Converter<C> numberToLocalDateTime(final long offset) {
-        return ConverterNumberToLocalDateTime.with(offset);
+    public static <C extends ConverterContext> Converter<C> numberToLocalDateTime() {
+        return ConverterNumberToLocalDateTime.instance();
     }
 
     /**

@@ -35,30 +35,43 @@ final class BasicConverterContext implements ConverterContext {
     /**
      * Creates a new {@link BasicConverterContext}.
      */
-    static BasicConverterContext with(final Converter<ConverterContext> converter,
+    static BasicConverterContext with(final long dateOffset,
+                                      final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
         Objects.requireNonNull(converter, "converter");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
-        return new BasicConverterContext(converter,
+        return new BasicConverterContext(
+                dateOffset,
+                converter,
                 dateTimeContext,
-                decimalNumberContext);
+                decimalNumberContext
+        );
     }
 
     /**
      * Private ctor use factory
      */
-    private BasicConverterContext(final Converter<ConverterContext> converter,
+    private BasicConverterContext(final long dateOffset,
+                                  final Converter<ConverterContext> converter,
                                   final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
         super();
 
+        this.dateOffset = dateOffset;
         this.converter = converter;
         this.dateTimeContext = dateTimeContext;
         this.decimalNumberContext = decimalNumberContext;
     }
+
+    @Override
+    public long dateOffset() {
+        return this.dateOffset;
+    }
+
+    private final long dateOffset;
 
     @Override
     public boolean canConvert(final Object value,

@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.math.BigDecimal;
@@ -32,75 +33,114 @@ import java.time.LocalTime;
 final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends ConverterNumber<LocalDateTime, C> {
 
     /**
-     * Creates a new instance with the given date offset.
-     * A value of zero is 1/1/1970.
+     * Types safe getter.
      */
-    static <C extends ConverterContext> ConverterNumberToLocalDateTime<C> with(final long offset) {
-        return new ConverterNumberToLocalDateTime<>(offset);
+    static <C extends ConverterContext> ConverterNumberToLocalDateTime<C> instance() {
+        return Cast.to(INSTANCE);
     }
+
+    /**
+     * Singleton
+     */
+    private final static ConverterNumberToLocalDateTime<ConverterContext> INSTANCE = new ConverterNumberToLocalDateTime<>();
 
     /**
      * Private ctor
      */
-    private ConverterNumberToLocalDateTime(final long offset) {
+    private ConverterNumberToLocalDateTime() {
         super();
-        this.offset = offset;
     }
 
     @Override
-    Either<LocalDateTime, String> bigDecimal(final BigDecimal value) {
+    Either<LocalDateTime, String> bigDecimal(final BigDecimal value,
+                                             final ConverterContext context) {
         final double doubleValue = value.doubleValue();
         return 0 != BigDecimal.valueOf(doubleValue).compareTo(value) ?
                 this.failConversion(value, LocalDateTime.class) :
-                this.localDateTime(doubleValue);
+                this.localDateTime(
+                        doubleValue,
+                        context
+                );
     }
 
     @Override
-    Either<LocalDateTime, String> bigInteger(final BigInteger value) {
-        return this.localDateTime(value.longValueExact(), value);
+    Either<LocalDateTime, String> bigInteger(final BigInteger value,
+                                             final ConverterContext context) {
+        return this.localDateTime(
+                value.longValueExact(),
+                value,
+                context
+        );
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
-    Either<LocalDateTime, String> doubleValue(final Double value) {
-        return this.localDateTime(value.doubleValue());
+    Either<LocalDateTime, String> doubleValue(final Double value,
+                                              final ConverterContext context) {
+        return this.localDateTime(
+                value.doubleValue(),
+                context
+        );
     }
 
     @Override
-    Either<LocalDateTime, String> longValue(final Long value) {
-        return this.localDateTime(value, value);
+    Either<LocalDateTime, String> longValue(final Long value,
+                                            final ConverterContext context) {
+        return this.localDateTime(
+                value,
+                value,
+                context
+        );
     }
 
-    private Either<LocalDateTime, String> localDateTime(final double value) {
+    private Either<LocalDateTime, String> localDateTime(final double value,
+                                                        final ConverterContext context) {
         return !Double.isFinite(value) ?
                 this.failConversion(value, LocalDateTime.class) :
-                this.localDateTime0(value);
+                this.localDateTime0(
+                        value,
+                        context
+                );
     }
 
-    private Either<LocalDateTime, String> localDateTime0(final double value) {
+    private Either<LocalDateTime, String> localDateTime0(final double value,
+                                                         final ConverterContext context) {
         final double days = Math.floor(value);
 
-        return localDateTime((int) days, value - days, value);
+        return localDateTime(
+                (int) days,
+                value - days,
+                value,
+                context
+        );
     }
 
-    private Either<LocalDateTime, String> localDateTime(final long longValue, final Number value) {
-        return localDateTime(longValue, 0, value);
+    private Either<LocalDateTime, String> localDateTime(final long longValue,
+                                                        final Number value,
+                                                        final ConverterContext context) {
+        return localDateTime(
+                longValue,
+                0,
+                value,
+                context
+        );
     }
 
-    private Either<LocalDateTime, String> localDateTime(final long day, final double fraction, final Object value) {
+    private Either<LocalDateTime, String> localDateTime(final long day,
+                                                        final double fraction,
+                                                        final Object value,
+                                                        final ConverterContext context) {
         final double doubleNano = fraction * Converters.NANOS_PER_DAY;
         final long nano = (long) doubleNano;
         return nano != doubleNano ?
                 this.failConversion(value, LocalDateTime.class) :
                 this.successfulConversion(
                         LocalDateTime.of(
-                                LocalDate.ofEpochDay(day + this.offset),
+                                LocalDate.ofEpochDay(day - context.dateOffset()),
                                 LocalTime.ofNanoOfDay(nano)),
                         LocalDateTime.class
                 );
     }
-
-    private final long offset;
 
     @Override
     Class<LocalDateTime> targetType() {

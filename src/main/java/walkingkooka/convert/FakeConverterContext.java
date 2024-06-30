@@ -52,6 +52,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
+    public long dateOffset() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public int defaultYear() {
         throw new UnsupportedOperationException();
     }

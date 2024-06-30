@@ -42,7 +42,7 @@ final class ConverterTemporalLocalDateToLocalDateTime<C extends ConverterContext
     private final static ConverterTemporalLocalDateToLocalDateTime<?> INSTANCE = new ConverterTemporalLocalDateToLocalDateTime<>();
 
     private ConverterTemporalLocalDateToLocalDateTime() {
-        super(0);
+        super();
     }
 
     @Override

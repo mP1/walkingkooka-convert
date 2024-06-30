@@ -30,7 +30,7 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     private final static int VALUE = 123;
     private final static LocalTime MIDNIGHT = LocalTime.ofSecondOfDay(0);
-    private final static LocalDateTime DATE_TIME_EXCEL_OFFSET = LocalDateTime.of(1900, 5, 2, 0, 0, 0);
+    private final static LocalDateTime DATE_TIME_WITH_1900_EXCEL_OFFSET = LocalDateTime.of(1900, 5, 2, 0, 0, 0);
 
     @Test
     public void testConvertNonNumberTypeFails() {
@@ -54,7 +54,7 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertBigDecimalWithExcelOffset() {
-        this.convertAndCheckExcelOffset(BigDecimal.valueOf(VALUE));
+        this.convertAndCheckWith1900ExcelDateOffset(BigDecimal.valueOf(VALUE));
     }
 
     @Test
@@ -64,7 +64,7 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertBigIntegerWithExcelOffset() {
-        this.convertAndCheckExcelOffset(BigInteger.valueOf(VALUE));
+        this.convertAndCheckWith1900ExcelDateOffset(BigInteger.valueOf(VALUE));
     }
 
     @Test
@@ -84,7 +84,7 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertDoubleWithExcelOffset() {
-        this.convertAndCheckExcelOffset(BigDecimal.valueOf(VALUE));
+        this.convertAndCheckWith1900ExcelDateOffset(BigDecimal.valueOf(VALUE));
     }
 
     @Override
@@ -113,24 +113,31 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
     }
 
     @Test
-    public void testLongWithExcelOffset() {
-        this.convertAndCheckExcelOffset((long)VALUE);
+    public void testConvertLongWithExcelOffset() {
+        this.convertAndCheckWith1900ExcelDateOffset((long)VALUE);
     }
 
     private void convertAndCheck2(final Object value) {
         this.convertAndCheck(value, this.localDateTime(VALUE, MIDNIGHT));
     }
 
-    private void convertAndCheckExcelOffset(final Number value) {
-        this.convertAndCheck(ConverterNumberToLocalDateTime.with(Converters.EXCEL_1900_DATE_SYSTEM_OFFSET),
+    private void convertAndCheckWith1900ExcelDateOffset(final Number value) {
+        this.convertAndCheck(
                 value,
                 LocalDateTime.class,
-                DATE_TIME_EXCEL_OFFSET);
+                new FakeConverterContext() {
+                    @Override
+                    public long dateOffset() {
+                        return -Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
+                    }
+                },
+                DATE_TIME_WITH_1900_EXCEL_OFFSET
+        );
     }
 
     @Override
     public ConverterNumberToLocalDateTime<ConverterContext> createConverter() {
-        return ConverterNumberToLocalDateTime.with(Converters.JAVA_EPOCH_OFFSET);
+        return ConverterNumberToLocalDateTime.instance();
     }
 
     private LocalDateTime localDateTime(final int date, final int hours, final int minutes) {
@@ -148,6 +155,16 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
     @Override
     protected Class<LocalDateTime> targetType() {
         return LocalDateTime.class;
+    }
+
+    @Override
+    public ConverterContext createContext() {
+        return new FakeConverterContext() {
+            @Override
+            public long dateOffset() {
+                return Converters.JAVA_EPOCH_OFFSET;
+            }
+        };
     }
 
     @Override

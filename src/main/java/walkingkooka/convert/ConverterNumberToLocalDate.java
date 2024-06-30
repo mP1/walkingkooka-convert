@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.math.BigDecimal;
@@ -32,49 +33,68 @@ final class ConverterNumberToLocalDate<C extends ConverterContext> extends Conve
      * Creates a new instance with the given date offset.
      * A value of zero is 1/1/1970.
      */
-    static <C extends ConverterContext> ConverterNumberToLocalDate<C> with(final long offset) {
-        return new ConverterNumberToLocalDate<>(offset);
+    static <C extends ConverterContext> ConverterNumberToLocalDate<C> instance() {
+        return Cast.to(INSTANCE);
     }
+
+    /**
+     * Singleton
+     */
+    private final static ConverterNumberToLocalDate<ConverterContext> INSTANCE = new ConverterNumberToLocalDate<>();
 
     /**
      * Private ctor
      */
-    private ConverterNumberToLocalDate(final long offset) {
+    private ConverterNumberToLocalDate() {
         super();
-        this.offset = offset;
     }
 
     @Override
-    Either<LocalDate, String> bigDecimal(final BigDecimal value) {
-        return this.localDate(value.longValueExact());
-    }
-
-    @Override
-    Either<LocalDate, String> bigInteger(final BigInteger value) {
-        return this.localDate(value.longValueExact());
-    }
-
-    @Override
-    Either<LocalDate, String> doubleValue(final Double value) {
-        final double doubleValue = value;
-        return value != (long) doubleValue ?
-                this.failConversion(value, LocalDate.class) :
-                this.localDate((long) doubleValue);
-    }
-
-    @Override
-    Either<LocalDate, String> longValue(final Long value) {
-        return this.localDate(value);
-    }
-
-    private Either<LocalDate, String> localDate(final long value) {
-        return this.successfulConversion(
-                LocalDate.ofEpochDay(value + this.offset),
-                LocalDate.class
+    Either<LocalDate, String> bigDecimal(final BigDecimal value,
+                                         final ConverterContext context) {
+        return this.localDate(
+                value.longValueExact(),
+                context
         );
     }
 
-    private final long offset;
+    @Override
+    Either<LocalDate, String> bigInteger(final BigInteger value,
+                                         final ConverterContext context) {
+        return this.localDate(
+                value.longValueExact(),
+                context
+        );
+    }
+
+    @Override
+    Either<LocalDate, String> doubleValue(final Double value,
+                                          final ConverterContext context) {
+        final double doubleValue = value;
+        return value != (long) doubleValue ?
+                this.failConversion(value, LocalDate.class) :
+                this.localDate(
+                        (long) doubleValue,
+                        context
+                );
+    }
+
+    @Override
+    Either<LocalDate, String> longValue(final Long value,
+                                        final ConverterContext context) {
+        return this.localDate(
+                value,
+                context
+        );
+    }
+
+    private Either<LocalDate, String> localDate(final long value,
+                                                final ConverterContext context) {
+        return this.successfulConversion(
+                LocalDate.ofEpochDay(value - context.dateOffset()),
+                LocalDate.class
+        );
+    }
 
     @Override
     Class<LocalDate> targetType() {

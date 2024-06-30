@@ -114,6 +114,7 @@ public final class ConverterStringToCharacterOrStringTest extends ConverterTestC
                 BigDecimal.valueOf(5),
                 Character.class,
                 ConverterContexts.basic(
+                        0,
                         Converters.fake(),
                         DateTimeContexts.fake(),
                         DecimalNumberContexts.american(MathContext.DECIMAL32)

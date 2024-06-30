@@ -29,12 +29,16 @@ public final class ConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicConverterContext}
      */
-    public static ConverterContext basic(final Converter<ConverterContext> converter,
+    public static ConverterContext basic(final long dateOffset,
+                                         final Converter<ConverterContext> converter,
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
-        return BasicConverterContext.with(converter,
+        return BasicConverterContext.with(
+                dateOffset,
+                converter,
                 dateTimeContext,
-                decimalNumberContext);
+                decimalNumberContext
+        );
     }
 
     /**

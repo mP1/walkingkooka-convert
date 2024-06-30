@@ -60,7 +60,8 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
             result = ConverterNumberToNumberVisitor.convert(
                     Cast.to(this),
                     (Number) value,
-                    type
+                    type,
+                    context
             );
         } catch (final Exception cause) {
             result = Either.right(cause.getMessage());
@@ -68,21 +69,33 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
         return result;
     }
 
-    abstract Either<T, String> bigDecimal(final BigDecimal value);
+    abstract Either<T, String> bigDecimal(final BigDecimal value,
+                                          final ConverterContext context);
 
-    abstract Either<T, String> bigInteger(final BigInteger value);
+    abstract Either<T, String> bigInteger(final BigInteger value,
+                                          final ConverterContext context);
 
-    final Either<T, String> floatValue(final Float value) {
-        return this.doubleValue(value.doubleValue());
+    final Either<T, String> floatValue(final Float value,
+                                       final ConverterContext context) {
+        return this.doubleValue(
+                value.doubleValue(),
+                context
+        );
     }
 
-    abstract Either<T, String> doubleValue(final Double value);
+    abstract Either<T, String> doubleValue(final Double value,
+                                           final ConverterContext context);
 
-    final Either<T, String> number(final Number value) {
-        return this.longValue(value.longValue());
+    final Either<T, String> number(final Number value,
+                                   final ConverterContext context) {
+        return this.longValue(
+                value.longValue(),
+                context
+        );
     }
 
-    abstract Either<T, String> longValue(final Long value);
+    abstract Either<T, String> longValue(final Long value,
+                                         final ConverterContext context);
 
     // Object...........................................................................................................
 

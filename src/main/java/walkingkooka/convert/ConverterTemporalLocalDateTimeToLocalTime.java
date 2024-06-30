@@ -44,7 +44,7 @@ final class ConverterTemporalLocalDateTimeToLocalTime<C extends ConverterContext
      * Private ctor use singleton
      */
     private ConverterTemporalLocalDateTimeToLocalTime() {
-        super(0);
+        super();
     }
 
     @Override
