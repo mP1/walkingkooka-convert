@@ -45,7 +45,7 @@ public class JunitTest {
         final long value = 123;
 
         this.convertAndCheck(
-                Converters.localDateToNumber(Converters.JAVA_EPOCH_OFFSET),
+                Converters.localDateToNumber(),
                 LocalDate.ofEpochDay(value),
                 Long.class,
                 Long.valueOf(value)
@@ -72,6 +72,10 @@ public class JunitTest {
                 target,
                 new FakeConverterContext() {
 
+                    @Override
+                    public long dateOffset() {
+                        return Converters.JAVA_EPOCH_OFFSET;
+                    }
                     @Override
                     public String currencySymbol() {
                         return "$";
