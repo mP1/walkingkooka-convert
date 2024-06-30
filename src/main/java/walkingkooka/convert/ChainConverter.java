@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 
 import java.util.Objects;
@@ -108,6 +109,29 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
     private final Class<?> intermediateType;
 
     private final Converter<C> second;
+
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                this.first,
+                this.intermediateType,
+                this.second
+        );
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+                other instanceof ChainConverter && this.equals0(Cast.to(other));
+    }
+
+    private boolean equals0(final ChainConverter<?> other) {
+        return this.first.equals(other.first) &&
+                this.intermediateType.equals(other.intermediateType) &&
+                this.second.equals(other.second);
+    }
 
     @Override
     public String toString() {

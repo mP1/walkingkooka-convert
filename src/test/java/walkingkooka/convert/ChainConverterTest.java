@@ -19,13 +19,15 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.text.HasText;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ChainConverterTest implements ConverterTesting2<ChainConverter<FakeConverterContext>, FakeConverterContext> {
+public final class ChainConverterTest implements ConverterTesting2<ChainConverter<FakeConverterContext>, FakeConverterContext>,
+        HashCodeEqualsDefinedTesting2<ChainConverter<FakeConverterContext>> {
 
     @Test
     public void testWithNullFirstConverterFails() {
@@ -130,6 +132,50 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Override
     public FakeConverterContext createContext() {
         return new FakeConverterContext();
+    }
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentFirstConverter() {
+        this.checkNotEquals(
+                ChainConverter.with(
+                        Converters.fake(),
+                        String.class,
+                        Converters.stringToCharacterOrString()
+                )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentType() {
+        this.checkNotEquals(
+                ChainConverter.with(
+                        Converters.booleanToNumber(),
+                        void.class,
+                        Converters.stringToCharacterOrString()
+                )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentSecondConverter() {
+        this.checkNotEquals(
+                ChainConverter.with(
+                        Converters.booleanToNumber(),
+                        String.class,
+                        Converters.fake()
+                )
+        );
+    }
+
+    @Override
+    public ChainConverter<FakeConverterContext> createObject() {
+        return ChainConverter.with(
+                Converters.booleanToNumber(),
+                String.class,
+                Converters.stringToCharacterOrString()
+        );
     }
 
     // toString..........................................................................................................
