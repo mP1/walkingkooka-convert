@@ -20,13 +20,15 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.predicate.Predicates;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterCollectionTest extends ConverterTestCase2<ConverterCollection<ConverterContext>> {
+public final class ConverterCollectionTest extends ConverterTestCase2<ConverterCollection<ConverterContext>>
+        implements HashCodeEqualsDefinedTesting2<ConverterCollection<ConverterContext>> {
 
     @Override
     public void testTypeNaming() {
@@ -133,6 +135,40 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     public ConverterContext createContext() {
         return ConverterContexts.fake();
     }
+
+    // hashcode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentConverters() {
+        this.checkNotEquals(
+                ConverterCollection.with(
+                        Lists.of(
+                                Converters.numberToBoolean(),
+                                Converters.numberToNumber()
+                        )
+                ),
+                ConverterCollection.with(
+                        Lists.of(
+                                Converters.numberToBoolean(),
+                                Converters.fake()
+                        )
+                )
+        );
+    }
+
+    @Override
+    public ConverterCollection<ConverterContext> createObject() {
+        return Cast.to(
+                ConverterCollection.with(
+                        Lists.of(
+                                Converters.numberToBoolean(),
+                                Converters.numberToNumber()
+                        )
+                )
+        );
+    }
+
+    // Class............................................................................................................
 
     @Override
     public Class<ConverterCollection<ConverterContext>> type() {
