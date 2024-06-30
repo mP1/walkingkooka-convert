@@ -44,10 +44,16 @@ public interface ConverterTesting extends TreePrintableTesting {
                 () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
         );
 
-        final Either<T, String> result = converter.convert(value, target, context);
-        if (result.isRight()) {
-            throw new AssertionFailedError(result.rightValue());
-        }
+        final Either<T, String> result = converter.convert(
+                value,
+                target,
+                context
+        );
+        this.checkEquals(
+                false,
+                result.isRight(),
+                () -> converter + " convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
+        );
 
         final T convertedValue = result.leftValue();
         this.checkEquals(
