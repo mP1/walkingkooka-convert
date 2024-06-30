@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 
@@ -87,6 +88,23 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
     }
 
     private final List<Converter<C>> converters;
+
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return this.converters.hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+                other instanceof ConverterCollection && this.equals0(Cast.to(other));
+    }
+
+    private boolean equals0(final ConverterCollection<?> other) {
+        return this.converters.equals(other.converters);
+    }
 
     @Override
     public String toString() {
