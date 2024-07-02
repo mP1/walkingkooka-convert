@@ -27,8 +27,7 @@ public final class ConverterHasTextToStringTest extends ConverterTestCase2<Conve
     public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                String.class,
-                null
+                String.class
         );
     }
 

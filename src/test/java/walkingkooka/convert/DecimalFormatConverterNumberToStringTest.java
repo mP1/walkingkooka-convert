@@ -41,8 +41,7 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                String.class,
-                null
+                String.class
         );
     }
 

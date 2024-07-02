@@ -26,11 +26,10 @@ import java.math.BigInteger;
 public final class ConverterBooleanToNumberTest extends ConverterTestCase2<ConverterBooleanToNumber<ConverterContext>> {
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                Number.class,
-                null
+                Number.class
         );
     }
 
