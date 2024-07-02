@@ -30,11 +30,10 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
     private final static double WITH_NANOS = 123.5;
 
     @Test
-    public void testNull() {
+    public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                Number.class,
-                null
+                Number.class
         );
     }
 

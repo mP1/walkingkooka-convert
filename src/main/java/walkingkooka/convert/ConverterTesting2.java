@@ -68,6 +68,18 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
 
     default <T> T convertAndCheck(final Converter<CC> converter,
                                   final Object value,
+                                  final Class<T> target) {
+        return this.convertAndCheck(
+                converter,
+                value,
+                target,
+                this.createContext(),
+                target.cast(value)
+        );
+    }
+
+    default <T> T convertAndCheck(final Converter<CC> converter,
+                                  final Object value,
                                   final Class<T> target,
                                   final T expected) {
         return this.convertAndCheck(converter, value, target, this.createContext(), expected);

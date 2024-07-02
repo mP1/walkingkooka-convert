@@ -32,8 +32,7 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
     public final void testConvertNull() {
         this.convertAndCheck(
                 null,
-                this.targetType(),
-                null
+                this.targetType()
         );
     }
 

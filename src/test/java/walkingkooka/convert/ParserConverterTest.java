@@ -93,8 +93,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                BigDecimal.class,
-                null
+                BigDecimal.class
         );
     }
 

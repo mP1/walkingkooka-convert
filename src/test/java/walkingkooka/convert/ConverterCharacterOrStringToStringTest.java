@@ -59,8 +59,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
     public void testConvertNullToString() {
         this.convertAndCheck(
                 null,
-                String.class,
-                null
+                String.class
         );
     }
 

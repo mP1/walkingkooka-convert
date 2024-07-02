@@ -34,8 +34,7 @@ public final class ConverterLocalTimeToLocalDateTimeTest extends ConverterLocalT
     public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                LocalDateTime.class,
-                null
+                LocalDateTime.class
         );
     }
 

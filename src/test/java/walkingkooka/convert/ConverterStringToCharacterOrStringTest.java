@@ -33,8 +33,7 @@ public final class ConverterStringToCharacterOrStringTest extends ConverterTestC
     public void testConvertNull() {
         this.convertAndCheck(
                 null,
-                Character.class,
-                null
+                Character.class
         );
     }
 
