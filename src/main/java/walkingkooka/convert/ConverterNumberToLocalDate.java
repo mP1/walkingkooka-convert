@@ -91,7 +91,7 @@ final class ConverterNumberToLocalDate<C extends ConverterContext> extends Conve
     private Either<LocalDate, String> localDate(final long value,
                                                 final ConverterContext context) {
         return this.successfulConversion(
-                LocalDate.ofEpochDay(value - context.dateOffset()),
+                LocalDate.ofEpochDay(value + context.dateOffset()),
                 LocalDate.class
         );
     }

@@ -30,7 +30,7 @@ public interface ConverterContext extends CanConvert,
         DecimalNumberContext {
 
     /**
-     * THe offset added when converting a {@link java.time.LocalDate} to a number.
+     * The offset (relative to 1/1/1970) added when converting a number to a {@link java.time.LocalDate}.
      */
     long dateOffset();
 

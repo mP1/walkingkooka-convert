@@ -128,7 +128,7 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
                 new FakeConverterContext() {
                     @Override
                     public long dateOffset() {
-                        return -Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
+                        return Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
                     }
                 },
                 DATE_TIME_WITH_1900_EXCEL_OFFSET

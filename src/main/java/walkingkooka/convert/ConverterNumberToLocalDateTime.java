@@ -136,7 +136,7 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
                 this.failConversion(value, LocalDateTime.class) :
                 this.successfulConversion(
                         LocalDateTime.of(
-                                LocalDate.ofEpochDay(day - context.dateOffset()),
+                                LocalDate.ofEpochDay(day + context.dateOffset()),
                                 LocalTime.ofNanoOfDay(nano)),
                         LocalDateTime.class
                 );
