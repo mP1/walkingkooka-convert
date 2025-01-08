@@ -51,7 +51,7 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
     public void testConvertDoubleMinFails() {
         this.convertFails2(Double.MIN_VALUE);
     }
-    
+
     @Test
     public final void testConvertNull() {
         this.convertAndCheck(

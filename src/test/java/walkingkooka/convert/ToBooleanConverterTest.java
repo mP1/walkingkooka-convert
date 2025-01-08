@@ -42,7 +42,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     public void testWithNullTargetTypeFails() {
         assertThrows(NullPointerException.class, () -> ToBooleanConverter.with(SOURCE_TESTER, null, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
     }
-    
+
     @Test
     public void testWithNullFalseValueFails() {
         assertThrows(NullPointerException.class, () -> ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, null, TRUE_ANSWER, FALSE_ANSWER));

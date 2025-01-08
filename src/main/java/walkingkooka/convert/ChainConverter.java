@@ -81,14 +81,14 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
                 this.intermediateType,
                 context
         );
-        if(intermediateResult.isLeft()) {
+        if (intermediateResult.isLeft()) {
             result = this.second.convert(
                     intermediateResult.leftValue(),
                     type,
                     context
             );
 
-            if(result.isRight()) {
+            if (result.isRight()) {
                 result = this.failConversion(
                         value,
                         type

@@ -22,6 +22,7 @@ import walkingkooka.Either;
 
 /**
  * A {@link Converter} that only handles requests to convert to {@link Object}.
+ *
  * @param <C>
  */
 final class ConverterObject<C extends ConverterContext> extends Converter2<C> {

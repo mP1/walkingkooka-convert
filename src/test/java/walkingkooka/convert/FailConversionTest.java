@@ -63,9 +63,9 @@ public final class FailConversionTest implements ClassTesting<FailConversion> {
                 FailConversion.handle(1, String.class, new NullPointerException("Exception message"))
         );
     }
-    
+
     // ClassTesting.....................................................................................................
-    
+
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;

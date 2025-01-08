@@ -35,7 +35,7 @@ final class ConverterNumberToNumberNumberTypeVisitorBigDecimal extends Converter
         this.save(number);
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
         this.save(new BigDecimal(number));
     }
@@ -50,22 +50,22 @@ final class ConverterNumberToNumberNumberTypeVisitorBigDecimal extends Converter
         this.save(BigDecimal.valueOf(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
         this.save(BigDecimal.valueOf(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
         this.save(BigDecimal.valueOf(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
         this.save(BigDecimal.valueOf(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
         this.save(BigDecimal.valueOf(number));
     }

@@ -72,32 +72,32 @@ public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCas
 
     @Test
     public void testConvertShort() {
-        this.convertAndCheck2((short)VALUE);
+        this.convertAndCheck2((short) VALUE);
     }
 
     @Test
     public void testConvertInteger() {
-        this.convertAndCheck2((int)VALUE);
+        this.convertAndCheck2((int) VALUE);
     }
 
     @Test
     public void testConvertLong() {
-        this.convertAndCheck((long)VALUE, LocalDate.ofEpochDay(VALUE));
+        this.convertAndCheck((long) VALUE, LocalDate.ofEpochDay(VALUE));
     }
 
     @Test
     public void testConvertLongWithExcelOffset() {
-        this.convertAndCheckExcelOffset((long)VALUE);
+        this.convertAndCheckExcelOffset((long) VALUE);
     }
 
     @Test
     public void testConvertFloat() {
-        this.convertAndCheck2((float)VALUE);
+        this.convertAndCheck2((float) VALUE);
     }
 
     @Test
     public void testConvertDouble() {
-        this.convertAndCheck2((double)VALUE);
+        this.convertAndCheck2((double) VALUE);
     }
 
     @Test
@@ -107,7 +107,7 @@ public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCas
 
     @Test
     public void testConvertDoubleWithExcelOffset() {
-        this.convertAndCheckExcelOffset((double)VALUE);
+        this.convertAndCheckExcelOffset((double) VALUE);
     }
 
     @Override

@@ -31,10 +31,9 @@ abstract class ConverterTemporalLocalDate<D, C extends ConverterContext> extends
         super();
     }
 
-    @Override
-    final boolean canConvertNonNull(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
+    @Override final boolean canConvertNonNull(final Object value,
+                                              final Class<?> type,
+                                              final C context) {
         return value instanceof LocalDate;
     }
 

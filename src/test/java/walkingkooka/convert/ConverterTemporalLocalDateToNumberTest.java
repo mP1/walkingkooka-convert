@@ -63,42 +63,42 @@ public final class ConverterTemporalLocalDateToNumberTest extends ConverterTempo
     @Test
     public void testConvertLocalDateToByte() {
         this.convertToNumberAndCheck(
-                (byte)(BYTE_VALUE - DATE_OFFSET)
+                (byte) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 
     @Test
     public void testConvertLocalDateToShort() {
         this.convertToNumberAndCheck(
-                (short)(BYTE_VALUE - DATE_OFFSET)
+                (short) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 
     @Test
     public void testConvertLocalDateToInteger() {
         this.convertToNumberAndCheck(
-                (int)(BYTE_VALUE - DATE_OFFSET)
+                (int) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 
     @Test
     public void testConvertLocalDateToLong() {
         this.convertToNumberAndCheck(
-                (long)(BYTE_VALUE - DATE_OFFSET)
+                (long) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 
     @Test
     public void testConvertLocalDateToFloat() {
         this.convertToNumberAndCheck(
-                (float)(BYTE_VALUE - DATE_OFFSET)
+                (float) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 
     @Test
     public void testConvertLocalDateToDouble() {
         this.convertToNumberAndCheck(
-                (double)(BYTE_VALUE - DATE_OFFSET)
+                (double) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 
@@ -114,7 +114,7 @@ public final class ConverterTemporalLocalDateToNumberTest extends ConverterTempo
         this.convertAndCheck(
                 LocalDate.ofEpochDay(BYTE_VALUE),
                 Number.class,
-                (long)(BYTE_VALUE - DATE_OFFSET)
+                (long) (BYTE_VALUE - DATE_OFFSET)
         );
     }
 

@@ -45,10 +45,9 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> exte
      * Wraps the {@link #convert(Object, Class, ConverterContext)} in a try/catch any exceptions will become a failure
      * using the {@link Throwable#getMessage()} as the failure message.
      */
-    @Override
-    final <T> Either<T, String> convertNonNull(final Object value,
-                                               final Class<T> type,
-                                               final ConverterContext context) {
+    @Override final <T> Either<T, String> convertNonNull(final Object value,
+                                                         final Class<T> type,
+                                                         final ConverterContext context) {
         Either<T, String> result;
         try {
             result = this.successfulConversion(

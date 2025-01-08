@@ -109,12 +109,12 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertLong() {
-        this.convertAndCheck2((long)VALUE);
+        this.convertAndCheck2((long) VALUE);
     }
 
     @Test
     public void testConvertLongWithExcelOffset() {
-        this.convertAndCheckWith1900ExcelDateOffset((long)VALUE);
+        this.convertAndCheckWith1900ExcelDateOffset((long) VALUE);
     }
 
     private void convertAndCheck2(final Object value) {
