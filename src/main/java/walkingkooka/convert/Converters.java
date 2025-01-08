@@ -281,14 +281,14 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> object() {
         return ConverterObject.instance();
     }
-    
+
     /**
      * {@see ConverterObjectToString}
      */
     public static <C extends ConverterContext> Converter<C> objectToString() {
         return ConverterObjectToString.instance();
     }
-    
+
     /**
      * {@see ParserConverter}
      */

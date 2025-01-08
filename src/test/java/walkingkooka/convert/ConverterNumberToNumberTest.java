@@ -132,7 +132,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertByteToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.byteValue());
     }
-    
+
     @Test
     public void testConvertDoubleToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.doubleValue());
@@ -142,12 +142,12 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertFloatToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.floatValue());
     }
-    
+
     @Test
     public void testConvertIntegerToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.integerValue());
     }
-    
+
     @Test
     public void testConvertLongToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.longValue());
@@ -157,7 +157,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertShortToBigDecimal() {
         this.convertToBigDecimalAndCheck(this.shortValue());
     }
-    
+
     private void convertToBigDecimalAndCheck(final Number number) {
         this.convertAndCheck(number, BigDecimal.class, this.bigDecimal());
     }
@@ -221,7 +221,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     private void convertToBigIntegerFails(final Number number) {
         this.convertFails(number, BigInteger.class);
     }
-    
+
     // toByte...........................................................................................................
 
     @Test
@@ -258,7 +258,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertDoubleToByteWithPrecisionLoss() {
         this.convertToByteAndCheck(
                 1.5,
-                (byte)1
+                (byte) 1
         );
     }
 
@@ -276,7 +276,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertFloatToByteWithPrecisionLoss() {
         this.convertToByteAndCheck(
                 1.5f,
-                (byte)1
+                (byte) 1
         );
     }
 
@@ -693,7 +693,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertDoubleToShortWithPrecisionLoss() {
         this.convertToShortAndCheck(
                 1.5,
-                (short)1
+                (short) 1
         );
     }
 
@@ -711,7 +711,7 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public void testConvertFloatToShortWithPrecisionLoss() {
         this.convertToShortAndCheck(
                 2.5f,
-                (short)2
+                (short) 2
         );
     }
 

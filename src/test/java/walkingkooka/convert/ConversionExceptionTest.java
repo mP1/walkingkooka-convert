@@ -29,7 +29,7 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
 
     @Test
     public void testNew() {
-        final ConversionException exception =  new ConversionException(
+        final ConversionException exception = new ConversionException(
                 MESSAGE,
                 VALUE,
                 TYPE
@@ -45,7 +45,7 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     public void testNewWithCause() {
         final Throwable cause = new Throwable();
 
-        final ConversionException exception =  new ConversionException(
+        final ConversionException exception = new ConversionException(
                 MESSAGE,
                 VALUE,
                 TYPE,
@@ -76,7 +76,7 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
                 cause
         );
     }
-    
+
     @Override
     public Class<ConversionException> type() {
         return ConversionException.class;

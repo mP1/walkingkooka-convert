@@ -35,7 +35,7 @@ final class ConverterNumberToNumberNumberTypeVisitorBigInteger extends Converter
         this.save(number.toBigIntegerExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final BigInteger number) {
         this.save(number); // dead code because BigInteger to BigInteger is short circuited earlier by ConverterNumberToNumber.
     }
@@ -50,22 +50,22 @@ final class ConverterNumberToNumberNumberTypeVisitorBigInteger extends Converter
         this.save(new BigDecimal(number).toBigIntegerExact());
     }
 
-    @Override 
+    @Override
     protected void visit(final Float number) {
         this.visit(new BigDecimal(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Integer number) {
         this.save(BigInteger.valueOf(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Long number) {
         this.save(BigInteger.valueOf(number));
     }
 
-    @Override 
+    @Override
     protected void visit(final Short number) {
         this.save(BigInteger.valueOf(number));
     }

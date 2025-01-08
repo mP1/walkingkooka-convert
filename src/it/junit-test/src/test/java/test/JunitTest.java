@@ -76,6 +76,7 @@ public class JunitTest {
                     public long dateOffset() {
                         return Converters.JAVA_EPOCH_OFFSET;
                     }
+
                     @Override
                     public String currencySymbol() {
                         return "$";

@@ -52,8 +52,8 @@ final class FailConversion implements StaticHelper {
                         CharSequences.quoteIfChars(value) +
                         (
                                 null != value ?
-                                " (" + value.getClass().getName() + ")" :
-                                ""
+                                        " (" + value.getClass().getName() + ")" :
+                                        ""
                         ) +
                         " to " + target.getName() +
                         (CharSequences.isNullOrEmpty(message) ? "" : ", " + message));
