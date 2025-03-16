@@ -48,11 +48,6 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return this.canConvert0(value, type);
-    }
-
-    private boolean canConvert0(final Object value,
-                                final Class<?> type) {
         return null == value || type == value.getClass();
     }
 
@@ -60,10 +55,15 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final C context) {
-        return this.canConvert0(value, type) ?
+        return this.canConvert(
+                value,
+                type,
+                context) ?
                 this.successfulConversion(value, type) :
                 this.failConversion(value, type);
     }
+
+    // Object...........................................................................................................
 
     @Override
     public String toString() {
