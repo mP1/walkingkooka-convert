@@ -27,22 +27,34 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
 
     @Test
     public void testConvertNull() {
-        this.convertAndCheck(null, Void.class);
+        this.convertAndCheck(
+                null,
+                Void.class
+        );
     }
 
     @Test
     public void testConvertSameType() {
-        this.convertAndCheck("ABC", String.class);
+        this.convertAndCheck(
+                "ABC",
+                String.class
+        );
     }
 
     @Test
     public void testConvertInstanceOfTargetType() {
-        this.convertFails("ABC", CharSequence.class);
+        this.convertFails(
+                "ABC",
+                CharSequence.class
+        );
     }
 
     @Test
     public void testConvertDifferentType() {
-        this.convertFails("ABC", Number.class);
+        this.convertFails(
+                "ABC",
+                Number.class
+        );
     }
 
     @Override
