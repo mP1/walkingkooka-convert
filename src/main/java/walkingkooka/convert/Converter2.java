@@ -38,7 +38,16 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
     public final boolean canConvert(final Object value,
                                     final Class<?> type,
                                     final C context) {
-        return (null == value || this.canConvertNonNull(value, type, context)) &&
+        Objects.requireNonNull(type, "type");
+        Objects.requireNonNull(context, "context");
+
+        return (null == value ||
+                this.canConvertNonNull(
+                        value,
+                        type,
+                        context
+                )
+        ) &&
                 this.canConvertType(type);
     }
 
@@ -52,9 +61,6 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
     public final <T> Either<T, String> convert(final Object value,
                                                final Class<T> type,
                                                final C context) {
-        Objects.requireNonNull(type, "type");
-        Objects.requireNonNull(context, "context");
-
         return this.canConvert(value, type, context) ?
                 this.convert0(value, type, context) :
                 this.failConversion(value, type);
