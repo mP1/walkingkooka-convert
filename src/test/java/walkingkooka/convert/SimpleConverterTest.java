@@ -21,6 +21,9 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
+
 public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter<ConverterContext>>
         implements ConverterTesting2<SimpleConverter<ConverterContext>, ConverterContext>,
         ToStringTesting<SimpleConverter<ConverterContext>> {
@@ -38,6 +41,22 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
         this.convertAndCheck(
                 "ABC",
                 String.class
+        );
+    }
+
+    @Test
+    public void testConvertSubClass() {
+        this.convertAndCheck(
+                new ArrayList(),
+                AbstractList.class
+        );
+    }
+
+    @Test
+    public void testConvertSubClassObject() {
+        this.convertAndCheck(
+                this,
+                Object.class
         );
     }
 

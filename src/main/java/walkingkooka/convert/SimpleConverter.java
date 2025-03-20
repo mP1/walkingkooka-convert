@@ -48,7 +48,33 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C> 
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return null == value || type == value.getClass();
+        return null == value ||
+                this.isSubClass(
+                        value,
+                        type
+                );
+    }
+
+    /**
+     * Because Class#isInstance is not supported by GWT, this is partially emulated and will match sub-classes but not
+     * interface implementations.
+     */
+    private boolean isSubClass(final Object value,
+                               final Class<?> superClass) {
+        boolean isSubClass;
+
+        Class<?> valueType = value.getClass();
+        do {
+            isSubClass = valueType == superClass;
+            if (isSubClass) {
+                break;
+            }
+
+            valueType = valueType.getSuperclass();
+
+        } while (null != valueType);
+
+        return isSubClass;
     }
 
     @Override
