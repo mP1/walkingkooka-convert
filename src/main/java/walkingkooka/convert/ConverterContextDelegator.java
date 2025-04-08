@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.math.DecimalNumberContext;
@@ -26,8 +25,14 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import java.util.Locale;
 
 public interface ConverterContextDelegator extends ConverterContext,
+        CanConvertDelegator,
         DateTimeContextDelegator,
         DecimalNumberContextDelegator {
+
+    @Override
+    default CanConvert canConvert() {
+        return this.converterContext();
+    }
 
     @Override
     default DateTimeContext dateTimeContext() {
@@ -48,26 +53,6 @@ public interface ConverterContextDelegator extends ConverterContext,
     default long dateOffset() {
         return this.converterContext()
                 .dateOffset();
-    }
-
-    @Override
-    default boolean canConvert(final Object value,
-                               final Class<?> type) {
-        return this.converterContext()
-                .canConvert(
-                        value,
-                        type
-                );
-    }
-
-    @Override
-    default <T> Either<T, String> convert(final Object value,
-                                          final Class<T> target) {
-        return this.converterContext()
-                .convert(
-                        value,
-                        target
-                );
     }
 
     ConverterContext converterContext();
