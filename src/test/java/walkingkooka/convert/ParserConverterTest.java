@@ -22,6 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.cursor.parser.BigDecimalParserToken;
+import walkingkooka.text.cursor.parser.InvalidCharacterExceptionFactory;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserContext;
 import walkingkooka.text.cursor.parser.ParserContexts;
@@ -133,7 +134,11 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     private Function<ConverterContext, ParserContext> converterContextToParserContext() {
-        return (c) -> ParserContexts.basic(c, c);
+        return (c) -> ParserContexts.basic(
+                InvalidCharacterExceptionFactory.POSITION,
+                c,
+                c
+        );
     }
 
     private BiFunction<ParserToken, ConverterContext, BigDecimal> parserTokenToValue() {
