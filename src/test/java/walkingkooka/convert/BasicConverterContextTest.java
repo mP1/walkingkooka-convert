@@ -20,12 +20,14 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
 import java.math.MathContext;
+import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Locale;
 
@@ -115,8 +117,13 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     private DateTimeContext dateTimeContext() {
-        return DateTimeContexts.locale(
-                Locale.FRANCE,
+        final Locale locale = Locale.FRANCE;
+
+        return DateTimeContexts.basic(
+                DateTimeSymbols.fromDateFormatSymbols(
+                        new DateFormatSymbols(locale)
+                ),
+                locale,
                 1900,
                 20,
                 LocalDateTime::now
