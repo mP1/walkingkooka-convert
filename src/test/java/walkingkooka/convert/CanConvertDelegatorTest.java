@@ -20,9 +20,11 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.CanConvertDelegatorTest.TestCanConvertDelegator;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContexts;
 
 import java.math.MathContext;
+import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,13 +53,18 @@ public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanC
     static class TestCanConvertDelegator implements CanConvertDelegator {
         @Override
         public CanConvert canConvert() {
+            final Locale locale = Locale.forLanguageTag("EN-AU");
+
             return ConverterContexts.basic(
                     Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                     Converters.stringToLocalDate(
                             (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                     ),
-                    DateTimeContexts.locale(
-                            Locale.forLanguageTag("EN-AU"),
+                    DateTimeContexts.basic(
+                            DateTimeSymbols.fromDateFormatSymbols(
+                                    new DateFormatSymbols(locale)
+                            ),
+                            locale,
                             1950, // defaultYear
                             50, // twoDigitYear
                             LocalDateTime::now
