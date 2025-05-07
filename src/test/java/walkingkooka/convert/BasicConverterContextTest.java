@@ -23,6 +23,7 @@ import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
@@ -131,15 +132,19 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     private DecimalNumberContext decimalNumberContext() {
-        return DecimalNumberContexts.basic(CURRENCY,
-                DECIMAL,
-                EXPONENT,
-                GROUP_SEPARATOR,
-                MINUS,
-                PERCENTAGE,
-                PLUS,
+        return DecimalNumberContexts.basic(
+                DecimalNumberSymbols.with(
+                        MINUS,
+                        PLUS,
+                        CURRENCY,
+                        DECIMAL,
+                        EXPONENT,
+                        GROUP_SEPARATOR,
+                        PERCENTAGE
+                ),
                 LOCALE,
-                MATH_CONTEXT);
+                MATH_CONTEXT
+        );
     }
 
     @Override
