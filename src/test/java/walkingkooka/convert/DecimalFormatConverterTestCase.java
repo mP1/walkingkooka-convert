@@ -22,6 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.math.DecimalNumberSymbols;
 
 import java.math.MathContext;
 import java.text.DecimalFormat;
@@ -75,10 +76,15 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
                 0, // dateOffset
                 Converters.fake(),
                 DateTimeContexts.fake(),
-                DecimalNumberContexts.decimalFormatSymbols(new DecimalFormatSymbols(locale),
-                        '+',
+                DecimalNumberContexts.basic(
+                        DecimalNumberSymbols.fromDecimalFormatSymbols(
+                                '+',
+                                new DecimalFormatSymbols(locale)
+                        ),
                         locale,
-                        MathContext.DECIMAL32));
+                        MathContext.DECIMAL32
+                )
+        );
     }
 
     final void convertAndCheck2(final String pattern,
