@@ -42,12 +42,13 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
 
     private final static String CURRENCY = "$$";
-    private final static char DECIMAL = 'D';
+    private final static char DECIMAL = ':';
     private final static String EXPONENT = "X";
-    private final static char GROUP_SEPARATOR = 'G';
-    private final static char MINUS = 'M';
-    private final static char PERCENTAGE = 'R';
-    private final static char PLUS = 'P';
+    private final static char GROUP_SEPARATOR = '/';
+    private final static char MINUS = '-';
+    private final static char PERCENTAGE = '!';
+    private final static char PLUS = '+';
+    private final static char ZERO_DIGIT = '0';
 
     private final static Locale LOCALE = Locale.ENGLISH;
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
@@ -136,6 +137,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 DecimalNumberSymbols.with(
                         MINUS,
                         PLUS,
+                        ZERO_DIGIT,
                         CURRENCY,
                         DECIMAL,
                         EXPONENT,
