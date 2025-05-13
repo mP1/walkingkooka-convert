@@ -103,7 +103,7 @@ public class JunitTest {
                     }
 
                     @Override
-                    public char percentageSymbol() {
+                    public char percentSymbol() {
                         return '%';
                     }
 

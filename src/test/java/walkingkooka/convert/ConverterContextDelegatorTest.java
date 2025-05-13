@@ -71,9 +71,9 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
     }
 
     @Override
-    public char percentageSymbol() {
+    public char percentSymbol() {
         return new TestConverterContextDelegator()
-                .percentageSymbol();
+                .percentSymbol();
     }
 
     @Override
