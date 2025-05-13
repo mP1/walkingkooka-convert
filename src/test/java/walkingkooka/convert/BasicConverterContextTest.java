@@ -45,8 +45,12 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static char DECIMAL = ':';
     private final static String EXPONENT = "X";
     private final static char GROUP_SEPARATOR = '/';
+    private final static String INFINITY = "Infinity";
     private final static char MINUS = '-';
+    private final static char MONETARY_DECIMAL = ';';
+    private final static String NAN = "Nan";
     private final static char PERCENTAGE = '!';
+    private final static char PERMILL = '^';
     private final static char PLUS = '+';
     private final static char ZERO_DIGIT = '0';
 
@@ -142,7 +146,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                         DECIMAL,
                         EXPONENT,
                         GROUP_SEPARATOR,
-                        PERCENTAGE
+                        INFINITY,
+                        MONETARY_DECIMAL,
+                        NAN,
+                        PERCENTAGE,
+                        PERMILL
                 ),
                 LOCALE,
                 MATH_CONTEXT
