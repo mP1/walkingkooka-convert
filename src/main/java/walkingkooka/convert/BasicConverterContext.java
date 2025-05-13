@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.DecimalNumberContextDelegator;
 
 import java.math.MathContext;
 import java.time.LocalDateTime;
@@ -30,7 +31,8 @@ import java.util.Objects;
 /**
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
-final class BasicConverterContext implements ConverterContext {
+final class BasicConverterContext implements ConverterContext,
+        DecimalNumberContextDelegator {
 
     /**
      * Creates a new {@link BasicConverterContext}.
@@ -132,41 +134,6 @@ final class BasicConverterContext implements ConverterContext {
     // DecimalNumberContext.............................................................................................
 
     @Override
-    public String currencySymbol() {
-        return this.decimalNumberContext.currencySymbol();
-    }
-
-    @Override
-    public char decimalSeparator() {
-        return this.decimalNumberContext.decimalSeparator();
-    }
-
-    @Override
-    public String exponentSymbol() {
-        return this.decimalNumberContext.exponentSymbol();
-    }
-
-    @Override
-    public char groupSeparator() {
-        return this.decimalNumberContext.groupSeparator();
-    }
-
-    @Override
-    public char negativeSign() {
-        return this.decimalNumberContext.negativeSign();
-    }
-
-    @Override
-    public char percentSymbol() {
-        return this.decimalNumberContext.percentSymbol();
-    }
-
-    @Override
-    public char positiveSign() {
-        return this.decimalNumberContext.positiveSign();
-    }
-
-    @Override
     public Locale locale() {
         return this.decimalNumberContext.locale();
     }
@@ -174,6 +141,11 @@ final class BasicConverterContext implements ConverterContext {
     @Override
     public MathContext mathContext() {
         return this.decimalNumberContext.mathContext();
+    }
+
+    @Override
+    public DecimalNumberContext decimalNumberContext() {
+        return this.decimalNumberContext;
     }
 
     private final DecimalNumberContext decimalNumberContext;

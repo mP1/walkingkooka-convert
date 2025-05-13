@@ -20,6 +20,8 @@ package walkingkooka.convert;
 import walkingkooka.convert.ConverterContextDelegatorTest.TestConverterContextDelegator;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 
 import java.math.MathContext;
@@ -27,7 +29,8 @@ import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Locale;
 
-public final class ConverterContextDelegatorTest implements ConverterContextTesting<TestConverterContextDelegator> {
+public final class ConverterContextDelegatorTest implements ConverterContextTesting<TestConverterContextDelegator>,
+        DecimalNumberContextDelegator {
 
     @Override
     public TestConverterContextDelegator createContext() {
@@ -35,51 +38,14 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
     }
 
     @Override
-    public String currencySymbol() {
-        return new TestConverterContextDelegator()
-                .currencySymbol();
-    }
-
-    @Override
-    public char decimalSeparator() {
-        return new TestConverterContextDelegator()
-                .decimalSeparator();
-    }
-
-    @Override
-    public String exponentSymbol() {
-        return new TestConverterContextDelegator()
-                .exponentSymbol();
-    }
-
-    @Override
-    public char groupSeparator() {
-        return new TestConverterContextDelegator()
-                .groupSeparator();
+    public DecimalNumberContext decimalNumberContext() {
+        return this.createContext();
     }
 
     @Override
     public MathContext mathContext() {
-        return new TestConverterContextDelegator()
+        return this.createContext()
                 .mathContext();
-    }
-
-    @Override
-    public char negativeSign() {
-        return new TestConverterContextDelegator()
-                .negativeSign();
-    }
-
-    @Override
-    public char percentSymbol() {
-        return new TestConverterContextDelegator()
-                .percentSymbol();
-    }
-
-    @Override
-    public char positiveSign() {
-        return new TestConverterContextDelegator()
-                .positiveSign();
     }
 
     // class............................................................................................................

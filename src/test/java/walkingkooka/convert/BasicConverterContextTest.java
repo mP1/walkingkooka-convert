@@ -22,6 +22,7 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
@@ -35,7 +36,8 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
-        ConverterContextTesting<BasicConverterContext> {
+        ConverterContextTesting<BasicConverterContext>,
+        DecimalNumberContextDelegator {
 
     private final static long NUMBER_TO_DATE_OFFSET = 0;
 
@@ -136,7 +138,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         );
     }
 
-    private DecimalNumberContext decimalNumberContext() {
+    @Override
+    public DecimalNumberContext decimalNumberContext() {
         return DecimalNumberContexts.basic(
                 DecimalNumberSymbols.with(
                         MINUS,
@@ -158,44 +161,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     @Override
-    public String currencySymbol() {
-        return CURRENCY;
-    }
-
-    @Override
-    public char decimalSeparator() {
-        return DECIMAL;
-    }
-
-    @Override
-    public String exponentSymbol() {
-        return EXPONENT;
-    }
-
-    @Override
-    public char groupSeparator() {
-        return GROUP_SEPARATOR;
-    }
-
-    @Override
     public MathContext mathContext() {
         return MATH_CONTEXT;
     }
 
-    @Override
-    public char negativeSign() {
-        return MINUS;
-    }
-
-    @Override
-    public char percentSymbol() {
-        return PERCENT;
-    }
-
-    @Override
-    public char positiveSign() {
-        return PLUS;
-    }
+    // class............................................................................................................
 
     @Override
     public Class<BasicConverterContext> type() {
