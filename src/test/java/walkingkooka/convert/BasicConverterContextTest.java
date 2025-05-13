@@ -49,7 +49,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static char MINUS = '-';
     private final static char MONETARY_DECIMAL = ';';
     private final static String NAN = "Nan";
-    private final static char PERCENTAGE = '!';
+    private final static char PERCENT = '!';
     private final static char PERMILL = '^';
     private final static char PLUS = '+';
     private final static char ZERO_DIGIT = '0';
@@ -149,7 +149,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                         INFINITY,
                         MONETARY_DECIMAL,
                         NAN,
-                        PERCENTAGE,
+                        PERCENT,
                         PERMILL
                 ),
                 LOCALE,
@@ -188,8 +188,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     @Override
-    public char percentageSymbol() {
-        return PERCENTAGE;
+    public char percentSymbol() {
+        return PERCENT;
     }
 
     @Override
