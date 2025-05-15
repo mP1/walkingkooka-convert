@@ -41,12 +41,13 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");
 
-        return (null == value ||
-                this.canConvertNonNull(
-                        value,
-                        type,
-                        context
-                )
+        return (
+                null == value ||
+                        this.canConvertNonNull(
+                                value,
+                                type,
+                                context
+                        )
         ) &&
                 this.canConvertType(type);
     }
