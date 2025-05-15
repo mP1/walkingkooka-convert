@@ -119,6 +119,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString}
+     */
+    public static <C extends ConverterContext> Converter<C> characterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString() {
+        return ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString.instance();
+    }
+
+    /**
      * {@see ConverterCollection}
      */
     public static <C extends ConverterContext> Converter<C> collection(final List<Converter<C>> converters) {
