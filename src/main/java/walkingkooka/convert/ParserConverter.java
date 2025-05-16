@@ -69,7 +69,11 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return (null == value || value instanceof String) && this.parserValueType == type;
+        return this.parserValueType == type &&
+                context.canConvert(
+                        value,
+                        String.class
+                );
     }
 
     private final Class<V> parserValueType;
@@ -78,23 +82,37 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> type,
                                          final C context) {
-        return this.canConvert(value, type, context) ?
-                this.parseString((String) value, type, context) :
-                this.failConversion(value, type);
+        return this.canConvert(
+                value,
+                type,
+                context
+        ) ?
+                this.parse(
+                        context.convertOrFail(
+                                value,
+                                CharSequence.class
+                        ),
+                        type,
+                        context
+                ) :
+                this.failConversion(
+                        value,
+                        type
+                );
     }
 
-    private <T> Either<T, String> parseString(final String text,
-                                              final Class<T> type,
-                                              final C context) {
+    private <T> Either<T, String> parse(final CharSequence text,
+                                        final Class<T> type,
+                                        final C context) {
         return null == text ?
                 this.successfulConversion(null, type) :
-                this.parseNonNullString(text, type, context);
+                this.parseNonNull(text, type, context);
     }
 
 
-    private <T> Either<T, String> parseNonNullString(final String text,
-                                                     final Class<T> type,
-                                                     final C context) {
+    private <T> Either<T, String> parseNonNull(final CharSequence text,
+                                               final Class<T> type,
+                                               final C context) {
         final TextCursor cursor = TextCursors.charSequence(text);
         final Optional<ParserToken> result = this.parser.parse(
                 cursor,
