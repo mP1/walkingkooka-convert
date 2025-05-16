@@ -21,6 +21,9 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.naming.Name;
+import walkingkooka.naming.Names;
+import walkingkooka.naming.StringName;
 import walkingkooka.text.HasText;
 
 import java.math.BigDecimal;
@@ -115,6 +118,14 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
         );
     }
 
+    @Test
+    public void testConvertNameToCharacterFails() {
+        this.convertFails(
+                Names.string("Fails123"),
+                Character.class
+        );
+    }
+
     // CharSequence.....................................................................................................
 
     @Test
@@ -200,6 +211,17 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
         );
     }
 
+    @Test
+    public void testConvertNameToCharSequence() {
+        final StringName name = Names.string("Fails123");
+
+        this.convertAndCheck(
+                name,
+                CharSequence.class,
+                name.text()
+        );
+    }
+
     // CharSequence.....................................................................................................
 
     @Test
@@ -242,7 +264,15 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
         );
     }
 
-    // CharSequence.....................................................................................................
+    @Test
+    public void testConvertNameToHasTextFails() {
+        this.convertFails(
+                Names.string("Fails123"),
+                HasText.class
+        );
+    }
+
+    // String...........................................................................................................
 
     @Test
     public void testConvertNullToString() {
@@ -327,6 +357,25 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
         this.convertAndCheck(
                 "abc",
                 String.class
+        );
+    }
+
+    @Test
+    public void testConvertNameToStringFails() {
+        final String name = "Name123";
+
+        this.convertAndCheck(
+                Names.string(name),
+                String.class,
+                name
+        );
+    }
+
+    @Test
+    public void testConvertNameToNameFails() {
+        this.convertFails(
+                Names.string("Fails123"),
+                Name.class
         );
     }
 
