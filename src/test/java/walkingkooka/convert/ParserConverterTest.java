@@ -91,7 +91,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertNullToBigDecimal() {
+    public void testParserBigDecimalConvertNullToBigDecimal() {
         this.convertAndCheck(
                 null,
                 BigDecimal.class
@@ -99,7 +99,16 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertStringToBigDecimal() {
+    public void testParserBigDecimalConvertCharSequenceToBigDecimal() {
+        this.convertAndCheck(
+                new StringBuffer("1.23"),
+                BigDecimal.class,
+                BigDecimal.valueOf(1.23)
+        );
+    }
+
+    @Test
+    public void testParserBigDecimalConvertStringToBigDecimal() {
         this.convertAndCheck(
                 "1.23",
                 BigDecimal.class,
@@ -108,7 +117,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertIntegerToBigDecimalFails() {
+    public void testParserBigDecimalConvertIntegerToBigDecimalFails() {
         this.convertFails(
                 Integer.MAX_VALUE,
                 BigDecimal.class
@@ -116,7 +125,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertParserStringToBigDecimalFails() {
+    public void testParserBigDecimalConvertStringToBigDecimalFails() {
         this.convertFails(
                 "FAILS",
                 BigDecimal.class
@@ -149,7 +158,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public ConverterContext createContext() {
         return ConverterContexts.basic(
                 0, // dateOffset
-                Converters.fake(),
+                Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
                 DateTimeContexts.fake(),
                 DecimalNumberContexts.american(MathContext.DECIMAL32)
         );
