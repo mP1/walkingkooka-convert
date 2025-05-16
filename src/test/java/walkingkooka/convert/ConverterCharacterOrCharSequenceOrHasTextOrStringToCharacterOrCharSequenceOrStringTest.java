@@ -28,7 +28,7 @@ import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public final class ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrStringTest extends ConverterTestCase2<ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> {
+public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringTest extends ConverterTestCase2<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> {
 
     // character.........................................................................................................
 
@@ -345,8 +345,8 @@ public final class ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrC
     }
 
     @Override
-    public ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext> createConverter() {
-        return ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString.instance();
+    public ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext> createConverter() {
+        return ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.instance();
     }
 
     @Override
@@ -399,8 +399,8 @@ public final class ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrC
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> type() {
-        return Cast.to(ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString.class);
+    public Class<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> type() {
+        return Cast.to(ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.class);
     }
 
     // TypeNameTesting..................................................................................................
