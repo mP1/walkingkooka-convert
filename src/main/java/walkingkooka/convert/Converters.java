@@ -119,10 +119,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString}
+     * {@see ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString}
      */
     public static <C extends ConverterContext> Converter<C> characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString() {
-        return ConverterCharacterOrCharSequenceHasTextOrStringToCharacterOrCharSequenceOrString.instance();
+        return ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.instance();
     }
 
     /**
