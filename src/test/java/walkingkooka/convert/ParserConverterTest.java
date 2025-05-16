@@ -91,7 +91,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertNull() {
+    public void testConvertNullToBigDecimal() {
         this.convertAndCheck(
                 null,
                 BigDecimal.class
@@ -99,7 +99,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertParsed() {
+    public void testConvertStringToBigDecimal() {
         this.convertAndCheck(
                 "1.23",
                 BigDecimal.class,
@@ -108,7 +108,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertParserNonStringFails() {
+    public void testConvertIntegerToBigDecimalFails() {
         this.convertFails(
                 Integer.MAX_VALUE,
                 BigDecimal.class
@@ -116,7 +116,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Test
-    public void testConvertParserFails() {
+    public void testConvertParserStringToBigDecimalFails() {
         this.convertFails(
                 "FAILS",
                 BigDecimal.class
