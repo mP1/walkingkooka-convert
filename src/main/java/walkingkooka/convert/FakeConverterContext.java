@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.FakeDecimalNumberContext;
 import walkingkooka.test.Fake;
 
@@ -108,6 +109,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
 
     @Override
     public String weekDayNameAbbreviation(final int day) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public DateTimeSymbols dateTimeSymbols() {
         throw new UnsupportedOperationException();
     }
 }
