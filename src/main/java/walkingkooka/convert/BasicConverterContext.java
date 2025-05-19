@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 
@@ -127,6 +128,11 @@ final class BasicConverterContext implements ConverterContext,
     @Override
     public List<String> weekDayNameAbbreviations() {
         return this.dateTimeContext.weekDayNameAbbreviations();
+    }
+
+    @Override
+    public DateTimeSymbols dateTimeSymbols() {
+        return this.dateTimeContext.dateTimeSymbols();
     }
 
     private final DateTimeContext dateTimeContext;
