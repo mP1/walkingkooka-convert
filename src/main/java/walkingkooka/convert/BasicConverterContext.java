@@ -19,13 +19,11 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
-import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 
 import java.math.MathContext;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -33,6 +31,7 @@ import java.util.Objects;
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
 final class BasicConverterContext implements ConverterContext,
+        DateTimeContextDelegator,
         DecimalNumberContextDelegator {
 
     /**
@@ -90,49 +89,11 @@ final class BasicConverterContext implements ConverterContext,
 
     private final Converter<ConverterContext> converter;
 
-    @Override
-    public List<String> ampms() {
-        return this.dateTimeContext.ampms();
-    }
+    // DateTimeContext..................................................................................................
 
     @Override
-    public int defaultYear() {
-        return this.dateTimeContext.defaultYear();
-    }
-
-    @Override
-    public List<String> monthNames() {
-        return this.dateTimeContext.monthNames();
-    }
-
-    @Override
-    public List<String> monthNameAbbreviations() {
-        return this.dateTimeContext.monthNameAbbreviations();
-    }
-
-    @Override
-    public LocalDateTime now() {
-        return this.dateTimeContext.now();
-    }
-
-    @Override
-    public int twoDigitYear() {
-        return this.dateTimeContext.twoDigitYear();
-    }
-
-    @Override
-    public List<String> weekDayNames() {
-        return this.dateTimeContext.weekDayNames();
-    }
-
-    @Override
-    public List<String> weekDayNameAbbreviations() {
-        return this.dateTimeContext.weekDayNameAbbreviations();
-    }
-
-    @Override
-    public DateTimeSymbols dateTimeSymbols() {
-        return this.dateTimeContext.dateTimeSymbols();
+    public DateTimeContext dateTimeContext() {
+        return this.dateTimeContext;
     }
 
     private final DateTimeContext dateTimeContext;
