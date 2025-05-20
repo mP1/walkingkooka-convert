@@ -27,7 +27,7 @@ import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public final class ConverterStringToCharacterOrStringTest extends ConverterTestCase2<ConverterStringToCharacterOrString<ConverterContext>> {
+public final class StringToCharacterOrStringConverterTest implements ConverterTesting2<StringToCharacterOrStringConverter<FakeConverterContext>, FakeConverterContext> {
 
     @Test
     public void testConvertNull() {
@@ -86,15 +86,14 @@ public final class ConverterStringToCharacterOrStringTest extends ConverterTestC
     }
 
     @Override
-    public ConverterStringToCharacterOrString<ConverterContext> createConverter() {
-        return ConverterStringToCharacterOrString.instance();
+    public StringToCharacterOrStringConverter<FakeConverterContext> createConverter() {
+        return StringToCharacterOrStringConverter.instance();
     }
 
     @Override
-    public ConverterContext createContext() {
-        return ConverterContexts.fake();
+    public FakeConverterContext createContext() {
+        return (FakeConverterContext) ConverterContexts.fake();
     }
-
 
     // ChainConverter...................................................................................................
 
@@ -140,19 +139,7 @@ public final class ConverterStringToCharacterOrStringTest extends ConverterTestC
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterStringToCharacterOrString<ConverterContext>> type() {
-        return Cast.to(ConverterStringToCharacterOrString.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return String.class.getSimpleName() + "To" + Character.class.getSimpleName() + "Or" + String.class.getSimpleName();
+    public Class<StringToCharacterOrStringConverter<FakeConverterContext>> type() {
+        return Cast.to(StringToCharacterOrStringConverter.class);
     }
 }
