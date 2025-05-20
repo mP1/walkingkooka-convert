@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.text.HasText;
 
-public final class ConverterHasTextToStringTest extends ConverterTestCase2<ConverterHasTextToString<ConverterContext>> {
+public final class HasTextToStringConverterTest implements ConverterTesting2<HasTextToStringConverter<FakeConverterContext>, FakeConverterContext> {
 
     @Test
-    public void testConvertNull() {
+    public void testConvertNullToString() {
         this.convertAndCheck(
                 null,
                 String.class
@@ -32,7 +32,7 @@ public final class ConverterHasTextToStringTest extends ConverterTestCase2<Conve
     }
 
     @Test
-    public void testConvertHasText() {
+    public void testConvertHasTextToString() {
         final String text = "abc123";
 
         this.convertAndCheck(
@@ -55,31 +55,19 @@ public final class ConverterHasTextToStringTest extends ConverterTestCase2<Conve
     }
 
     @Override
-    public ConverterHasTextToString<ConverterContext> createConverter() {
-        return ConverterHasTextToString.instance();
+    public HasTextToStringConverter<FakeConverterContext> createConverter() {
+        return HasTextToStringConverter.instance();
     }
 
     @Override
-    public ConverterContext createContext() {
-        return ConverterContexts.fake();
+    public FakeConverterContext createContext() {
+        return (FakeConverterContext) ConverterContexts.fake();
     }
 
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterHasTextToString<ConverterContext>> type() {
-        return Cast.to(ConverterHasTextToString.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return HasText.class.getSimpleName() + "To" + String.class.getSimpleName();
+    public Class<HasTextToStringConverter<FakeConverterContext>> type() {
+        return Cast.to(HasTextToStringConverter.class);
     }
 }
