@@ -24,9 +24,8 @@ import walkingkooka.ToStringTesting;
 import java.util.AbstractList;
 import java.util.ArrayList;
 
-public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter<ConverterContext>>
-        implements ConverterTesting2<SimpleConverter<ConverterContext>, ConverterContext>,
-        ToStringTesting<SimpleConverter<ConverterContext>> {
+public final class SimpleConverterTest implements ConverterTesting2<SimpleConverter<FakeConverterContext>, FakeConverterContext>,
+        ToStringTesting<SimpleConverter<FakeConverterContext>> {
 
     @Test
     public void testConvertNull() {
@@ -77,13 +76,13 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
     }
 
     @Override
-    public SimpleConverter<ConverterContext> createConverter() {
+    public SimpleConverter<FakeConverterContext> createConverter() {
         return SimpleConverter.instance();
     }
 
     @Override
-    public ConverterContext createContext() {
-        return ConverterContexts.fake();
+    public FakeConverterContext createContext() {
+        return (FakeConverterContext)ConverterContexts.fake();
     }
 
     // toString.........................................................................................................
@@ -99,7 +98,7 @@ public final class SimpleConverterTest extends ConverterTestCase<SimpleConverter
     // Class............................................................................................................
 
     @Override
-    public Class<SimpleConverter<ConverterContext>> type() {
+    public Class<SimpleConverter<FakeConverterContext>> type() {
         return Cast.to(SimpleConverter.class);
     }
 }
