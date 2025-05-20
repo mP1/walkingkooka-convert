@@ -30,7 +30,6 @@ import java.util.function.Function;
 final class DecimalFormatConverterNumberToString<C extends ConverterContext> extends DecimalFormatConverter<C> {
 
     static <C extends ConverterContext> DecimalFormatConverterNumberToString<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        check(decimalFormat);
         return new DecimalFormatConverterNumberToString<>(decimalFormat);
     }
 

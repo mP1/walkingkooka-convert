@@ -35,16 +35,12 @@ import java.util.function.Function;
  */
 abstract class DecimalFormatConverter<C extends ConverterContext> extends Converter2<C> {
 
-    static void check(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        Objects.requireNonNull(decimalFormat, "decimalFormat");
-    }
-
     /**
      * Private ctor use factory
      */
     DecimalFormatConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         super();
-        this.decimalFormat = decimalFormat;
+        this.decimalFormat = Objects.requireNonNull(decimalFormat, "decimalFormat");
     }
 
     @Override //
