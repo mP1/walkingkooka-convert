@@ -31,7 +31,6 @@ import java.util.function.Function;
 final class DecimalFormatConverterStringToNumber<C extends ConverterContext> extends DecimalFormatConverter<C> {
 
     static <C extends ConverterContext> DecimalFormatConverterStringToNumber<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        check(decimalFormat);
         return new DecimalFormatConverterStringToNumber<>(decimalFormat);
     }
 
