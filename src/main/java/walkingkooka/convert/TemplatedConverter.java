@@ -19,37 +19,13 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 
-import java.util.Objects;
-
 /**
  * A templated converter that adds guards to the convert method leaving a single method that must succeed when invoked.
  */
-public interface TemplatedConverter<C extends ConverterContext> extends Converter<C> {
+public interface TemplatedConverter<C extends ConverterContext> extends GuardedConverter<C> {
 
     @Override
-    default <T> Either<T, String> convert(final Object value,
-                                          final Class<T> type,
-                                          final C context) {
-        Objects.requireNonNull(type, "type");
-        Objects.requireNonNull(context, "context");
-        
-        return this.canConvert(
-                value,
-                type,
-                context
-        ) ?
-                this.tryConvert(
-                        value,
-                        type,
-                        context
-                ) :
-                this.failConversion(
-                        value,
-                        type
-                );
-    }
-
-    private <T> Either<T, String> tryConvert(final Object value,
+    default <T> Either<T, String> tryConvert(final Object value,
                                              final Class<T> type,
                                              final C context) {
         Either<T, String> result;
