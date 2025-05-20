@@ -19,10 +19,10 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
-import walkingkooka.convert.TextTemplatedConverterTest.TestTextTemplatedConverter;
+import walkingkooka.convert.ToTextTemplatedConverterTest.TestToTextTemplatedConverter;
 import walkingkooka.text.HasText;
 
-public final class TextTemplatedConverterTest implements ConverterTesting2<TestTextTemplatedConverter, FakeConverterContext> {
+public final class ToTextTemplatedConverterTest implements ConverterTesting2<TestToTextTemplatedConverter, FakeConverterContext> {
 
     @Test
     public void testConvertNull() {
@@ -84,8 +84,8 @@ public final class TextTemplatedConverterTest implements ConverterTesting2<TestT
     }
 
     @Override
-    public TestTextTemplatedConverter createConverter() {
-        return new TestTextTemplatedConverter();
+    public TestToTextTemplatedConverter createConverter() {
+        return new TestToTextTemplatedConverter();
     }
 
     @Override
@@ -117,11 +117,11 @@ public final class TextTemplatedConverterTest implements ConverterTesting2<TestT
     }
 
     @Override
-    public Class<TestTextTemplatedConverter> type() {
-        return TestTextTemplatedConverter.class;
+    public Class<TestToTextTemplatedConverter> type() {
+        return TestToTextTemplatedConverter.class;
     }
 
-    static class TestTextTemplatedConverter implements TextTemplatedConverter<FakeConverterContext> {
+    static class TestToTextTemplatedConverter implements ToTextTemplatedConverter<FakeConverterContext> {
 
         @Override
         public boolean isTargetType(final Object value,
