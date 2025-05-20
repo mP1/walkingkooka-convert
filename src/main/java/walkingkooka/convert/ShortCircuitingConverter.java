@@ -38,7 +38,7 @@ public interface ShortCircuitingConverter<C extends ConverterContext> extends Co
                 type,
                 context
         ) ?
-                this.tryConvert(
+                this.doConvert(
                         value,
                         type,
                         context
@@ -49,7 +49,7 @@ public interface ShortCircuitingConverter<C extends ConverterContext> extends Co
                 );
     }
 
-    <T> Either<T, String> tryConvert(final Object value,
-                                     final Class<T> type,
-                                     final C context);
+    <T> Either<T, String> doConvert(final Object value,
+                                    final Class<T> type,
+                                    final C context);
 }

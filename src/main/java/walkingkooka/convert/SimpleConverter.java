@@ -24,7 +24,7 @@ import walkingkooka.Cast;
  * This is unfortunate limit of J2CL the Class#isInstance is not support/available.
  */
 final class SimpleConverter<C extends ConverterContext> implements Converter<C>,
-        TemplatedConverter<C> {
+        TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe getter

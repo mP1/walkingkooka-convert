@@ -22,12 +22,12 @@ import walkingkooka.Either;
 /**
  * A templated converter that adds guards to the convert method leaving a single method that must succeed when invoked.
  */
-public interface TemplatedConverter<C extends ConverterContext> extends ShortCircuitingConverter<C> {
+public interface TryingShortCircuitingConverter<C extends ConverterContext> extends ShortCircuitingConverter<C> {
 
     @Override
-    default <T> Either<T, String> tryConvert(final Object value,
-                                             final Class<T> type,
-                                             final C context) {
+    default <T> Either<T, String> doConvert(final Object value,
+                                            final Class<T> type,
+                                            final C context) {
         Either<T, String> result;
 
         try {

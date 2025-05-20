@@ -18,11 +18,11 @@
 package walkingkooka.convert;
 
 /**
- * A {@link TemplatedConverter} that automatically converts {@link Character}, {@link CharSequence}, {@link walkingkooka.text.HasText} or {@link String}
+ * A {@link TryingShortCircuitingConverter} that automatically converts {@link Character}, {@link CharSequence}, {@link walkingkooka.text.HasText} or {@link String}
  * to an intermediate {@link String} and then invoking a {@link #parseText(String, Class, ConverterContext)} to complete
  * the process of converting a text like value into a target value.
  */
-public interface TextToTemplatedConverter<C extends ConverterContext> extends TemplatedConverter<C> {
+public interface TextToTryingShortCircuitingConverter<C extends ConverterContext> extends TryingShortCircuitingConverter<C> {
 
     @Override
     default boolean canConvert(final Object value,
