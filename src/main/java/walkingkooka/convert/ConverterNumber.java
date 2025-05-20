@@ -32,13 +32,15 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
         super();
     }
 
-    @Override final boolean canConvertNonNull(final Object value,
-                                              final Class<?> type,
-                                              final C context) {
+    @Override //
+    final boolean canConvertNonNull(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
         return value instanceof Number;
     }
 
-    @Override final boolean canConvertType(final Class<?> type) {
+    @Override
+    final boolean canConvertType(final Class<?> type) {
         return this.targetType() == type;
     }
 
@@ -48,9 +50,10 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
      * Accepts an assumed {@link Number} and dispatches to one of the sub classes of {@link Number} which then
      * call one of four abstract methods.
      */
-    @Override final <U> Either<U, String> convertNonNull(final Object value,
-                                                         final Class<U> type,
-                                                         final ConverterContext context) {
+    @Override //
+    final <U> Either<U, String> convertNonNull(final Object value,
+                                               final Class<U> type,
+                                               final ConverterContext context) {
         // T and U should be the same...
         Either<U, String> result;
         try {
