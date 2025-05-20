@@ -18,56 +18,48 @@
 package walkingkooka.convert;
 
 import walkingkooka.Cast;
-import walkingkooka.Either;
 import walkingkooka.text.HasText;
 
 /**
  * A Converter that converts any {@link HasText} into a {@link String}.
  */
-final class ConverterHasTextToString<C extends ConverterContext> extends Converter2<C> {
+final class HasTextToStringConverter<C extends ConverterContext> implements TemplatedConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterHasTextToString<C> instance() {
+    static <C extends ConverterContext> HasTextToStringConverter<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterHasTextToString<?> INSTANCE = new ConverterHasTextToString<>();
-
+    private final static HasTextToStringConverter<?> INSTANCE = new HasTextToStringConverter<>();
 
     /**
      * Private to stop sub classing.
      */
-    private ConverterHasTextToString() {
+    private HasTextToStringConverter() {
         super();
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof HasText && String.class == type;
+        return (null == value ||
+                value instanceof HasText) &&
+                String.class == type;
     }
 
     @Override
-    boolean canConvertType(final Class<?> type) {
-        return type == String.class;
-    }
-
-    @Override //
-    <T> Either<T, String> convertNonNull(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
-        final HasText hasText = (HasText) value;
-
-        return this.successfulConversion(
-                hasText.text(),
-                type
-        );
+    public Object tryConvertOrFail(final Object value,
+                                   final Class<?> type,
+                                   final C context) {
+        return null == value ?
+                null :
+                ((HasText) value).text();
     }
 
     @Override
