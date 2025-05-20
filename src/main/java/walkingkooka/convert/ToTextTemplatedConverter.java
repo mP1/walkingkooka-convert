@@ -22,7 +22,7 @@ package walkingkooka.convert;
  * to an intermediate {@link String} and then invoking a {@link #parseText(String, Class, ConverterContext)} to complete
  * the process of converting a text like value into a target value.
  */
-public interface TextTemplatedConverter<C extends ConverterContext> extends TemplatedConverter<C> {
+public interface ToTextTemplatedConverter<C extends ConverterContext> extends TemplatedConverter<C> {
 
     @Override
     default boolean canConvert(final Object value,
