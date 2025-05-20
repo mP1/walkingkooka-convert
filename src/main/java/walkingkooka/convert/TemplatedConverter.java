@@ -1,0 +1,74 @@
+/*
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+package walkingkooka.convert;
+
+import walkingkooka.Either;
+
+/**
+ * A templated converter that adds guards to the convert method leaving a single method that must succeed when invoked.
+ */
+public interface TemplatedConverter<C extends ConverterContext> extends Converter<C> {
+
+    @Override
+    default <T> Either<T, String> convert(final Object value,
+                                          final Class<T> targetType,
+                                          final C context) {
+        return this.canConvert(
+                value,
+                targetType,
+                context
+        ) ?
+                this.beginConvert(
+                        value,
+                        targetType,
+                        context
+                ) :
+                this.failConversion(
+                        value,
+                        targetType
+                );
+    }
+
+    private <T> Either<T, String> beginConvert(final Object value,
+                                               final Class<T> type,
+                                               final C context) {
+        Either<T, String> result;
+
+        try {
+            result = this.successfulConversion(
+                    this.tryConvertOrFail(
+                            value,
+                            type,
+                            context
+                    ),
+                    type
+            );
+        } catch (final RuntimeException cause) {
+            result = Either.right(cause.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
+     * This method must accept the value and return a value, throwing an exception if the attempt fails.
+     */
+    Object tryConvertOrFail(final Object value,
+                            final Class<?> type,
+                            final C context);
+}
