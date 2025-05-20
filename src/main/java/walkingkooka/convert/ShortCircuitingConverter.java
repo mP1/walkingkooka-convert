@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * A converter that guards calls to a convert method, only if the canConvert passes.
  */
-public interface GuardedConverter<C extends ConverterContext> extends Converter<C> {
+public interface ShortCircuitingConverter<C extends ConverterContext> extends Converter<C> {
 
     @Override
     default <T> Either<T, String> convert(final Object value,

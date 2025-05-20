@@ -19,9 +19,9 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
-import walkingkooka.convert.GuardedConverterTest.TestGuardedConverter;
+import walkingkooka.convert.ShortCircuitingConverterTest.TestShortCircuitingConverter;
 
-public final class GuardedConverterTest implements ConverterTesting2<TestGuardedConverter, FakeConverterContext> {
+public final class ShortCircuitingConverterTest implements ConverterTesting2<TestShortCircuitingConverter, FakeConverterContext> {
 
     @Test
     public void testConvertWhenCanConvertFalseFails() {
@@ -54,8 +54,8 @@ public final class GuardedConverterTest implements ConverterTesting2<TestGuarded
     }
 
     @Override
-    public TestGuardedConverter createConverter() {
-        return new TestGuardedConverter();
+    public TestShortCircuitingConverter createConverter() {
+        return new TestShortCircuitingConverter();
     }
 
     @Override
@@ -64,11 +64,11 @@ public final class GuardedConverterTest implements ConverterTesting2<TestGuarded
     }
 
     @Override
-    public Class<TestGuardedConverter> type() {
-        return TestGuardedConverter.class;
+    public Class<TestShortCircuitingConverter> type() {
+        return TestShortCircuitingConverter.class;
     }
 
-    static final class TestGuardedConverter implements GuardedConverter<FakeConverterContext> {
+    static final class TestShortCircuitingConverter implements ShortCircuitingConverter<FakeConverterContext> {
 
         @Override
         public boolean canConvert(final Object value,
