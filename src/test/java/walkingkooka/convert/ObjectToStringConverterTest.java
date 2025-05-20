@@ -23,9 +23,8 @@ import walkingkooka.ToStringTesting;
 
 import java.math.BigDecimal;
 
-public final class ConverterObjectToStringTest extends ConverterTestCase<ConverterObjectToString<ConverterContext>>
-        implements ConverterTesting2<ConverterObjectToString<ConverterContext>, ConverterContext>,
-        ToStringTesting<ConverterObjectToString<ConverterContext>> {
+public final class ObjectToStringConverterTest implements ConverterTesting2<ObjectToStringConverter<ConverterContext>, ConverterContext>,
+        ToStringTesting<ObjectToStringConverter<ConverterContext>> {
 
     @Test
     public void testConvertNull() {
@@ -52,7 +51,7 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
     }
 
     @Test
-    public void testDifferentTargetTypeFails() {
+    public void testConvertDifferentTargetTypeFails() {
         this.convertFails(1L, BigDecimal.class);
     }
 
@@ -65,8 +64,8 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
     }
 
     @Override
-    public ConverterObjectToString<ConverterContext> createConverter() {
-        return ConverterObjectToString.instance();
+    public ObjectToStringConverter<ConverterContext> createConverter() {
+        return ObjectToStringConverter.instance();
     }
 
     @Override
@@ -77,19 +76,7 @@ public final class ConverterObjectToStringTest extends ConverterTestCase<Convert
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterObjectToString<ConverterContext>> type() {
-        return Cast.to(ConverterObjectToString.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return Object.class.getSimpleName() + "To" + String.class.getSimpleName();
+    public Class<ObjectToStringConverter<ConverterContext>> type() {
+        return Cast.to(ObjectToStringConverter.class);
     }
 }
