@@ -31,7 +31,7 @@ import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringTest extends ConverterTestCase2<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> {
+public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverterTest extends ConverterTestCase2<CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<ConverterContext>> {
 
     // character.........................................................................................................
 
@@ -394,8 +394,8 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
     }
 
     @Override
-    public ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext> createConverter() {
-        return ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.instance();
+    public CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<ConverterContext> createConverter() {
+        return CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter.instance();
     }
 
     @Override
@@ -448,19 +448,7 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> type() {
-        return Cast.to(ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return "String";
+    public Class<CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<ConverterContext>> type() {
+        return Cast.to(CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter.class);
     }
 }
