@@ -30,9 +30,10 @@ abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Conve
         super();
     }
 
-    @Override final <T> Either<T, String> convertNonNull(final Object value,
-                                                         final Class<T> type,
-                                                         final ConverterContext context) {
+    @Override //
+    final <T> Either<T, String> convertNonNull(final Object value,
+                                               final Class<T> type,
+                                               final ConverterContext context) {
         return this.convertNonNull0(
                 Cast.to(value),
                 type,
