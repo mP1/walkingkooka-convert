@@ -18,56 +18,50 @@
 package walkingkooka.convert;
 
 import walkingkooka.Cast;
-import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
 /**
  * Handles converting {@link Number} to {@link Boolean}.
  */
-final class ConverterBooleanToNumber<C extends ConverterContext> extends Converter2<C> {
+final class BooleanToNumberConverter<C extends ConverterContext> implements Converter<C>,
+        TemplatedConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterBooleanToNumber<C> instance() {
+    static <C extends ConverterContext> BooleanToNumberConverter<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterBooleanToNumber<?> INSTANCE = new ConverterBooleanToNumber<>();
+    private final static BooleanToNumberConverter<?> INSTANCE = new BooleanToNumberConverter<>();
 
     /**
      * Private ctor use singleton.
      */
-    private ConverterBooleanToNumber() {
+    private BooleanToNumberConverter() {
         super();
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof Boolean;
-    }
-
-    @Override
-    boolean canConvertType(final Class<?> type) {
         return Number.class == type || Maths.isNumberClass(type);
     }
 
     @Override
-    <T> Either<T, String> convertNonNull(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
-        return this.successfulConversion(
-                ConverterBooleanToNumberNumberTypeVisitor.convert(
+    public Object tryConvertOrFail(final Object value,
+                                   final Class<?> type,
+                                   final C context) {
+        return null != value ?
+                BooleanToNumberConverterNumberTypeVisitor.convert(
                         (Boolean) value,
                         type
-                ),
-                type
-        );
+                ) :
+                null;
     }
 
     @Override

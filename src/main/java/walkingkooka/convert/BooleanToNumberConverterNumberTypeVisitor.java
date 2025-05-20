@@ -28,16 +28,16 @@ import java.math.BigInteger;
 /**
  * A {@link NumberVisitor} that converts {@link Number} to a {@link Boolean} equivalent.
  */
-final class ConverterBooleanToNumberNumberTypeVisitor extends NumberTypeVisitor {
+final class BooleanToNumberConverterNumberTypeVisitor extends NumberTypeVisitor {
 
     static Number convert(final Boolean value,
                           final Class<?> type) {
-        final ConverterBooleanToNumberNumberTypeVisitor visitor = new ConverterBooleanToNumberNumberTypeVisitor(value);
+        final BooleanToNumberConverterNumberTypeVisitor visitor = new BooleanToNumberConverterNumberTypeVisitor(value);
         visitor.accept(type);
         return visitor.number;
     }
 
-    ConverterBooleanToNumberNumberTypeVisitor(final boolean booleanValue) {
+    BooleanToNumberConverterNumberTypeVisitor(final boolean booleanValue) {
         super();
         this.booleanValue = booleanValue;
     }
