@@ -23,7 +23,8 @@ import walkingkooka.Cast;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public final class ConverterBooleanToNumberTest extends ConverterTestCase2<ConverterBooleanToNumber<ConverterContext>> {
+public final class BooleanToNumberConverterTest implements ConverterTesting2<BooleanToNumberConverter<FakeConverterContext>,
+        FakeConverterContext> {
 
     @Test
     public void testConvertNull() {
@@ -170,31 +171,26 @@ public final class ConverterBooleanToNumberTest extends ConverterTestCase2<Conve
     }
 
     @Override
-    public ConverterBooleanToNumber<ConverterContext> createConverter() {
-        return ConverterBooleanToNumber.instance();
+    public BooleanToNumberConverter<FakeConverterContext> createConverter() {
+        return BooleanToNumberConverter.instance();
     }
 
     @Override
-    public ConverterContext createContext() {
-        return ConverterContexts.fake();
+    public FakeConverterContext createContext() {
+        return (FakeConverterContext)ConverterContexts.fake();
     }
 
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterBooleanToNumber<ConverterContext>> type() {
-        return Cast.to(ConverterBooleanToNumber.class);
+    public Class<BooleanToNumberConverter<FakeConverterContext>> type() {
+        return Cast.to(BooleanToNumberConverter.class);
     }
 
     // TypeNameTesting..................................................................................................
 
     @Override
     public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
         return Boolean.class.getSimpleName() + "To" + Number.class.getSimpleName();
     }
 }

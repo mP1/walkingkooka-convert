@@ -92,10 +92,10 @@ public final class Converters implements PublicStaticHelper {
     static final long NANOS_PER_DAY = NANOS_PER_HOUR * HOURS_PER_DAY;
 
     /**
-     * {@see ConverterBooleanToNumber}
+     * {@see BooleanToNumberConverter}
      */
     public static <C extends ConverterContext> Converter<C> booleanToNumber() {
-        return ConverterBooleanToNumber.instance();
+        return BooleanToNumberConverter.instance();
     }
 
     /**
