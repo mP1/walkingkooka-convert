@@ -38,7 +38,7 @@ public interface TemplatedConverter<C extends ConverterContext> extends Converte
                 type,
                 context
         ) ?
-                this.beginConvert(
+                this.tryConvert(
                         value,
                         type,
                         context
@@ -49,9 +49,9 @@ public interface TemplatedConverter<C extends ConverterContext> extends Converte
                 );
     }
 
-    private <T> Either<T, String> beginConvert(final Object value,
-                                               final Class<T> type,
-                                               final C context) {
+    private <T> Either<T, String> tryConvert(final Object value,
+                                             final Class<T> type,
+                                             final C context) {
         Either<T, String> result;
 
         try {
