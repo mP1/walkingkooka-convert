@@ -71,20 +71,11 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
                                            final Class<T> type,
                                            final ConverterContext context) {
         return null == value ?
-                this.convertNull() :
+                Cast.to(NULL) :
                 this.convertNonNull(value, type, context);
     }
 
-    private <T> Either<T, String> convertNull() {
-        return Cast.to(
-                this instanceof ConverterObjectToString ?
-                        NULL_STRING :
-                        NULL
-        );
-    }
-
     private final static Either<Object, String> NULL = Either.left(null);
-    private final static Either<String, String> NULL_STRING = Either.left("null");
 
     /**
      * Template method that is only called with a value that has already passed a {@link #canConvert(Object, Class, ConverterContext)

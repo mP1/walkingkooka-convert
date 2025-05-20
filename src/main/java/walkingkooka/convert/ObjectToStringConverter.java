@@ -18,49 +18,40 @@
 package walkingkooka.convert;
 
 import walkingkooka.Cast;
-import walkingkooka.Either;
 
 /**
  * A {@link Converter} that invokes {@link Object#toString()} to convert any value into a {@link String}
  */
-final class ConverterObjectToString<C extends ConverterContext> extends Converter2<C> {
+final class ObjectToStringConverter<C extends ConverterContext> implements TemplatedConverter<C> {
 
     /**
      * Instance
      */
-    static <C extends ConverterContext> ConverterObjectToString<C> instance() {
+    static <C extends ConverterContext> ObjectToStringConverter<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterObjectToString<?> INSTANCE = new ConverterObjectToString<>();
+    private final static ObjectToStringConverter<?> INSTANCE = new ObjectToStringConverter<>();
 
-    private ConverterObjectToString() {
+    private ObjectToStringConverter() {
         super();
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return true;
-    }
-
-    @Override
-    boolean canConvertType(final Class<?> type) {
         return String.class == type;
     }
 
     @Override
-    <T> Either<T, String> convertNonNull(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
-        return this.successfulConversion(
-                value.toString(),
-                type
-        );
+    public Object tryConvertOrFail(final Object value,
+                                   final Class<?> type,
+                                   final C context) {
+        return String.valueOf(value);
     }
 
     @Override
