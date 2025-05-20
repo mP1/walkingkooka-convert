@@ -23,7 +23,7 @@ import walkingkooka.text.HasText;
 /**
  * A Converter that converts any {@link HasText} into a {@link String}.
  */
-final class HasTextToStringConverter<C extends ConverterContext> implements TemplatedConverter<C> {
+final class HasTextToStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter

@@ -27,7 +27,7 @@ import walkingkooka.text.HasText;
  * {@link Character} or {@link CharSequence} or {@link String}.
  * If the target type is {@link CharSequence} then {@link HasText#text()} or the original value will be returned.
  */
-final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<C extends ConverterContext> implements TemplatedConverter<C> {
+final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter

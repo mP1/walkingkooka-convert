@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 /**
  * A {@link Converter} that invokes {@link Object#toString()} to convert any value into a {@link String}
  */
-final class ObjectToStringConverter<C extends ConverterContext> implements TemplatedConverter<C> {
+final class ObjectToStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Instance

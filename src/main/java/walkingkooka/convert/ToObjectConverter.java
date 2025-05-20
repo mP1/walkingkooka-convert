@@ -24,7 +24,7 @@ import walkingkooka.Cast;
  *
  * @param <C>
  */
-final class ToObjectConverter<C extends ConverterContext> implements TemplatedConverter<C> {
+final class ToObjectConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
     /**
      * Instance
      */

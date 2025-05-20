@@ -19,10 +19,10 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
-import walkingkooka.convert.TextToTemplatedConverterTest.TestTextToTemplatedConverter;
+import walkingkooka.convert.TextToTryingShortCircuitingConverterTest.TestTextToTryingShortCircuitingConverter;
 import walkingkooka.text.HasText;
 
-public final class TextToTemplatedConverterTest implements ConverterTesting2<TestTextToTemplatedConverter, FakeConverterContext> {
+public final class TextToTryingShortCircuitingConverterTest implements ConverterTesting2<TestTextToTryingShortCircuitingConverter, FakeConverterContext> {
 
     @Test
     public void testConvertNull() {
@@ -84,8 +84,8 @@ public final class TextToTemplatedConverterTest implements ConverterTesting2<Tes
     }
 
     @Override
-    public TestTextToTemplatedConverter createConverter() {
-        return new TestTextToTemplatedConverter();
+    public TestTextToTryingShortCircuitingConverter createConverter() {
+        return new TestTextToTryingShortCircuitingConverter();
     }
 
     @Override
@@ -117,11 +117,11 @@ public final class TextToTemplatedConverterTest implements ConverterTesting2<Tes
     }
 
     @Override
-    public Class<TestTextToTemplatedConverter> type() {
-        return TestTextToTemplatedConverter.class;
+    public Class<TestTextToTryingShortCircuitingConverter> type() {
+        return TestTextToTryingShortCircuitingConverter.class;
     }
 
-    static class TestTextToTemplatedConverter implements TextToTemplatedConverter<FakeConverterContext> {
+    static class TestTextToTryingShortCircuitingConverter implements TextToTryingShortCircuitingConverter<FakeConverterContext> {
 
         @Override
         public boolean isTargetType(final Object value,

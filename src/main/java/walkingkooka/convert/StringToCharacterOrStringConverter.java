@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 /**
  * A Converter that supports converting String to Character if string is 1 char or a String..
  */
-final class StringToCharacterOrStringConverter<C extends ConverterContext> implements TemplatedConverter<C> {
+final class StringToCharacterOrStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter

@@ -41,7 +41,7 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
     }
 
     @Test
-    public void testConvertWhenTryConvertFails() {
+    public void testConvertWhenDoConvertFails() {
         this.convertFails(
                 "Hello",
                 Integer.class
@@ -78,9 +78,9 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
         }
 
         @Override
-        public <T> Either<T, String> tryConvert(final Object value,
-                                                final Class<T> type,
-                                                final FakeConverterContext context) {
+        public <T> Either<T, String> doConvert(final Object value,
+                                               final Class<T> type,
+                                               final FakeConverterContext context) {
             try {
                 return this.successfulConversion(
                         Integer.parseInt(value.toString()),
