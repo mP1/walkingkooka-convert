@@ -21,9 +21,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 
-public final class ConverterObjectTest extends ConverterTestCase<ConverterObject<ConverterContext>>
-        implements ConverterTesting2<ConverterObject<ConverterContext>, ConverterContext>,
-        ToStringTesting<ConverterObject<ConverterContext>> {
+public final class ToObjectConverterTest implements ConverterTesting2<ToObjectConverter<FakeConverterContext>, FakeConverterContext>,
+        ToStringTesting<ToObjectConverter<FakeConverterContext>> {
 
     @Test
     public void testConvertNullToObject() {
@@ -66,31 +65,19 @@ public final class ConverterObjectTest extends ConverterTestCase<ConverterObject
     }
 
     @Override
-    public ConverterObject<ConverterContext> createConverter() {
-        return ConverterObject.instance();
+    public ToObjectConverter<FakeConverterContext> createConverter() {
+        return ToObjectConverter.instance();
     }
 
     @Override
-    public ConverterContext createContext() {
-        return ConverterContexts.fake();
+    public FakeConverterContext createContext() {
+        return (FakeConverterContext) ConverterContexts.fake();
     }
 
     // ClassTesting.....................................................................................................
 
     @Override
-    public Class<ConverterObject<ConverterContext>> type() {
-        return Cast.to(ConverterObject.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return Object.class.getSimpleName();
+    public Class<ToObjectConverter<FakeConverterContext>> type() {
+        return Cast.to(ToObjectConverter.class);
     }
 }
