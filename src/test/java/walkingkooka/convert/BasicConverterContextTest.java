@@ -105,7 +105,10 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     @Test
     public void testLocale() {
-        this.hasLocaleAndCheck(this.createContext(), LOCALE);
+        this.localeAndCheck(
+                this.createContext(),
+                LOCALE
+        );
     }
 
     @Test
