@@ -55,8 +55,7 @@ final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrS
         return (null == value ||
                 value instanceof Character ||
                 value instanceof CharSequence ||
-                value instanceof HasText ||
-                value instanceof String) &&
+                value instanceof HasText) &&
                 (Character.class == type ||
                         CharSequence.class == type ||
                         String.class == type);
