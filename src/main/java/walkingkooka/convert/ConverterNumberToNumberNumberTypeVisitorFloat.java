@@ -58,7 +58,9 @@ final class ConverterNumberToNumberNumberTypeVisitorFloat extends ConverterNumbe
 
     @Override
     protected void visit(final Byte number) {
-        this.saveFloat(number);
+        this.saveFloat(
+            toUnsignedInt(number)
+        );
     }
 
     @Override

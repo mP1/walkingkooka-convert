@@ -129,8 +129,19 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToBigDecimal() {
-        this.convertToBigDecimalAndCheck(this.byteValue());
+    public void testConvertByte123ToBigDecimal() {
+        this.convertToBigDecimalAndCheck(
+            (byte) 123,
+            new BigDecimal(123)
+        );
+    }
+
+    @Test
+    public void testConvertByte255ToBigDecimal() {
+        this.convertToBigDecimalAndCheck(
+            (byte) 255,
+            new BigDecimal(255)
+        );
     }
 
     @Test
@@ -159,7 +170,19 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     private void convertToBigDecimalAndCheck(final Number number) {
-        this.convertAndCheck(number, BigDecimal.class, this.bigDecimal());
+        this.convertToBigDecimalAndCheck(
+            number,
+            this.bigDecimal()
+        );
+    }
+
+    private void convertToBigDecimalAndCheck(final Number number,
+                                             final BigDecimal expected) {
+        this.convertAndCheck(
+            number,
+            BigDecimal.class,
+            expected
+        );
     }
 
     // toBigInteger.....................................................................................................
@@ -175,8 +198,27 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToBigInteger() {
-        this.convertToBigIntegerAndCheck(this.byteValue());
+    public void testConvertByteToBigIntegerZero() {
+        this.convertToBigIntegerAndCheck(
+            (byte) 0,
+            BigInteger.ZERO
+        );
+    }
+
+    @Test
+    public void testConvertByteToBigIntegerPositive() {
+        this.convertToBigIntegerAndCheck(
+            (byte) 123,
+            BigInteger.valueOf(123)
+        );
+    }
+
+    @Test
+    public void testConvertByteToBigIntegerNegative() {
+        this.convertToBigIntegerAndCheck(
+            (byte) 255,
+            BigInteger.valueOf(255)
+        );
     }
 
     @Test
@@ -215,7 +257,19 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     private void convertToBigIntegerAndCheck(final Number number) {
-        this.convertAndCheck(number, BigInteger.class, this.bigInteger());
+        this.convertToBigIntegerAndCheck(
+            number,
+            this.bigInteger()
+        );
+    }
+
+    private void convertToBigIntegerAndCheck(final Number number,
+                                             final BigInteger expected) {
+        this.convertAndCheck(
+            number,
+            BigInteger.class,
+            expected
+        );
     }
 
     private void convertToBigIntegerFails(final Number number) {
@@ -348,8 +402,27 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToDouble() {
-        this.convertToDoubleAndCheck(this.byteValue());
+    public void testConvertByteToDoubleWithZero() {
+        this.convertToDoubleAndCheck(
+            (byte) 0,
+            0.0
+        );
+    }
+
+    @Test
+    public void testConvertByteToDoubleWithPositive() {
+        this.convertToDoubleAndCheck(
+            (byte) 123,
+            123.0
+        );
+    }
+
+    @Test
+    public void testConvertByteToDoubleWithNegative() {
+        this.convertToDoubleAndCheck(
+            (byte) 255,
+            255.0
+        );
     }
 
     @Test
@@ -373,7 +446,19 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     private void convertToDoubleAndCheck(final Number number) {
-        this.convertAndCheck(number, Double.class, this.doubleValue());
+        this.convertToDoubleAndCheck(
+            number,
+            this.doubleValue()
+        );
+    }
+
+    private void convertToDoubleAndCheck(final Number number,
+                                         final double expected) {
+        this.convertAndCheck(
+            number,
+            Double.class,
+            expected
+        );
     }
 
     // toFloat..........................................................................................................
@@ -402,8 +487,27 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToFloat() {
-        this.convertToFloatAndCheck(this.byteValue());
+    public void testConvertByteToFloatWithZero() {
+        this.convertToFloatAndCheck(
+            (byte) 0,
+            0.0f
+        );
+    }
+
+    @Test
+    public void testConvertByteToFloatWithPositive() {
+        this.convertToFloatAndCheck(
+            (byte) 123,
+            123.0f
+        );
+    }
+
+    @Test
+    public void testConvertByteToFloatWithNegative() {
+        this.convertToFloatAndCheck(
+            (byte) 255,
+            255.0f
+        );
     }
 
     @Test
@@ -474,8 +578,27 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToInteger() {
-        this.convertToIntegerAndCheck(this.byteValue());
+    public void testConvertByteToIntegerWithZero() {
+        this.convertToIntegerAndCheck(
+            (byte) 0,
+            0
+        );
+    }
+
+    @Test
+    public void testConvertByteToIntegerWithPositive() {
+        this.convertToIntegerAndCheck(
+            (byte) 123,
+            123
+        );
+    }
+
+    @Test
+    public void testConvertByteToIntegerWithNegative() {
+        this.convertToIntegerAndCheck(
+            (byte) 255,
+            255
+        );
     }
 
     @Test
@@ -577,8 +700,27 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToLong() {
-        this.convertToLongAndCheck(this.byteValue());
+    public void testConvertByteToLongWithZero() {
+        this.convertToLongAndCheck(
+            (byte) 0,
+            0L
+        );
+    }
+
+    @Test
+    public void testConvertByteToLongWithPositive() {
+        this.convertToLongAndCheck(
+            (byte) 123,
+            123L
+        );
+    }
+
+    @Test
+    public void testConvertByteToLongWithNegative() {
+        this.convertToLongAndCheck(
+            (byte) 255,
+            255L
+        );
     }
 
     @Test
@@ -675,8 +817,27 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertByteToShort() {
-        this.convertToShortAndCheck(this.byteValue());
+    public void testConvertByteToShortWithZero() {
+        this.convertToShortAndCheck(
+            (byte) 0,
+            (short) 0
+        );
+    }
+
+    @Test
+    public void testConvertByteToShortWithPositive() {
+        this.convertToShortAndCheck(
+            (byte) 123,
+            (short) 123
+        );
+    }
+
+    @Test
+    public void testConvertByteToShortWithNegative() {
+        this.convertToShortAndCheck(
+            (byte) 255,
+            (short) 255
+        );
     }
 
     @Test

@@ -58,7 +58,9 @@ final class ConverterNumberToNumberNumberTypeVisitorDouble extends ConverterNumb
 
     @Override
     protected void visit(final Byte number) {
-        this.saveDouble(number);
+        this.saveDouble(
+            toUnsignedInt(number)
+        );
     }
 
     @Override
