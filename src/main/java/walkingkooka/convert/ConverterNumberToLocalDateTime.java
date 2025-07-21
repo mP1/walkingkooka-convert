@@ -56,20 +56,20 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
                                              final ConverterContext context) {
         final double doubleValue = value.doubleValue();
         return 0 != BigDecimal.valueOf(doubleValue).compareTo(value) ?
-                this.failConversion(value, LocalDateTime.class) :
-                this.localDateTime(
-                        doubleValue,
-                        context
-                );
+            this.failConversion(value, LocalDateTime.class) :
+            this.localDateTime(
+                doubleValue,
+                context
+            );
     }
 
     @Override
     Either<LocalDateTime, String> bigInteger(final BigInteger value,
                                              final ConverterContext context) {
         return this.localDateTime(
-                value.longValueExact(),
-                value,
-                context
+            value.longValueExact(),
+            value,
+            context
         );
     }
 
@@ -78,8 +78,8 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
     Either<LocalDateTime, String> doubleValue(final Double value,
                                               final ConverterContext context) {
         return this.localDateTime(
-                value.doubleValue(),
-                context
+            value.doubleValue(),
+            context
         );
     }
 
@@ -87,20 +87,20 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
     Either<LocalDateTime, String> longValue(final Long value,
                                             final ConverterContext context) {
         return this.localDateTime(
-                value,
-                value,
-                context
+            value,
+            value,
+            context
         );
     }
 
     private Either<LocalDateTime, String> localDateTime(final double value,
                                                         final ConverterContext context) {
         return !Double.isFinite(value) ?
-                this.failConversion(value, LocalDateTime.class) :
-                this.localDateTime0(
-                        value,
-                        context
-                );
+            this.failConversion(value, LocalDateTime.class) :
+            this.localDateTime0(
+                value,
+                context
+            );
     }
 
     private Either<LocalDateTime, String> localDateTime0(final double value,
@@ -108,10 +108,10 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
         final double days = Math.floor(value);
 
         return localDateTime(
-                (int) days,
-                value - days,
-                value,
-                context
+            (int) days,
+            value - days,
+            value,
+            context
         );
     }
 
@@ -119,10 +119,10 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
                                                         final Number value,
                                                         final ConverterContext context) {
         return localDateTime(
-                longValue,
-                0,
-                value,
-                context
+            longValue,
+            0,
+            value,
+            context
         );
     }
 
@@ -133,13 +133,13 @@ final class ConverterNumberToLocalDateTime<C extends ConverterContext> extends C
         final double doubleNano = fraction * Converters.NANOS_PER_DAY;
         final long nano = (long) doubleNano;
         return nano != doubleNano ?
-                this.failConversion(value, LocalDateTime.class) :
-                this.successfulConversion(
-                        LocalDateTime.of(
-                                LocalDate.ofEpochDay(day + context.dateOffset()),
-                                LocalTime.ofNanoOfDay(nano)),
-                        LocalDateTime.class
-                );
+            this.failConversion(value, LocalDateTime.class) :
+            this.successfulConversion(
+                LocalDateTime.of(
+                    LocalDate.ofEpochDay(day + context.dateOffset()),
+                    LocalTime.ofNanoOfDay(nano)),
+                LocalDateTime.class
+            );
     }
 
     @Override

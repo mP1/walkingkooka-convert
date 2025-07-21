@@ -59,8 +59,8 @@ final class ConverterTemporalLocalDateTimeToLocalDate<C extends ConverterContext
                                                    final Class<T> type,
                                                    final ConverterContext context) {
         return this.successfulConversion(
-                localDateTime.toLocalDate(),
-                type
+            localDateTime.toLocalDate(),
+            type
         );
     }
 

@@ -32,21 +32,21 @@ public interface ShortCircuitingConverter<C extends ConverterContext> extends Co
                                           final C context) {
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(context, "context");
-        
+
         return this.canConvert(
+            value,
+            type,
+            context
+        ) ?
+            this.doConvert(
                 value,
                 type,
                 context
-        ) ?
-                this.doConvert(
-                        value,
-                        type,
-                        context
-                ) :
-                this.failConversion(
-                        value,
-                        type
-                );
+            ) :
+            this.failConversion(
+                value,
+                type
+            );
     }
 
     <T> Either<T, String> doConvert(final Object value,

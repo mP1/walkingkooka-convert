@@ -121,17 +121,17 @@ public final class ConverterNumberToLocalDateTest extends ConverterNumberTestCas
 
     private void convertAndCheckExcelOffset(final Number value) {
         this.convertAndCheck(
-                ConverterNumberToLocalDate.instance(),
-                value,
-                LocalDate.class,
-                new FakeConverterContext() {
+            ConverterNumberToLocalDate.instance(),
+            value,
+            LocalDate.class,
+            new FakeConverterContext() {
 
-                    @Override
-                    public long dateOffset() {
-                        return Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
-                    }
-                },
-                DATE_VALUE_WITH_1900_EXCEL_OFFSET
+                @Override
+                public long dateOffset() {
+                    return Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
+                }
+            },
+            DATE_VALUE_WITH_1900_EXCEL_OFFSET
         );
     }
 

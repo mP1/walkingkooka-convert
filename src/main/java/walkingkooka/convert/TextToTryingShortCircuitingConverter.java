@@ -30,14 +30,14 @@ public interface TextToTryingShortCircuitingConverter<C extends ConverterContext
                                final C context) {
         // test isType is quicker so do first
         return this.isTargetType(
-                value,
-                type,
-                context
+            value,
+            type,
+            context
         ) &&
-                context.canConvert(
-                        value,
-                        String.class
-                );
+            context.canConvert(
+                value,
+                String.class
+            );
     }
 
     boolean isTargetType(final Object value,
@@ -49,12 +49,12 @@ public interface TextToTryingShortCircuitingConverter<C extends ConverterContext
                                     final Class<?> type,
                                     final C context) {
         return this.parseText(
-                context.convertOrFail(
-                        value,
-                        String.class
-                ),
-                type,
-                context
+            context.convertOrFail(
+                value,
+                String.class
+            ),
+            type,
+            context
         );
     }
 

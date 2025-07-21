@@ -25,9 +25,9 @@ import walkingkooka.reflect.TypeNameTesting;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface ConverterTesting2<C extends Converter<CC>, CC extends ConverterContext>
-        extends ConverterTesting,
-        ToStringTesting<C>,
-        TypeNameTesting<C> {
+    extends ConverterTesting,
+    ToStringTesting<C>,
+    TypeNameTesting<C> {
 
     C createConverter();
 
@@ -47,9 +47,9 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
     default <T> T convertAndCheck(final Object value,
                                   final T expected) {
         return this.convertAndCheck(
-                value,
-                (Class<T>) expected.getClass(),
-                expected
+            value,
+            (Class<T>) expected.getClass(),
+            expected
         );
     }
 
@@ -70,11 +70,11 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
                                   final Object value,
                                   final Class<T> target) {
         return this.convertAndCheck(
-                converter,
-                value,
-                target,
-                this.createContext(),
-                target.cast(value)
+            converter,
+            value,
+            target,
+            this.createContext(),
+            target.cast(value)
         );
     }
 
@@ -102,7 +102,7 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
     default <T> Either<T, String> convert(final Object value,
                                           final Class<T> type) {
         return this.createConverter()
-                .convert(value, type, this.createContext());
+            .convert(value, type, this.createContext());
     }
 
     // TypeNameTesting .................................................................................................

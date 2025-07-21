@@ -24,149 +24,149 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public final class BooleanToNumberConverterTest implements ConverterTesting2<BooleanToNumberConverter<FakeConverterContext>,
-        FakeConverterContext> {
+    FakeConverterContext> {
 
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                Number.class
+            null,
+            Number.class
         );
     }
 
     @Test
     public void testConvertTrueToBigDecimal() {
         this.convertAndCheck(
-                true,
-                BigDecimal.ONE
+            true,
+            BigDecimal.ONE
         );
     }
 
     @Test
     public void testConvertFalseToBigDecimal() {
         this.convertAndCheck(
-                false,
-                BigDecimal.ZERO
+            false,
+            BigDecimal.ZERO
         );
     }
 
     @Test
     public void testConvertTrueToBigInteger() {
         this.convertAndCheck(
-                true,
-                BigInteger.ONE
+            true,
+            BigInteger.ONE
         );
     }
 
     @Test
     public void testConvertFalseToBigInteger() {
         this.convertAndCheck(
-                false,
-                BigInteger.ZERO
+            false,
+            BigInteger.ZERO
         );
     }
 
     @Test
     public void testConvertTrueToByte() {
         this.convertAndCheck(
-                true,
-                (byte) 1
+            true,
+            (byte) 1
         );
     }
 
     @Test
     public void testConvertFalseToByte() {
         this.convertAndCheck(
-                false,
-                (byte) 0
+            false,
+            (byte) 0
         );
     }
 
     @Test
     public void testConvertTrueToDouble() {
         this.convertAndCheck(
-                true,
-                1.0
+            true,
+            1.0
         );
     }
 
     @Test
     public void testConvertFalseToDouble() {
         this.convertAndCheck(
-                false,
-                0.0
+            false,
+            0.0
         );
     }
 
     @Test
     public void testConvertTrueFloat() {
         this.convertAndCheck(
-                true,
-                1.0f
+            true,
+            1.0f
         );
     }
 
     @Test
     public void testConvertFalseToFloat() {
         this.convertAndCheck(
-                false,
-                0.0f
+            false,
+            0.0f
         );
     }
 
     @Test
     public void testConvertTrueToInteger() {
         this.convertAndCheck(
-                true,
-                1
+            true,
+            1
         );
     }
 
     @Test
     public void testConvertFalseToInteger() {
         this.convertAndCheck(
-                false,
-                0
+            false,
+            0
         );
     }
 
     @Test
     public void testConvertTrueToLong() {
         this.convertAndCheck(
-                true,
-                1L
+            true,
+            1L
         );
     }
 
     @Test
     public void testConvertFalseToLong() {
         this.convertAndCheck(
-                false,
-                0L
+            false,
+            0L
         );
     }
 
     @Test
     public void testConvertTrueToShort() {
         this.convertAndCheck(
-                true,
-                (short) 1
+            true,
+            (short) 1
         );
     }
 
     @Test
     public void testConvertFalseToShort() {
         this.convertAndCheck(
-                false,
-                (short) 0
+            false,
+            (short) 0
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "Boolean to Number"
+            this.createConverter(),
+            "Boolean to Number"
         );
     }
 
@@ -177,7 +177,7 @@ public final class BooleanToNumberConverterTest implements ConverterTesting2<Boo
 
     @Override
     public FakeConverterContext createContext() {
-        return (FakeConverterContext)ConverterContexts.fake();
+        return (FakeConverterContext) ConverterContexts.fake();
     }
 
     // ClassTesting.....................................................................................................

@@ -32,16 +32,16 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     @Test
     public void testInvalidLocaleFails() {
         this.convertFails(this.createConverter(),
-                0,
-                String.class,
-                this.createContext(Locale.ENGLISH));
+            0,
+            String.class,
+            this.createContext(Locale.ENGLISH));
     }
 
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                String.class
+            null,
+            String.class
         );
     }
 
@@ -89,16 +89,16 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     public void testConvertLocaleChange() {
         final DecimalFormatConverterNumberToString<ConverterContext> converter = this.createConverter("$ ###.00");
         this.convertAndCheck(converter,
-                1.25,
-                String.class,
-                this.createContext(Locale.CANADA),
-                "$ 1.25");
+            1.25,
+            String.class,
+            this.createContext(Locale.CANADA),
+            "$ 1.25");
 
         this.convertAndCheck(converter,
-                1234.5,
-                String.class,
-                this.createContext(Locale.GERMANY),
-                "$ 1234,50");
+            1234.5,
+            String.class,
+            this.createContext(Locale.GERMANY),
+            "$ 1234,50");
     }
 
     // ConverterTesting..................................................................................................
@@ -118,8 +118,8 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "DecimalFormat Number to String"
+            this.createConverter(),
+            "DecimalFormat Number to String"
         );
     }
 

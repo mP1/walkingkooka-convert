@@ -57,8 +57,8 @@ final class ConverterLocalTimeToLocalDateTime<C extends ConverterContext> extend
                                                final Class<T> type,
                                                final ConverterContext context) {
         return this.successfulConversion(
-                LocalDateTime.of(DATE, localTime),
-                type
+            LocalDateTime.of(DATE, localTime),
+            type
         );
     }
 

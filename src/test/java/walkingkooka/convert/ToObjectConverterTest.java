@@ -22,45 +22,45 @@ import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 
 public final class ToObjectConverterTest implements ConverterTesting2<ToObjectConverter<FakeConverterContext>, FakeConverterContext>,
-        ToStringTesting<ToObjectConverter<FakeConverterContext>> {
+    ToStringTesting<ToObjectConverter<FakeConverterContext>> {
 
     @Test
     public void testConvertNullToObject() {
         this.convertAndCheck(
-                null,
-                Object.class
+            null,
+            Object.class
         );
     }
 
     @Test
     public void testConvertNonNullObject() {
         this.convertAndCheck(
-                Boolean.TRUE,
-                Object.class
+            Boolean.TRUE,
+            Object.class
         );
     }
 
     @Test
     public void testConvertNullToNonObject() {
         this.convertFails(
-                null,
-                Void.class
+            null,
+            Void.class
         );
     }
 
     @Test
     public void testConvertNonNullToNonObject() {
         this.convertFails(
-                "1",
-                Void.class
+            "1",
+            Void.class
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "* to Object"
+            this.createConverter(),
+            "* to Object"
         );
     }
 

@@ -46,9 +46,9 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     @Test
     public void testConvertBigDecimalWithFraction() {
         this.convertAndCheck(
-                BigDecimal.valueOf(123.5),
-                LocalTime.ofSecondOfDay(VALUE)
-                        .plusNanos(Converters.NANOS_PER_SECOND / 2)
+            BigDecimal.valueOf(123.5),
+            LocalTime.ofSecondOfDay(VALUE)
+                .plusNanos(Converters.NANOS_PER_SECOND / 2)
         );
     }
 

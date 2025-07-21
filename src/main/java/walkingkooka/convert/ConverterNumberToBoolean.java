@@ -65,7 +65,7 @@ final class ConverterNumberToBoolean<C extends ConverterContext> extends Convert
     Either<Boolean, String> doubleValue(final Double value,
                                         final ConverterContext context) {
         return this.successfulConversion(
-                false == value.isInfinite() && false == value.isNaN() && 0 != value.doubleValue()
+            false == value.isInfinite() && false == value.isNaN() && 0 != value.doubleValue()
         );
     }
 

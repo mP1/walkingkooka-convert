@@ -34,50 +34,50 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
     @Test
     public void testConvertNonCharacterFails() {
         this.convertFails(
-                777,
-                Integer.class
+            777,
+            Integer.class
         );
     }
 
     @Test
     public void testConvertStringToCharacterFails() {
         this.convertFails(
-                "Z",
-                Character.class
+            "Z",
+            Character.class
         );
     }
 
     @Test
     public void testConvertUnsupportedTargetTypeFails() {
         this.convertFails(
-                '1',
-                Void.class
+            '1',
+            Void.class
         );
     }
 
     @Test
     public void testConvertNullToString() {
         this.convertAndCheck(
-                null,
-                String.class
+            null,
+            String.class
         );
     }
 
     @Test
     public void testConvertCharacterToString() {
         this.convertAndCheck(
-                'A',
-                String.class,
-                "A"
+            'A',
+            String.class,
+            "A"
         );
     }
 
     @Test
     public void testConvertStringToString() {
         this.convertAndCheck(
-                "ABC123",
-                String.class,
-                "ABC123"
+            "ABC123",
+            String.class,
+            "ABC123"
         );
     }
 
@@ -96,29 +96,29 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
     @Test
     public void testChainConverterCharacterToStringToNumber() {
         final Converter<ConverterContext> converter = Converters.chain(
-                Converters.characterOrStringToString(),
-                String.class,
-                Converters.stringToNumber(
-                        (x) -> (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("EN-AU"))
-                )
+            Converters.characterOrStringToString(),
+            String.class,
+            Converters.stringToNumber(
+                (x) -> (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("EN-AU"))
+            )
         );
 
         this.convertAndCheck(
-                converter,
-                '5',
-                Number.class,
-                ConverterContexts.basic(
-                        0, // dateOffset
-                        Converters.fake(),
-                        DateTimeContexts.fake(),
-                        DecimalNumberContexts.american(MathContext.DECIMAL32)
-                ),
-                BigDecimal.valueOf(5)
+            converter,
+            '5',
+            Number.class,
+            ConverterContexts.basic(
+                0, // dateOffset
+                Converters.fake(),
+                DateTimeContexts.fake(),
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
+            ),
+            BigDecimal.valueOf(5)
         );
 
         this.toStringAndCheck(
-                converter,
-                "Character or String to String to DecimalFormat String to Number"
+            converter,
+            "Character or String to String to DecimalFormat String to Number"
         );
     }
 
@@ -127,8 +127,8 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "Character or String to String"
+            this.createConverter(),
+            "Character or String to String"
         );
     }
 

@@ -57,10 +57,10 @@ final class DecimalFormatConverterStringToNumber<C extends ConverterContext> ext
                                                    final ConverterContext context) {
         final Number parsed = decimalFormat.parse(value.toString(), new ParsePosition(0));
         return null == parsed ?
-                this.failConversion(value, type) :
-                this.convertToNumber(parsed,
-                        type,
-                        context);
+            this.failConversion(value, type) :
+            this.convertToNumber(parsed,
+                type,
+                context);
     }
 
     @Override

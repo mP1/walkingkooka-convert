@@ -33,14 +33,14 @@ public final class DateTimeFormatterConverterLocalTimeToStringTest extends DateT
         final LocalTime source = this.source();
 
         this.convertAndCheck2(converter,
-                source,
-                this.createContext(),
-                this.converted());
+            source,
+            this.createContext(),
+            this.converted());
 
         this.convertAndCheck2(converter,
-                source,
-                this.createContext2(),
-                "12:58:59 nachm.");
+            source,
+            this.createContext2(),
+            "12:58:59 nachm.");
     }
 
     @Override

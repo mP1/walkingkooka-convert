@@ -53,8 +53,8 @@ final class ConverterNumberToLocalDate<C extends ConverterContext> extends Conve
     Either<LocalDate, String> bigDecimal(final BigDecimal value,
                                          final ConverterContext context) {
         return this.localDate(
-                value.longValueExact(),
-                context
+            value.longValueExact(),
+            context
         );
     }
 
@@ -62,8 +62,8 @@ final class ConverterNumberToLocalDate<C extends ConverterContext> extends Conve
     Either<LocalDate, String> bigInteger(final BigInteger value,
                                          final ConverterContext context) {
         return this.localDate(
-                value.longValueExact(),
-                context
+            value.longValueExact(),
+            context
         );
     }
 
@@ -72,27 +72,27 @@ final class ConverterNumberToLocalDate<C extends ConverterContext> extends Conve
                                           final ConverterContext context) {
         final double doubleValue = value;
         return value != (long) doubleValue ?
-                this.failConversion(value, LocalDate.class) :
-                this.localDate(
-                        (long) doubleValue,
-                        context
-                );
+            this.failConversion(value, LocalDate.class) :
+            this.localDate(
+                (long) doubleValue,
+                context
+            );
     }
 
     @Override
     Either<LocalDate, String> longValue(final Long value,
                                         final ConverterContext context) {
         return this.localDate(
-                value,
-                context
+            value,
+            context
         );
     }
 
     private Either<LocalDate, String> localDate(final long value,
                                                 final ConverterContext context) {
         return this.successfulConversion(
-                LocalDate.ofEpochDay(value + context.dateOffset()),
-                LocalDate.class
+            LocalDate.ofEpochDay(value + context.dateOffset()),
+            LocalDate.class
         );
     }
 

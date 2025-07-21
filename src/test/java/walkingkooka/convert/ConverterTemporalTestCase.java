@@ -31,8 +31,8 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
     @Test
     public final void testConvertNull() {
         this.convertAndCheck(
-                null,
-                this.targetType()
+            null,
+            this.targetType()
         );
     }
 
@@ -52,9 +52,9 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
     final void convertAndCheck2(final Object value,
                                 final Object expected) {
         this.convertAndCheck(
-                value,
-                Cast.to(expected.getClass()),
-                expected
+            value,
+            Cast.to(expected.getClass()),
+            expected
         );
     }
 

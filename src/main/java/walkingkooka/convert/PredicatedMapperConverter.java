@@ -54,7 +54,7 @@ final class PredicatedMapperConverter<S, D, C extends ConverterContext> implemen
                               final Class<?> type,
                               final C context) {
         return (value == null || this.source.test(value)) &&
-                this.target.test(type);
+            this.target.test(type);
     }
 
     private final Predicate<Object> source;
@@ -65,11 +65,11 @@ final class PredicatedMapperConverter<S, D, C extends ConverterContext> implemen
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert(value, type, context) ?
-                this.successfulConversion(
-                        this.mapper.apply((S) value),
-                        type
-                ) :
-                this.failConversion(value, type);
+            this.successfulConversion(
+                this.mapper.apply((S) value),
+                type
+            ) :
+            this.failConversion(value, type);
     }
 
     private final Function<S, D> mapper;

@@ -55,8 +55,8 @@ final class DecimalFormatConverterNumberToString<C extends ConverterContext> ext
                                                    final Class<T> type,
                                                    final ConverterContext context) {
         return this.successfulConversion(
-                decimalFormat.format(value),
-                type
+            decimalFormat.format(value),
+            type
         );
     }
 

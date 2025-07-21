@@ -41,9 +41,9 @@ public interface CanConvert {
         final boolean can = this.canConvert(value, target);
         if (!can) {
             throw this.convertThrowable(
-                    "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName(),
-                    value,
-                    target
+                "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + target.getName(),
+                value,
+                target
             );
         }
 
@@ -64,9 +64,9 @@ public interface CanConvert {
         final Either<T, String> converted = this.convert(value, target);
         if (converted.isRight()) {
             throw this.convertThrowable(
-                    converted.rightValue(),
-                    value,
-                    target
+                converted.rightValue(),
+                value,
+                target
             );
         }
 
@@ -105,9 +105,9 @@ public interface CanConvert {
                                               final Object value,
                                               final Class<?> type) {
         return new ConversionException(
-                message,
-                value,
-                type
+            message,
+            value,
+            type
         );
     }
 }

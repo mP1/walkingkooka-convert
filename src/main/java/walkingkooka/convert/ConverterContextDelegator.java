@@ -25,9 +25,9 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import java.util.Locale;
 
 public interface ConverterContextDelegator extends ConverterContext,
-        CanConvertDelegator,
-        DateTimeContextDelegator,
-        DecimalNumberContextDelegator {
+    CanConvertDelegator,
+    DateTimeContextDelegator,
+    DecimalNumberContextDelegator {
 
     @Override
     default CanConvert canConvert() {
@@ -52,7 +52,7 @@ public interface ConverterContextDelegator extends ConverterContext,
     @Override
     default long dateOffset() {
         return this.converterContext()
-                .dateOffset();
+            .dateOffset();
     }
 
     ConverterContext converterContext();

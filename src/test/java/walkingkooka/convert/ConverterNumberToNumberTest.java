@@ -115,9 +115,9 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
 
     private void convertToSameTypeAndCheck(final Number number) {
         this.convertAndCheck(
-                number,
-                Cast.to(number.getClass()),
-                number
+            number,
+            Cast.to(number.getClass()),
+            number
         );
     }
 
@@ -257,8 +257,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertDoubleToByteWithPrecisionLoss() {
         this.convertToByteAndCheck(
-                1.5,
-                (byte) 1
+            1.5,
+            (byte) 1
         );
     }
 
@@ -275,8 +275,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertFloatToByteWithPrecisionLoss() {
         this.convertToByteAndCheck(
-                1.5f,
-                (byte) 1
+            1.5f,
+            (byte) 1
         );
     }
 
@@ -317,17 +317,17 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
 
     private void convertToByteAndCheck(final Number number) {
         this.convertAndCheck(
-                number,
-                this.byteValue()
+            number,
+            this.byteValue()
         );
     }
 
     private void convertToByteAndCheck(final Number number,
                                        final Byte expected) {
         this.convertAndCheck(
-                number,
-                Byte.class,
-                expected
+            number,
+            Byte.class,
+            expected
         );
     }
 
@@ -396,8 +396,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertBigIntegerToFloatWithPrecisionLoss() {
         this.convertToFloatAndCheck(
-                this.bigIntegerLongMax2(),
-                8.507059E37f
+            this.bigIntegerLongMax2(),
+            8.507059E37f
         );
     }
 
@@ -428,17 +428,17 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
 
     private void convertToFloatAndCheck(final Number number) {
         this.convertToFloatAndCheck(
-                number,
-                this.floatValue()
+            number,
+            this.floatValue()
         );
     }
 
     private void convertToFloatAndCheck(final Number number,
                                         final Float expected) {
         this.convertAndCheck(
-                number,
-                Float.class,
-                expected
+            number,
+            Float.class,
+            expected
         );
     }
 
@@ -491,8 +491,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertDoubleToIntegerWithPrecisionLoss() {
         this.convertToIntegerAndCheck(
-                1.5,
-                1
+            1.5,
+            1
         );
     }
 
@@ -509,8 +509,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertFloatToIntegerWithPrecisionLoss() {
         this.convertToIntegerAndCheck(
-                2.5f,
-                2
+            2.5f,
+            2
         );
     }
 
@@ -531,17 +531,17 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
 
     private void convertToIntegerAndCheck(final Number number) {
         this.convertToIntegerAndCheck(
-                number,
-                this.integerValue()
+            number,
+            this.integerValue()
         );
     }
 
     private void convertToIntegerAndCheck(final Number number,
                                           final Integer expected) {
         this.convertAndCheck(
-                number,
-                Integer.class,
-                expected
+            number,
+            Integer.class,
+            expected
         );
     }
 
@@ -594,8 +594,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertDoubleToLongWithPrecisionLoss() {
         this.convertToLongAndCheck(
-                1.5,
-                1L
+            1.5,
+            1L
         );
     }
 
@@ -612,8 +612,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertFloatToLongWithPrecisionLoss() {
         this.convertToLongAndCheck(
-                2.5f,
-                2L
+            2.5f,
+            2L
         );
     }
 
@@ -629,17 +629,17 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
 
     private void convertToLongAndCheck(final Number number) {
         this.convertToLongAndCheck(
-                number,
-                this.longValue()
+            number,
+            this.longValue()
         );
     }
 
     private void convertToLongAndCheck(final Number number,
                                        final long expected) {
         this.convertAndCheck(
-                number,
-                Long.class,
-                expected
+            number,
+            Long.class,
+            expected
         );
     }
 
@@ -692,8 +692,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertDoubleToShortWithPrecisionLoss() {
         this.convertToShortAndCheck(
-                1.5,
-                (short) 1
+            1.5,
+            (short) 1
         );
     }
 
@@ -710,8 +710,8 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     @Test
     public void testConvertFloatToShortWithPrecisionLoss() {
         this.convertToShortAndCheck(
-                2.5f,
-                (short) 2
+            2.5f,
+            (short) 2
         );
     }
 
@@ -737,17 +737,17 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
 
     private void convertToShortAndCheck(final Number number) {
         this.convertToShortAndCheck(
-                number,
-                this.shortValue()
+            number,
+            this.shortValue()
         );
     }
 
     private void convertToShortAndCheck(final Number number,
                                         final short expected) {
         this.convertAndCheck(
-                number,
-                Short.class,
-                expected
+            number,
+            Short.class,
+            expected
         );
     }
 

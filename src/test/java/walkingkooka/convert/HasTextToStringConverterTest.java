@@ -26,8 +26,8 @@ public final class HasTextToStringConverterTest implements ConverterTesting2<Has
     @Test
     public void testConvertNullToString() {
         this.convertAndCheck(
-                null,
-                String.class
+            null,
+            String.class
         );
     }
 
@@ -36,21 +36,21 @@ public final class HasTextToStringConverterTest implements ConverterTesting2<Has
         final String text = "abc123";
 
         this.convertAndCheck(
-                new HasText() {
-                    @Override
-                    public String text() {
-                        return text;
-                    }
-                },
-                text
+            new HasText() {
+                @Override
+                public String text() {
+                    return text;
+                }
+            },
+            text
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "HasText to String"
+            this.createConverter(),
+            "HasText to String"
         );
     }
 

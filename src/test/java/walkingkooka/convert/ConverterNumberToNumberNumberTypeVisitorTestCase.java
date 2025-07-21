@@ -24,7 +24,7 @@ import walkingkooka.math.NumberVisitorTesting;
 import walkingkooka.reflect.JavaVisibility;
 
 public abstract class ConverterNumberToNumberNumberTypeVisitorTestCase<V extends ConverterNumberToNumberNumberTypeVisitorNumber<N>, N extends Number> implements NumberVisitorTesting<V>,
-        ToStringTesting<V> {
+    ToStringTesting<V> {
 
     ConverterNumberToNumberNumberTypeVisitorTestCase() {
         super();

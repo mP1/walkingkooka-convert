@@ -38,91 +38,91 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     @Test
     public void testConvertNullToCharacter() {
         this.convertAndCheck(
-                null,
-                Character.class
+            null,
+            Character.class
         );
     }
 
     @Test
     public void testConvertEmptyCharSequenceToCharacterFails() {
         this.convertFails(
-                charSequence(""),
-                Character.class
+            charSequence(""),
+            Character.class
         );
     }
 
     @Test
     public void testConvertCharSequenceToCharacterFails() {
         this.convertAndCheck(
-                charSequence("a"),
-                Character.class,
-                'a'
+            charSequence("a"),
+            Character.class,
+            'a'
         );
     }
 
     @Test
     public void testConvertCharSequenceToCharacterFails2() {
         this.convertFails(
-                charSequence("abc"),
-                Character.class
+            charSequence("abc"),
+            Character.class
         );
     }
 
     @Test
     public void testConvertEmptyHasTextToCharacterFails() {
         this.convertFails(
-                hasText(""),
-                Character.class
+            hasText(""),
+            Character.class
         );
     }
 
     @Test
     public void testConvertHasTextToCharacterFails() {
         this.convertAndCheck(
-                hasText("a"),
-                Character.class,
-                'a'
+            hasText("a"),
+            Character.class,
+            'a'
         );
     }
 
     @Test
     public void testConvertHasTextToCharacterFails2() {
         this.convertFails(
-                hasText("abc"),
-                Character.class
+            hasText("abc"),
+            Character.class
         );
     }
 
     @Test
     public void testConvertEmptyStringToCharacterFails() {
         this.convertFails(
-                "",
-                Character.class
+            "",
+            Character.class
         );
     }
 
     @Test
     public void testConvertStringToCharacterFails() {
         this.convertAndCheck(
-                "a",
-                Character.class,
-                'a'
+            "a",
+            Character.class,
+            'a'
         );
     }
 
     @Test
     public void testConvertStringToCharacterFails2() {
         this.convertFails(
-                "abc",
-                Character.class
+            "abc",
+            Character.class
         );
     }
 
     @Test
     public void testConvertNameToCharacterFails() {
         this.convertFails(
-                Names.string("Fails123"),
-                Character.class
+            Names.string("Fails123"),
+            Character.class
         );
     }
 
@@ -131,83 +131,83 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     @Test
     public void testConvertNullToCharSequence() {
         this.convertAndCheck(
-                null,
-                CharSequence.class
+            null,
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertEmptyCharSequenceToCharSequence() {
         this.convertAndCheck(
-                charSequence(""),
-                CharSequence.class
+            charSequence(""),
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertCharSequenceToCharSequence() {
         this.convertAndCheck(
-                charSequence("a"),
-                CharSequence.class
+            charSequence("a"),
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertCharSequenceToCharSequence2() {
         this.convertAndCheck(
-                charSequence("abc"),
-                CharSequence.class
+            charSequence("abc"),
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertEmptyHasTextToCharSequence() {
         this.convertAndCheck(
-                hasText(""),
-                CharSequence.class,
-                ""
+            hasText(""),
+            CharSequence.class,
+            ""
         );
     }
 
     @Test
     public void testConvertHasTextToCharSequence() {
         this.convertAndCheck(
-                hasText("a"),
-                CharSequence.class,
-                "a"
+            hasText("a"),
+            CharSequence.class,
+            "a"
         );
     }
 
     @Test
     public void testConvertHasTextToCharSequence2() {
         this.convertAndCheck(
-                hasText("abc"),
-                CharSequence.class,
-                "abc"
+            hasText("abc"),
+            CharSequence.class,
+            "abc"
         );
     }
 
     @Test
     public void testConvertEmptyStringToCharSequence() {
         this.convertAndCheck(
-                "",
-                CharSequence.class
+            "",
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertStringToCharSequence2() {
         this.convertAndCheck(
-                "a",
-                CharSequence.class
+            "a",
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertStringToCharSequence3() {
         this.convertAndCheck(
-                "abc",
-                CharSequence.class
+            "abc",
+            CharSequence.class
         );
     }
 
@@ -216,9 +216,9 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
         final StringName name = Names.string("Fails123");
 
         this.convertAndCheck(
-                name,
-                CharSequence.class,
-                name.text()
+            name,
+            CharSequence.class,
+            name.text()
         );
     }
 
@@ -227,48 +227,48 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     @Test
     public void testConvertNullToHasTextFails() {
         this.convertFails(
-                null,
-                HasText.class
+            null,
+            HasText.class
         );
     }
 
     @Test
     public void testConvertCharacterToHasText() {
         this.convertFails(
-                'A',
-                HasText.class
+            'A',
+            HasText.class
         );
     }
 
     @Test
     public void testConvertCharSequenceToHasText() {
         this.convertFails(
-                charSequence("Abc"),
-                HasText.class
+            charSequence("Abc"),
+            HasText.class
         );
     }
 
     @Test
     public void testConvertHasTextToHasTextFails() {
         this.convertFails(
-                hasText("Abc"),
-                HasText.class
+            hasText("Abc"),
+            HasText.class
         );
     }
 
     @Test
     public void testConvertStringToHasText() {
         this.convertFails(
-                "Abc",
-                HasText.class
+            "Abc",
+            HasText.class
         );
     }
 
     @Test
     public void testConvertNameToHasTextFails() {
         this.convertFails(
-                Names.string("Fails123"),
-                HasText.class
+            Names.string("Fails123"),
+            HasText.class
         );
     }
 
@@ -277,86 +277,86 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     @Test
     public void testConvertNullToString() {
         this.convertAndCheck(
-                null,
-                String.class
+            null,
+            String.class
         );
     }
 
     @Test
     public void testConvertEmptyCharSequenceToString() {
         this.convertAndCheck(
-                charSequence(""),
-                String.class,
-                ""
+            charSequence(""),
+            String.class,
+            ""
         );
     }
 
     @Test
     public void testConvertCharSequenceToString() {
         this.convertAndCheck(
-                charSequence("a"),
-                String.class,
-                "a"
+            charSequence("a"),
+            String.class,
+            "a"
         );
     }
 
     @Test
     public void testConvertCharSequenceToString2() {
         this.convertAndCheck(
-                charSequence("abc"),
-                String.class,
-                "abc"
+            charSequence("abc"),
+            String.class,
+            "abc"
         );
     }
 
     @Test
     public void testConvertEmptyHasTextToString() {
         this.convertAndCheck(
-                hasText(""),
-                String.class,
-                ""
+            hasText(""),
+            String.class,
+            ""
         );
     }
 
     @Test
     public void testConvertHasTextToString() {
         this.convertAndCheck(
-                hasText("a"),
-                String.class,
-                "a"
+            hasText("a"),
+            String.class,
+            "a"
         );
     }
 
     @Test
     public void testConvertHasTextToString2() {
         this.convertAndCheck(
-                hasText("abc"),
-                String.class,
-                "abc"
+            hasText("abc"),
+            String.class,
+            "abc"
         );
     }
 
     @Test
     public void testConvertEmptyStringToString() {
         this.convertAndCheck(
-                "",
-                String.class
+            "",
+            String.class
         );
     }
 
     @Test
     public void testConvertStringToString2() {
         this.convertAndCheck(
-                "a",
-                String.class
+            "a",
+            String.class
         );
     }
 
     @Test
     public void testConvertStringToString3() {
         this.convertAndCheck(
-                "abc",
-                String.class
+            "abc",
+            String.class
         );
     }
 
@@ -365,17 +365,17 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
         final String name = "Name123";
 
         this.convertAndCheck(
-                Names.string(name),
-                String.class,
-                name
+            Names.string(name),
+            String.class,
+            name
         );
     }
 
     @Test
     public void testConvertNameToNameFails() {
         this.convertFails(
-                Names.string("Fails123"),
-                Name.class
+            Names.string("Fails123"),
+            Name.class
         );
     }
 
@@ -409,29 +409,29 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     @Test
     public void testChainConverterNumberToStringToCharacter() {
         final Converter<ConverterContext> converter = Converters.chain(
-                Converters.numberToString(
-                        (x) -> (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("EN-AU"))
-                ),
-                String.class,
-                Converters.stringToCharacterOrString()
+            Converters.numberToString(
+                (x) -> (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("EN-AU"))
+            ),
+            String.class,
+            Converters.stringToCharacterOrString()
         );
 
         this.convertAndCheck(
-                converter,
-                BigDecimal.valueOf(5),
-                Character.class,
-                ConverterContexts.basic(
-                        0,
-                        Converters.fake(),
-                        DateTimeContexts.fake(),
-                        DecimalNumberContexts.american(MathContext.DECIMAL32)
-                ),
-                '5'
+            converter,
+            BigDecimal.valueOf(5),
+            Character.class,
+            ConverterContexts.basic(
+                0,
+                Converters.fake(),
+                DateTimeContexts.fake(),
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
+            ),
+            '5'
         );
 
         this.toStringAndCheck(
-                converter,
-                "DecimalFormat Number to String to Character or String"
+            converter,
+            "DecimalFormat Number to String to Character or String"
         );
     }
 
@@ -440,8 +440,8 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "Character or CharSequence or HasText or String to Character or CharSequence or String"
+            this.createConverter(),
+            "Character or CharSequence or HasText or String to Character or CharSequence or String"
         );
     }
 

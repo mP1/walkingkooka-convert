@@ -26,25 +26,25 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
     @Test
     public void testConvertWhenCanConvertFalseFails() {
         this.convertFails(
-                "1",
-                Void.class
+            "1",
+            Void.class
         );
     }
 
     @Test
     public void testConvert() {
         this.convertAndCheck(
-                "12",
-                Integer.class,
-                12
+            "12",
+            Integer.class,
+            12
         );
     }
 
     @Test
     public void testConvertWhenDoConvertFails() {
         this.convertFails(
-                "Hello",
-                Integer.class
+            "Hello",
+            Integer.class
         );
     }
 
@@ -60,7 +60,7 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
 
     @Override
     public FakeConverterContext createContext() {
-        return (FakeConverterContext)ConverterContexts.fake();
+        return (FakeConverterContext) ConverterContexts.fake();
     }
 
     @Override
@@ -83,14 +83,14 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
                                                final FakeConverterContext context) {
             try {
                 return this.successfulConversion(
-                        Integer.parseInt(value.toString()),
-                        type
+                    Integer.parseInt(value.toString()),
+                    type
                 );
             } catch (final NumberFormatException cause) {
                 return this.failConversion(
-                        value,
-                        type,
-                        cause
+                    value,
+                    type,
+                    cause
                 );
             }
         }

@@ -32,69 +32,69 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertAndCheckNullValue() {
         this.convertAndCheck(
-                new Converter<>() {
-                    @Override
-                    public boolean canConvert(final Object v,
-                                              final Class<?> t,
-                                              final ConverterContext c) {
-                        return true;
-                    }
+            new Converter<>() {
+                @Override
+                public boolean canConvert(final Object v,
+                                          final Class<?> t,
+                                          final ConverterContext c) {
+                    return true;
+                }
 
-                    @Override
-                    public <T> Either<T, String> convert(final Object v,
-                                                         final Class<T> t,
-                                                         final ConverterContext c) {
-                        return Either.left(null);
-                    }
-                },
-                null,
-                Integer.class,
-                CONTEXT,
-                null);
+                @Override
+                public <T> Either<T, String> convert(final Object v,
+                                                     final Class<T> t,
+                                                     final ConverterContext c) {
+                    return Either.left(null);
+                }
+            },
+            null,
+            Integer.class,
+            CONTEXT,
+            null);
     }
 
     @Test
     public void testConvertAndCheck() {
         this.convertAndCheck(
-                new TestConverter(),
-                VALUE,
-                Integer.class,
-                CONTEXT,
-                EXPECTED);
+            new TestConverter(),
+            VALUE,
+            Integer.class,
+            CONTEXT,
+            EXPECTED);
     }
 
     @Test
     public void testConvertAndCheckNoMessageFails() {
         assertThrows(
-                AssertionError.class,
-                () -> this.convertAndCheck(
-                        new FakeConverter<ConverterContext>() {
-                            @Override
-                            public boolean canConvert(final Object v,
-                                                      final Class<?> t,
-                                                      final ConverterContext c) {
-                                return false;
-                            }
-                        },
-                        VALUE,
-                        Integer.class,
-                        CONTEXT,
-                        EXPECTED
-                )
+            AssertionError.class,
+            () -> this.convertAndCheck(
+                new FakeConverter<ConverterContext>() {
+                    @Override
+                    public boolean canConvert(final Object v,
+                                              final Class<?> t,
+                                              final ConverterContext c) {
+                        return false;
+                    }
+                },
+                VALUE,
+                Integer.class,
+                CONTEXT,
+                EXPECTED
+            )
         );
     }
 
     @Test
     public void testConvertAndCheckNoMessageFails2() {
         assertThrows(
-                AssertionError.class,
-                () -> this.convertAndCheck(
-                        new TestConverter(),
-                        VALUE,
-                        Integer.class,
-                        CONTEXT,
-                        9999
-                )
+            AssertionError.class,
+            () -> this.convertAndCheck(
+                new TestConverter(),
+                VALUE,
+                Integer.class,
+                CONTEXT,
+                9999
+            )
         );
     }
 
@@ -104,34 +104,34 @@ public final class ConverterTestingTest implements ConverterTesting {
         final ConverterContext context = ConverterContexts.fake();
 
         this.convertFails(
-                new Converter<ConverterContext>() {
-                    @Override
-                    public boolean canConvert(final Object v,
-                                              final Class<?> t,
-                                              final ConverterContext c) {
-                        check(v, t, c);
-                        return true;
-                    }
+            new Converter<ConverterContext>() {
+                @Override
+                public boolean canConvert(final Object v,
+                                          final Class<?> t,
+                                          final ConverterContext c) {
+                    check(v, t, c);
+                    return true;
+                }
 
-                    @Override
-                    public <T> Either<T, String> convert(final Object v,
-                                                         final Class<T> t,
-                                                         final ConverterContext c) {
-                        check(v, t, c);
-                        return Either.right("Conversion fails!");
-                    }
+                @Override
+                public <T> Either<T, String> convert(final Object v,
+                                                     final Class<T> t,
+                                                     final ConverterContext c) {
+                    check(v, t, c);
+                    return Either.right("Conversion fails!");
+                }
 
-                    private void check(final Object v,
-                                       final Class<?> t,
-                                       final ConverterContext c) {
-                        checkEquals(value, v, "value");
-                        checkEquals(Integer.class, t, "type");
-                        checkEquals(context, c, "context");
-                    }
-                },
-                value,
-                Integer.class,
-                context
+                private void check(final Object v,
+                                   final Class<?> t,
+                                   final ConverterContext c) {
+                    checkEquals(value, v, "value");
+                    checkEquals(Integer.class, t, "type");
+                    checkEquals(context, c, "context");
+                }
+            },
+            value,
+            Integer.class,
+            context
         );
     }
 
@@ -141,13 +141,13 @@ public final class ConverterTestingTest implements ConverterTesting {
         final ConverterContext context = ConverterContexts.fake();
 
         assertThrows(
-                AssertionError.class,
-                () -> this.convertFails(
-                        new TestConverter(),
-                        value,
-                        String.class,
-                        context
-                )
+            AssertionError.class,
+            () -> this.convertFails(
+                new TestConverter(),
+                value,
+                String.class,
+                context
+            )
         );
     }
 
@@ -180,40 +180,40 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertOrFailSuccess() {
         this.checkEquals(
-                1,
-                new FakeConverter<ConverterContext>() {
-                    @Override
-                    public <T> Either<T, String> convert(final Object value,
-                                                         final Class<T> type,
-                                                         final ConverterContext context) {
-                        return Cast.to(Either.left(1));
-                    }
-                }.convertOrFail(
-                        this,
-                        Integer.class,
-                        ConverterContexts.fake()
-                )
+            1,
+            new FakeConverter<ConverterContext>() {
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> type,
+                                                     final ConverterContext context) {
+                    return Cast.to(Either.left(1));
+                }
+            }.convertOrFail(
+                this,
+                Integer.class,
+                ConverterContexts.fake()
+            )
         );
     }
 
     @Test
     public void testConvertOrFailFailed() {
         assertThrows(
-                ConversionException.class,
-                () -> {
-                    new FakeConverter<ConverterContext>() {
-                        @Override
-                        public <T> Either<T, String> convert(final Object value,
-                                                             final Class<T> type,
-                                                             final ConverterContext context) {
-                            return this.failConversion(value, type);
-                        }
-                    }.convertOrFail(
-                            this,
-                            Boolean.class,
-                            ConverterContexts.fake()
-                    );
-                }
+            ConversionException.class,
+            () -> {
+                new FakeConverter<ConverterContext>() {
+                    @Override
+                    public <T> Either<T, String> convert(final Object value,
+                                                         final Class<T> type,
+                                                         final ConverterContext context) {
+                        return this.failConversion(value, type);
+                    }
+                }.convertOrFail(
+                    this,
+                    Boolean.class,
+                    ConverterContexts.fake()
+                );
+            }
         );
     }
 
@@ -222,45 +222,26 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertFailWithMessage() {
         this.convertFails(
-                new FakeConverter<>() {
-                    @Override
-                    public <T> Either<T, String> convert(final Object value,
-                                                         final Class<T> type,
-                                                         final ConverterContext context) {
-                        return this.failConversion(value, type);
-                    }
-                },
-                "*VALUE*", // value
-                this.getClass(), // target type,
-                ConverterContexts.fake(),
-                "Failed to convert \"*VALUE*\" (java.lang.String) to walkingkooka.convert.ConverterTestingTest"
+            new FakeConverter<>() {
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> type,
+                                                     final ConverterContext context) {
+                    return this.failConversion(value, type);
+                }
+            },
+            "*VALUE*", // value
+            this.getClass(), // target type,
+            ConverterContexts.fake(),
+            "Failed to convert \"*VALUE*\" (java.lang.String) to walkingkooka.convert.ConverterTestingTest"
         );
     }
 
     @Test
     public void testConvertFailWithWrongMessage() {
         assertThrows(
-                AssertionError.class,
-                () -> this.convertFails(
-                        new FakeConverter<>() {
-                            @Override
-                            public <T> Either<T, String> convert(final Object value,
-                                                                 final Class<T> type,
-                                                                 final ConverterContext context) {
-                                return this.failConversion(value, type);
-                            }
-                        },
-                        "*VALUE*", // value
-                        this.getClass(), // target type,
-                        ConverterContexts.fake(),
-                        "WRONG MESSAGE HERE"
-                )
-        );
-    }
-
-    @Test
-    public void testConvertFailWithSupplierMessage() {
-        this.convertFails(
+            AssertionError.class,
+            () -> this.convertFails(
                 new FakeConverter<>() {
                     @Override
                     public <T> Either<T, String> convert(final Object value,
@@ -272,28 +253,47 @@ public final class ConverterTestingTest implements ConverterTesting {
                 "*VALUE*", // value
                 this.getClass(), // target type,
                 ConverterContexts.fake(),
-                () -> "Failed to convert \"*VALUE*\" (java.lang.String) to walkingkooka.convert.ConverterTestingTest"
+                "WRONG MESSAGE HERE"
+            )
+        );
+    }
+
+    @Test
+    public void testConvertFailWithSupplierMessage() {
+        this.convertFails(
+            new FakeConverter<>() {
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> type,
+                                                     final ConverterContext context) {
+                    return this.failConversion(value, type);
+                }
+            },
+            "*VALUE*", // value
+            this.getClass(), // target type,
+            ConverterContexts.fake(),
+            () -> "Failed to convert \"*VALUE*\" (java.lang.String) to walkingkooka.convert.ConverterTestingTest"
         );
     }
 
     @Test
     public void testConvertFailWithSupplierWrongMessage() {
         assertThrows(
-                AssertionError.class,
-                () -> this.convertFails(
-                        new FakeConverter<>() {
-                            @Override
-                            public <T> Either<T, String> convert(final Object value,
-                                                                 final Class<T> type,
-                                                                 final ConverterContext context) {
-                                return this.failConversion(value, type);
-                            }
-                        },
-                        "*VALUE*", // value
-                        this.getClass(), // target type,
-                        ConverterContexts.fake(),
-                        () -> "WRONG MESSAGE HERE"
-                )
+            AssertionError.class,
+            () -> this.convertFails(
+                new FakeConverter<>() {
+                    @Override
+                    public <T> Either<T, String> convert(final Object value,
+                                                         final Class<T> type,
+                                                         final ConverterContext context) {
+                        return this.failConversion(value, type);
+                    }
+                },
+                "*VALUE*", // value
+                this.getClass(), // target type,
+                ConverterContexts.fake(),
+                () -> "WRONG MESSAGE HERE"
+            )
         );
     }
 }

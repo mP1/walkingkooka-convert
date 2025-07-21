@@ -36,12 +36,12 @@ public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanC
     public void testConvert() {
         this.convertAndCheck(
             "1999 12 31",
-                LocalDate.class,
-                LocalDate.of(
-                        1999,
-                        12,
-                        31
-                )
+            LocalDate.class,
+            LocalDate.of(
+                1999,
+                12,
+                31
+            )
         );
     }
 
@@ -56,20 +56,20 @@ public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanC
             final Locale locale = Locale.forLanguageTag("EN-AU");
 
             return ConverterContexts.basic(
-                    Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
-                    Converters.stringToLocalDate(
-                            (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
+                Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
+                Converters.stringToLocalDate(
+                    (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
+                ),
+                DateTimeContexts.basic(
+                    DateTimeSymbols.fromDateFormatSymbols(
+                        new DateFormatSymbols(locale)
                     ),
-                    DateTimeContexts.basic(
-                            DateTimeSymbols.fromDateFormatSymbols(
-                                    new DateFormatSymbols(locale)
-                            ),
-                            locale,
-                            1950, // defaultYear
-                            50, // twoDigitYear
-                            LocalDateTime::now
-                    ),
-                    DecimalNumberContexts.american(MathContext.DECIMAL32)
+                    locale,
+                    1950, // defaultYear
+                    50, // twoDigitYear
+                    LocalDateTime::now
+                ),
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
             );
         }
     }

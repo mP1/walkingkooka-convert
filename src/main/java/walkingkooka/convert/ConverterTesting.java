@@ -36,30 +36,30 @@ public interface ConverterTesting extends TreePrintableTesting {
                                                               final C context,
                                                               final T expected) {
         final Supplier<String> className = () -> null != value ?
-                " (" + value.getClass().getName() + ")" :
-                "";
+            " (" + value.getClass().getName() + ")" :
+            "";
         this.checkEquals(
-                true,
-                converter.canConvert(value, target, context),
-                () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
+            true,
+            converter.canConvert(value, target, context),
+            () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
         );
 
         final Either<T, String> result = converter.convert(
-                value,
-                target,
-                context
+            value,
+            target,
+            context
         );
         this.checkEquals(
-                false,
-                result.isRight(),
-                () -> converter + " convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
+            false,
+            result.isRight(),
+            () -> converter + " convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
         );
 
         final T convertedValue = result.leftValue();
         this.checkEquals(
-                expected,
-                convertedValue,
-                () -> "Failed to convert " + CharSequences.quoteIfChars(value) + className.get() + "= to " + target.getName()
+            expected,
+            convertedValue,
+            () -> "Failed to convert " + CharSequences.quoteIfChars(value) + className.get() + "= to " + target.getName()
         );
         return convertedValue;
     }
@@ -85,11 +85,11 @@ public interface ConverterTesting extends TreePrintableTesting {
                                                            final Class<?> type,
                                                            final C context) {
         this.convertFails(
-                converter,
-                value,
-                type,
-                context,
-                (String) null // no expected message.
+            converter,
+            value,
+            type,
+            context,
+            (String) null // no expected message.
         );
     }
 
@@ -99,13 +99,13 @@ public interface ConverterTesting extends TreePrintableTesting {
                                                            final C context,
                                                            final String expected) {
         this.convertFails(
-                converter,
-                value,
-                Cast.to(type),
-                context,
-                null != expected ?
-                        () -> expected :
-                        null
+            converter,
+            value,
+            Cast.to(type),
+            context,
+            null != expected ?
+                () -> expected :
+                null
         );
     }
 
@@ -117,16 +117,16 @@ public interface ConverterTesting extends TreePrintableTesting {
         final Either<?, String> result = converter.convert(value, type, context);
         if (null != expected) {
             this.checkEquals(
-                    Either.right(
-                            expected.get()
-                    ),
-                    result
+                Either.right(
+                    expected.get()
+                ),
+                result
             );
         } else {
             result.mapLeft(
-                    v -> {
-                        throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
-                    }
+                v -> {
+                    throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
+                }
             );
         }
     }

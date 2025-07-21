@@ -36,8 +36,8 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
-        ConverterContextTesting<BasicConverterContext>,
-        DecimalNumberContextDelegator {
+    ConverterContextTesting<BasicConverterContext>,
+    DecimalNumberContextDelegator {
 
     private final static long NUMBER_TO_DATE_OFFSET = 0;
 
@@ -62,37 +62,37 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Test
     public void testWithNullConverterFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> BasicConverterContext.with(
-                        NUMBER_TO_DATE_OFFSET,
-                        null,
-                        this.dateTimeContext(),
-                        this.decimalNumberContext()
-                )
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                NUMBER_TO_DATE_OFFSET,
+                null,
+                this.dateTimeContext(),
+                this.decimalNumberContext()
+            )
         );
     }
 
     @Test
     public void testWithNullDateTimeContextFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> BasicConverterContext.with(
-                        NUMBER_TO_DATE_OFFSET,
-                        CONVERTER,
-                        null,
-                        this.decimalNumberContext())
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                NUMBER_TO_DATE_OFFSET,
+                CONVERTER,
+                null,
+                this.decimalNumberContext())
         );
     }
 
     @Test
     public void testWithNullDecimalNumberContextFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> BasicConverterContext.with(
-                        NUMBER_TO_DATE_OFFSET,
-                        CONVERTER,
-                        this.dateTimeContext(),
-                        null)
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                NUMBER_TO_DATE_OFFSET,
+                CONVERTER,
+                this.dateTimeContext(),
+                null)
         );
     }
 
@@ -106,24 +106,24 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Test
     public void testLocale() {
         this.localeAndCheck(
-                this.createContext(),
-                LOCALE
+            this.createContext(),
+            LOCALE
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createContext(),
-                this.dateTimeContext() + " " + decimalNumberContext());
+            this.dateTimeContext() + " " + decimalNumberContext());
     }
 
     @Override
     public BasicConverterContext createContext() {
         return BasicConverterContext.with(
-                NUMBER_TO_DATE_OFFSET,
-                CONVERTER,
-                this.dateTimeContext(),
-                decimalNumberContext()
+            NUMBER_TO_DATE_OFFSET,
+            CONVERTER,
+            this.dateTimeContext(),
+            decimalNumberContext()
         );
     }
 
@@ -131,35 +131,35 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         final Locale locale = Locale.FRANCE;
 
         return DateTimeContexts.basic(
-                DateTimeSymbols.fromDateFormatSymbols(
-                        new DateFormatSymbols(locale)
-                ),
-                locale,
-                1900,
-                20,
-                LocalDateTime::now
+            DateTimeSymbols.fromDateFormatSymbols(
+                new DateFormatSymbols(locale)
+            ),
+            locale,
+            1900,
+            20,
+            LocalDateTime::now
         );
     }
 
     @Override
     public DecimalNumberContext decimalNumberContext() {
         return DecimalNumberContexts.basic(
-                DecimalNumberSymbols.with(
-                        MINUS,
-                        PLUS,
-                        ZERO_DIGIT,
-                        CURRENCY,
-                        DECIMAL,
-                        EXPONENT,
-                        GROUP_SEPARATOR,
-                        INFINITY,
-                        MONETARY_DECIMAL,
-                        NAN,
-                        PERCENT,
-                        PERMILL
-                ),
-                LOCALE,
-                MATH_CONTEXT
+            DecimalNumberSymbols.with(
+                MINUS,
+                PLUS,
+                ZERO_DIGIT,
+                CURRENCY,
+                DECIMAL,
+                EXPONENT,
+                GROUP_SEPARATOR,
+                INFINITY,
+                MONETARY_DECIMAL,
+                NAN,
+                PERCENT,
+                PERMILL
+            ),
+            LOCALE,
+            MATH_CONTEXT
         );
     }
 

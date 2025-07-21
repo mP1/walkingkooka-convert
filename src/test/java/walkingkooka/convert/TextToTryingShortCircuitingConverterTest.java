@@ -27,54 +27,54 @@ public final class TextToTryingShortCircuitingConverterTest implements Converter
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                Integer.class,
-                999
+            null,
+            Integer.class,
+            999
         );
     }
 
     @Test
     public void testConvertNonTextFails() {
         this.convertFails(
-                1,
-                String.class
+            1,
+            String.class
         );
     }
 
     @Test
     public void testConvertCharacterToString() {
         this.convertAndCheck(
-                '1',
-                1
+            '1',
+            1
         );
     }
 
     @Test
     public void testConvertCharSequenceToString() {
         this.convertAndCheck(
-                new StringBuilder("1"),
-                1
+            new StringBuilder("1"),
+            1
         );
     }
 
     @Test
     public void testConvertHasTextToString() {
         this.convertAndCheck(
-                new HasText() {
-                    @Override
-                    public String text() {
-                        return "1";
-                    }
-                },
-                1
+            new HasText() {
+                @Override
+                public String text() {
+                    return "1";
+                }
+            },
+            1
         );
     }
 
     @Test
     public void testConvertStringToString() {
         this.convertAndCheck(
-                "1",
-                1
+            "1",
+            1
         );
     }
 
@@ -96,9 +96,9 @@ public final class TextToTryingShortCircuitingConverterTest implements Converter
             public boolean canConvert(final Object value,
                                       final Class<?> type) {
                 return this.converter.canConvert(
-                        value,
-                        type,
-                        this
+                    value,
+                    type,
+                    this
                 );
             }
 
@@ -106,9 +106,9 @@ public final class TextToTryingShortCircuitingConverterTest implements Converter
             public <T> Either<T, String> convert(final Object value,
                                                  final Class<T> target) {
                 return this.converter.convert(
-                        value,
-                        target,
-                        this
+                    value,
+                    target,
+                    this
                 );
             }
 
@@ -135,8 +135,8 @@ public final class TextToTryingShortCircuitingConverterTest implements Converter
                                 final Class<?> type,
                                 final FakeConverterContext context) {
             return null == value ?
-                    999 :
-                    Integer.parseInt(value);
+                999 :
+                Integer.parseInt(value);
         }
     }
 }

@@ -24,7 +24,7 @@ import walkingkooka.Cast;
  * This is unfortunate limit of J2CL the Class#isInstance is not support/available.
  */
 final class SimpleConverter<C extends ConverterContext> implements Converter<C>,
-        TryingShortCircuitingConverter<C> {
+    TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe getter
@@ -49,10 +49,10 @@ final class SimpleConverter<C extends ConverterContext> implements Converter<C>,
                               final Class<?> type,
                               final C context) {
         return null == value ||
-                this.isSubClass(
-                        value,
-                        type
-                );
+            this.isSubClass(
+                value,
+                type
+            );
     }
 
     /**

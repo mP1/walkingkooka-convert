@@ -32,8 +32,8 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                Number.class
+            null,
+            Number.class
         );
     }
 
@@ -110,8 +110,8 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "LocalTime to Number"
+            this.createConverter(),
+            "LocalTime to Number"
         );
     }
 
@@ -127,15 +127,15 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
 
     private void convertAndCheck2(final Number expected) {
         this.convertAndCheck(
-                LocalTime.ofSecondOfDay(VALUE),
-                expected
+            LocalTime.ofSecondOfDay(VALUE),
+            expected
         );
     }
 
     private void convertAndCheck3(final Number expected) {
         this.convertAndCheck(this.withNanos(),
-                Cast.to(expected.getClass()),
-                expected);
+            Cast.to(expected.getClass()),
+            expected);
     }
 
     private void convertFails2(final Class<?> target) {

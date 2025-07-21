@@ -53,12 +53,12 @@ final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrS
                               final Class<?> type,
                               final C context) {
         return (null == value ||
-                value instanceof Character ||
-                value instanceof CharSequence ||
-                value instanceof HasText) &&
-                (Character.class == type ||
-                        CharSequence.class == type ||
-                        String.class == type);
+            value instanceof Character ||
+            value instanceof CharSequence ||
+            value instanceof HasText) &&
+            (Character.class == type ||
+                CharSequence.class == type ||
+                String.class == type);
     }
 
     @Override
@@ -92,12 +92,12 @@ final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrS
                             charSequence = ((HasText) value).text();
                         } else {
                             charSequence = null == value ?
-                                    null :
-                                    value.toString();
+                                null :
+                                value.toString();
                         }
                     }
 
-                    if(null != charSequence) {
+                    if (null != charSequence) {
                         // extract the first character or complain
                         final int length = charSequence.length();
                         switch (length) {
@@ -108,10 +108,10 @@ final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrS
                                 break;
                             default:
                                 throw new InvalidTextLengthException(
-                                        "value",
-                                        charSequence.toString(),
-                                        1,
-                                        1
+                                    "value",
+                                    charSequence.toString(),
+                                    1,
+                                    1
                                 );
                         }
                     } else {

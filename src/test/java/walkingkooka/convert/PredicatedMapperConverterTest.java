@@ -51,24 +51,24 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testConvertTrue() {
         this.convertAndCheck(
-                Boolean.TRUE.toString(),
-                true
+            Boolean.TRUE.toString(),
+            true
         );
     }
 
     @Test
     public void testConvertFalse() {
         this.convertAndCheck(
-                Boolean.FALSE.toString(),
-                false
+            Boolean.FALSE.toString(),
+            false
         );
     }
 

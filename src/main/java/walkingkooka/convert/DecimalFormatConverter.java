@@ -67,10 +67,10 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
                     format.setCurrency(Currency.getInstance(locale));
                 } catch (final IllegalArgumentException cause) {
                     throw new ConversionException(
-                            "Unable to set currency, probably an invalid locale " + CharSequences.quoteAndEscape(locale.toLanguageTag()),
-                            value,
-                            type,
-                            cause
+                        "Unable to set currency, probably an invalid locale " + CharSequences.quoteAndEscape(locale.toLanguageTag()),
+                        value,
+                        type,
+                        cause
                     );
                 }
 
@@ -88,10 +88,10 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
             }
 
             result = this.convertWithDecimalFormat(
-                    format,
-                    value,
-                    type,
-                    context
+                format,
+                value,
+                type,
+                context
             );
         } catch (final RuntimeException cause) {
             result = this.failConversion(value, type, cause);

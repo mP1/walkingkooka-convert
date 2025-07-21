@@ -55,8 +55,8 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
     @Test
     public final void testConvertNull() {
         this.convertAndCheck(
-                null,
-                this.targetType()
+            null,
+            this.targetType()
         );
     }
 

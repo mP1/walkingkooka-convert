@@ -143,8 +143,8 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "Number to Boolean"
+            this.createConverter(),
+            "Number to Boolean"
         );
     }
 
@@ -152,15 +152,15 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
 
     private void convertAndCheckTrue(final Number number) {
         this.convertAndCheck(
-                number,
-                true
+            number,
+            true
         );
     }
 
     private void convertAndCheckFalse(final Number number) {
         this.convertAndCheck(
-                number,
-                false
+            number,
+            false
         );
     }
 

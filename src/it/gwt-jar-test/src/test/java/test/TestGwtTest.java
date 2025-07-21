@@ -31,20 +31,20 @@ public class TestGwtTest extends GWTTestCase {
 
     public void testAssertEquals() {
         assertEquals(
-                1,
-                1
+            1,
+            1
         );
     }
 
     public void testConvertStringToCharacterOrString() {
         assertEquals(
-                Character.valueOf('A'),
-                Converters.stringToCharacterOrString()
-                        .convertOrFail(
-                                "A",
-                                Character.class,
-                                ConverterContexts.fake()
-                        )
+            Character.valueOf('A'),
+            Converters.stringToCharacterOrString()
+                .convertOrFail(
+                    "A",
+                    Character.class,
+                    ConverterContexts.fake()
+                )
         );
     }
 }
