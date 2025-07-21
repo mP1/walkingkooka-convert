@@ -21,6 +21,13 @@ import walkingkooka.math.NumberVisitor;
 
 abstract class ConverterNumberToNumberNumberTypeVisitorNumber<N extends Number> extends NumberVisitor {
 
+    /**
+     * Necessary to support unsigned byte values, when converting a byte to another number type.
+     */
+    static int toUnsignedInt(final byte value) {
+        return 0xff & value;
+    }
+
     ConverterNumberToNumberNumberTypeVisitorNumber() {
         super();
     }

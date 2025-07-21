@@ -42,7 +42,9 @@ final class ConverterNumberToNumberNumberTypeVisitorInteger extends ConverterNum
 
     @Override
     protected void visit(final Byte number) {
-        this.save(number.intValue());
+        this.save(
+            toUnsignedInt(number)
+        );
     }
 
     @Override
