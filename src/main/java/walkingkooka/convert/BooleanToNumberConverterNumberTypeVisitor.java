@@ -105,9 +105,9 @@ final class BooleanToNumberConverterNumberTypeVisitor extends NumberTypeVisitor 
     @Override
     protected void visitUnknown(final Class<?> numberType) {
         throw new ConversionException(
-                "Unexpected number type " + numberType.getName(),
-                this.booleanValue,
-                numberType
+            "Unexpected number type " + numberType.getName(),
+            this.booleanValue,
+            numberType
         ); // Unknown Number types failed earlier.
     }
 
@@ -119,12 +119,12 @@ final class BooleanToNumberConverterNumberTypeVisitor extends NumberTypeVisitor 
     @Override
     public String toString() {
         return ToStringBuilder.empty()
-                .disable(ToStringBuilderOption.QUOTE)
-                .valueSeparator(" ")
-                .value("Boolean->Number")
-                .disable(ToStringBuilderOption.SKIP_IF_DEFAULT_VALUE)
-                .value(this.booleanValue)
-                .value(this.number)
-                .build();
+            .disable(ToStringBuilderOption.QUOTE)
+            .valueSeparator(" ")
+            .value("Boolean->Number")
+            .disable(ToStringBuilderOption.SKIP_IF_DEFAULT_VALUE)
+            .value(this.booleanValue)
+            .value(this.number)
+            .build();
     }
 }

@@ -44,9 +44,9 @@ public interface Converter<C extends ConverterContext> {
         final boolean can = this.canConvert(value, type, context);
         if (!can) {
             this.convertThrowable(
-                    "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + type.getName(),
-                    value,
-                    type
+                "Unable to support convert " + CharSequences.quoteIfChars(value) + " to " + type.getName(),
+                value,
+                type
             );
         }
 
@@ -70,9 +70,9 @@ public interface Converter<C extends ConverterContext> {
         final Either<T, String> converted = this.convert(value, type, context);
         if (converted.isRight()) {
             throw this.convertThrowable(
-                    converted.rightValue(), // message
-                    value,
-                    type
+                converted.rightValue(), // message
+                value,
+                type
             );
         }
 
@@ -111,9 +111,9 @@ public interface Converter<C extends ConverterContext> {
                                               final Object value,
                                               final Class<?> type) {
         return new ConversionException(
-                message,
-                value,
-                type
+            message,
+            value,
+            type
         );
     }
 
@@ -137,9 +137,9 @@ public interface Converter<C extends ConverterContext> {
     default Converter<C> to(final Class<?> intermediateType,
                             final Converter<C> next) {
         return Converters.chain(
-                this,
-                intermediateType,
-                next
+            this,
+            intermediateType,
+            next
         );
     }
 }

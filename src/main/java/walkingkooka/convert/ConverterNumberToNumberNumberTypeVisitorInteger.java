@@ -49,7 +49,7 @@ final class ConverterNumberToNumberNumberTypeVisitorInteger extends ConverterNum
     protected void visit(final Double number) {
         if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                number.intValue()
             );
         }
     }
@@ -58,7 +58,7 @@ final class ConverterNumberToNumberNumberTypeVisitorInteger extends ConverterNum
     protected void visit(final Float number) {
         if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                number.intValue()
             );
         }
     }
@@ -72,7 +72,7 @@ final class ConverterNumberToNumberNumberTypeVisitorInteger extends ConverterNum
     protected void visit(final Long number) {
         if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                number.intValue()
             );
         }
     }
@@ -81,7 +81,7 @@ final class ConverterNumberToNumberNumberTypeVisitorInteger extends ConverterNum
     protected void visit(final Short number) {
         if (number >= Integer.MIN_VALUE && number <= Integer.MAX_VALUE) {
             this.save(
-                    number.intValue()
+                number.intValue()
             );
         }
     }

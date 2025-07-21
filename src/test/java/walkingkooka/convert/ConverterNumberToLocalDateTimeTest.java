@@ -123,15 +123,15 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     private void convertAndCheckWith1900ExcelDateOffset(final Number value) {
         this.convertAndCheck(
-                value,
-                LocalDateTime.class,
-                new FakeConverterContext() {
-                    @Override
-                    public long dateOffset() {
-                        return Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
-                    }
-                },
-                DATE_TIME_WITH_1900_EXCEL_OFFSET
+            value,
+            LocalDateTime.class,
+            new FakeConverterContext() {
+                @Override
+                public long dateOffset() {
+                    return Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
+                }
+            },
+            DATE_TIME_WITH_1900_EXCEL_OFFSET
         );
     }
 

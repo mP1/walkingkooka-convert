@@ -34,7 +34,7 @@ final class ConverterNumberToNumberNumberTypeVisitorFloat extends ConverterNumbe
     protected void visit(final BigDecimal number) {
         if (number.compareTo(BIG_DECIMAL_DOUBLE_MIN) >= 0 && number.compareTo(BIG_DECIMAL_DOUBLE_MAX) <= 0) {
             this.save(
-                    number.floatValue()
+                number.floatValue()
             );
         }
     }
@@ -47,7 +47,7 @@ final class ConverterNumberToNumberNumberTypeVisitorFloat extends ConverterNumbe
     protected void visit(final BigInteger number) {
         if (number.compareTo(BIG_INTEGER_DOUBLE_MIN) >= 0 && number.compareTo(BIG_INTEGER_DOUBLE_MAX) <= 0) {
             this.save(
-                    number.floatValue()
+                number.floatValue()
             );
         }
     }
@@ -65,7 +65,7 @@ final class ConverterNumberToNumberNumberTypeVisitorFloat extends ConverterNumbe
     protected void visit(final Double number) {
         if (number >= -Float.MAX_VALUE && number <= Float.MAX_VALUE) {
             this.save(
-                    number.floatValue()
+                number.floatValue()
             );
         }
     }

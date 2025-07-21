@@ -42,8 +42,8 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
     @Test
     public final void testConvertNull() {
         this.convertAndCheck(
-                null,
-                this.targetType()
+            null,
+            this.targetType()
         );
     }
 
@@ -159,10 +159,10 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
                                 final ConverterContext context,
                                 final T converted) {
         this.convertAndCheck(converter,
-                source,
-                this.targetType(),
-                context,
-                converted);
+            source,
+            this.targetType(),
+            context,
+            converted);
     }
 
     // TypeNameTesting..................................................................................................

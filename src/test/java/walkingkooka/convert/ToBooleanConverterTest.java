@@ -51,44 +51,44 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                FALSE_ANSWER
+            null,
+            FALSE_ANSWER
         );
     }
 
     @Test
     public void testConvertTrue() {
         this.convertAndCheck(
-                1,
-                TRUE_ANSWER
+            1,
+            TRUE_ANSWER
         );
     }
 
     @Test
     public void testConvertTrueNullAnswer() {
         this.convertAndCheck(
-                ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
-                1,
-                String.class,
-                null
+            ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
+            1,
+            String.class,
+            null
         );
     }
 
     @Test
     public void testConvertFalse() {
         this.convertAndCheck(
-                2,
-                FALSE_ANSWER
+            2,
+            FALSE_ANSWER
         );
     }
 
     @Test
     public void testConvertFalseNullAnswer() {
         this.convertAndCheck(
-                ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
-                2,
-                String.class,
-                null
+            ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
+            2,
+            String.class,
+            null
         );
     }
 
@@ -107,8 +107,8 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "Integer to String"
+            this.createConverter(),
+            "Integer to String"
         );
     }
 

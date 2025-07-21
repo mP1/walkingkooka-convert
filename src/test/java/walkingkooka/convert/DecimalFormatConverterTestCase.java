@@ -73,17 +73,17 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
 
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(
-                0, // dateOffset
-                Converters.fake(),
-                DateTimeContexts.fake(),
-                DecimalNumberContexts.basic(
-                        DecimalNumberSymbols.fromDecimalFormatSymbols(
-                                '+',
-                                new DecimalFormatSymbols(locale)
-                        ),
-                        locale,
-                        MathContext.DECIMAL32
-                )
+            0, // dateOffset
+            Converters.fake(),
+            DateTimeContexts.fake(),
+            DecimalNumberContexts.basic(
+                DecimalNumberSymbols.fromDecimalFormatSymbols(
+                    '+',
+                    new DecimalFormatSymbols(locale)
+                ),
+                locale,
+                MathContext.DECIMAL32
+            )
         );
     }
 
@@ -91,9 +91,9 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
                                 final Object value,
                                 final Object expected) {
         this.convertAndCheck2(pattern,
-                value,
-                Locale.UK,
-                expected);
+            value,
+            Locale.UK,
+            expected);
     }
 
     final void convertAndCheck2(final String pattern,
@@ -101,10 +101,10 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
                                 final Locale locale,
                                 final Object expected) {
         this.convertAndCheck2(pattern,
-                value,
-                Cast.to(expected.getClass()),
-                locale,
-                expected);
+            value,
+            Cast.to(expected.getClass()),
+            locale,
+            expected);
     }
 
     final <T> void convertAndCheck2(final String pattern,
@@ -112,10 +112,10 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
                                     final Class<T> type,
                                     final T expected) {
         this.convertAndCheck2(pattern,
-                value,
-                type,
-                Locale.UK,
-                expected);
+            value,
+            type,
+            Locale.UK,
+            expected);
     }
 
     final <T> void convertAndCheck2(final String pattern,
@@ -124,10 +124,10 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
                                     final Locale locale,
                                     final T expected) {
         this.convertAndCheck(this.createConverter(pattern),
-                value,
-                type,
-                this.createContext(locale),
-                expected);
+            value,
+            type,
+            this.createContext(locale),
+            expected);
     }
 
     // TypeNameTesting..................................................................................................

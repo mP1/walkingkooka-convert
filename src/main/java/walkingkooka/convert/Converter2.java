@@ -42,14 +42,14 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
         Objects.requireNonNull(context, "context");
 
         return (
-                null == value ||
-                        this.canConvertNonNull(
-                                value,
-                                type,
-                                context
-                        )
+            null == value ||
+                this.canConvertNonNull(
+                    value,
+                    type,
+                    context
+                )
         ) &&
-                this.canConvertType(type);
+            this.canConvertType(type);
     }
 
     abstract boolean canConvertNonNull(final Object value,
@@ -63,16 +63,16 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
                                                final Class<T> type,
                                                final C context) {
         return this.canConvert(value, type, context) ?
-                this.convert0(value, type, context) :
-                this.failConversion(value, type);
+            this.convert0(value, type, context) :
+            this.failConversion(value, type);
     }
 
     private <T> Either<T, String> convert0(final Object value,
                                            final Class<T> type,
                                            final ConverterContext context) {
         return null == value ?
-                Cast.to(NULL) :
-                this.convertNonNull(value, type, context);
+            Cast.to(NULL) :
+            this.convertNonNull(value, type, context);
     }
 
     private final static Either<Object, String> NULL = Either.left(null);
@@ -92,10 +92,10 @@ abstract class Converter2<C extends ConverterContext> implements Converter<C> {
                                                 final Class<N> type,
                                                 final ConverterContext context) {
         return ConverterNumberToNumber.instance()
-                .convert(
-                        number,
-                        type,
-                        context
-                );
+            .convert(
+                number,
+                type,
+                context
+            );
     }
 }

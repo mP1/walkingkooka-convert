@@ -30,9 +30,9 @@ public final class DateTimeFormatterConverterStringToLocalTimeTest extends DateT
     @Test
     public void testConvert2() {
         this.convertAndCheck(this.createConverter(DateTimeFormatter.ofPattern("ss HH mm")),
-                "59 12 58",
-                LocalTime.class,
-                LocalTime.of(12, 58, 59));
+            "59 12 58",
+            LocalTime.class,
+            LocalTime.of(12, 58, 59));
     }
 
     @Test
@@ -40,14 +40,14 @@ public final class DateTimeFormatterConverterStringToLocalTimeTest extends DateT
         final DateTimeFormatterConverterStringToLocalTime<ConverterContext> converter = this.createConverter();
 
         this.convertAndCheck2(converter,
-                this.source(),
-                this.createContext(),
-                this.converted());
+            this.source(),
+            this.createContext(),
+            this.converted());
 
         this.convertAndCheck2(converter,
-                "nachm. 59 58 12",
-                this.createContext2(),
-                this.converted());
+            "nachm. 59 58 12",
+            this.createContext2(),
+            this.converted());
     }
 
     @Override

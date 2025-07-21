@@ -25,18 +25,18 @@ public interface CanConvertDelegator extends CanConvert {
     default boolean canConvert(final Object value,
                                final Class<?> type) {
         return this.canConvert()
-                .canConvert(
-                        value,
-                        type
-                );
+            .canConvert(
+                value,
+                type
+            );
     }
 
     @Override
     default <T> Either<T, String> convert(final Object value,
                                           final Class<T> type) {
         return this.canConvert().convert(
-                value,
-                type
+            value,
+            type
         );
     }
 

@@ -49,8 +49,8 @@ final class StringToCharacterOrStringConverter<C extends ConverterContext> imple
                               final Class<?> type,
                               final C context) {
         return Character.class == type &&
-                (null == value || value instanceof String && ((String) value).length() == 1) ||
-                String.class == type;
+            (null == value || value instanceof String && ((String) value).length() == 1) ||
+            String.class == type;
     }
 
     @Override
@@ -58,8 +58,8 @@ final class StringToCharacterOrStringConverter<C extends ConverterContext> imple
                                    final Class<?> type,
                                    final C context) {
         return null == value || String.class == type ?
-                value :
-                value.toString().charAt(0);
+            value :
+            value.toString().charAt(0);
     }
 
     @Override

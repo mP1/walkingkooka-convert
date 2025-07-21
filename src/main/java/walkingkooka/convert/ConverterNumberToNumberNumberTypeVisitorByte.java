@@ -49,7 +49,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
     protected void visit(final Double number) {
         if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.byteValue()
+                number.byteValue()
             );
         }
     }
@@ -58,7 +58,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
     protected void visit(final Float number) {
         if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.byteValue()
+                number.byteValue()
             );
         }
     }
@@ -67,7 +67,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
     protected void visit(final Integer number) {
         if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.byteValue()
+                number.byteValue()
             );
         }
     }
@@ -76,7 +76,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
     protected void visit(final Long number) {
         if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.byteValue()
+                number.byteValue()
             );
         }
     }
@@ -85,7 +85,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
     protected void visit(final Short number) {
         if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
             this.save(
-                    number.byteValue()
+                number.byteValue()
             );
         }
     }

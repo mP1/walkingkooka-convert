@@ -42,18 +42,18 @@ abstract class ConverterLocalTime<C extends ConverterContext> extends Converter2
                                                          final Class<T> type,
                                                          final ConverterContext context) {
         return this.convert1((LocalTime) value,
-                type,
-                context);
+            type,
+            context);
     }
 
     private <T> Either<T, String> convert1(final LocalTime value,
                                            final Class<T> type,
                                            final ConverterContext context) {
         return this.convertFromLocalTime(value.toSecondOfDay(),
-                value.getNano(),
-                value,
-                type,
-                context);
+            value.getNano(),
+            value,
+            type,
+            context);
     }
 
     abstract <T> Either<T, String> convertFromLocalTime(final long seconds,

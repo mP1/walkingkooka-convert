@@ -45,10 +45,10 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
         Objects.requireNonNull(parserTokenToValue, "parserTokenToValue");
 
         return new ParserConverter<>(
-                parserValueType,
-                parser,
-                converterContextToParserContext,
-                parserTokenToValue
+            parserValueType,
+            parser,
+            converterContextToParserContext,
+            parserTokenToValue
         );
     }
 
@@ -70,10 +70,10 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
                               final Class<?> type,
                               final C context) {
         return this.parserValueType == type &&
-                context.canConvert(
-                        value,
-                        String.class
-                );
+            context.canConvert(
+                value,
+                String.class
+            );
     }
 
     private final Class<V> parserValueType;
@@ -83,30 +83,30 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert(
-                value,
+            value,
+            type,
+            context
+        ) ?
+            this.parse(
+                context.convertOrFail(
+                    value,
+                    CharSequence.class
+                ),
                 type,
                 context
-        ) ?
-                this.parse(
-                        context.convertOrFail(
-                                value,
-                                CharSequence.class
-                        ),
-                        type,
-                        context
-                ) :
-                this.failConversion(
-                        value,
-                        type
-                );
+            ) :
+            this.failConversion(
+                value,
+                type
+            );
     }
 
     private <T> Either<T, String> parse(final CharSequence text,
                                         final Class<T> type,
                                         final C context) {
         return null == text ?
-                this.successfulConversion(null, type) :
-                this.parseNonNull(text, type, context);
+            this.successfulConversion(null, type) :
+            this.parseNonNull(text, type, context);
     }
 
 
@@ -115,21 +115,21 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
                                                final C context) {
         final TextCursor cursor = TextCursors.charSequence(text);
         final Optional<ParserToken> result = this.parser.parse(
-                cursor,
-                this.converterContextToParserContext.apply(context)
+            cursor,
+            this.converterContextToParserContext.apply(context)
         );
         return result.isPresent() && cursor.isEmpty() ?
-                this.successfulConversion(
-                        this.parserTokenToValue.apply(
-                                result.get(),
-                                context
-                        ),
-                        type
-                ) :
-                this.failConversion(
-                        text,
-                        type
-                );
+            this.successfulConversion(
+                this.parserTokenToValue.apply(
+                    result.get(),
+                    context
+                ),
+                type
+            ) :
+            this.failConversion(
+                text,
+                type
+            );
     }
 
     private final Parser<P> parser;

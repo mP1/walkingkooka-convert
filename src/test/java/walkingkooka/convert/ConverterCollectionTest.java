@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterCollectionTest extends ConverterTestCase2<ConverterCollection<ConverterContext>>
-        implements HashCodeEqualsDefinedTesting2<ConverterCollection<ConverterContext>> {
+    implements HashCodeEqualsDefinedTesting2<ConverterCollection<ConverterContext>> {
 
     @Override
     public void testTypeNaming() {
@@ -54,24 +54,24 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testConvertByFirstConverter() {
         this.convertAndCheck(
-                Boolean.TRUE.toString(),
-                Boolean.TRUE
+            Boolean.TRUE.toString(),
+            Boolean.TRUE
         );
     }
 
     @Test
     public void testConvertByLastConverter() {
         this.convertAndCheck(
-                1.0,
-                1L
+            1.0,
+            1L
         );
     }
 
@@ -97,37 +97,37 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
                                                                        return Either.right("failed!");
                                                                    }
                                                                },
-                        Converters.numberToBoolean())),
-                1,
-                Boolean.class,
-                true);
+                Converters.numberToBoolean())),
+            1,
+            Boolean.class,
+            true);
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "String to Boolean | Number to Number"
+            this.createConverter(),
+            "String to Boolean | Number to Number"
         );
     }
 
     @Override
     public ConverterCollection<ConverterContext> createConverter() {
         return Cast.to(
-                ConverterCollection.with(
-                        Lists.of(
-                                booleanToString().setToString("String to Boolean"),
-                                Converters.numberToNumber()
-                        )
+            ConverterCollection.with(
+                Lists.of(
+                    booleanToString().setToString("String to Boolean"),
+                    Converters.numberToNumber()
                 )
+            )
         );
     }
 
     private Converter<ConverterContext> booleanToString() {
         return Converters.<String, Boolean, ConverterContext>mapper(
-                t -> t instanceof String,
-                Predicates.is(Boolean.class),
-                Boolean::valueOf
+            t -> t instanceof String,
+            Predicates.is(Boolean.class),
+            Boolean::valueOf
         );
     }
 
@@ -141,30 +141,30 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     @Test
     public void testEqualsDifferentConverters() {
         this.checkNotEquals(
-                ConverterCollection.with(
-                        Lists.of(
-                                Converters.numberToBoolean(),
-                                Converters.numberToNumber()
-                        )
-                ),
-                ConverterCollection.with(
-                        Lists.of(
-                                Converters.numberToBoolean(),
-                                Converters.fake()
-                        )
+            ConverterCollection.with(
+                Lists.of(
+                    Converters.numberToBoolean(),
+                    Converters.numberToNumber()
                 )
+            ),
+            ConverterCollection.with(
+                Lists.of(
+                    Converters.numberToBoolean(),
+                    Converters.fake()
+                )
+            )
         );
     }
 
     @Override
     public ConverterCollection<ConverterContext> createObject() {
         return Cast.to(
-                ConverterCollection.with(
-                        Lists.of(
-                                Converters.numberToBoolean(),
-                                Converters.numberToNumber()
-                        )
+            ConverterCollection.with(
+                Lists.of(
+                    Converters.numberToBoolean(),
+                    Converters.numberToNumber()
                 )
+            )
         );
     }
 

@@ -25,53 +25,53 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 
 public final class SimpleConverterTest implements ConverterTesting2<SimpleConverter<FakeConverterContext>, FakeConverterContext>,
-        ToStringTesting<SimpleConverter<FakeConverterContext>> {
+    ToStringTesting<SimpleConverter<FakeConverterContext>> {
 
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                Void.class
+            null,
+            Void.class
         );
     }
 
     @Test
     public void testConvertSameType() {
         this.convertAndCheck(
-                "ABC",
-                String.class
+            "ABC",
+            String.class
         );
     }
 
     @Test
     public void testConvertSubClass() {
         this.convertAndCheck(
-                new ArrayList(),
-                AbstractList.class
+            new ArrayList(),
+            AbstractList.class
         );
     }
 
     @Test
     public void testConvertSubClassObject() {
         this.convertAndCheck(
-                this,
-                Object.class
+            this,
+            Object.class
         );
     }
 
     @Test
     public void testConvertInstanceOfTargetType() {
         this.convertFails(
-                "ABC",
-                CharSequence.class
+            "ABC",
+            CharSequence.class
         );
     }
 
     @Test
     public void testConvertDifferentType() {
         this.convertFails(
-                "ABC",
-                Number.class
+            "ABC",
+            Number.class
         );
     }
 
@@ -82,7 +82,7 @@ public final class SimpleConverterTest implements ConverterTesting2<SimpleConver
 
     @Override
     public FakeConverterContext createContext() {
-        return (FakeConverterContext)ConverterContexts.fake();
+        return (FakeConverterContext) ConverterContexts.fake();
     }
 
     // toString.........................................................................................................
@@ -90,8 +90,8 @@ public final class SimpleConverterTest implements ConverterTesting2<SimpleConver
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "if type"
+            this.createConverter(),
+            "if type"
         );
     }
 

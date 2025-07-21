@@ -30,11 +30,11 @@ public final class ConverterTemporalLocalDateTimeToLocalTimeTest extends Convert
     public void testConvertMidnightTime() {
         final LocalTime time = LocalTime.MIDNIGHT;
         this.convertAndCheck2(
-                LocalDateTime.of(
-                        date(),
-                        time
-                ),
+            LocalDateTime.of(
+                date(),
                 time
+            ),
+            time
         );
     }
 
@@ -42,11 +42,11 @@ public final class ConverterTemporalLocalDateTimeToLocalTimeTest extends Convert
     public void testConvertNonMidnightTime2() {
         final LocalTime time = LocalTime.of(12, 58, 59);
         this.convertAndCheck2(
-                LocalDateTime.of(
-                        date(),
-                        time
-                ),
+            LocalDateTime.of(
+                date(),
                 time
+            ),
+            time
         );
     }
 
@@ -59,8 +59,8 @@ public final class ConverterTemporalLocalDateTimeToLocalTimeTest extends Convert
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "LocalDateTime to LocalTime"
+            this.createConverter(),
+            "LocalDateTime to LocalTime"
         );
     }
 

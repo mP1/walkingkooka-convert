@@ -34,9 +34,9 @@ final class ConverterNumberToNumberVisitor<T> extends NumberVisitor {
                                                                      final Class<T> type,
                                                                      final ConverterContext context) {
         final ConverterNumberToNumberVisitor<T> visitor = new ConverterNumberToNumberVisitor<>(
-                converter,
-                type,
-                context
+            converter,
+            type,
+            context
         );
         visitor.accept(number);
         return visitor.value;
@@ -54,64 +54,64 @@ final class ConverterNumberToNumberVisitor<T> extends NumberVisitor {
     @Override
     protected void visit(final BigDecimal number) {
         this.value = this.converter.bigDecimal(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final BigInteger number) {
         this.value = this.converter.bigInteger(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final Byte number) {
         this.value = this.converter.number(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final Double number) {
         this.value = this.converter.doubleValue(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final Float number) {
         this.value = this.converter.floatValue(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final Integer number) {
         this.value = this.converter.number(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final Long number) {
         this.value = this.converter.longValue(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
     @Override
     protected void visit(final Short number) {
         this.value = this.converter.number(
-                number,
-                this.context
+            number,
+            this.context
         );
     }
 
@@ -130,10 +130,10 @@ final class ConverterNumberToNumberVisitor<T> extends NumberVisitor {
     @Override
     public String toString() {
         return ToStringBuilder.empty()
-                .value(this.converter)
-                .value(this.value)
-                .value(this.type.getName())
-                .value(this.context)
-                .build();
+            .value(this.converter)
+            .value(this.value)
+            .value(this.type.getName())
+            .value(this.context)
+            .build();
     }
 }

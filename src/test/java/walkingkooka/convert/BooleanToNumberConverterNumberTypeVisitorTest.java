@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.math.NumberTypeVisitorTesting;
 
 public final class BooleanToNumberConverterNumberTypeVisitorTest extends ConverterTestCase<BooleanToNumberConverterNumberTypeVisitor>
-        implements NumberTypeVisitorTesting<BooleanToNumberConverterNumberTypeVisitor> {
+    implements NumberTypeVisitorTesting<BooleanToNumberConverterNumberTypeVisitor> {
 
     @Override
     public void testAllConstructorsVisibility() {

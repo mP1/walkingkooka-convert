@@ -24,29 +24,29 @@ import walkingkooka.ToStringTesting;
 import java.math.BigDecimal;
 
 public final class ObjectToStringConverterTest implements ConverterTesting2<ObjectToStringConverter<ConverterContext>, ConverterContext>,
-        ToStringTesting<ObjectToStringConverter<ConverterContext>> {
+    ToStringTesting<ObjectToStringConverter<ConverterContext>> {
 
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                "null"
+            null,
+            "null"
         );
     }
 
     @Test
     public void testConvertBooleanTrue() {
         this.convertAndCheck(
-                Boolean.TRUE,
-                Boolean.TRUE.toString()
+            Boolean.TRUE,
+            Boolean.TRUE.toString()
         );
     }
 
     @Test
     public void testConvertLong() {
         this.convertAndCheck(
-                123L,
-                "123"
+            123L,
+            "123"
         );
     }
 
@@ -58,8 +58,8 @@ public final class ObjectToStringConverterTest implements ConverterTesting2<Obje
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "* to String"
+            this.createConverter(),
+            "* to String"
         );
     }
 

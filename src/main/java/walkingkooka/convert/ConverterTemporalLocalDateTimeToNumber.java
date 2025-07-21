@@ -57,9 +57,9 @@ final class ConverterTemporalLocalDateTimeToNumber<C extends ConverterContext> e
                                                    final Class<T> type,
                                                    final ConverterContext context) {
         return this.convertToNumber(
-                days + time - context.dateOffset(),
-                type,
-                context
+            days + time - context.dateOffset(),
+            type,
+            context
         );
     }
 

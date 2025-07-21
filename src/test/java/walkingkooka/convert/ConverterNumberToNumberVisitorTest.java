@@ -56,21 +56,21 @@ public final class ConverterNumberToNumberVisitorTest implements NumberVisitorTe
         };
         //noinspection unchecked
         this.checkEquals(
-                Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
-                ConverterNumberToNumberVisitor.convert(
-                        this.converter(),
-                        number,
-                        Boolean.class,
-                        ConverterContexts.fake()
-                )
+            Either.right("Failed to convert " + number + " (" + number.getClass().getName() + ") to " + Boolean.class.getName()),
+            ConverterNumberToNumberVisitor.convert(
+                this.converter(),
+                number,
+                Boolean.class,
+                ConverterContexts.fake()
+            )
         );
     }
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createVisitor(),
-                this.converter() + " " + CharSequences.quoteAndEscape(Boolean.class.getName()) + " " + CONTEXT
+            this.createVisitor(),
+            this.converter() + " " + CharSequences.quoteAndEscape(Boolean.class.getName()) + " " + CONTEXT
         );
     }
 
@@ -78,9 +78,9 @@ public final class ConverterNumberToNumberVisitorTest implements NumberVisitorTe
     public ConverterNumberToNumberVisitor<Boolean> createVisitor() {
         //noinspection unchecked
         return new ConverterNumberToNumberVisitor<>(
-                this.converter(),
-                Boolean.class,
-                CONTEXT
+            this.converter(),
+            Boolean.class,
+            CONTEXT
         );
     }
 

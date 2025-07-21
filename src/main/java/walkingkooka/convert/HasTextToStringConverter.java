@@ -49,8 +49,8 @@ final class HasTextToStringConverter<C extends ConverterContext> implements Tryi
                               final Class<?> type,
                               final C context) {
         return (null == value ||
-                value instanceof HasText) &&
-                String.class == type;
+            value instanceof HasText) &&
+            String.class == type;
     }
 
     @Override
@@ -58,8 +58,8 @@ final class HasTextToStringConverter<C extends ConverterContext> implements Tryi
                                    final Class<?> type,
                                    final C context) {
         return null == value ?
-                null :
-                ((HasText) value).text();
+            null :
+            ((HasText) value).text();
     }
 
     @Override

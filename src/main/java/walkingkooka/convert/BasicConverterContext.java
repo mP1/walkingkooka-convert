@@ -31,8 +31,8 @@ import java.util.Objects;
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
 final class BasicConverterContext implements ConverterContext,
-        DateTimeContextDelegator,
-        DecimalNumberContextDelegator {
+    DateTimeContextDelegator,
+    DecimalNumberContextDelegator {
 
     /**
      * Creates a new {@link BasicConverterContext}.
@@ -46,10 +46,10 @@ final class BasicConverterContext implements ConverterContext,
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
         return new BasicConverterContext(
-                dateOffset,
-                converter,
-                dateTimeContext,
-                decimalNumberContext
+            dateOffset,
+            converter,
+            dateTimeContext,
+            decimalNumberContext
         );
     }
 

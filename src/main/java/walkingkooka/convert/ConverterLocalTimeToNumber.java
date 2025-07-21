@@ -59,8 +59,8 @@ final class ConverterLocalTimeToNumber<C extends ConverterContext> extends Conve
                                                final Class<T> type,
                                                final ConverterContext context) {
         return this.convertToNumber(BigDecimal.valueOf(seconds).add(BigDecimal.valueOf(1.0 * nano / Converters.NANOS_PER_SECOND)),
-                Cast.to(type),
-                context);
+            Cast.to(type),
+            context);
     }
 
     @Override

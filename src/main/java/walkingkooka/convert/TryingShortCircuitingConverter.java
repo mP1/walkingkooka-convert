@@ -32,12 +32,12 @@ public interface TryingShortCircuitingConverter<C extends ConverterContext> exte
 
         try {
             result = this.successfulConversion(
-                    this.tryConvertOrFail(
-                            value,
-                            type,
-                            context
-                    ),
-                    type
+                this.tryConvertOrFail(
+                    value,
+                    type,
+                    context
+                ),
+                type
             );
         } catch (final RuntimeException cause) {
             result = Either.right(cause.getMessage());

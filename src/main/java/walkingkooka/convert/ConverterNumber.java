@@ -39,8 +39,7 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
         return value instanceof Number;
     }
 
-    @Override
-    final boolean canConvertType(final Class<?> type) {
+    @Override final boolean canConvertType(final Class<?> type) {
         return this.targetType() == type;
     }
 
@@ -58,10 +57,10 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
         Either<U, String> result;
         try {
             result = ConverterNumberToNumberVisitor.convert(
-                    Cast.to(this),
-                    (Number) value,
-                    type,
-                    context
+                Cast.to(this),
+                (Number) value,
+                type,
+                context
             );
         } catch (final Exception cause) {
             result = Either.right(cause.getMessage());
@@ -78,8 +77,8 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
     final Either<T, String> floatValue(final Float value,
                                        final ConverterContext context) {
         return this.doubleValue(
-                value.doubleValue(),
-                context
+            value.doubleValue(),
+            context
         );
     }
 
@@ -89,8 +88,8 @@ abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2
     final Either<T, String> number(final Number value,
                                    final ConverterContext context) {
         return this.longValue(
-                value.longValue(),
-                context
+            value.longValue(),
+            context
         );
     }
 

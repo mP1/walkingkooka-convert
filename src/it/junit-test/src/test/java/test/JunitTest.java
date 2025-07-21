@@ -45,21 +45,21 @@ public class JunitTest {
         final long value = 123;
 
         this.convertAndCheck(
-                Converters.localDateToNumber(),
-                LocalDate.ofEpochDay(value),
-                Long.class,
-                Long.valueOf(value)
+            Converters.localDateToNumber(),
+            LocalDate.ofEpochDay(value),
+            Long.class,
+            Long.valueOf(value)
         );
     }
 
     @Test
     public void testStringToBigDecimal() {
         this.convertAndCheck(
-                Converters.stringToNumber(
-                        (c) -> new DecimalFormat("#.#", DecimalFormatSymbols.getInstance(LOCALE))),
-                "1.5",
-                BigDecimal.class,
-                BigDecimal.valueOf(1.5)
+            Converters.stringToNumber(
+                (c) -> new DecimalFormat("#.#", DecimalFormatSymbols.getInstance(LOCALE))),
+            "1.5",
+            BigDecimal.class,
+            BigDecimal.valueOf(1.5)
         );
     }
 
@@ -68,51 +68,51 @@ public class JunitTest {
                                      final Class<T> target,
                                      final T expected) {
         this.convertAndCheck(converter,
-                value,
-                target,
-                new FakeConverterContext() {
+            value,
+            target,
+            new FakeConverterContext() {
 
-                    @Override
-                    public long dateOffset() {
-                        return Converters.JAVA_EPOCH_OFFSET;
-                    }
+                @Override
+                public long dateOffset() {
+                    return Converters.JAVA_EPOCH_OFFSET;
+                }
 
-                    @Override
-                    public String currencySymbol() {
-                        return "$";
-                    }
+                @Override
+                public String currencySymbol() {
+                    return "$";
+                }
 
-                    @Override
-                    public char decimalSeparator() {
-                        return '.';
-                    }
+                @Override
+                public char decimalSeparator() {
+                    return '.';
+                }
 
-                    @Override
-                    public String exponentSymbol() {
-                        return "E";
-                    }
+                @Override
+                public String exponentSymbol() {
+                    return "E";
+                }
 
-                    @Override
-                    public char groupSeparator() {
-                        return ',';
-                    }
+                @Override
+                public char groupSeparator() {
+                    return ',';
+                }
 
-                    @Override
-                    public char negativeSign() {
-                        return '-';
-                    }
+                @Override
+                public char negativeSign() {
+                    return '-';
+                }
 
-                    @Override
-                    public char percentSymbol() {
-                        return '%';
-                    }
+                @Override
+                public char percentSymbol() {
+                    return '%';
+                }
 
-                    @Override
-                    public Locale locale() {
-                        return Locale.forLanguageTag("EN-AU");
-                    }
-                },
-                expected);
+                @Override
+                public Locale locale() {
+                    return Locale.forLanguageTag("EN-AU");
+                }
+            },
+            expected);
     }
 
     private <T> void convertAndCheck(final Converter converter,
@@ -121,8 +121,8 @@ public class JunitTest {
                                      final ConverterContext context,
                                      final T expected) {
         Assert.assertEquals(converter + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")",
-                true,
-                converter.canConvert(value, target, context));
+            true,
+            converter.canConvert(value, target, context));
 
         final Either<T, String> result = converter.convert(value, target, context);
         if (result.isRight()) {
@@ -131,7 +131,7 @@ public class JunitTest {
 
         final T convertedValue = result.leftValue();
         Assert.assertEquals("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(),
-                expected,
-                convertedValue);
+            expected,
+            convertedValue);
     }
 }

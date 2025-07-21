@@ -38,11 +38,11 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements Convert
         Objects.requireNonNull(trueValue, "trueValue");
 
         return new ToBooleanConverter<>(
-                source,
-                target,
-                trueValue,
-                trueAnswer,
-                falseAnswer
+            source,
+            target,
+            trueValue,
+            trueAnswer,
+            falseAnswer
         );
     }
 
@@ -64,7 +64,7 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements Convert
                               final Class<?> type,
                               final C context) {
         return (value == null || this.source.test(value)) &&
-                this.target.test(type);
+            this.target.test(type);
     }
 
     private final Predicate<Object> source;
@@ -75,12 +75,12 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements Convert
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert(value, type, context) ?
-                Cast.to(
-                        this.trueValue.test(value) ?
-                                this.trueAnswer :
-                                this.falseAnswer
-                ) :
-                this.failConversion(value, type);
+            Cast.to(
+                this.trueValue.test(value) ?
+                    this.trueAnswer :
+                    this.falseAnswer
+            ) :
+            this.failConversion(value, type);
     }
 
     private final Predicate<Object> trueValue;

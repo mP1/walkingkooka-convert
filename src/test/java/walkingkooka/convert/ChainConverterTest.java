@@ -27,41 +27,41 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ChainConverterTest implements ConverterTesting2<ChainConverter<FakeConverterContext>, FakeConverterContext>,
-        HashCodeEqualsDefinedTesting2<ChainConverter<FakeConverterContext>> {
+    HashCodeEqualsDefinedTesting2<ChainConverter<FakeConverterContext>> {
 
     @Test
     public void testWithNullFirstConverterFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> ChainConverter.with(
-                        null,
-                        String.class,
-                        Converters.stringToCharacterOrString()
-                )
+            NullPointerException.class,
+            () -> ChainConverter.with(
+                null,
+                String.class,
+                Converters.stringToCharacterOrString()
+            )
         );
     }
 
     @Test
     public void testWithNullIntermediateTypeFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> ChainConverter.with(
-                        Converters.hasTextToString(),
-                        null,
-                        Converters.stringToCharacterOrString()
-                )
+            NullPointerException.class,
+            () -> ChainConverter.with(
+                Converters.hasTextToString(),
+                null,
+                Converters.stringToCharacterOrString()
+            )
         );
     }
 
     @Test
     public void testWithNullSecondConverterFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> ChainConverter.with(
-                        Converters.hasTextToString(),
-                        String.class,
-                        null
-                )
+            NullPointerException.class,
+            () -> ChainConverter.with(
+                Converters.hasTextToString(),
+                String.class,
+                null
+            )
         );
     }
 
@@ -70,62 +70,62 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testConvertNullSuccess() {
         this.convertAndCheck(
-                ChainConverter.with(
-                        Converters.simple(),
-                        Void.class,
-                        Converters.simple()
-                ),
-                null,
+            ChainConverter.with(
+                Converters.simple(),
                 Void.class,
-                null
+                Converters.simple()
+            ),
+            null,
+            Void.class,
+            null
         );
     }
 
     @Test
     public void testConvertSuccess() {
         this.convertAndCheck(
-                new HasText() {
-                    @Override
-                    public String text() {
-                        return "A";
-                    }
-                },
-                'A'
+            new HasText() {
+                @Override
+                public String text() {
+                    return "A";
+                }
+            },
+            'A'
         );
     }
 
     @Test
     public void testConvertFirstConverterFails() {
         this.convertFails(
-                ChainConverter.with(
-                        Converters.numberToBoolean(),
-                        String.class,
-                        Converters.stringToCharacterOrString()
-                ),
-                BigDecimal.TEN,
-                Character.class
+            ChainConverter.with(
+                Converters.numberToBoolean(),
+                String.class,
+                Converters.stringToCharacterOrString()
+            ),
+            BigDecimal.TEN,
+            Character.class
         );
     }
 
     @Test
     public void testConvertSecondConverterFails() {
         this.convertFails(
-                ChainConverter.with(
-                        Converters.objectToString(),
-                        String.class,
-                        Converters.stringToCharacterOrString()
-                ),
-                123,
-                Character.class
+            ChainConverter.with(
+                Converters.objectToString(),
+                String.class,
+                Converters.stringToCharacterOrString()
+            ),
+            123,
+            Character.class
         );
     }
 
     @Override
     public ChainConverter<FakeConverterContext> createConverter() {
         return ChainConverter.with(
-                Converters.hasTextToString(),
-                String.class,
-                Converters.stringToCharacterOrString()
+            Converters.hasTextToString(),
+            String.class,
+            Converters.stringToCharacterOrString()
         );
     }
 
@@ -139,42 +139,42 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testEqualsDifferentFirstConverter() {
         this.checkNotEquals(
-                ChainConverter.with(
-                        Converters.fake(),
-                        String.class,
-                        Converters.stringToCharacterOrString()
-                )
+            ChainConverter.with(
+                Converters.fake(),
+                String.class,
+                Converters.stringToCharacterOrString()
+            )
         );
     }
 
     @Test
     public void testEqualsDifferentType() {
         this.checkNotEquals(
-                ChainConverter.with(
-                        Converters.booleanToNumber(),
-                        void.class,
-                        Converters.stringToCharacterOrString()
-                )
+            ChainConverter.with(
+                Converters.booleanToNumber(),
+                void.class,
+                Converters.stringToCharacterOrString()
+            )
         );
     }
 
     @Test
     public void testEqualsDifferentSecondConverter() {
         this.checkNotEquals(
-                ChainConverter.with(
-                        Converters.booleanToNumber(),
-                        String.class,
-                        Converters.fake()
-                )
+            ChainConverter.with(
+                Converters.booleanToNumber(),
+                String.class,
+                Converters.fake()
+            )
         );
     }
 
     @Override
     public ChainConverter<FakeConverterContext> createObject() {
         return ChainConverter.with(
-                Converters.booleanToNumber(),
-                String.class,
-                Converters.stringToCharacterOrString()
+            Converters.booleanToNumber(),
+            String.class,
+            Converters.stringToCharacterOrString()
         );
     }
 
@@ -183,27 +183,27 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testToString() {
         this.toStringAndCheck2(
-                "HasText to String",
-                "String to Character",
-                "HasText to String to Character"
+            "HasText to String",
+            "String to Character",
+            "HasText to String to Character"
         );
     }
 
     @Test
     public void testToString1() {
         this.toStringAndCheck2(
-                "Magic",
-                "String to Character",
-                "Magic to String to Character"
+            "Magic",
+            "String to Character",
+            "Magic to String to Character"
         );
     }
 
     @Test
     public void testToString2() {
         this.toStringAndCheck2(
-                "HasText to String",
-                "Magic",
-                "HasText to String to Magic"
+            "HasText to String",
+            "Magic",
+            "HasText to String to Magic"
         );
     }
 
@@ -211,12 +211,12 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
                                    final String secondToString,
                                    final String expected) {
         this.toStringAndCheck(
-                ChainConverter.with(
-                        Converters.fake().setToString(firstToString),
-                        String.class,
-                        Converters.fake().setToString(secondToString)
-                ),
-                expected
+            ChainConverter.with(
+                Converters.fake().setToString(firstToString),
+                String.class,
+                Converters.fake().setToString(secondToString)
+            ),
+            expected
         );
     }
 

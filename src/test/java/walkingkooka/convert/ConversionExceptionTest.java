@@ -30,9 +30,9 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     @Test
     public void testNew() {
         final ConversionException exception = new ConversionException(
-                MESSAGE,
-                VALUE,
-                TYPE
+            MESSAGE,
+            VALUE,
+            TYPE
         );
 
         this.checkMessage(exception, MESSAGE);
@@ -46,10 +46,10 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
         final Throwable cause = new Throwable();
 
         final ConversionException exception = new ConversionException(
-                MESSAGE,
-                VALUE,
-                TYPE,
-                cause
+            MESSAGE,
+            VALUE,
+            TYPE,
+            cause
         );
 
         this.checkMessage(exception, MESSAGE);
@@ -61,19 +61,19 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     @Override
     public ConversionException createThrowable(final String message) {
         return new ConversionException(
-                message,
-                VALUE,
-                TYPE
+            message,
+            VALUE,
+            TYPE
         );
     }
 
     @Override
     public ConversionException createThrowable(final String message, final Throwable cause) {
         return new ConversionException(
-                message,
-                VALUE,
-                TYPE,
-                cause
+            message,
+            VALUE,
+            TYPE,
+            cause
         );
     }
 

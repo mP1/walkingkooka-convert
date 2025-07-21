@@ -32,16 +32,16 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     @Test
     public void testInvalidLocaleFails() {
         this.convertFails(this.createConverter(),
-                "0",
-                Number.class,
-                this.createContext(Locale.ENGLISH));
+            "0",
+            Number.class,
+            this.createContext(Locale.ENGLISH));
     }
 
     @Test
     public void testConvertNull() {
         this.convertAndCheck(
-                null,
-                Number.class
+            null,
+            Number.class
         );
     }
 
@@ -93,35 +93,35 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     public void testConvertNumber() {
         final String text = "1234567890123456789012345678901234567890.5";
         this.convertAndCheck(text,
-                Number.class,
-                new BigDecimal(text));
+            Number.class,
+            new BigDecimal(text));
     }
 
     @Test
     public void testConvertNumber2() {
         this.convertAndCheck("123.5",
-                Number.class,
-                new BigDecimal("123.5"));
+            Number.class,
+            new BigDecimal("123.5"));
     }
 
     @Test
     public void testConvertCurrency() {
         this.convertAndCheck2(
-                "$ #",
-                "$ 123.5",
-                BigDecimal.class,
-                Locale.UK,
-                BigDecimal.valueOf(123.5)
+            "$ #",
+            "$ 123.5",
+            BigDecimal.class,
+            Locale.UK,
+            BigDecimal.valueOf(123.5)
         );
     }
 
     @Test
     public void testConvertPercentage() {
         this.convertAndCheck2(
-                "#%",
-                "123.5%",
-                BigDecimal.class,
-                BigDecimal.valueOf(1.235)
+            "#%",
+            "123.5%",
+            BigDecimal.class,
+            BigDecimal.valueOf(1.235)
         );
     }
 
@@ -142,8 +142,8 @@ public final class DecimalFormatConverterStringToNumberTest extends DecimalForma
     @Test
     public void testToString() {
         this.toStringAndCheck(
-                this.createConverter(),
-                "DecimalFormat String to Number"
+            this.createConverter(),
+            "DecimalFormat String to Number"
         );
     }
 

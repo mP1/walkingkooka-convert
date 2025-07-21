@@ -41,11 +41,11 @@ final class ConverterCharacterOrStringToString<C extends ConverterContext> imple
                               final Class<?> type,
                               final C context) {
         return String.class == type &&
-                (
-                        null == value ||
-                                value instanceof Character ||
-                                value instanceof String
-                );
+            (
+                null == value ||
+                    value instanceof Character ||
+                    value instanceof String
+            );
     }
 
     @Override
@@ -53,15 +53,15 @@ final class ConverterCharacterOrStringToString<C extends ConverterContext> imple
                                          final Class<T> type,
                                          final C context) {
         return this.canConvert(
-                value,
-                type,
-                context
+            value,
+            type,
+            context
         ) ?
-                this.successfulConversion(
-                        null != value ? value.toString() : null,
-                        type
-                ) :
-                this.failConversion(value, type);
+            this.successfulConversion(
+                null != value ? value.toString() : null,
+                type
+            ) :
+            this.failConversion(value, type);
     }
 
     @Override

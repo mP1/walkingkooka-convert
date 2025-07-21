@@ -26,8 +26,8 @@ import walkingkooka.math.DecimalNumberContext;
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
  */
 public interface ConverterContext extends CanConvert,
-        DateTimeContext,
-        DecimalNumberContext {
+    DateTimeContext,
+    DecimalNumberContext {
 
     /**
      * The offset (relative to 1/1/1970) added when converting a number to a {@link java.time.LocalDate}.

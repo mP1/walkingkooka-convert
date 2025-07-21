@@ -89,7 +89,7 @@ final class CustomToStringConverter<C extends ConverterContext> implements Conve
 
     private boolean equals0(final CustomToStringConverter<?> other) {
         return this.converter.equals(other.converter) &&
-                this.toString.equals(other.toString);
+            this.toString.equals(other.toString);
     }
 
     @Override

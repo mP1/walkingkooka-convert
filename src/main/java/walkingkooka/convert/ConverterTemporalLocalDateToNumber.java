@@ -55,9 +55,9 @@ final class ConverterTemporalLocalDateToNumber<C extends ConverterContext> exten
                                           final Class<T> type,
                                           final ConverterContext context) {
         return this.convertToNumber(
-                date.toEpochDay() - context.dateOffset(),
-                type,
-                context
+            date.toEpochDay() - context.dateOffset(),
+            type,
+            context
         );
     }
 

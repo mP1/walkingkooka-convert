@@ -25,25 +25,25 @@ public interface HasConvertErrorTesting extends TreePrintableTesting {
 
     default void convertErrorMessageAndCheck(final HasConvertError has) {
         this.convertErrorMessageAndCheck(
-                has,
-                Optional.empty()
+            has,
+            Optional.empty()
         );
     }
 
     default void convertErrorMessageAndCheck(final HasConvertError has,
                                              final String expected) {
         this.convertErrorMessageAndCheck(
-                has,
-                Optional.of(expected)
+            has,
+            Optional.of(expected)
         );
     }
 
     default void convertErrorMessageAndCheck(final HasConvertError has,
                                              final Optional<String> expected) {
         this.checkEquals(
-                expected,
-                has.convertErrorMessage(),
-                has::toString
+            expected,
+            has.convertErrorMessage(),
+            has::toString
         );
     }
 }

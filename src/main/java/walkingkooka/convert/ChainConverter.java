@@ -44,9 +44,9 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
         Objects.requireNonNull(second, "second");
 
         return new ChainConverter<>(
-                first,
-                intermediateType,
-                second
+            first,
+            intermediateType,
+            second
         );
     }
 
@@ -64,9 +64,9 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
                               final Class<?> type,
                               final C context) {
         return this.convert(
-                value,
-                type,
-                context
+            value,
+            type,
+            context
         ).isLeft();
     }
 
@@ -77,27 +77,27 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
         Either<T, String> result;
 
         final Either<?, String> intermediateResult = this.first.convert(
-                value,
-                this.intermediateType,
-                context
+            value,
+            this.intermediateType,
+            context
         );
         if (intermediateResult.isLeft()) {
             result = this.second.convert(
-                    intermediateResult.leftValue(),
-                    type,
-                    context
+                intermediateResult.leftValue(),
+                type,
+                context
             );
 
             if (result.isRight()) {
                 result = this.failConversion(
-                        value,
-                        type
+                    value,
+                    type
                 );
             }
         } else {
             result = this.failConversion(
-                    value,
-                    type
+                value,
+                type
             );
         }
 
@@ -115,22 +115,22 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
     @Override
     public int hashCode() {
         return Objects.hash(
-                this.first,
-                this.intermediateType,
-                this.second
+            this.first,
+            this.intermediateType,
+            this.second
         );
     }
 
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-                other instanceof ChainConverter && this.equals0(Cast.to(other));
+            other instanceof ChainConverter && this.equals0(Cast.to(other));
     }
 
     private boolean equals0(final ChainConverter<?> other) {
         return this.first.equals(other.first) &&
-                this.intermediateType.equals(other.intermediateType) &&
-                this.second.equals(other.second);
+            this.intermediateType.equals(other.intermediateType) &&
+            this.second.equals(other.second);
     }
 
     @Override

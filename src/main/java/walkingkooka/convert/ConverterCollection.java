@@ -64,7 +64,7 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
                               final Class<?> type,
                               final C context) {
         return this.converters.stream()
-                .anyMatch(c -> c.canConvert(value, type, context));
+            .anyMatch(c -> c.canConvert(value, type, context));
     }
 
     @Override
@@ -99,7 +99,7 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-                other instanceof ConverterCollection && this.equals0(Cast.to(other));
+            other instanceof ConverterCollection && this.equals0(Cast.to(other));
     }
 
     private boolean equals0(final ConverterCollection<?> other) {
@@ -109,7 +109,7 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
     @Override
     public String toString() {
         return this.converters.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(" | "));
+            .map(Object::toString)
+            .collect(Collectors.joining(" | "));
     }
 }

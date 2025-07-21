@@ -37,9 +37,9 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
                                   final Class<T> target,
                                   final T expected) {
         this.checkEquals(
-                true,
-                context.canConvert(value, target),
-                () -> context + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
+            true,
+            context.canConvert(value, target),
+            () -> context + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
         );
 
         final Either<T, String> result = context.convert(value, target);
@@ -49,9 +49,9 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
 
         final T convertedValue = result.leftValue();
         this.checkEquals(
-                expected,
-                convertedValue,
-                () -> "Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
+            expected,
+            convertedValue,
+            () -> "Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
         );
         return convertedValue;
     }
@@ -74,9 +74,9 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
                                         final Class<T> target,
                                         final T expected) {
         return this.convertOrFailAndCheck(this.createCanConvert(),
-                value,
-                target,
-                expected);
+            value,
+            target,
+            expected);
     }
 
     default <T> T convertOrFailAndCheck(final CanConvert can,
@@ -85,9 +85,9 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
                                         final T expected) {
         final T convertedValue = can.convertOrFail(value, target);
         this.checkEquals(
-                expected,
-                convertedValue,
-                () -> "Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
+            expected,
+            convertedValue,
+            () -> "Failed to convertOrFail " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName()
         );
         return convertedValue;
     }

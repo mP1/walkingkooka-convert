@@ -54,8 +54,8 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
                                          final ConverterContext context) {
         final double doubleValue = value.doubleValue();
         return 0 != BigDecimal.valueOf(doubleValue).compareTo(value) ?
-                this.failConversion(value, LocalTime.class) :
-                this.localTime(doubleValue);
+            this.failConversion(value, LocalTime.class) :
+            this.localTime(doubleValue);
     }
 
     @Override
@@ -79,8 +79,8 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
 
     private Either<LocalTime, String> localTime(final long value) {
         return this.successfulConversion(
-                LocalTime.ofSecondOfDay(value),
-                LocalTime.class
+            LocalTime.ofSecondOfDay(value),
+            LocalTime.class
         );
     }
 
@@ -88,11 +88,11 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
         final double doubleNanos = value * Converters.NANOS_PER_SECOND;
         final long nanos = (long) doubleNanos;
         return nanos != doubleNanos ?
-                this.failConversion(value, LocalTime.class) :
-                this.successfulConversion(
-                        LocalTime.ofNanoOfDay(nanos),
-                        LocalTime.class
-                );
+            this.failConversion(value, LocalTime.class) :
+            this.successfulConversion(
+                LocalTime.ofNanoOfDay(nanos),
+                LocalTime.class
+            );
     }
 
     @Override
