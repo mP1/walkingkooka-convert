@@ -162,8 +162,14 @@ public final class ConverterTemporalLocalDateTimeToNumberTest extends ConverterT
 
     @Test
     public void testConvertDateTimeWithOffsetToByte() {
-        this.convertDateTimeWithOffsetAndCheck(
-            (byte) (BYTE_VALUE - DATE_OFFSET)
+        this.convertAndCheck(
+            LocalDateTime.of(
+                LocalDate.ofEpochDay(
+                    DATE_OFFSET + BYTE_VALUE
+                ),
+                LocalTime.MIDNIGHT
+            ),
+            BYTE_VALUE
         );
     }
 
