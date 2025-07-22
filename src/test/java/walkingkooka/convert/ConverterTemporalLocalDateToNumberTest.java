@@ -62,8 +62,9 @@ public final class ConverterTemporalLocalDateToNumberTest extends ConverterTempo
 
     @Test
     public void testConvertLocalDateToByte() {
-        this.convertToNumberAndCheck(
-            (byte) (BYTE_VALUE - DATE_OFFSET)
+        this.convertAndCheck(
+            LocalDate.ofEpochDay(DATE_OFFSET + BYTE_VALUE),
+            BYTE_VALUE
         );
     }
 

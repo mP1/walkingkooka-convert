@@ -294,8 +294,34 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertBigIntegerToByte() {
-        this.convertToByteAndCheck(this.bigInteger());
+    public void testConvertBigIntegerToByteWithMinusOneFails() {
+        this.convertToByteFails(
+            BigInteger.valueOf(-1)
+        );
+    }
+
+
+    @Test
+    public void testConvertBigIntegerToByteWithZero() {
+        this.convertToByteAndCheck(
+            BigInteger.ZERO,
+            (byte) 0
+        );
+    }
+
+    @Test
+    public void testConvertBigIntegerToByteWith255() {
+        this.convertToByteAndCheck(
+            BigInteger.valueOf(255),
+            (byte) 255
+        );
+    }
+
+    @Test
+    public void testConvertBigIntegerToByteWith256Fails() {
+        this.convertToByteFails(
+            BigInteger.valueOf(256)
+        );
     }
 
     @Test
@@ -322,6 +348,37 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
+    public void testConvertDoubleToByteWithMinusOneFails() {
+        this.convertToByteFails(
+            -1.0
+        );
+    }
+
+
+    @Test
+    public void testConvertDoubleToByteWithZero() {
+        this.convertToByteAndCheck(
+            0.0,
+            (byte) 0
+        );
+    }
+
+    @Test
+    public void testConvertDoubleToByteWith255() {
+        this.convertToByteAndCheck(
+            255.0,
+            (byte) 255
+        );
+    }
+
+    @Test
+    public void testConvertDoubleToByteWith256Fails() {
+        this.convertToByteFails(
+            256.0
+        );
+    }
+
+    @Test
     public void testConvertFloatToByte() {
         this.convertToByteAndCheck(this.floatValue());
     }
@@ -340,13 +397,65 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertIntegerToByte() {
-        this.convertToByteAndCheck(this.integerValue());
+    public void testConvertFloatToByteWithMinusOneFails() {
+        this.convertToByteFails(
+            -1.0f
+        );
+    }
+
+
+    @Test
+    public void testConvertFloatToByteWithZero() {
+        this.convertToByteAndCheck(
+            0.0f,
+            (byte) 0
+        );
     }
 
     @Test
-    public void testConvertIntegerToByteFails() {
-        this.convertToByteFails(Integer.MAX_VALUE);
+    public void testConvertFloatToByteWith255() {
+        this.convertToByteAndCheck(
+            255f,
+            (byte) 255
+        );
+    }
+
+    @Test
+    public void testConvertFloatToByteWith256Fails() {
+        this.convertToByteFails(
+            256f
+        );
+    }
+
+    @Test
+    public void testConvertIntegerToByteWithMinusOneFails() {
+        this.convertToByteFails(
+            -1
+        );
+    }
+
+
+    @Test
+    public void testConvertIntegerToByteWithZero() {
+        this.convertToByteAndCheck(
+            0,
+            (byte) 0
+        );
+    }
+
+    @Test
+    public void testConvertIntegerToByteWith255() {
+        this.convertToByteAndCheck(
+            255,
+            (byte) 255
+        );
+    }
+
+    @Test
+    public void testConvertIntegerToByteWith256Fails() {
+        this.convertToByteFails(
+            256
+        );
     }
 
     @Test
@@ -360,13 +469,65 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     @Test
-    public void testConvertShortToByte() {
-        this.convertToByteAndCheck(this.shortValue());
+    public void testConvertLongToByteWithMinusOneFails() {
+        this.convertToByteFails(
+            -1L
+        );
+    }
+
+
+    @Test
+    public void testConvertLongToByteWithZero() {
+        this.convertToByteAndCheck(
+            0L,
+            (byte) 0
+        );
     }
 
     @Test
-    public void testConvertShortToByteFails() {
-        this.convertToByteFails(Short.MAX_VALUE);
+    public void testConvertLongToByteWith255() {
+        this.convertToByteAndCheck(
+            255L,
+            (byte) 255
+        );
+    }
+
+    @Test
+    public void testConvertLongToByteWith256Fails() {
+        this.convertToByteFails(
+            256L
+        );
+    }
+
+    @Test
+    public void testConvertShortToByteWithMinusOneFails() {
+        this.convertToByteFails(
+            (short)-1
+        );
+    }
+
+
+    @Test
+    public void testConvertShortToByteWithZero() {
+        this.convertToByteAndCheck(
+            (short)0,
+            (byte) 0
+        );
+    }
+
+    @Test
+    public void testConvertShortToByteWith255() {
+        this.convertToByteAndCheck(
+            (short)255,
+            (byte) 255
+        );
+    }
+
+    @Test
+    public void testConvertShortToByteWith256Fails() {
+        this.convertToByteFails(
+            (short)256
+        );
     }
 
     private void convertToByteAndCheck(final Number number) {

@@ -25,6 +25,9 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
     static ConverterNumberToNumberNumberTypeVisitorByte with() {
         return new ConverterNumberToNumberNumberTypeVisitorByte();
     }
+    
+    final int MIN_VALUE = 0;
+    final int MAX_VALUE = 255;
 
     ConverterNumberToNumberNumberTypeVisitorByte() {
         super();
@@ -32,12 +35,16 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
 
     @Override
     protected void visit(final BigDecimal number) {
-        this.save(number.byteValueExact());
+        this.visit(
+            number.intValueExact()
+        );
     }
 
     @Override
     protected void visit(final BigInteger number) {
-        this.save(number.byteValueExact());
+        this.visit(
+            number.intValueExact()
+        );
     }
 
     @Override
@@ -47,7 +54,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
 
     @Override
     protected void visit(final Double number) {
-        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+        if (number >= MIN_VALUE && number <= MAX_VALUE) {
             this.save(
                 number.byteValue()
             );
@@ -56,7 +63,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
 
     @Override
     protected void visit(final Float number) {
-        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+        if (number >= MIN_VALUE && number <= MAX_VALUE) {
             this.save(
                 number.byteValue()
             );
@@ -65,7 +72,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
 
     @Override
     protected void visit(final Integer number) {
-        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+        if (number >= MIN_VALUE && number <= MAX_VALUE) {
             this.save(
                 number.byteValue()
             );
@@ -74,7 +81,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
 
     @Override
     protected void visit(final Long number) {
-        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+        if (number >= MIN_VALUE && number <= MAX_VALUE) {
             this.save(
                 number.byteValue()
             );
@@ -83,7 +90,7 @@ final class ConverterNumberToNumberNumberTypeVisitorByte extends ConverterNumber
 
     @Override
     protected void visit(final Short number) {
-        if (number >= Byte.MIN_VALUE && number <= Byte.MAX_VALUE) {
+        if (number >= MIN_VALUE && number <= MAX_VALUE) {
             this.save(
                 number.byteValue()
             );
