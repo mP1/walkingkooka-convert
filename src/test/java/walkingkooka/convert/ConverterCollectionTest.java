@@ -183,6 +183,25 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
         );
     }
 
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrintable() {
+        this.treePrintAndCheck(
+            (ConverterCollection<?>)ConverterCollection.with(
+                Lists.of(
+                    Converters.simple(),
+                    Converters.numberToBoolean(),
+                    Converters.numberToNumber()
+                )
+            ),
+            "ConverterCollection\n" +
+                "  if type (walkingkooka.convert.SimpleConverter)\n" +
+                "  Number to Boolean (walkingkooka.convert.ConverterNumberToBoolean)\n" +
+                "  Number to Number (walkingkooka.convert.ConverterNumberToNumber)\n"
+        );
+    }
+
     // Class............................................................................................................
 
     @Override

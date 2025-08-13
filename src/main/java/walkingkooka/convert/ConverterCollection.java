@@ -20,6 +20,8 @@ package walkingkooka.convert;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.text.printer.IndentingPrinter;
+import walkingkooka.text.printer.TreePrintable;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +30,8 @@ import java.util.stream.Collectors;
 /**
  * A {@link Converter} which tries all collectors to satisfy a request.
  */
-final class ConverterCollection<C extends ConverterContext> implements Converter<C> {
+final class ConverterCollection<C extends ConverterContext> implements Converter<C>,
+    TreePrintable {
 
     /**
      * Factory that creates a {@link ConverterCollection} if more than one converter is given.
@@ -111,5 +114,23 @@ final class ConverterCollection<C extends ConverterContext> implements Converter
         return this.converters.stream()
             .map(Object::toString)
             .collect(Collectors.joining(" | "));
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Override
+    public void printTree(final IndentingPrinter printer) {
+        printer.println(this.getClass().getSimpleName());
+        printer.indent();
+        {
+            for (final Converter<C> converter : this.converters) {
+                printer.lineStart();
+                TreePrintable.printTreeOrToString(
+                    converter,
+                    printer
+                );
+            }
+        }
+        printer.outdent();
     }
 }
