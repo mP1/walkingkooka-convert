@@ -34,12 +34,26 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
     CC createContext();
 
     default void convertAndCheck(final Object value) {
-        assertSame(value, this.convertAndCheck(value, Cast.to(value.getClass()), value));
+        assertSame(
+            value,
+            this.convertAndCheck(
+                value,
+                Cast.to(
+                    value.getClass()
+                ),
+                value
+            )
+        );
     }
 
     default <T> T convertAndCheck(final T value,
                                   final Class<T> target) {
-        final T result = this.convertAndCheck(this.createConverter(), value, target, value);
+        final T result = this.convertAndCheck(
+            this.createConverter(),
+            value,
+            target,
+            value
+        );
         assertSame(value, result);
         return result;
     }
@@ -56,14 +70,25 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
     default <T> T convertAndCheck(final Object value,
                                   final Class<T> target,
                                   final T expected) {
-        return this.convertAndCheck(this.createConverter(), value, target, expected);
+        return this.convertAndCheck(
+            this.createConverter(),
+            value,
+            target,
+            expected
+        );
     }
 
     default <T> T convertAndCheck(final Object value,
                                   final Class<T> target,
                                   final CC context,
                                   final T expected) {
-        return this.convertAndCheck(this.createConverter(), value, target, context, expected);
+        return this.convertAndCheck(
+            this.createConverter(),
+            value,
+            target,
+            context,
+            expected
+        );
     }
 
     default <T> T convertAndCheck(final Converter<CC> converter,
@@ -82,27 +107,52 @@ public interface ConverterTesting2<C extends Converter<CC>, CC extends Converter
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
-        return this.convertAndCheck(converter, value, target, this.createContext(), expected);
+        return this.convertAndCheck(
+            converter,
+            value,
+            target,
+            this.createContext(),
+            expected
+        );
     }
 
-    default void convertFails(final Object value, final Class<?> type) {
-        this.convertFails(this.createConverter(), value, type);
+    default void convertFails(final Object value,
+                              final Class<?> type) {
+        this.convertFails(
+            this.createConverter(),
+            value,
+            type
+        );
     }
 
     default void convertFails(final Converter<CC> converter,
                               final Object value,
                               final Class<?> type) {
-        this.convertFails(converter, value, type, this.createContext());
+        this.convertFails(
+            converter,
+            value,
+            type,
+            this.createContext()
+        );
     }
 
     default <T> Either<T, String> convert(final T value) {
-        return this.convert(value, Cast.to(value.getClass()));
+        return this.convert(
+            value,
+            Cast.to(
+                value.getClass()
+            )
+        );
     }
 
     default <T> Either<T, String> convert(final Object value,
                                           final Class<T> type) {
         return this.createConverter()
-            .convert(value, type, this.createContext());
+            .convert(
+                value,
+                type,
+                this.createContext()
+            );
     }
 
     // TypeNameTesting .................................................................................................
