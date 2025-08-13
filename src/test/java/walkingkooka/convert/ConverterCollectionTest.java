@@ -30,25 +30,31 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class ConverterCollectionTest extends ConverterTestCase2<ConverterCollection<ConverterContext>>
     implements HashCodeEqualsDefinedTesting2<ConverterCollection<ConverterContext>> {
 
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
-    }
-
     @Test
     public void testWithNullConvertersFails() {
-        assertThrows(NullPointerException.class, () -> ConverterCollection.with(null));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterCollection.with(null)
+        );
     }
 
     @Test
     public void testWithZeroConvertersFails() {
-        assertThrows(IllegalArgumentException.class, () -> ConverterCollection.with(Lists.empty()));
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> ConverterCollection.with(Lists.empty())
+        );
     }
 
     @Test
-    public void testWithOneConverter() {
+    public void testWithOneConverterUnwraps() {
         final Converter<ConverterContext> only = Converters.objectToString();
-        assertSame(only, ConverterCollection.with(Lists.of(only)));
+        assertSame(
+            only,
+            ConverterCollection.with(
+                Lists.of(only)
+            )
+        );
     }
 
     @Test
@@ -76,38 +82,37 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Test
-    public void testUnhandledTargetType() {
-        this.convertFails("Cant convert to Void", Void.class);
+    public void testConvertUnhandledTargetTypeFails() {
+        this.convertFails(
+            "Cant convert to Void",
+            Void.class
+        );
     }
 
     @Test
-    public void testSkipsFailed() {
-        this.convertAndCheck(ConverterCollection.with(Lists.of(new Converter<ConverterContext>() {
-                                                                   @Override
-                                                                   public boolean canConvert(final Object value,
-                                                                                             final Class<?> type,
-                                                                                             final ConverterContext context) {
-                                                                       return true;
-                                                                   }
+    public void testConverterSkipsFailed() {
+        this.convertAndCheck(
+            ConverterCollection.with(
+                Lists.of(
+                    new Converter<>() {
+                        @Override
+                        public boolean canConvert(final Object value,
+                                                  final Class<?> type,
+                                                  final ConverterContext context) {
+                            return true;
+                        }
 
-                                                                   @Override
-                                                                   public <T> Either<T, String> convert(final Object value,
-                                                                                                        final Class<T> type,
-                                                                                                        final ConverterContext context) {
-                                                                       return Either.right("failed!");
-                                                                   }
-                                                               },
-                Converters.numberToBoolean())),
+                        @Override
+                        public <T> Either<T, String> convert(final Object value,
+                                                             final Class<T> type,
+                                                             final ConverterContext context) {
+                            return Either.right("failed!");
+                        }
+                    },
+                    Converters.numberToBoolean())),
             1,
             Boolean.class,
-            true);
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(
-            this.createConverter(),
-            "String to Boolean | Number to Number"
+            true
         );
     }
 
@@ -168,7 +173,22 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
         );
     }
 
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            this.createConverter(),
+            "String to Boolean | Number to Number"
+        );
+    }
+
     // Class............................................................................................................
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public Class<ConverterCollection<ConverterContext>> type() {
