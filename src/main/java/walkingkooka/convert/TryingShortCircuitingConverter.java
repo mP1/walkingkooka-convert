@@ -39,6 +39,10 @@ public interface TryingShortCircuitingConverter<C extends ConverterContext> exte
                 ),
                 type
             );
+        } catch (final Error cause) {
+            throw cause;
+        } catch (final UnsupportedOperationException cause) {
+            throw cause;
         } catch (final RuntimeException cause) {
             result = Either.right(cause.getMessage());
         }
