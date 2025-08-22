@@ -26,7 +26,8 @@ import walkingkooka.reflect.JavaVisibility;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class TryingShortCircuitingConverterTest implements ClassTesting<TryingShortCircuitingConverter<?>> {
+public final class TryingShortCircuitingConverterTest implements ConverterTesting,
+    ClassTesting<TryingShortCircuitingConverter<?>> {
 
     private final static ConverterContext CONTEXT = new FakeConverterContext() {
 
@@ -102,6 +103,33 @@ public final class TryingShortCircuitingConverterTest implements ClassTesting<Tr
         assertSame(
             throwing,
             thrown
+        );
+    }
+
+    @Test
+    public void testConvertDoConvertReturnsNull() {
+        final String value = "Hello123";
+
+        this.convertAndCheck(
+            new TryingShortCircuitingConverter<>() {
+
+
+                @Override
+                public boolean canConvert(final Object v,
+                                          final Class<?> type,
+                                          final ConverterContext context) {
+                    return value.equals(v) && Void.class == type;
+                }
+
+                @Override
+                public Object tryConvertOrFail(Object value, Class<?> type, ConverterContext context) {
+                    return null;
+                }
+            },
+            value,
+            Void.class,
+            ConverterContexts.fake(),
+            null
         );
     }
 
