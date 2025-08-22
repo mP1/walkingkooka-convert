@@ -52,6 +52,7 @@ public interface TryingShortCircuitingConverter<C extends ConverterContext> exte
 
     /**
      * This method must accept the value and return a value, throwing an exception if the attempt fails.
+     * Null is a valid result.
      */
     Object tryConvertOrFail(final Object value,
                             final Class<?> type,
