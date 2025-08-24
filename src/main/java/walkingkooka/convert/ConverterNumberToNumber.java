@@ -65,6 +65,8 @@ final class ConverterNumberToNumber<C extends ConverterContext> extends Converte
             result = type == Number.class ?
                 this.successfulConversion(value, type) :
                 this.convertNonNumber(value, type);
+        } catch (final UnsupportedOperationException rethrow) {
+            throw rethrow;
         } catch (final RuntimeException cause) {
             result = this.failConversion(value, type, cause);
         }
