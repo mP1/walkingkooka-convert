@@ -29,22 +29,24 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     private final static byte VALUE = 123;
 
     @Test
-    public void testConvertNonNumberTypeFails() {
+    public void testConvertStringToLocalTimeFails() {
         this.convertFails2("fail!");
     }
 
     @Test
-    public void testConvertFromLocalTimeFails() {
-        this.convertFails2(LocalTime.of(12, 59));
+    public void testConvertLocalTimeToLocalTimeFails() {
+        this.convertFails2(
+            LocalTime.of(12, 59)
+        );
     }
 
     @Test
-    public void testConvertBigDecimal() {
+    public void testConvertBigDecimalToLocalTime() {
         this.convertAndCheck2(BigDecimal.valueOf(VALUE));
     }
 
     @Test
-    public void testConvertBigDecimalWithFraction() {
+    public void testConvertBigDecimalWithFractionToLocalTime() {
         this.convertAndCheck(
             BigDecimal.valueOf(123.5),
             LocalTime.ofSecondOfDay(VALUE)
@@ -53,23 +55,27 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     }
 
     @Test
-    public void testConvertBigInteger() {
+    public void testConvertBigIntegerToLocalTime() {
         this.convertAndCheck2(BigInteger.valueOf(123));
     }
 
     @Test
-    public void testConvertFloat() {
+    public void testConvertFloatToLocalTime() {
         this.convertAndCheck2((float) VALUE);
     }
 
     @Test
-    public void testConvertDouble() {
+    public void testConvertDoubleToLocalTime() {
         this.convertAndCheck2((double) VALUE);
     }
 
     @Test
-    public void testConvertDoubleWithFraction() {
-        this.convertAndCheck(BigDecimal.valueOf(123.5), LocalTime.ofSecondOfDay(VALUE).plusNanos(Converters.NANOS_PER_SECOND / 2));
+    public void testConvertDoubleWithFractionToLocalTime() {
+        this.convertAndCheck(
+            BigDecimal.valueOf(123.5),
+            LocalTime.ofSecondOfDay(VALUE)
+                .plusNanos(Converters.NANOS_PER_SECOND / 2)
+        );
     }
 
     @Override
@@ -79,27 +85,30 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
 
     @SuppressWarnings("RedundantCast")
     @Test
-    public void testConvertByte() {
+    public void testConvertByteToLocalTime() {
         this.convertAndCheck2((byte) VALUE);
     }
 
     @Test
-    public void testConvertShort() {
+    public void testConvertShortToLocalTime() {
         this.convertAndCheck2((short) VALUE);
     }
 
     @Test
-    public void testConvertInteger() {
+    public void testConvertIntegerToLocalTime() {
         this.convertAndCheck2((int) VALUE);
     }
 
     @Test
-    public void testConvertLong() {
+    public void testConvertLongToLocalTime() {
         this.convertAndCheck2((long) VALUE);
     }
 
     private void convertAndCheck2(final Object value) {
-        this.convertAndCheck(value, LocalTime.ofSecondOfDay(VALUE));
+        this.convertAndCheck(
+            value,
+            LocalTime.ofSecondOfDay(VALUE)
+        );
     }
 
     @Override
@@ -116,6 +125,8 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     public ConverterContext createContext() {
         return ConverterContexts.fake();
     }
+
+    // class............................................................................................................
 
     @Override
     public Class<ConverterNumberToLocalTime<ConverterContext>> type() {
