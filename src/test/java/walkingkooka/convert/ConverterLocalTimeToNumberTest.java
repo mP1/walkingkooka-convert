@@ -26,8 +26,11 @@ import java.time.LocalTime;
 
 public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTestCase<ConverterLocalTimeToNumber<ConverterContext>> {
 
-    private final static byte VALUE = 123;
-    private final static double WITH_NANOS = 123.5;
+    private final static byte BYTE = 0;
+    private final static LocalTime BYTE_TIME = LocalTime.MIDNIGHT;
+
+    private final static double DOUBLE = 0.5;
+    private final static LocalTime DOUBLE_TIME = LocalTime.NOON;
 
     @Test
     public void testConvertNull() {
@@ -39,82 +42,122 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
 
     @Test
     public void testConvertLocalTimeToBigDecimal() {
-        this.convertAndCheck2(BigDecimal.valueOf(VALUE));
+        this.convertAndCheck(
+            BYTE_TIME,
+            BigDecimal.valueOf(BYTE)
+        );
     }
 
     @Test
     public void testConvertLocalTimeToBigDecimal2() {
-        this.convertAndCheck3(BigDecimal.valueOf(WITH_NANOS));
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            BigDecimal.valueOf(DOUBLE)
+        );
     }
 
     @Test
     public void testConvertLocalTimeToBigInteger() {
-        this.convertAndCheck2(BigInteger.valueOf(VALUE));
+        this.convertAndCheck(
+            BYTE_TIME,
+            BigInteger.valueOf(BYTE)
+        );
     }
 
     @Test
-    public void testConvertLocalTimeWithNanosToBigIntegerFails() {
-        this.convertFails2(BigInteger.class);
+    public void testConvertLocalTimeToBigIntegerFails() {
+        this.convertFails(
+            DOUBLE_TIME,
+            BigInteger.class
+        );
     }
 
     @Test
     public void testConvertLocalTimeToByte() {
-        this.convertAndCheck2(VALUE);
+        this.convertAndCheck(
+            BYTE_TIME,
+            BYTE
+        );
     }
 
     @Test
-    public void testConvertLocalTimeWithNanosToByteFails() {
-        this.convertFails2(Byte.class);
+    public void testConvertLocalTimeToByteNonZero() {
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            Byte.class,
+            (byte)0
+        );
     }
 
     @Test
     public void testConvertLocalTimeToShort() {
-        this.convertAndCheck2((short) VALUE);
+        this.convertAndCheck(
+            BYTE_TIME,
+            (short)BYTE
+        );
     }
 
     @Test
-    public void testConvertLocalTimeWithNanosToShortFails() {
-        this.convertFails2(Short.class);
+    public void testConvertLocalTimeToShortNonZero() {
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            Short.class,
+            (short)0
+        );
     }
 
     @Test
     public void testConvertLocalTimeToInteger() {
-        this.convertAndCheck2((int) VALUE);
+        this.convertAndCheck(
+            BYTE_TIME,
+            (int)BYTE
+        );
     }
 
     @Test
-    public void testConvertLocalTimeWithNanosToIntegerFails() {
-        this.convertFails2(Integer.class);
+    public void testConvertLocalTimeToIntegerNonZero() {
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            Integer.class,
+            (int)0
+        );
     }
 
     @Test
     public void testConvertLocalTimeToLong() {
-        this.convertAndCheck2((long) VALUE);
+        this.convertAndCheck(
+            BYTE_TIME,
+            (long)BYTE
+        );
     }
 
     @Test
-    public void testConvertLocalTimeWithNanosToLongFails() {
-        this.convertFails2(Long.class);
+    public void testConvertLocalTimeToLongNonZero() {
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            Long.class,
+            0L
+        );
     }
 
     @Test
     public void testConvertLocalTimeToFloat() {
-        this.convertAndCheck2((float) VALUE);
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            Float.class,
+            (float)DOUBLE
+        );
     }
 
     @Test
     public void testConvertLocalTimeToDouble() {
-        this.convertAndCheck2((double) VALUE);
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(
-            this.createConverter(),
-            "LocalTime to Number"
+        this.convertAndCheck(
+            DOUBLE_TIME,
+            Double.class,
+            (double)DOUBLE
         );
     }
-
+    
     @Override
     public ConverterLocalTimeToNumber<ConverterContext> createConverter() {
         return ConverterLocalTimeToNumber.instance();
@@ -125,25 +168,14 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
         return ConverterContexts.fake();
     }
 
-    private void convertAndCheck2(final Number expected) {
-        this.convertAndCheck(
-            LocalTime.ofSecondOfDay(VALUE),
-            expected
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            this.createConverter(),
+            "LocalTime to Number"
         );
-    }
-
-    private void convertAndCheck3(final Number expected) {
-        this.convertAndCheck(this.withNanos(),
-            Cast.to(expected.getClass()),
-            expected);
-    }
-
-    private void convertFails2(final Class<?> target) {
-        this.convertFails(this.withNanos(), target);
-    }
-
-    private LocalTime withNanos() {
-        return LocalTime.ofSecondOfDay(VALUE).plusNanos(500000000);
     }
 
     // ClassTesting.....................................................................................................

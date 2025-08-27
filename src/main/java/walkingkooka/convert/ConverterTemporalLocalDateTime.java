@@ -50,20 +50,14 @@ abstract class ConverterTemporalLocalDateTime<D, C extends ConverterContext> ext
     final <T> Either<T, String> convertNonNull0(final LocalDateTime value,
                                                 final Class<T> type,
                                                 final ConverterContext context) {
-        return this.convertFromLocalDateTime(
-            value.toLocalDate().toEpochDay(),
-            (double) value.toLocalTime()
-                .toNanoOfDay() /
-                Converters.NANOS_PER_DAY,
+        return this.convertDateTimeTo(
             value,
             type,
             context
         );
     }
 
-    abstract <T> Either<T, String> convertFromLocalDateTime(final long days,
-                                                            final double time,
-                                                            final LocalDateTime localDateTime,
-                                                            final Class<T> type,
-                                                            final ConverterContext context);
+    abstract <T> Either<T, String> convertDateTimeTo(final LocalDateTime localDateTime,
+                                                     final Class<T> type,
+                                                     final ConverterContext context);
 }

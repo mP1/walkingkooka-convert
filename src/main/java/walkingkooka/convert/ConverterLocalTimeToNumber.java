@@ -21,7 +21,6 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.math.Maths;
 
-import java.math.BigDecimal;
 import java.time.LocalTime;
 
 /**
@@ -53,14 +52,14 @@ final class ConverterLocalTimeToNumber<C extends ConverterContext> extends Conve
     }
 
     @Override
-    <T> Either<T, String> convertFromLocalTime(final long seconds,
-                                               final long nano,
-                                               final LocalTime localTime,
-                                               final Class<T> type,
-                                               final ConverterContext context) {
-        return this.convertToNumber(BigDecimal.valueOf(seconds).add(BigDecimal.valueOf(1.0 * nano / Converters.NANOS_PER_SECOND)),
+    <T> Either<T, String> convertTime(final LocalTime time,
+                                      final Class<T> type,
+                                      final ConverterContext context) {
+        return this.convertToNumber(
+            (double)time.toNanoOfDay() / Converters.NANOS_PER_DAY,
             Cast.to(type),
-            context);
+            context
+        );
     }
 
     @Override

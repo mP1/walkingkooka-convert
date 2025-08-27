@@ -51,13 +51,13 @@ final class ConverterTemporalLocalDateTimeToNumber<C extends ConverterContext> e
     }
 
     @Override
-    <T> Either<T, String> convertFromLocalDateTime(final long days,
-                                                   final double time,
-                                                   final LocalDateTime dateTime,
-                                                   final Class<T> type,
-                                                   final ConverterContext context) {
+    <T> Either<T, String> convertDateTimeTo(final LocalDateTime dateTime,
+                                            final Class<T> type,
+                                            final ConverterContext context) {
         return this.convertToNumber(
-            days + time - context.dateOffset(),
+            dateTime.toLocalDate().toEpochDay() +
+                ((float) dateTime.toLocalTime().toNanoOfDay() / Converters.NANOS_PER_DAY)
+                - context.dateOffset(),
             type,
             context
         );
