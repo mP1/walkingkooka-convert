@@ -34,22 +34,27 @@ abstract class ConverterTemporalLocalDateTime<D, C extends ConverterContext> ext
     }
 
 
-    @Override final boolean canConvertNonNull(final Object value,
-                                              final Class<?> type,
-                                              final C context) {
+    @Override //
+    final boolean canConvertNonNull(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
         return value instanceof LocalDateTime;
     }
 
-    @Override final Class<LocalDateTime> sourceType() {
+    @Override //
+    final Class<LocalDateTime> sourceType() {
         return LocalDateTime.class;
     }
 
-    @Override final <T> Either<T, String> convertNonNull0(final LocalDateTime value,
-                                                          final Class<T> type,
-                                                          final ConverterContext context) {
+    @Override //
+    final <T> Either<T, String> convertNonNull0(final LocalDateTime value,
+                                                final Class<T> type,
+                                                final ConverterContext context) {
         return this.convertFromLocalDateTime(
             value.toLocalDate().toEpochDay(),
-            (double) value.toLocalTime().toNanoOfDay() / Converters.NANOS_PER_DAY,
+            (double) value.toLocalTime()
+                .toNanoOfDay() /
+                Converters.NANOS_PER_DAY,
             value,
             type,
             context
