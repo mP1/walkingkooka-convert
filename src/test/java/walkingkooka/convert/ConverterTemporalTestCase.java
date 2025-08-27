@@ -36,15 +36,13 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
         );
     }
 
-    final static long DATE_OFFSET = 100;
-
     @Override
     public final ConverterContext createContext() {
         return new FakeConverterContext() {
 
             @Override
             public long dateOffset() {
-                return DATE_OFFSET;
+                return Converters.EXCEL_1900_DATE_SYSTEM_OFFSET;
             }
         };
     }

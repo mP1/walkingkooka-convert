@@ -51,13 +51,11 @@ final class ConverterLocalTimeToLocalDateTime<C extends ConverterContext> extend
     }
 
     @Override
-    <T> Either<T, String> convertFromLocalTime(final long seconds,
-                                               final long nano,
-                                               final LocalTime localTime,
-                                               final Class<T> type,
-                                               final ConverterContext context) {
+    <T> Either<T, String> convertTime(final LocalTime time,
+                                      final Class<T> type,
+                                      final ConverterContext context) {
         return this.successfulConversion(
-            LocalDateTime.of(DATE, localTime),
+            LocalDateTime.of(DATE, time),
             type
         );
     }

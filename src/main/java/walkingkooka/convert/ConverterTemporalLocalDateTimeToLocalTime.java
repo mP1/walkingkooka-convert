@@ -53,13 +53,11 @@ final class ConverterTemporalLocalDateTimeToLocalTime<C extends ConverterContext
     }
 
     @Override
-    <T> Either<T, String> convertFromLocalDateTime(final long days,
-                                                   final double time,
-                                                   final LocalDateTime localDateTime,
-                                                   final Class<T> type,
-                                                   final ConverterContext context) {
+    <T> Either<T, String> convertDateTimeTo(final LocalDateTime dateTime,
+                                            final Class<T> type,
+                                            final ConverterContext context) {
         return this.successfulConversion(
-            localDateTime.toLocalTime(),
+            dateTime.toLocalTime(),
             type
         );
     }

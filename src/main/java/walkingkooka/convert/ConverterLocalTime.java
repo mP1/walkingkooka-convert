@@ -32,33 +32,25 @@ abstract class ConverterLocalTime<C extends ConverterContext> extends Converter2
     ConverterLocalTime() {
     }
 
-    @Override final boolean canConvertNonNull(final Object value,
-                                              final Class<?> type,
-                                              final C context) {
+    @Override //
+    final boolean canConvertNonNull(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
         return value instanceof LocalTime;
     }
 
-    @Override final <T> Either<T, String> convertNonNull(final Object value,
-                                                         final Class<T> type,
-                                                         final ConverterContext context) {
-        return this.convert1((LocalTime) value,
+    @Override  //
+    final <T> Either<T, String> convertNonNull(final Object value,
+                                               final Class<T> type,
+                                               final ConverterContext context) {
+        return this.convertTime(
+            (LocalTime) value,
             type,
-            context);
+            context
+        );
     }
 
-    private <T> Either<T, String> convert1(final LocalTime value,
-                                           final Class<T> type,
-                                           final ConverterContext context) {
-        return this.convertFromLocalTime(value.toSecondOfDay(),
-            value.getNano(),
-            value,
-            type,
-            context);
-    }
-
-    abstract <T> Either<T, String> convertFromLocalTime(final long seconds,
-                                                        final long nano,
-                                                        final LocalTime localTime,
-                                                        final Class<T> type,
-                                                        final ConverterContext context);
+    abstract <T> Either<T, String> convertTime(final LocalTime time,
+                                               final Class<T> type,
+                                               final ConverterContext context);
 }

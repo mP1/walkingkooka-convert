@@ -30,7 +30,14 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     private final static int VALUE = 123;
     private final static LocalTime MIDNIGHT = LocalTime.ofSecondOfDay(0);
-    private final static LocalDateTime DATE_TIME_WITH_1900_EXCEL_OFFSET = LocalDateTime.of(1900, 5, 2, 0, 0, 0);
+    private final static LocalDateTime DATE_TIME_WITH_1900_EXCEL_OFFSET = LocalDateTime.of(
+        1900,
+        5,
+        2,
+        0,
+        0,
+        0
+    );
 
     @Test
     public void testConvertNonNumberTypeFails() {
@@ -39,7 +46,15 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertFromLocalDateTimeFails() {
-        this.convertFails2(LocalDateTime.of(1, 2, 3, 4, 5));
+        this.convertFails2(
+            LocalDateTime.of(
+                1,
+                2,
+                3,
+                4,
+                5
+            )
+        );
     }
 
     @Test
@@ -49,7 +64,10 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertBigDecimalWithFraction() {
-        this.convertAndCheck(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
+        this.convertAndCheck(
+            BigDecimal.valueOf(123.5),
+            this.localDateTime(VALUE, 12, 0)
+        );
     }
 
     @Test
@@ -59,12 +77,16 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertBigInteger() {
-        this.convertAndCheck2(BigInteger.valueOf(VALUE));
+        this.convertAndCheck2(
+            BigInteger.valueOf(VALUE)
+        );
     }
 
     @Test
     public void testConvertBigIntegerWithExcelOffset() {
-        this.convertAndCheckWith1900ExcelDateOffset(BigInteger.valueOf(VALUE));
+        this.convertAndCheckWith1900ExcelDateOffset(
+            BigInteger.valueOf(VALUE)
+        );
     }
 
     @Test
@@ -79,12 +101,21 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
 
     @Test
     public void testConvertDoubleWithFraction() {
-        this.convertAndCheck(BigDecimal.valueOf(123.5), this.localDateTime(VALUE, 12, 0));
+        this.convertAndCheck(
+            BigDecimal.valueOf(123.5),
+            this.localDateTime(
+                VALUE,
+                12,
+                0
+            )
+        );
     }
 
     @Test
     public void testConvertDoubleWithExcelOffset() {
-        this.convertAndCheckWith1900ExcelDateOffset(BigDecimal.valueOf(VALUE));
+        this.convertAndCheckWith1900ExcelDateOffset(
+            BigDecimal.valueOf(VALUE)
+        );
     }
 
     @Override
@@ -118,7 +149,10 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
     }
 
     private void convertAndCheck2(final Object value) {
-        this.convertAndCheck(value, this.localDateTime(VALUE, MIDNIGHT));
+        this.convertAndCheck(
+            value,
+            this.localDateTime(VALUE, MIDNIGHT)
+        );
     }
 
     private void convertAndCheckWith1900ExcelDateOffset(final Number value) {
@@ -140,16 +174,32 @@ public final class ConverterNumberToLocalDateTimeTest extends ConverterNumberTes
         return ConverterNumberToLocalDateTime.instance();
     }
 
-    private LocalDateTime localDateTime(final int date, final int hours, final int minutes) {
-        return this.localDateTime(date, LocalTime.of(hours, minutes));
+    private LocalDateTime localDateTime(final int date,
+                                        final int hours,
+                                        final int minutes) {
+        return this.localDateTime(
+            date,
+            LocalTime.of(
+                hours,
+                minutes
+            )
+        );
     }
 
-    private LocalDateTime localDateTime(final int date, final LocalTime time) {
-        return this.localDateTime(LocalDate.ofEpochDay(date), time);
+    private LocalDateTime localDateTime(final int date,
+                                        final LocalTime time) {
+        return this.localDateTime(
+            LocalDate.ofEpochDay(date),
+            time
+        );
     }
 
-    private LocalDateTime localDateTime(final LocalDate date, final LocalTime time) {
-        return LocalDateTime.of(date, time);
+    private LocalDateTime localDateTime(final LocalDate date,
+                                        final LocalTime time) {
+        return LocalDateTime.of(
+            date,
+            time
+        );
     }
 
     @Override
