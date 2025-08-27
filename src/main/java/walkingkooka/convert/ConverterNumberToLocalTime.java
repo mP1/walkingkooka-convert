@@ -52,23 +52,22 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
     @Override
     Either<LocalTime, String> bigDecimal(final BigDecimal value,
                                          final ConverterContext context) {
-        final double doubleValue = value.doubleValue();
-        return 0 != BigDecimal.valueOf(doubleValue).compareTo(value) ?
-            this.failConversion(value, LocalTime.class) :
-            this.localTime(doubleValue);
+        return this.localTime(
+            value.doubleValue()
+        );
     }
 
     @Override
     Either<LocalTime, String> bigInteger(final BigInteger value,
                                          final ConverterContext context) {
-        return this.localTime(value.longValueExact());
+        return this.localTime(value.doubleValue());
     }
 
     @SuppressWarnings("UnnecessaryUnboxing")
     @Override
     Either<LocalTime, String> doubleValue(final Double value,
                                           final ConverterContext context) {
-        return this.localTime(value.doubleValue());
+        return this.localTime(value);
     }
 
     @Override
@@ -77,22 +76,19 @@ final class ConverterNumberToLocalTime<C extends ConverterContext> extends Conve
         return this.localTime(value);
     }
 
-    private Either<LocalTime, String> localTime(final long value) {
-        return this.successfulConversion(
-            LocalTime.ofSecondOfDay(value),
-            LocalTime.class
-        );
-    }
-
     private Either<LocalTime, String> localTime(final double value) {
-        final double doubleNanos = value * Converters.NANOS_PER_SECOND;
-        final long nanos = (long) doubleNanos;
-        return nanos != doubleNanos ?
-            this.failConversion(value, LocalTime.class) :
-            this.successfulConversion(
-                LocalTime.ofNanoOfDay(nanos),
-                LocalTime.class
-            );
+        return
+            (Double.isNaN(value) || value < 0 || value >= 1) ?
+                this.failConversion(
+                    value,
+                    LocalTime.class
+                ) :
+                this.successfulConversion(
+                    LocalTime.ofNanoOfDay(
+                        (long)(value * Converters.NANOS_PER_DAY)
+                    ),
+                    LocalTime.class
+                );
     }
 
     @Override

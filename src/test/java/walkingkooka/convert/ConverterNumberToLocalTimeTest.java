@@ -26,7 +26,17 @@ import java.time.LocalTime;
 
 public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCase<ConverterNumberToLocalTime<ConverterContext>, LocalTime> {
 
-    private final static byte VALUE = 123;
+    private final static double VALUE = 0.5;
+
+    private final static LocalTime VALUE_TIME = LocalTime.NOON;
+
+    private final static double VALUE2 = 0.25f;
+
+    private final static LocalTime VALUE2_TIME = LocalTime.of(6, 0, 0);
+
+    private final static double VALUE_ZERO = 0f;
+
+    private final static LocalTime VALUE_ZERO_TIME = LocalTime.MIDNIGHT;
 
     @Test
     public void testConvertStringToLocalTimeFails() {
@@ -42,21 +52,33 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
 
     @Test
     public void testConvertBigDecimalToLocalTime() {
-        this.convertAndCheck2(BigDecimal.valueOf(VALUE));
-    }
-
-    @Test
-    public void testConvertBigDecimalWithFractionToLocalTime() {
-        this.convertAndCheck(
-            BigDecimal.valueOf(123.5),
-            LocalTime.ofSecondOfDay(VALUE)
-                .plusNanos(Converters.NANOS_PER_SECOND / 2)
+        this.convertAndCheck2(
+            BigDecimal.valueOf(VALUE)
         );
     }
 
     @Test
-    public void testConvertBigIntegerToLocalTime() {
-        this.convertAndCheck2(BigInteger.valueOf(123));
+    public void testConvertBigDecimalToLocalTime2() {
+        this.convertAndCheck(
+            BigDecimal.valueOf(VALUE2),
+            VALUE2_TIME
+        );
+    }
+
+    @Test
+    public void testConvertBigIntegerZeroToLocalTime() {
+        this.convertAndCheck(
+            BigInteger.ZERO,
+            LocalTime.MIDNIGHT
+        );
+    }
+
+    @Test
+    public void testConvertBigIntegerOneToLocalTime() {
+        this.convertFails(
+            BigInteger.ONE,
+            LocalTime.class
+        );
     }
 
     @Test
@@ -70,11 +92,18 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
     }
 
     @Test
-    public void testConvertDoubleWithFractionToLocalTime() {
+    public void testConvertDoubleToLocalTime2() {
         this.convertAndCheck(
-            BigDecimal.valueOf(123.5),
-            LocalTime.ofSecondOfDay(VALUE)
-                .plusNanos(Converters.NANOS_PER_SECOND / 2)
+            VALUE2,
+            VALUE2_TIME
+        );
+    }
+
+    @Test
+    public void testConvertDoubleToLocalTime3() {
+        this.convertAndCheck(
+            0.0,
+            LocalTime.MIDNIGHT
         );
     }
 
@@ -83,31 +112,48 @@ public final class ConverterNumberToLocalTimeTest extends ConverterNumberTestCas
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void testConvertDoubleMinFails() {
+        throw new UnsupportedOperationException();
+    }
+
     @SuppressWarnings("RedundantCast")
     @Test
     public void testConvertByteToLocalTime() {
-        this.convertAndCheck2((byte) VALUE);
+        this.convertAndCheck(
+            (byte) VALUE_ZERO,
+            VALUE_ZERO_TIME
+        );
     }
 
     @Test
     public void testConvertShortToLocalTime() {
-        this.convertAndCheck2((short) VALUE);
+        this.convertAndCheck(
+            (short) VALUE_ZERO,
+            VALUE_ZERO_TIME
+        );
     }
 
     @Test
     public void testConvertIntegerToLocalTime() {
-        this.convertAndCheck2((int) VALUE);
+        this.convertAndCheck(
+            (int) VALUE_ZERO,
+            VALUE_ZERO_TIME
+        );
     }
 
     @Test
     public void testConvertLongToLocalTime() {
-        this.convertAndCheck2((long) VALUE);
+        this.convertAndCheck(
+            (long) VALUE_ZERO,
+            VALUE_ZERO_TIME
+        );
     }
 
     private void convertAndCheck2(final Object value) {
         this.convertAndCheck(
             value,
-            LocalTime.ofSecondOfDay(VALUE)
+            VALUE_TIME
         );
     }
 
