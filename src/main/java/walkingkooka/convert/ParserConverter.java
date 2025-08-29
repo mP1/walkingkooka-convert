@@ -145,6 +145,31 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
      */
     private final BiFunction<ParserToken, C, V> parserTokenToValue;
 
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            this.parserValueType,
+            this.parser,
+            this.converterContextToParserContext,
+            this.parserTokenToValue
+        );
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+            other instanceof ParserConverter && this.equals0((ParserConverter<?, ?, ?>) other);
+    }
+
+    private boolean equals0(final ParserConverter<?, ?, ?> other) {
+        return this.parserValueType.equals(other.parserValueType) &&
+            this.parser.equals(other.parser) &&
+            this.converterContextToParserContext.equals(other.converterContextToParserContext) &&
+            this.parserTokenToValue.equals(other.parserTokenToValue);
+    }
+
     @Override
     public String toString() {
         return "String to " + this.parserValueType.getSimpleName();

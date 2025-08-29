@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.cursor.parser.BigDecimalParserToken;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ParserConverterTest extends ConverterTestCase2<ParserConverter<BigDecimal, ParserContext, ConverterContext>> {
+public final class ParserConverterTest extends ConverterTestCase2<ParserConverter<BigDecimal, ParserContext, ConverterContext>>
+    implements HashCodeEqualsDefinedTesting2<ParserConverter<BigDecimal, ParserContext, ConverterContext>> {
 
     private final static Class<BigDecimal> VALUE_TYPE = BigDecimal.class;
 
@@ -153,7 +155,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
             PARSER_TOKEN_TO_VALUE
         );
     }
-    
+
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.basic(
@@ -162,6 +164,65 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
             DateTimeContexts.fake(),
             DecimalNumberContexts.american(MathContext.DECIMAL32)
         );
+    }
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentValueTypeClass() {
+        this.checkNotEquals(
+            ParserConverter.with(
+                Void.class,
+                PARSER,
+                CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
+                Cast.to(PARSER_TOKEN_TO_VALUE)
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentParser() {
+        this.checkNotEquals(
+            ParserConverter.with(
+                VALUE_TYPE,
+                Parsers.fake(),
+                CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
+                PARSER_TOKEN_TO_VALUE
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentConverterContextParserContextFunction() {
+        this.checkNotEquals(
+            ParserConverter.with(
+                VALUE_TYPE,
+                PARSER,
+                (c) -> {
+                    throw new UnsupportedOperationException();
+                },
+                PARSER_TOKEN_TO_VALUE
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentParserTokenToValue() {
+        this.checkNotEquals(
+            ParserConverter.with(
+                VALUE_TYPE,
+                PARSER,
+                CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
+                (t, c) -> {
+                    throw new UnsupportedOperationException();
+                }
+            )
+        );
+    }
+
+    @Override
+    public ParserConverter<BigDecimal, ParserContext, ConverterContext> createObject() {
+        return this.createConverter();
     }
 
     // toString.........................................................................................................
