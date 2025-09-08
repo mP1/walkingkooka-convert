@@ -45,6 +45,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     private final static Parser<ParserContext> PARSER = Parsers.bigDecimal();
 
     private final static Function<ConverterContext, ParserContext> CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION = (c) -> ParserContexts.basic(
+        false, // isGroupSeparatorWithinNumbersSupported
         InvalidCharacterExceptionFactory.POSITION,
         c,
         c
