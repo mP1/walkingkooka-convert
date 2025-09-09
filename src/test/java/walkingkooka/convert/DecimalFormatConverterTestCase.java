@@ -75,6 +75,7 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
+            ',', // valueSeparator
             Converters.fake(),
             DateTimeContexts.fake(),
             DecimalNumberContexts.basic(

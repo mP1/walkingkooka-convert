@@ -61,5 +61,11 @@ public interface ConverterContextDelegator extends ConverterContext,
             .dateOffset();
     }
 
+    @Override
+    default char valueSeparator() {
+        return this.converterContext()
+            .valueSeparator();
+    }
+
     ConverterContext converterContext();
 }

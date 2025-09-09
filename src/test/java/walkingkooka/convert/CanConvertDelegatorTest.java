@@ -58,6 +58,7 @@ public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanC
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
+                ',', // valueSeparator
                 Converters.stringToLocalDate(
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                 ),

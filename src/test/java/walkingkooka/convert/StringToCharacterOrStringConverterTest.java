@@ -114,6 +114,7 @@ public final class StringToCharacterOrStringConverterTest implements ConverterTe
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 0,
+                ',', // valueSeparator
                 Converters.fake(),
                 DateTimeContexts.fake(),
                 DecimalNumberContexts.american(MathContext.DECIMAL32)

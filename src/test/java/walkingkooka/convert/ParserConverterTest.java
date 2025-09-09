@@ -162,6 +162,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
+            ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
             DateTimeContexts.fake(),
             DecimalNumberContexts.american(MathContext.DECIMAL32)

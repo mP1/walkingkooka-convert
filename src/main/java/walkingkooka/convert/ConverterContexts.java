@@ -31,12 +31,14 @@ public final class ConverterContexts implements PublicStaticHelper {
      */
     public static ConverterContext basic(final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
+                                         final char valueSeparator,
                                          final Converter<ConverterContext> converter,
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
         return BasicConverterContext.with(
             canNumbersHaveGroupSeparator,
             dateOffset,
+            valueSeparator,
             converter,
             dateTimeContext,
             decimalNumberContext
