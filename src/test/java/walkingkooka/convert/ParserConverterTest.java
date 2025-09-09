@@ -47,6 +47,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     private final static Function<ConverterContext, ParserContext> CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION = (c) -> ParserContexts.basic(
         false, // canNumbersHaveGroupSeparator
         InvalidCharacterExceptionFactory.POSITION,
+        ',', // valueSeparator
         c,
         c
     );
