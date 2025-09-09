@@ -73,6 +73,7 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
 
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(
+            false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Converters.fake(),
             DateTimeContexts.fake(),

@@ -37,7 +37,8 @@ final class BasicConverterContext implements ConverterContext,
     /**
      * Creates a new {@link BasicConverterContext}.
      */
-    static BasicConverterContext with(final long dateOffset,
+    static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
+                                      final long dateOffset,
                                       final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
@@ -46,6 +47,7 @@ final class BasicConverterContext implements ConverterContext,
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
         return new BasicConverterContext(
+            canNumbersHaveGroupSeparator,
             dateOffset,
             converter,
             dateTimeContext,
@@ -56,17 +58,26 @@ final class BasicConverterContext implements ConverterContext,
     /**
      * Private ctor use factory
      */
-    private BasicConverterContext(final long dateOffset,
+    private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
+                                  final long dateOffset,
                                   final Converter<ConverterContext> converter,
                                   final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
         super();
 
+        this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
         this.dateOffset = dateOffset;
         this.converter = converter;
         this.dateTimeContext = dateTimeContext;
         this.decimalNumberContext = decimalNumberContext;
     }
+
+    @Override
+    public boolean canNumbersHaveGroupSeparator() {
+        return this.canNumbersHaveGroupSeparator;
+    }
+
+    private final boolean canNumbersHaveGroupSeparator;
 
     @Override
     public long dateOffset() {

@@ -67,6 +67,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
             final Locale locale = Locale.ENGLISH;
 
             return ConverterContexts.basic(
+                false, // canNumbersHaveGroupSeparator
                 0,
                 Converters.fake(),
                 DateTimeContexts.basic(

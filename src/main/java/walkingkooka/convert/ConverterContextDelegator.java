@@ -35,6 +35,12 @@ public interface ConverterContextDelegator extends ConverterContext,
     }
 
     @Override
+    default boolean canNumbersHaveGroupSeparator() {
+        return this.converterContext()
+            .canNumbersHaveGroupSeparator();
+    }
+
+    @Override
     default DateTimeContext dateTimeContext() {
         return this.converterContext();
     }

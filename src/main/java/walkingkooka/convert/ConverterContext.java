@@ -30,6 +30,16 @@ public interface ConverterContext extends CanConvert,
     DecimalNumberContext {
 
     /**
+     * A flag that controls whether text holding a number may or may not include a group-separator.
+     * <pre>
+     * A primary motivator is the excel numberValue function which supports group-separators within a number.
+     * Group separators are a problem because multi value text such as a CSV can also use the same character to separate
+     * values.
+     * </pre>
+     */
+    boolean canNumbersHaveGroupSeparator();
+
+    /**
      * The offset (relative to 1/1/1970) added when converting a number to a {@link java.time.LocalDate}.
      */
     long dateOffset();

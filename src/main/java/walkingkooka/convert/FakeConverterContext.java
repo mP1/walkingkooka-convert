@@ -53,6 +53,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
+    public boolean canNumbersHaveGroupSeparator() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public long dateOffset() {
         throw new UnsupportedOperationException();
     }

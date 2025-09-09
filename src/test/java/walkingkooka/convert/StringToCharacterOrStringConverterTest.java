@@ -112,6 +112,7 @@ public final class StringToCharacterOrStringConverterTest implements ConverterTe
             BigDecimal.valueOf(5),
             Character.class,
             ConverterContexts.basic(
+                false, // canNumbersHaveGroupSeparator
                 0,
                 Converters.fake(),
                 DateTimeContexts.fake(),
