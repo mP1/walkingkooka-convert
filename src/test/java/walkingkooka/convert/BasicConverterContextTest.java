@@ -39,6 +39,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     ConverterContextTesting<BasicConverterContext>,
     DecimalNumberContextDelegator {
 
+    private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;
     private final static long NUMBER_TO_DATE_OFFSET = 0;
 
     private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
@@ -64,6 +65,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 null,
                 this.dateTimeContext(),
@@ -77,6 +79,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 CONVERTER,
                 null,
@@ -89,6 +92,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 CONVERTER,
                 this.dateTimeContext(),
@@ -120,6 +124,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Override
     public BasicConverterContext createContext() {
         return BasicConverterContext.with(
+            CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
             NUMBER_TO_DATE_OFFSET,
             CONVERTER,
             this.dateTimeContext(),

@@ -108,6 +108,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
             '5',
             Number.class,
             ConverterContexts.basic(
+                false, // canNumbersHaveGroupSeparator
                 0, // dateOffset
                 Converters.fake(),
                 DateTimeContexts.fake(),

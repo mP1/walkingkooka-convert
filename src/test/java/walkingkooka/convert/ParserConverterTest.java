@@ -160,6 +160,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.basic(
+            false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
             DateTimeContexts.fake(),

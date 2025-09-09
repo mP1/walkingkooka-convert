@@ -56,6 +56,7 @@ public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanC
             final Locale locale = Locale.forLanguageTag("EN-AU");
 
             return ConverterContexts.basic(
+                false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                 Converters.stringToLocalDate(
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
