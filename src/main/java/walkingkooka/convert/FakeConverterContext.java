@@ -121,4 +121,9 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     public DateTimeSymbols dateTimeSymbols() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public char valueSeparator() {
+        throw new UnsupportedOperationException();
+    }
 }

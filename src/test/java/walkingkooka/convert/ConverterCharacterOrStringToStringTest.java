@@ -110,6 +110,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 0, // dateOffset
+                ',', // valueSeparator
                 Converters.fake(),
                 DateTimeContexts.fake(),
                 DecimalNumberContexts.american(MathContext.DECIMAL32)

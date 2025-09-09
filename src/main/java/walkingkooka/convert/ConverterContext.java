@@ -45,6 +45,11 @@ public interface ConverterContext extends CanConvert,
     long dateOffset();
 
     /**
+     * The character that separates one or more values within a {@link String}, such as a CSV.
+     */
+    char valueSeparator();
+
+    /**
      * Useful to report a failed conversion with a standard error message.
      */
     default <T> Either<T, String> failConversion(final Object value,

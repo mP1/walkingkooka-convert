@@ -39,6 +39,7 @@ final class BasicConverterContext implements ConverterContext,
      */
     static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
+                                      final char valueSeparator,
                                       final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
@@ -49,6 +50,7 @@ final class BasicConverterContext implements ConverterContext,
         return new BasicConverterContext(
             canNumbersHaveGroupSeparator,
             dateOffset,
+            valueSeparator,
             converter,
             dateTimeContext,
             decimalNumberContext
@@ -60,6 +62,7 @@ final class BasicConverterContext implements ConverterContext,
      */
     private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
+                                  final char valueSeparator,
                                   final Converter<ConverterContext> converter,
                                   final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
@@ -67,6 +70,8 @@ final class BasicConverterContext implements ConverterContext,
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
         this.dateOffset = dateOffset;
+        this.valueSeparator = valueSeparator;
+
         this.converter = converter;
         this.dateTimeContext = dateTimeContext;
         this.decimalNumberContext = decimalNumberContext;
@@ -99,6 +104,13 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final Converter<ConverterContext> converter;
+
+    @Override
+    public char valueSeparator() {
+        return this.valueSeparator;
+    }
+
+    private final char valueSeparator;
 
     // DateTimeContext..................................................................................................
 
