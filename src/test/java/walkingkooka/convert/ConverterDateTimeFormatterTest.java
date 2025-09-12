@@ -17,18 +17,17 @@
 
 package walkingkooka.convert;
 
-import java.time.format.DateTimeFormatter;
+import walkingkooka.Cast;
 
-public abstract class DateTimeFormatterConverterTestCase<T> extends ConverterTestCase<T> {
-
-    DateTimeFormatterConverterTestCase() {
-        super();
-    }
-
-    // TypeNameTesting..................................................................................................
+public final class ConverterDateTimeFormatterTest extends ConverterDateTimeFormatterTestCase<ConverterDateTimeFormatter<?, ?, ?>> {
 
     @Override
-    public final String typeNamePrefix() {
-        return DateTimeFormatter.class.getSimpleName() + Converter.class.getSimpleName();
+    public Class<ConverterDateTimeFormatter<?, ?, ?>> type() {
+        return Cast.to(ConverterDateTimeFormatter.class);
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
     }
 }

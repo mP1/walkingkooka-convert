@@ -28,9 +28,9 @@ import java.util.function.Function;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeFormatterConverter<S, T, ConverterContext>, S, T> extends ConverterTestCase2<C> {
+public abstract class ConverterDateTimeFormatterTestCase2<C extends ConverterDateTimeFormatter<S, T, ConverterContext>, S, T> extends ConverterTestCase2<C> {
 
-    DateTimeFormatterConverterTestCase2() {
+    ConverterDateTimeFormatterTestCase2() {
         super();
     }
 
@@ -169,12 +169,12 @@ public abstract class DateTimeFormatterConverterTestCase2<C extends DateTimeForm
 
     @Override
     public final String typeNamePrefix() {
-        return DateTimeFormatter.class.getSimpleName() + Converter.class.getSimpleName();
+        return Converter.class.getSimpleName() + DateTimeFormatter.class.getSimpleName();
     }
 
     @Override
-    public String typeNameSuffix() {
-        return this.targetType().getSimpleName();
+    public final String typeNameSuffix() {
+        return "";
     }
 
     abstract Class<T> targetType();

@@ -29,12 +29,12 @@ import java.util.function.Function;
 /**
  * A {@link Converter} which uses a {@link DateTimeFormatter} in some part of the conversion process.
  */
-abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+abstract class ConverterDateTimeFormatter<S, D, C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Package private to limit sub classing.
      */
-    DateTimeFormatterConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    ConverterDateTimeFormatter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         Objects.requireNonNull(formatter, "formatter");
         this.formatter = formatter;
     }
@@ -73,11 +73,11 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> impl
             final Locale locale = context.locale();
             final int twoDigitYear = context.twoDigitYear();
 
-            DateTimeFormatterConverterCache cache = this.cache;
+            ConverterDateTimeFormatterCache cache = this.cache;
             DateTimeFormatter dateTimeFormatter;
             if (null == cache) {
                 dateTimeFormatter = this.formatter.apply(context);
-                this.cache = DateTimeFormatterConverterCache.with(
+                this.cache = ConverterDateTimeFormatterCache.with(
                     locale,
                     twoDigitYear,
                     dateTimeFormatter
@@ -89,7 +89,7 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> impl
                             .withPositiveSign(context.positiveSign())
                             .withNegativeSign(context.negativeSign())
                             .withDecimalSeparator(context.decimalSeparator()));
-                    cache = DateTimeFormatterConverterCache.with(
+                    cache = ConverterDateTimeFormatterCache.with(
                         locale,
                         twoDigitYear,
                         dateTimeFormatter
@@ -114,7 +114,7 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> impl
      */
     final Function<DateTimeContext, DateTimeFormatter> formatter;
 
-    private transient DateTimeFormatterConverterCache cache;
+    private transient ConverterDateTimeFormatterCache cache;
 
     /**
      * Sub classes should parse or format the value using the {@link DateTimeContext} aware {@link DateTimeFormatter}.

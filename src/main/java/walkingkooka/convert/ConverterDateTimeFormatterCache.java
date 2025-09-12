@@ -23,15 +23,15 @@ import java.util.Locale;
 /**
  * Holds the {@link Locale} and {@link int twoDigitYear} that were used to build the {@link DateTimeFormatter}.
  */
-final class DateTimeFormatterConverterCache {
+final class ConverterDateTimeFormatterCache {
 
-    static DateTimeFormatterConverterCache with(final Locale locale,
+    static ConverterDateTimeFormatterCache with(final Locale locale,
                                                 final int twoDigitYear,
                                                 final DateTimeFormatter formatter) {
-        return new DateTimeFormatterConverterCache(locale, twoDigitYear, formatter);
+        return new ConverterDateTimeFormatterCache(locale, twoDigitYear, formatter);
     }
 
-    private DateTimeFormatterConverterCache(final Locale locale,
+    private ConverterDateTimeFormatterCache(final Locale locale,
                                             final int twoDigitYear,
                                             final DateTimeFormatter formatter) {
         super();
