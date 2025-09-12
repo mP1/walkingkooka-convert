@@ -26,7 +26,7 @@ import walkingkooka.math.Maths;
  * Note attempts to convert out of range values that is too small or too large will fail, however conversions that result in precision being lost
  * will succeed, eg a decimal float such as 2.5 will be converted to integer 2.
  */
-final class ConverterNumberToNumber<C extends ConverterContext> extends Converter2<C> {
+final class ConverterNumberToNumber<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
@@ -45,30 +45,38 @@ final class ConverterNumberToNumber<C extends ConverterContext> extends Converte
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof Number;
+        return null == value ||
+            (value instanceof Number &&
+                (Number.class == type || Maths.isNumberClass(type))
+            );
     }
 
     @Override
-    boolean canConvertType(final Class<?> type) {
-        return Number.class == type || Maths.isNumberClass(type);
-    }
-
-    @Override
-    <T> Either<T, String> convertNonNull(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
         Either<T, String> result;
         try {
             result = type == Number.class ?
-                this.successfulConversion(value, type) :
-                this.convertNonNumber(value, type);
+                this.successfulConversion(
+                    value,
+                    type
+                ) :
+                this.convertNonNumber(
+                    value,
+                    type
+                );
         } catch (final UnsupportedOperationException rethrow) {
             throw rethrow;
         } catch (final RuntimeException cause) {
-            result = this.failConversion(value, type, cause);
+            result = this.failConversion(
+                value,
+                type,
+                cause
+            );
         }
         return result;
     }
