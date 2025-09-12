@@ -26,33 +26,45 @@ import java.math.BigInteger;
 /**
  * A {@link Converter} that handles converting {@link Number} to another {@link Number} type.
  */
-abstract class ConverterNumber<T, C extends ConverterContext> extends Converter2<C> {
+abstract class ConverterNumber<T, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     ConverterNumber() {
         super();
     }
 
-    @Override //
-    final boolean canConvertNonNull(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
-        return value instanceof Number;
-    }
-
-    @Override final boolean canConvertType(final Class<?> type) {
-        return this.targetType() == type;
+    @Override
+    public boolean canConvert(final Object value,
+                              final Class<?> type,
+                              final C context) {
+        return (null == value || value instanceof Number) &&
+            this.targetType() == type;
     }
 
     abstract Class<T> targetType();
 
+    @Override
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
+        return null == value ?
+            this.successfulConversion(
+                value,
+                type
+            ) :
+            this.convertNonNull(
+                value,
+                type,
+                context
+            );
+    }
+
     /**
-     * Accepts an assumed {@link Number} and dispatches to one of the sub classes of {@link Number} which then
+     * Accepts an assumed {@link Number} and dispatches to one of the sub-classes of {@link Number} which then
      * call one of four abstract methods.
      */
-    @Override //
-    final <U> Either<U, String> convertNonNull(final Object value,
-                                               final Class<U> type,
-                                               final ConverterContext context) {
+    private <U> Either<U, String> convertNonNull(final Object value,
+                                                 final Class<U> type,
+                                                 final ConverterContext context) {
         // T and U should be the same...
         Either<U, String> result;
         try {
