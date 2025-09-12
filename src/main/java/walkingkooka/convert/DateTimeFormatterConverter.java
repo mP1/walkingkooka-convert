@@ -17,8 +17,6 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Cast;
-import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 
 import java.time.DateTimeException;
@@ -31,7 +29,7 @@ import java.util.function.Function;
 /**
  * A {@link Converter} which uses a {@link DateTimeFormatter} in some part of the conversion process.
  */
-abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> extends Converter2<C> {
+abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Package private to limit sub classing.
@@ -41,58 +39,74 @@ abstract class DateTimeFormatterConverter<S, D, C extends ConverterContext> exte
         this.formatter = formatter;
     }
 
-    /**
-     * Wraps the {@link #convert(Object, Class, ConverterContext)} in a try/catch any exceptions will become a failure
-     * using the {@link Throwable#getMessage()} as the failure message.
-     */
-    @Override final <T> Either<T, String> convertNonNull(final Object value,
-                                                         final Class<T> type,
-                                                         final ConverterContext context) {
-        Either<T, String> result;
-        try {
-            result = this.successfulConversion(
-                this.convert1(Cast.to(value), context),
-                type
-            );
-        } catch (final IllegalArgumentException | DateTimeException cause) {
-            result = this.failConversion(value, type, cause);
-        }
-        return result;
+    @Override
+    public final boolean canConvert(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
+        Objects.requireNonNull(type, "type");
+        Objects.requireNonNull(context, "context");
+
+        return (
+            null == value ||
+                this.canConvertNonNull(
+                    value,
+                    type,
+                    context
+                )
+        ) &&
+            this.canConvertType(type);
     }
 
-    /**
-     * Uses the {@link Locale} and {@link ConverterContext#twoDigitYear()} creating a {@link DateTimeFormatter}
-     * if necessary and then calls {@link #parseOrFormat(Object, DateTimeFormatter)} wrapping any thrown {@link DateTimeException}
-     */
-    private D convert1(final S value,
-                       final ConverterContext context) {
-        final Locale locale = context.locale();
-        final int twoDigitYear = context.twoDigitYear();
+    abstract boolean canConvertNonNull(final Object value,
+                                       final Class<?> type,
+                                       final C context);
 
-        DateTimeFormatterConverterCache cache = this.cache;
-        DateTimeFormatter dateTimeFormatter;
-        if (null == cache) {
-            dateTimeFormatter = this.formatter.apply(context);
-            this.cache = DateTimeFormatterConverterCache.with(locale,
-                twoDigitYear,
-                dateTimeFormatter);
-        } else {
-            if (false == cache.locale.equals(locale) || cache.twoDigitYear != twoDigitYear) {
-                dateTimeFormatter = this.formatter.apply(context)
-                    .withDecimalStyle(DecimalStyle.of(locale)
-                        .withPositiveSign(context.positiveSign())
-                        .withNegativeSign(context.negativeSign())
-                        .withDecimalSeparator(context.decimalSeparator()));
-                cache = DateTimeFormatterConverterCache.with(locale,
+    abstract boolean canConvertType(final Class<?> type);
+
+    @Override
+    public Object tryConvertOrFail(final Object value,
+                                   final Class<?> type,
+                                   final C context) {
+        Object result = null;
+
+        if(null != value) {
+            final Locale locale = context.locale();
+            final int twoDigitYear = context.twoDigitYear();
+
+            DateTimeFormatterConverterCache cache = this.cache;
+            DateTimeFormatter dateTimeFormatter;
+            if (null == cache) {
+                dateTimeFormatter = this.formatter.apply(context);
+                this.cache = DateTimeFormatterConverterCache.with(
+                    locale,
                     twoDigitYear,
-                    dateTimeFormatter);
-                this.cache = cache;
+                    dateTimeFormatter
+                );
+            } else {
+                if (false == cache.locale.equals(locale) || cache.twoDigitYear != twoDigitYear) {
+                    dateTimeFormatter = this.formatter.apply(context)
+                        .withDecimalStyle(DecimalStyle.of(locale)
+                            .withPositiveSign(context.positiveSign())
+                            .withNegativeSign(context.negativeSign())
+                            .withDecimalSeparator(context.decimalSeparator()));
+                    cache = DateTimeFormatterConverterCache.with(
+                        locale,
+                        twoDigitYear,
+                        dateTimeFormatter
+                    );
+                    this.cache = cache;
+                }
+
+                dateTimeFormatter = cache.formatter;
             }
 
-            dateTimeFormatter = cache.formatter;
+            result = this.parseOrFormat(
+                (S)value,
+                dateTimeFormatter
+            );
         }
 
-        return this.parseOrFormat(value, dateTimeFormatter);
+        return result;
     }
 
     /**
