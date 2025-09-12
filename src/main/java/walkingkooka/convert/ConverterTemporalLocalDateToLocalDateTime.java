@@ -51,9 +51,9 @@ final class ConverterTemporalLocalDateToLocalDateTime<C extends ConverterContext
     }
 
     @Override
-    <T> Either<T, String> convertNonNull0(final LocalDate date,
-                                          final Class<T> type,
-                                          final ConverterContext context) {
+    <T> Either<T, String> doConvertNonNull(final LocalDate date,
+                                           final Class<T> type,
+                                           final ConverterContext context) {
         return this.successfulConversion(
             LocalDateTime.of(date, TIME),
             type
