@@ -21,18 +21,16 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContext;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterLocalDateTimeToStringTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterLocalDateTimeToString<ConverterContext>, LocalDateTime, String> {
+public final class ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatterTest extends ConverterDateTimeFormatterTestCase2<ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter<ConverterContext>, LocalTime, String> {
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterLocalDateTimeToString<ConverterContext> converter = this.createConverter();
-        final LocalDateTime source = this.source();
+        final ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter<ConverterContext> converter = this.createConverter();
+        final LocalTime source = this.source();
 
         this.convertAndCheck2(converter,
             source,
@@ -42,17 +40,17 @@ public final class DateTimeFormatterConverterLocalDateTimeToStringTest extends D
         this.convertAndCheck2(converter,
             source,
             this.createContext2(),
-            "2000-Januar-31T12:58:59");
+            "12:58:59 nachm.");
     }
 
     @Override
-    protected DateTimeFormatterConverterLocalDateTimeToString<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return DateTimeFormatterConverterLocalDateTimeToString.with(formatter);
+    protected ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter.with(formatter);
     }
 
     @Override
     DateTimeFormatter formatter() {
-        return DateTimeFormatter.ofPattern("yyyy-MMMM-dd'T'hh:mm:ss");
+        return DateTimeFormatter.ofPattern("hh:mm:ss a");
     }
 
     @Override
@@ -61,17 +59,17 @@ public final class DateTimeFormatterConverterLocalDateTimeToStringTest extends D
     }
 
     @Override
-    LocalDateTime source() {
-        return LocalDateTime.of(LocalDate.of(2000, 1, 31), LocalTime.of(12, 58, 59));
+    LocalTime source() {
+        return LocalTime.of(12, 58, 59);
     }
 
     @Override
     String converted() {
-        return "2000-January-31T12:58:59";
+        return "12:58:59 PM";
     }
 
     @Override
-    public Class<DateTimeFormatterConverterLocalDateTimeToString<ConverterContext>> type() {
-        return Cast.to(DateTimeFormatterConverterLocalDateTimeToString.class);
+    public Class<ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter<ConverterContext>> type() {
+        return Cast.to(ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter.class);
     }
 }

@@ -27,7 +27,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterStringToLocalDateTimeTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterStringToLocalDateTime<ConverterContext>, String, LocalDateTime> {
+public final class ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatterTest extends ConverterDateTimeFormatterTestCase2<ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter<ConverterContext>, String, LocalDateTime> {
 
     @Test
     public void testConvert2() {
@@ -39,7 +39,7 @@ public final class DateTimeFormatterConverterStringToLocalDateTimeTest extends D
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterStringToLocalDateTime<ConverterContext> converter = this.createConverter();
+        final ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter<ConverterContext> converter = this.createConverter();
 
         this.convertAndCheck2(converter,
             this.source(),
@@ -53,8 +53,8 @@ public final class DateTimeFormatterConverterStringToLocalDateTimeTest extends D
     }
 
     @Override
-    protected DateTimeFormatterConverterStringToLocalDateTime<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return DateTimeFormatterConverterStringToLocalDateTime.with(formatter);
+    protected ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter.with(formatter);
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class DateTimeFormatterConverterStringToLocalDateTimeTest extends D
     }
 
     @Override
-    public Class<DateTimeFormatterConverterStringToLocalDateTime<ConverterContext>> type() {
-        return Cast.to(DateTimeFormatterConverterStringToLocalDateTime.class);
+    public Class<ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter<ConverterContext>> type() {
+        return Cast.to(ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter.class);
     }
 }

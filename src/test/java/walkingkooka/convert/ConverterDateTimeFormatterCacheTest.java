@@ -23,20 +23,20 @@ import walkingkooka.ToStringTesting;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public final class DateTimeFormatterConverterCacheTest extends DateTimeFormatterConverterTestCase<DateTimeFormatterConverterCache>
-    implements ToStringTesting<DateTimeFormatterConverterCache> {
+public final class ConverterDateTimeFormatterCacheTest extends ConverterDateTimeFormatterTestCase<ConverterDateTimeFormatterCache>
+    implements ToStringTesting<ConverterDateTimeFormatterCache> {
 
     @Test
     public void testToString() {
         final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
-        this.toStringAndCheck(DateTimeFormatterConverterCache.with(Locale.ENGLISH, 123, formatter),
+        this.toStringAndCheck(ConverterDateTimeFormatterCache.with(Locale.ENGLISH, 123, formatter),
             "en 123 " + formatter);
     }
 
     @Override
-    public Class<DateTimeFormatterConverterCache> type() {
-        return DateTimeFormatterConverterCache.class;
+    public Class<ConverterDateTimeFormatterCache> type() {
+        return ConverterDateTimeFormatterCache.class;
     }
 
     @Override

@@ -25,11 +25,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
 
-public final class DateTimeFormatterConverterLocalDateToStringTest extends DateTimeFormatterConverterTestCase2<DateTimeFormatterConverterLocalDateToString<ConverterContext>, LocalDate, String> {
+public final class ConverterDateTimeFormatterLocalDateToStringDateTimeFormatterTest extends ConverterDateTimeFormatterTestCase2<ConverterDateTimeFormatterLocalDateToStringDateTimeFormatter<ConverterContext>, LocalDate, String> {
 
     @Test
     public void testLocaleChange() {
-        final DateTimeFormatterConverterLocalDateToString<ConverterContext> converter = this.createConverter();
+        final ConverterDateTimeFormatterLocalDateToStringDateTimeFormatter<ConverterContext> converter = this.createConverter();
         final LocalDate source = this.source();
 
         this.convertAndCheck2(converter,
@@ -44,8 +44,8 @@ public final class DateTimeFormatterConverterLocalDateToStringTest extends DateT
     }
 
     @Override
-    protected DateTimeFormatterConverterLocalDateToString<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return DateTimeFormatterConverterLocalDateToString.with(formatter);
+    protected ConverterDateTimeFormatterLocalDateToStringDateTimeFormatter<ConverterContext> createConverter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return ConverterDateTimeFormatterLocalDateToStringDateTimeFormatter.with(formatter);
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class DateTimeFormatterConverterLocalDateToStringTest extends DateT
     }
 
     @Override
-    public Class<DateTimeFormatterConverterLocalDateToString<ConverterContext>> type() {
-        return Cast.to(DateTimeFormatterConverterLocalDateToString.class);
+    public Class<ConverterDateTimeFormatterLocalDateToStringDateTimeFormatter<ConverterContext>> type() {
+        return Cast.to(ConverterDateTimeFormatterLocalDateToStringDateTimeFormatter.class);
     }
 }

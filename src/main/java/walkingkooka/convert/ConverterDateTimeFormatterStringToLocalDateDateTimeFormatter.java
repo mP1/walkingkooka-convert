@@ -19,20 +19,25 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.function.Function;
 
 /**
- * A {@link Converter} that formats a {@link LocalDateTime} into a {@link String}
+ * A {@link Converter} that parses a {@link String} into a {@link LocalTime}.
  */
-final class DateTimeFormatterConverterLocalDateTimeToString<C extends ConverterContext> extends DateTimeFormatterConverter<LocalDateTime, String, C> {
+final class ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter<C extends ConverterContext> extends ConverterDateTimeFormatter<String, LocalDate, C> {
 
-    static <C extends ConverterContext> DateTimeFormatterConverterLocalDateTimeToString<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return new DateTimeFormatterConverterLocalDateTimeToString<>(formatter);
+    static <C extends ConverterContext> ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter<C> with(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return new ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter<>(formatter);
     }
 
-    private DateTimeFormatterConverterLocalDateTimeToString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+    /**
+     * Private ctor use static factory
+     */
+    private ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         super(formatter);
     }
 
@@ -40,24 +45,24 @@ final class DateTimeFormatterConverterLocalDateTimeToString<C extends ConverterC
     boolean canConvertNonNull(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof LocalDateTime;
+        return value instanceof String;
     }
 
     @Override
     boolean canConvertType(final Class<?> type) {
-        return String.class == type;
+        return LocalDate.class == type;
     }
 
     @Override
-    String parseOrFormat(final LocalDateTime value,
-                         final DateTimeFormatter formatter) throws IllegalArgumentException {
-        return value.format(formatter);
+    LocalDate parseOrFormat(final String text,
+                            final DateTimeFormatter formatter) throws DateTimeParseException {
+        return LocalDate.parse(text, formatter);
     }
 
     // Object...........................................................................................................
 
     @Override
     public String toString() {
-        return "LocalDateTime to String";
+        return "String to LocalDate";
     }
 }
