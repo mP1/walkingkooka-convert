@@ -33,7 +33,7 @@ import java.util.function.Function;
 /**
  * Base class for a {@link Converter} that parses or formats using a {@link DecimalFormat}.
  */
-abstract class DecimalFormatConverter<C extends ConverterContext> extends Converter2<C> {
+abstract class DecimalFormatConverter<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     /**
      * Private ctor use factory
@@ -43,10 +43,25 @@ abstract class DecimalFormatConverter<C extends ConverterContext> extends Conver
         this.decimalFormat = Objects.requireNonNull(decimalFormat, "decimalFormat");
     }
 
-    @Override //
-    final <T> Either<T, String> convertNonNull(final Object value,
-                                               final Class<T> type,
-                                               final ConverterContext context) {
+    @Override
+    public final <T> Either<T, String> doConvert(final Object value,
+                                                 final Class<T> type,
+                                                 final C context) {
+        return null == value ?
+            this.successfulConversion(
+                value,
+                type
+            ) :
+            this.convertNonNull(
+                value,
+                type,
+                context
+            );
+    }
+
+    private <T> Either<T, String> convertNonNull(final Object value,
+                                                 final Class<T> type,
+                                                 final C context) {
         Either<T, String> result;
         try {
             final ThreadLocal<Map<ConverterContext, DecimalFormat>> cache = this.cache;
