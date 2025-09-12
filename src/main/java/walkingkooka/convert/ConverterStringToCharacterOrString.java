@@ -22,25 +22,24 @@ import walkingkooka.Cast;
 /**
  * A Converter that supports converting String to Character if string is 1 char or a String..
  */
-final class StringToCharacterOrStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterStringToCharacterOrString<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> StringToCharacterOrStringConverter<C> instance() {
+    static <C extends ConverterContext> ConverterStringToCharacterOrString<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static StringToCharacterOrStringConverter<?> INSTANCE = new StringToCharacterOrStringConverter<>();
-
+    private final static ConverterStringToCharacterOrString<?> INSTANCE = new ConverterStringToCharacterOrString<>();
 
     /**
      * Private to stop sub classing.
      */
-    private StringToCharacterOrStringConverter() {
+    private ConverterStringToCharacterOrString() {
         super();
     }
 
