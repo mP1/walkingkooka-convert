@@ -26,12 +26,23 @@ import java.time.LocalTime;
 public final class ConverterLocalTimeToLocalDateTimeTest extends ConverterLocalTimeTestCase<ConverterLocalTimeToLocalDateTime<ConverterContext>> {
 
     @Test
-    public void testLocalDateTimeFails() {
-        this.convertFails(LocalDateTime.now(), LocalDateTime.class);
+    public void testConvertLocalDateTimeToLocalDateTimeFails() {
+        this.convertFails(
+            LocalDateTime.now(),
+            LocalDateTime.class
+        );
     }
 
     @Test
-    public void testConvertNull() {
+    public void testConvertNullToNonLocalDateTimeFails() {
+        this.convertFails(
+            null,
+            Void.class
+        );
+    }
+
+    @Test
+    public void testConvertNullToLocalDateTime() {
         this.convertAndCheck(
             null,
             LocalDateTime.class
@@ -39,7 +50,7 @@ public final class ConverterLocalTimeToLocalDateTimeTest extends ConverterLocalT
     }
 
     @Test
-    public void testConvertLocalTime() {
+    public void testConvertLocalTimeToLocalDateTime() {
         this.convertAndCheck(
             LocalTime.of(12, 58, 59, 789),
             LocalDateTime.of(1970, 1, 1, 12, 58, 59, 789)
