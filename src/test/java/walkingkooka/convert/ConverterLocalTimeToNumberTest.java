@@ -33,7 +33,15 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
     private final static LocalTime DOUBLE_TIME = LocalTime.NOON;
 
     @Test
-    public void testConvertNull() {
+    public void testConvertNullToNonNumberFails() {
+        this.convertFails(
+            null,
+            this.getClass()
+        );
+    }
+
+    @Test
+    public void testConvertNullToNumber() {
         this.convertAndCheck(
             null,
             Number.class
