@@ -39,15 +39,11 @@ final class DecimalFormatConverterStringToNumber<C extends ConverterContext> ext
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return value instanceof String;
-    }
-
-    @Override
-    boolean canConvertType(final Class<?> type) {
-        return Maths.isNumberClass(type) || type == Number.class;
+        return (null == value || value instanceof String) &&
+            (Maths.isNumberClass(type) || type == Number.class);
     }
 
     @Override //
@@ -61,6 +57,20 @@ final class DecimalFormatConverterStringToNumber<C extends ConverterContext> ext
             this.convertToNumber(parsed,
                 type,
                 context);
+    }
+
+    /**
+     * Helper that performs the last step by converting a {@link Number} to another {@link Number sub class}.
+     */
+    private <N> Either<N, String> convertToNumber(final Number number,
+                                                  final Class<N> type,
+                                                  final ConverterContext context) {
+        return ConverterNumberToNumber.instance()
+            .convert(
+                number,
+                type,
+                context
+            );
     }
 
     @Override

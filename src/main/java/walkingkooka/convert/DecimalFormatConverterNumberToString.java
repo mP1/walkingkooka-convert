@@ -38,15 +38,11 @@ final class DecimalFormatConverterNumberToString<C extends ConverterContext> ext
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return Maths.isNumber(value);
-    }
-
-    @Override
-    boolean canConvertType(final Class<?> type) {
-        return String.class == type;
+        return (null == value || Maths.isNumber(value)) &&
+            String.class == type;
     }
 
     @Override
