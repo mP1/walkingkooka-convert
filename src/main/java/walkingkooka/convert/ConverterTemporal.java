@@ -17,33 +17,56 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.Cast;
 import walkingkooka.Either;
 
 /**
  * A {@link Converter} which only accepts a single source type and a single target type, with an offset which is
  * added to the date component.
  */
-abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Converter2<C> {
+abstract class ConverterTemporal<S, D, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     ConverterTemporal() {
         super();
     }
 
-    @Override //
-    final <T> Either<T, String> convertNonNull(final Object value,
-                                               final Class<T> type,
-                                               final ConverterContext context) {
-        return this.convertNonNull0(
-            Cast.to(value),
+    @Override
+    public final boolean canConvert(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
+        return (
+            null == value ||
+                this.canConvertNonNull(
+                    value,
+                    type,
+                    context
+                )
+        ) && this.canConvertType(type);
+    }
+
+    abstract boolean canConvertNonNull(final Object value,
+                                       final Class<?> type,
+                                       final C context);
+
+    abstract boolean canConvertType(final Class<?> type);
+
+    @Override
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
+        return null == value ?
+            this.successfulConversion(
+                value,
+                type
+            ) : this.doConvertNonNull(
+            (S) value,
             type,
             context
         );
     }
 
-    abstract <T> Either<T, String> convertNonNull0(final S value,
-                                                   final Class<T> type,
-                                                   final ConverterContext context);
+    abstract <T> Either<T, String> doConvertNonNull(final S value,
+                                                    final Class<T> type,
+                                                    final ConverterContext context);
 
     @Override
     public final String toString() {
@@ -53,4 +76,18 @@ abstract class ConverterTemporal<S, D, C extends ConverterContext> extends Conve
     abstract Class<S> sourceType();
 
     abstract Class<D> targetType();
+
+    /**
+     * Helper that performs the last step by converting a {@link Number} to another {@link Number sub class}.
+     */
+    final <N> Either<N, String> convertToNumber(final Number number,
+                                                final Class<N> type,
+                                                final ConverterContext context) {
+        return ConverterNumberToNumber.instance()
+            .convert(
+                number,
+                type,
+                context
+            );
+    }
 }
