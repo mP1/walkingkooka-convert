@@ -22,9 +22,9 @@ import walkingkooka.Either;
 import java.time.LocalTime;
 
 /**
- * Converts a {@link LocalTime} to a given type.
+ * Converts a {@link LocalTime} or null to a given supported type.
  */
-abstract class ConverterLocalTime<C extends ConverterContext> extends Converter2<C> {
+abstract class ConverterLocalTime<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     /**
      * Package private to limit sub classing.
@@ -33,24 +33,43 @@ abstract class ConverterLocalTime<C extends ConverterContext> extends Converter2
     }
 
     @Override //
-    final boolean canConvertNonNull(final Object value,
-                                    final Class<?> type,
-                                    final C context) {
-        return value instanceof LocalTime;
+    public boolean canConvert(final Object value,
+                              final Class<?> type,
+                              final C context) {
+        return (null == value || value instanceof LocalTime) &&
+            this.canConvertType(type);
     }
 
-    @Override  //
-    final <T> Either<T, String> convertNonNull(final Object value,
-                                               final Class<T> type,
-                                               final ConverterContext context) {
-        return this.convertTime(
-            (LocalTime) value,
-            type,
-            context
-        );
+    abstract boolean canConvertType(final Class<?> type);
+
+    @Override
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
+        return null == value ?
+            this.successfulConversion(
+                value,
+                type
+            ) :
+            this.convertTime(
+                (LocalTime) value,
+                type,
+                context
+            );
     }
 
     abstract <T> Either<T, String> convertTime(final LocalTime time,
                                                final Class<T> type,
                                                final ConverterContext context);
+
+    final <N> Either<N, String> convertToNumber(final Number number,
+                                                final Class<N> type,
+                                                final ConverterContext context) {
+        return ConverterNumberToNumber.instance()
+            .convert(
+                number,
+                type,
+                context
+            );
+    }
 }
