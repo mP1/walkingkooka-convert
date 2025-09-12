@@ -23,18 +23,27 @@ import walkingkooka.Cast;
 public final class ConverterNeverTest extends ConverterTestCase2<ConverterNever<ConverterContext>> {
 
     @Test
-    public void testNull() {
-        this.convertFails(null, Object.class);
+    public void testConvertNull() {
+        this.convertFails(
+            null,
+            Object.class
+        );
     }
 
     @Test
-    public void testBooleanTrue() {
-        this.convertFails("cant", Object.class);
+    public void testConvertBooleanTrueToObject() {
+        this.convertFails(
+            "TRUE",
+            Object.class
+        );
     }
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createConverter(), "never");
+        this.toStringAndCheck(
+            this.createConverter(),
+            "never"
+        );
     }
 
     @Override
@@ -47,14 +56,12 @@ public final class ConverterNeverTest extends ConverterTestCase2<ConverterNever<
         return ConverterContexts.fake();
     }
 
-    // ClassTesting.....................................................................................................
+    // class............................................................................................................
 
     @Override
     public Class<ConverterNever<ConverterContext>> type() {
         return Cast.to(ConverterNever.class);
     }
-
-    // TypeNameTesting..................................................................................................
 
     @Override
     public String typeNamePrefix() {
