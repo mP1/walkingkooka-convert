@@ -23,7 +23,7 @@ import walkingkooka.Either;
 /**
  * A {@link Converter} that never converts.
  */
-final class ConverterNever<C extends ConverterContext> extends Converter2<C> {
+final class ConverterNever<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     /**
      * Instance
@@ -42,22 +42,19 @@ final class ConverterNever<C extends ConverterContext> extends Converter2<C> {
     }
 
     @Override
-    boolean canConvertNonNull(final Object value,
+    public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return false;
+        return true;
     }
 
     @Override
-    boolean canConvertType(final Class<?> type) {
-        return false;
-    }
-
-    @Override
-    <T> Either<T, String> convertNonNull(final Object value,
-                                         final Class<T> type,
-                                         final ConverterContext context) {
-        return this.failConversion(value, type);
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type, C context) {
+        return this.failConversion(
+            value,
+            type
+        );
     }
 
     @Override
