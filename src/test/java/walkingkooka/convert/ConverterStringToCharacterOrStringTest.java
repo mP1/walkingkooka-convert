@@ -27,7 +27,7 @@ import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public final class StringToCharacterOrStringConverterTest implements ConverterTesting2<StringToCharacterOrStringConverter<FakeConverterContext>, FakeConverterContext> {
+public final class ConverterStringToCharacterOrStringTest implements ConverterTesting2<ConverterStringToCharacterOrString<FakeConverterContext>, FakeConverterContext> {
 
     @Test
     public void testConvertNull() {
@@ -86,8 +86,8 @@ public final class StringToCharacterOrStringConverterTest implements ConverterTe
     }
 
     @Override
-    public StringToCharacterOrStringConverter<FakeConverterContext> createConverter() {
-        return StringToCharacterOrStringConverter.instance();
+    public ConverterStringToCharacterOrString<FakeConverterContext> createConverter() {
+        return ConverterStringToCharacterOrString.instance();
     }
 
     @Override
@@ -138,10 +138,20 @@ public final class StringToCharacterOrStringConverterTest implements ConverterTe
         );
     }
 
-    // ClassTesting.....................................................................................................
+    // class............................................................................................................
 
     @Override
-    public Class<StringToCharacterOrStringConverter<FakeConverterContext>> type() {
-        return Cast.to(StringToCharacterOrStringConverter.class);
+    public Class<ConverterStringToCharacterOrString<FakeConverterContext>> type() {
+        return Cast.to(ConverterStringToCharacterOrString.class);
+    }
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
     }
 }

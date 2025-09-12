@@ -321,10 +321,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see StringToCharacterOrStringConverter}
+     * {@see ConverterStringToCharacterOrString}
      */
     public static <C extends ConverterContext> Converter<C> stringToCharacterOrString() {
-        return StringToCharacterOrStringConverter.instance();
+        return ConverterStringToCharacterOrString.instance();
     }
 
     /**
