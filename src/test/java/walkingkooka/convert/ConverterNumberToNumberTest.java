@@ -25,6 +25,15 @@ import java.math.BigInteger;
 
 public final class ConverterNumberToNumberTest extends ConverterTestCase2<ConverterNumberToNumber<ConverterContext>> {
 
+    @Test
+    public void testConvertNullToNumber() {
+        this.convertAndCheck(
+            null,
+            Number.class,
+            (Number)null
+        );
+    }
+
     // to Number........................................................................................................
 
     @Test
@@ -68,7 +77,11 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     private void convertToNumberAndCheck(final Number number) {
-        this.convertAndCheck(number, Number.class, number);
+        this.convertAndCheck(
+            number,
+            Number.class,
+            number
+        );
     }
 
     // to same type.....................................................................................................
@@ -273,7 +286,10 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     }
 
     private void convertToBigIntegerFails(final Number number) {
-        this.convertFails(number, BigInteger.class);
+        this.convertFails(
+            number,
+            BigInteger.class
+        );
     }
 
     // toByte...........................................................................................................
