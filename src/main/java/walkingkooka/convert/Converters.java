@@ -290,10 +290,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ObjectToStringConverter}
+     * {@see ConverterObjectToString}
      */
     public static <C extends ConverterContext> Converter<C> objectToString() {
-        return ObjectToStringConverter.instance();
+        return ConverterObjectToString.instance();
     }
 
     /**

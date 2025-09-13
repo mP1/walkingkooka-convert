@@ -19,12 +19,10 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.ToStringTesting;
 
 import java.math.BigDecimal;
 
-public final class ObjectToStringConverterTest implements ConverterTesting2<ObjectToStringConverter<ConverterContext>, ConverterContext>,
-    ToStringTesting<ObjectToStringConverter<ConverterContext>> {
+public final class ConverterObjectToStringTest extends ConverterTestCase2<ConverterObjectToString<ConverterContext>> {
 
     @Test
     public void testConvertNull() {
@@ -64,8 +62,8 @@ public final class ObjectToStringConverterTest implements ConverterTesting2<Obje
     }
 
     @Override
-    public ObjectToStringConverter<ConverterContext> createConverter() {
-        return ObjectToStringConverter.instance();
+    public ConverterObjectToString<ConverterContext> createConverter() {
+        return ConverterObjectToString.instance();
     }
 
     @Override
@@ -73,10 +71,15 @@ public final class ObjectToStringConverterTest implements ConverterTesting2<Obje
         return ConverterContexts.fake();
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
-    public Class<ObjectToStringConverter<ConverterContext>> type() {
-        return Cast.to(ObjectToStringConverter.class);
+    public Class<ConverterObjectToString<ConverterContext>> type() {
+        return Cast.to(ConverterObjectToString.class);
+    }
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
     }
 }
