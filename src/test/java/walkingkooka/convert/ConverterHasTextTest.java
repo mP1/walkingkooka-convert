@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.text.HasText;
 
-public final class ConverterHasTextToStringTest extends ConverterTestCase2<ConverterHasTextToString<ConverterContext>> {
+public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasText<ConverterContext>> {
 
     @Test
     public void testConvertNullToString() {
@@ -55,8 +55,8 @@ public final class ConverterHasTextToStringTest extends ConverterTestCase2<Conve
     }
 
     @Override
-    public ConverterHasTextToString<ConverterContext> createConverter() {
-        return ConverterHasTextToString.instance();
+    public ConverterHasText<ConverterContext> createConverter() {
+        return ConverterHasText.instance();
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class ConverterHasTextToStringTest extends ConverterTestCase2<Conve
     // class............................................................................................................
 
     @Override
-    public Class<ConverterHasTextToString<ConverterContext>> type() {
-        return Cast.to(ConverterHasTextToString.class);
+    public Class<ConverterHasText<ConverterContext>> type() {
+        return Cast.to(ConverterHasText.class);
     }
 }
