@@ -91,7 +91,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
         return new FakeConverterContext();
     }
 
-    // ChainConverter...................................................................................................
+    // ConverterChain...................................................................................................
 
     @Test
     public void testChainConverterCharacterToStringToNumber() {

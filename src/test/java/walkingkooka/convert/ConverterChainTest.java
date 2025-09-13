@@ -26,14 +26,14 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ChainConverterTest implements ConverterTesting2<ChainConverter<FakeConverterContext>, FakeConverterContext>,
-    HashCodeEqualsDefinedTesting2<ChainConverter<FakeConverterContext>> {
+public final class ConverterChainTest extends ConverterTestCase2<ConverterChain<ConverterContext>>
+    implements HashCodeEqualsDefinedTesting2<ConverterChain<ConverterContext>> {
 
     @Test
     public void testWithNullFirstConverterFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ChainConverter.with(
+            () -> ConverterChain.with(
                 null,
                 String.class,
                 Converters.stringToCharacterOrString()
@@ -45,7 +45,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     public void testWithNullIntermediateTypeFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ChainConverter.with(
+            () -> ConverterChain.with(
                 Converters.hasTextToString(),
                 null,
                 Converters.stringToCharacterOrString()
@@ -57,7 +57,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     public void testWithNullSecondConverterFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ChainConverter.with(
+            () -> ConverterChain.with(
                 Converters.hasTextToString(),
                 String.class,
                 null
@@ -70,7 +70,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testConvertNullSuccess() {
         this.convertAndCheck(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.simple(),
                 Void.class,
                 Converters.simple()
@@ -97,7 +97,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testConvertFirstConverterFails() {
         this.convertFails(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.numberToBoolean(),
                 String.class,
                 Converters.stringToCharacterOrString()
@@ -110,7 +110,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testConvertSecondConverterFails() {
         this.convertFails(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.objectToString(),
                 String.class,
                 Converters.stringToCharacterOrString()
@@ -121,8 +121,8 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     }
 
     @Override
-    public ChainConverter<FakeConverterContext> createConverter() {
-        return ChainConverter.with(
+    public ConverterChain<ConverterContext> createConverter() {
+        return ConverterChain.with(
             Converters.hasTextToString(),
             String.class,
             Converters.stringToCharacterOrString()
@@ -130,8 +130,8 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     }
 
     @Override
-    public FakeConverterContext createContext() {
-        return new FakeConverterContext();
+    public ConverterContext createContext() {
+        return ConverterContexts.fake();
     }
 
     // hashCode/equals..................................................................................................
@@ -139,7 +139,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testEqualsDifferentFirstConverter() {
         this.checkNotEquals(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.fake(),
                 String.class,
                 Converters.stringToCharacterOrString()
@@ -148,9 +148,9 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     }
 
     @Test
-    public void testEqualsDifferentType() {
+    public void testEqualsDifferentType2() {
         this.checkNotEquals(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.booleanToNumber(),
                 void.class,
                 Converters.stringToCharacterOrString()
@@ -161,7 +161,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     @Test
     public void testEqualsDifferentSecondConverter() {
         this.checkNotEquals(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.booleanToNumber(),
                 String.class,
                 Converters.fake()
@@ -170,8 +170,8 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     }
 
     @Override
-    public ChainConverter<FakeConverterContext> createObject() {
-        return ChainConverter.with(
+    public ConverterChain<ConverterContext> createObject() {
+        return ConverterChain.with(
             Converters.booleanToNumber(),
             String.class,
             Converters.stringToCharacterOrString()
@@ -211,7 +211,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
                                    final String secondToString,
                                    final String expected) {
         this.toStringAndCheck(
-            ChainConverter.with(
+            ConverterChain.with(
                 Converters.fake().setToString(firstToString),
                 String.class,
                 Converters.fake().setToString(secondToString)
@@ -223,7 +223,7 @@ public final class ChainConverterTest implements ConverterTesting2<ChainConverte
     // classTesting.....................................................................................................
 
     @Override
-    public Class<ChainConverter<FakeConverterContext>> type() {
-        return Cast.to(ChainConverter.class);
+    public Class<ConverterChain<ConverterContext>> type() {
+        return Cast.to(ConverterChain.class);
     }
 }
