@@ -384,6 +384,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListNumberList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToNumberList() {
+        return ConverterTextToListNumberList.instance();
+    }
+
+    /**
      * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,

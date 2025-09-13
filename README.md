@@ -57,6 +57,7 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 - stringToLocalTime
 - stringToLocalTimeList
 - stringToNumber
+- stringToNumberList
 - stringToBooleanList
 - toBoolean Performs a test and uses that result to pick one of two values.
 
