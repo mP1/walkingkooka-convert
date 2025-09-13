@@ -51,6 +51,7 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 - simple Returns the value if it is the same Class as the target. Note due to J2cl limitations Class.isInstance is not possible.
 - stringToStringOrCharacter converts any value to String if necessary and then that to Character.
 - stringToLocalDate
+- stringToLocalDateList
 - stringToLocalDateTime
 - stringToLocalTime
 - stringToNumber

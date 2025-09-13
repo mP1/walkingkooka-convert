@@ -363,6 +363,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListLocalDateList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalDateList() {
+        return ConverterTextToListLocalDateList.instance();
+    }
+
+    /**
      * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
