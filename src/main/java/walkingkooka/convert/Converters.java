@@ -133,11 +133,11 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see CustomToStringConverter}
+     * {@see ConverterCustomToString}
      */
     public static <C extends ConverterContext> Converter<C> customToString(final Converter<C> converter,
                                                                            final String toString) {
-        return CustomToStringConverter.wrap(converter, toString);
+        return ConverterCustomToString.wrap(converter, toString);
     }
 
     /**

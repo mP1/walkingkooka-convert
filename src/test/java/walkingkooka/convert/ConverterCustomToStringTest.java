@@ -26,41 +26,41 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class CustomToStringConverterTest extends ConverterTestCase2<CustomToStringConverter<ConverterContext>>
-    implements HashCodeEqualsDefinedTesting2<CustomToStringConverter<ConverterContext>> {
+public final class ConverterCustomToStringTest extends ConverterTestCase2<ConverterCustomToString<ConverterContext>>
+    implements HashCodeEqualsDefinedTesting2<ConverterCustomToString<ConverterContext>> {
 
     private final static Converter<ConverterContext> WRAPPED = Converters.objectToString();
     private final static String CUSTOM_TO_STRING = "!!custom-to-string!!";
 
     @Test
     public void testWrapNullConverterFails() {
-        assertThrows(NullPointerException.class, () -> CustomToStringConverter.wrap(null, CUSTOM_TO_STRING));
+        assertThrows(NullPointerException.class, () -> ConverterCustomToString.wrap(null, CUSTOM_TO_STRING));
     }
 
     @Test
     public void testWrapNullToStringFails() {
-        assertThrows(NullPointerException.class, () -> CustomToStringConverter.wrap(WRAPPED, null));
+        assertThrows(NullPointerException.class, () -> ConverterCustomToString.wrap(WRAPPED, null));
     }
 
     @Test
     public void testWrapEmptyToStringFails() {
-        assertThrows(IllegalArgumentException.class, () -> CustomToStringConverter.wrap(WRAPPED, ""));
+        assertThrows(IllegalArgumentException.class, () -> ConverterCustomToString.wrap(WRAPPED, ""));
     }
 
     @Test
     public void testWrapWhitespaceToStringFails() {
-        assertThrows(IllegalArgumentException.class, () -> CustomToStringConverter.wrap(WRAPPED, " \t"));
+        assertThrows(IllegalArgumentException.class, () -> ConverterCustomToString.wrap(WRAPPED, " \t"));
     }
 
     @Test
     public void testDoesntWrapEquivalentToString() {
-        assertSame(WRAPPED, CustomToStringConverter.wrap(WRAPPED, WRAPPED.toString()));
+        assertSame(WRAPPED, ConverterCustomToString.wrap(WRAPPED, WRAPPED.toString()));
     }
 
     @Test
     public void testUnwrapOtherCustomToStringConverter() {
-        final Converter<ConverterContext> first = CustomToStringConverter.wrap(WRAPPED, "different");
-        final CustomToStringConverter<ConverterContext> wrapped = Cast.to(CustomToStringConverter.wrap(first, CUSTOM_TO_STRING));
+        final Converter<ConverterContext> first = ConverterCustomToString.wrap(WRAPPED, "different");
+        final ConverterCustomToString<ConverterContext> wrapped = Cast.to(ConverterCustomToString.wrap(first, CUSTOM_TO_STRING));
         assertNotSame(first, wrapped);
         assertSame(WRAPPED, wrapped.converter, "wrapped converter");
         assertSame(CUSTOM_TO_STRING, wrapped.toString, "wrapped toString");
@@ -73,12 +73,12 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
 
     @Test
     public void testEqualsDifferentWrappedConverter() {
-        this.checkNotEquals(CustomToStringConverter.wrap(Converters.mapper(t -> t instanceof String, Predicate.isEqual(Boolean.class), (String v) -> Boolean.valueOf(v)), CUSTOM_TO_STRING));
+        this.checkNotEquals(ConverterCustomToString.wrap(Converters.mapper(t -> t instanceof String, Predicate.isEqual(Boolean.class), (String v) -> Boolean.valueOf(v)), CUSTOM_TO_STRING));
     }
 
     @Test
     public void testEqualsDifferentCustomToString() {
-        this.checkNotEquals(CustomToStringConverter.wrap(WRAPPED, "different"));
+        this.checkNotEquals(ConverterCustomToString.wrap(WRAPPED, "different"));
     }
 
     @Test
@@ -87,8 +87,8 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
     }
 
     @Override
-    public CustomToStringConverter<ConverterContext> createConverter() {
-        return Cast.to(CustomToStringConverter.wrap(WRAPPED, CUSTOM_TO_STRING));
+    public ConverterCustomToString<ConverterContext> createConverter() {
+        return Cast.to(ConverterCustomToString.wrap(WRAPPED, CUSTOM_TO_STRING));
     }
 
     @Override
@@ -97,12 +97,22 @@ public final class CustomToStringConverterTest extends ConverterTestCase2<Custom
     }
 
     @Override
-    public Class<CustomToStringConverter<ConverterContext>> type() {
-        return Cast.to(CustomToStringConverter.class);
+    public Class<ConverterCustomToString<ConverterContext>> type() {
+        return Cast.to(ConverterCustomToString.class);
     }
 
     @Override
-    public CustomToStringConverter<ConverterContext> createObject() {
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
+    }
+
+    @Override
+    public ConverterCustomToString<ConverterContext> createObject() {
         return this.createConverter();
     }
 }
