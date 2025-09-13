@@ -32,9 +32,9 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConverter<ConverterContext>> extends ConverterTestCase2<C> {
+public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalFormat<ConverterContext>> extends ConverterTestCase2<C> {
 
-    DecimalFormatConverterTestCase() {
+    ConverterDecimalFormatTestCase() {
         super();
     }
 
@@ -136,6 +136,11 @@ public abstract class DecimalFormatConverterTestCase<C extends DecimalFormatConv
 
     @Override
     public final String typeNamePrefix() {
-        return DecimalFormat.class.getSimpleName() + Converter.class.getSimpleName();
+        return Converter.class.getSimpleName() + DecimalFormat.class.getSimpleName();
+    }
+
+    @Override
+    public final String typeNameSuffix() {
+        return "";
     }
 }

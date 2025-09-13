@@ -27,13 +27,13 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.function.Function;
 
-public final class DecimalFormatConverterNumberToStringTest extends DecimalFormatConverterTestCase<DecimalFormatConverterNumberToString<ConverterContext>> {
+public final class ConverterDecimalFormatStringToNumberTest extends ConverterDecimalFormatTestCase<ConverterDecimalFormatStringToNumber<ConverterContext>> {
 
     @Test
     public void testInvalidLocaleFails() {
         this.convertFails(this.createConverter(),
-            0,
-            String.class,
+            "0",
+            Number.class,
             this.createContext(Locale.ENGLISH));
     }
 
@@ -41,76 +41,100 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     public void testConvertNull() {
         this.convertAndCheck(
             null,
-            String.class
+            Number.class
         );
     }
 
     @Test
     public void testConvertByte() {
-        this.convertAndCheck2("#.000", Byte.MAX_VALUE, "127.000");
+        this.convertAndCheck3(Byte.MAX_VALUE);
     }
 
     @Test
     public void testConvertShort() {
-        this.convertAndCheck2("#.000", Short.MAX_VALUE, "32767.000");
+        this.convertAndCheck3(Short.MAX_VALUE);
     }
 
     @Test
     public void testConvertInteger() {
-        this.convertAndCheck2("$ #.000", 123, "$ 123.000");
+        this.convertAndCheck3(Integer.MAX_VALUE);
     }
 
     @Test
     public void testConvertLong() {
-        this.convertAndCheck2("$ #.000", 123L, "$ 123.000");
+        this.convertAndCheck3(Long.MAX_VALUE);
     }
 
     @Test
     public void testConvertFloat() {
-        this.convertAndCheck2("$ #.000", 123.5f, "$ 123.500");
+        this.convertAndCheck3(1.5f);
     }
 
     @Test
     public void testConvertDouble() {
-        this.convertAndCheck2("$ #.000", 123.5, "$ 123.500");
+        this.convertAndCheck3(1.5);
     }
 
     @Test
     public void testConvertBigDecimal() {
-        this.convertAndCheck2("$ #.000", BigDecimal.valueOf(123.5), "$ 123.500");
+        this.convertAndCheck3(BigDecimal.valueOf(123.5));
     }
 
     @Test
     public void testConvertBigInteger() {
-        this.convertAndCheck2("$ #.000", BigInteger.valueOf(123), "$ 123.000");
+        this.convertAndCheck3(BigInteger.valueOf(123));
+    }
+
+    private void convertAndCheck3(final Number number) {
+        this.convertAndCheck2("#", number.toString(), number);
     }
 
     @Test
-    public void testConvertLocaleChange() {
-        final DecimalFormatConverterNumberToString<ConverterContext> converter = this.createConverter("$ ###.00");
-        this.convertAndCheck(converter,
-            1.25,
-            String.class,
-            this.createContext(Locale.CANADA),
-            "$ 1.25");
+    public void testConvertNumber() {
+        final String text = "1234567890123456789012345678901234567890.5";
+        this.convertAndCheck(text,
+            Number.class,
+            new BigDecimal(text));
+    }
 
-        this.convertAndCheck(converter,
-            1234.5,
-            String.class,
-            this.createContext(Locale.GERMANY),
-            "$ 1234,50");
+    @Test
+    public void testConvertNumber2() {
+        this.convertAndCheck("123.5",
+            Number.class,
+            new BigDecimal("123.5"));
+    }
+
+    @Test
+    public void testConvertCurrency() {
+        this.convertAndCheck2(
+            "$ #",
+            "$ 123.5",
+            BigDecimal.class,
+            Locale.UK,
+            BigDecimal.valueOf(123.5)
+        );
+    }
+
+    @Test
+    public void testConvertPercentage() {
+        this.convertAndCheck2(
+            "#%",
+            "123.5%",
+            BigDecimal.class,
+            BigDecimal.valueOf(1.235)
+        );
     }
 
     // ConverterTesting..................................................................................................
 
     @Override
-    DecimalFormatConverterNumberToString<ConverterContext> createConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        return DecimalFormatConverterNumberToString.with(decimalFormat);
+    ConverterDecimalFormatStringToNumber<ConverterContext> createConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+        return ConverterDecimalFormatStringToNumber.with(decimalFormat);
     }
 
     @Override
-    public Class<DecimalFormatConverterNumberToString<ConverterContext>> type() {
-        return Cast.to(DecimalFormatConverterNumberToString.class);
+    public Class<ConverterDecimalFormatStringToNumber<ConverterContext>> type() {
+        return Cast.to(ConverterDecimalFormatStringToNumber.class);
     }
 
     // toString.........................................................................................................
@@ -119,14 +143,7 @@ public final class DecimalFormatConverterNumberToStringTest extends DecimalForma
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "DecimalFormat Number to String"
+            "DecimalFormat String to Number"
         );
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNameSuffix() {
-        return Number.class.getSimpleName() + "To" + String.class.getSimpleName();
     }
 }
