@@ -37,8 +37,8 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ParserConverterTest extends ConverterTestCase2<ParserConverter<BigDecimal, ParserContext, ConverterContext>>
-    implements HashCodeEqualsDefinedTesting2<ParserConverter<BigDecimal, ParserContext, ConverterContext>> {
+public final class ConverterParserTest extends ConverterTestCase2<ConverterParser<BigDecimal, ParserContext, ConverterContext>>
+    implements HashCodeEqualsDefinedTesting2<ConverterParser<BigDecimal, ParserContext, ConverterContext>> {
 
     private final static Class<BigDecimal> VALUE_TYPE = BigDecimal.class;
 
@@ -58,7 +58,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public void testWithNullParserValueTypeFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ParserConverter.with(
+            () -> ConverterParser.with(
                 null,
                 PARSER,
                 CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -71,7 +71,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public void testWithNullParserFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ParserConverter.with(
+            () -> ConverterParser.with(
                 VALUE_TYPE,
                 null,
                 CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -84,7 +84,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public void testWithNullConverterContextToParserContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ParserConverter.with(
+            () -> ConverterParser.with(
                 VALUE_TYPE,
                 PARSER,
                 null,
@@ -97,7 +97,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     public void testWithNullParserTokenToValueFails() {
         assertThrows(
             NullPointerException.class,
-            () -> ParserConverter.with(
+            () -> ConverterParser.with(
                 VALUE_TYPE,
                 PARSER,
                 CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -149,8 +149,8 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Override
-    public ParserConverter<BigDecimal, ParserContext, ConverterContext> createConverter() {
-        return ParserConverter.with(
+    public ConverterParser<BigDecimal, ParserContext, ConverterContext> createConverter() {
+        return ConverterParser.with(
             VALUE_TYPE,
             PARSER,
             CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -175,7 +175,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     @Test
     public void testEqualsDifferentValueTypeClass() {
         this.checkNotEquals(
-            ParserConverter.with(
+            ConverterParser.with(
                 Void.class,
                 PARSER,
                 CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -187,7 +187,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     @Test
     public void testEqualsDifferentParser() {
         this.checkNotEquals(
-            ParserConverter.with(
+            ConverterParser.with(
                 VALUE_TYPE,
                 Parsers.fake(),
                 CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -199,7 +199,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     @Test
     public void testEqualsDifferentConverterContextParserContextFunction() {
         this.checkNotEquals(
-            ParserConverter.with(
+            ConverterParser.with(
                 VALUE_TYPE,
                 PARSER,
                 (c) -> {
@@ -213,7 +213,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     @Test
     public void testEqualsDifferentParserTokenToValue() {
         this.checkNotEquals(
-            ParserConverter.with(
+            ConverterParser.with(
                 VALUE_TYPE,
                 PARSER,
                 CONVERTER_CONTEXT_PARSER_CONTEXT_FUNCTION,
@@ -225,7 +225,7 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     }
 
     @Override
-    public ParserConverter<BigDecimal, ParserContext, ConverterContext> createObject() {
+    public ConverterParser<BigDecimal, ParserContext, ConverterContext> createObject() {
         return this.createConverter();
     }
 
@@ -242,7 +242,18 @@ public final class ParserConverterTest extends ConverterTestCase2<ParserConverte
     // class............................................................................................................
 
     @Override
-    public Class<ParserConverter<BigDecimal, ParserContext, ConverterContext>> type() {
-        return Cast.to(ParserConverter.class);
+    public Class<ConverterParser<BigDecimal, ParserContext, ConverterContext>> type() {
+        return Cast.to(ConverterParser.class);
+    }
+
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
     }
 }
