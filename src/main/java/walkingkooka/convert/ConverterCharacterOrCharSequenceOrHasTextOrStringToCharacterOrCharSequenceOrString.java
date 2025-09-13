@@ -27,24 +27,24 @@ import walkingkooka.text.HasText;
  * {@link Character} or {@link CharSequence} or {@link String}.
  * If the target type is {@link CharSequence} then {@link HasText#text()} or the original value will be returned.
  */
-final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<C> instance() {
+    static <C extends ConverterContext> ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<?> INSTANCE = new CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<>();
+    private final static ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<?> INSTANCE = new ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<>();
 
     /**
      * Private to stop sub classing.
      */
-    private CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter() {
+    private ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString() {
         super();
     }
 
