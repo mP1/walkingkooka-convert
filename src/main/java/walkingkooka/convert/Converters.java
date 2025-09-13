@@ -155,7 +155,7 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see LocalDateLocalDateTimeConverter}
+     * {@see ConverterTemporalLocalDateToLocalDateTime}
      */
     public static <C extends ConverterContext> Converter<C> localDateToLocalDateTime() {
         return ConverterTemporalLocalDateToLocalDateTime.instance();
