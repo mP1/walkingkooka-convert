@@ -205,11 +205,6 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     // Class............................................................................................................
 
     @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public Class<ConverterCollection<ConverterContext>> type() {
         return Cast.to(ConverterCollection.class);
     }
