@@ -225,12 +225,12 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see PredicatedMapperConverter}
+     * {@see ConverterPredicatedMapper}
      */
     public static <S, D, C extends ConverterContext> Converter<C> mapper(final Predicate<Object> source,
                                                                          final Predicate<Class<?>> target,
                                                                          final Function<S, D> converter) {
-        return PredicatedMapperConverter.with(source, target, converter);
+        return ConverterPredicatedMapper.with(source, target, converter);
     }
 
     /**

@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class PredicatedMapperConverterTest extends ConverterTestCase2<PredicatedMapperConverter<String, Boolean, ConverterContext>> {
+public final class ConverterPredicatedMapperTest extends ConverterTestCase2<ConverterPredicatedMapper<String, Boolean, ConverterContext>> {
 
     private final static Predicate<Object> SOURCE = (t) -> t instanceof String;
     private final static Predicate<Class<?>> TARGET = Predicate.isEqual(Boolean.class);
@@ -33,17 +33,17 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
 
     @Test
     public void testWithNullSourceTypeFails() {
-        assertThrows(NullPointerException.class, () -> PredicatedMapperConverter.with(null, TARGET, MAPPER));
+        assertThrows(NullPointerException.class, () -> ConverterPredicatedMapper.with(null, TARGET, MAPPER));
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> PredicatedMapperConverter.with(SOURCE, null, MAPPER));
+        assertThrows(NullPointerException.class, () -> ConverterPredicatedMapper.with(SOURCE, null, MAPPER));
     }
 
     @Test
     public void testWithNullMapperFunctionFails() {
-        assertThrows(NullPointerException.class, () -> PredicatedMapperConverter.with(null, TARGET, null));
+        assertThrows(NullPointerException.class, () -> ConverterPredicatedMapper.with(null, TARGET, null));
     }
 
     // converter........................................................................................................
@@ -73,8 +73,8 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
     }
 
     @Override
-    public PredicatedMapperConverter<String, Boolean, ConverterContext> createConverter() {
-        return PredicatedMapperConverter.with(SOURCE, TARGET, PredicatedMapperConverterTest::stringToBoolean);
+    public ConverterPredicatedMapper<String, Boolean, ConverterContext> createConverter() {
+        return ConverterPredicatedMapper.with(SOURCE, TARGET, ConverterPredicatedMapperTest::stringToBoolean);
     }
 
     private static Boolean stringToBoolean(final String s) {
@@ -93,10 +93,20 @@ public final class PredicatedMapperConverterTest extends ConverterTestCase2<Pred
         this.toStringAndCheck(this.createConverter().setToString("String->Boolean"), "String->Boolean");
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
-    public Class<PredicatedMapperConverter<String, Boolean, ConverterContext>> type() {
-        return Cast.to(PredicatedMapperConverter.class);
+    public Class<ConverterPredicatedMapper<String, Boolean, ConverterContext>> type() {
+        return Cast.to(ConverterPredicatedMapper.class);
+    }
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
     }
 }

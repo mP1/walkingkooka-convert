@@ -26,21 +26,21 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} passes the given value to a {@link Function} such as a method handle to a static method which performs the conversion.
  */
-final class PredicatedMapperConverter<S, D, C extends ConverterContext> implements Converter<C> {
+final class ConverterPredicatedMapper<S, D, C extends ConverterContext> implements Converter<C> {
 
-    static <S, D, C extends ConverterContext> PredicatedMapperConverter<S, D, C> with(final Predicate<Object> source,
+    static <S, D, C extends ConverterContext> ConverterPredicatedMapper<S, D, C> with(final Predicate<Object> source,
                                                                                       final Predicate<Class<?>> target,
                                                                                       final Function<S, D> mapper) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(target, "target");
 
-        return new PredicatedMapperConverter<>(source, target, mapper);
+        return new ConverterPredicatedMapper<>(source, target, mapper);
     }
 
     /**
      * Private ctor use static factory.
      */
-    private PredicatedMapperConverter(final Predicate<Object> source,
+    private ConverterPredicatedMapper(final Predicate<Object> source,
                                       final Predicate<Class<?>> target,
                                       final Function<S, D> mapper) {
         super();
