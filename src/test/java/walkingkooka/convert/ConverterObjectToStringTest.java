@@ -77,9 +77,4 @@ public final class ConverterObjectToStringTest extends ConverterTestCase2<Conver
     public Class<ConverterObjectToString<ConverterContext>> type() {
         return Cast.to(ConverterObjectToString.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

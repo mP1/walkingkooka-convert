@@ -99,9 +99,4 @@ public final class ConverterPredicatedMapperTest extends ConverterTestCase2<Conv
     public Class<ConverterPredicatedMapper<String, Boolean, ConverterContext>> type() {
         return Cast.to(ConverterPredicatedMapper.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

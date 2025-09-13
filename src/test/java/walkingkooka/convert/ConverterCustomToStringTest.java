@@ -102,11 +102,6 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
     }
 
     @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
     public ConverterCustomToString<ConverterContext> createObject() {
         return this.createConverter();
     }

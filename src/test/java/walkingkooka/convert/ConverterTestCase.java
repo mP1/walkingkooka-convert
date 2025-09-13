@@ -35,6 +35,18 @@ public abstract class ConverterTestCase<C> implements ClassTesting2<C>, TypeName
     }
 
     @Override
+    public final String typeNamePrefix() {
+        return Converter.class.getSimpleName() +
+            this.getClass()
+                .getSuperclass()
+                .getSimpleName()
+                .replace("TestCase2", "TestCase")
+                .replace("TestCase", "")
+                .replace("Converter", "")
+                .replace("Object", "");
+    }
+
+    @Override
     public final String typeNameSuffix() {
         return "";
     }

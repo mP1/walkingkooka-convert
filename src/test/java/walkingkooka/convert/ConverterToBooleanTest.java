@@ -118,9 +118,4 @@ public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterTo
     public Class<ConverterToBoolean<String, ConverterContext>> type() {
         return Cast.to(ConverterToBoolean.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

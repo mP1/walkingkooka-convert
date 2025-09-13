@@ -27,11 +27,4 @@ public final class ConverterNumberTest extends ConverterTestCase<ConverterNumber
     public Class<ConverterNumber<?, ConverterContext>> type() {
         return Cast.to(ConverterNumber.class);
     }
-
-    // class............................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName() + Number.class.getSimpleName();
-    }
 }

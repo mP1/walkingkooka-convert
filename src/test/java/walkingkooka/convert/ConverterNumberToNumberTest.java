@@ -1139,9 +1139,4 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
     public Class<ConverterNumberToNumber<ConverterContext>> type() {
         return Cast.to(ConverterNumberToNumber.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return ConverterNumberToNumber.class.getSimpleName();
-    }
 }

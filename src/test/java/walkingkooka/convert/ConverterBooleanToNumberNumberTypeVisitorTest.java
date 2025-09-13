@@ -55,17 +55,10 @@ public final class ConverterBooleanToNumberNumberTypeVisitorTest extends Convert
         return new ConverterBooleanToNumberNumberTypeVisitor(true);
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
     public Class<ConverterBooleanToNumberNumberTypeVisitor> type() {
         return ConverterBooleanToNumberNumberTypeVisitor.class;
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return ConverterBooleanToNumber.class.getSimpleName();
     }
 }

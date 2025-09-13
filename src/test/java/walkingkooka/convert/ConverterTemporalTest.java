@@ -27,9 +27,4 @@ public final class ConverterTemporalTest extends ConverterTestCase<ConverterTemp
     public Class<ConverterTemporal<?, ?, ?>> type() {
         return Cast.to(ConverterTemporal.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

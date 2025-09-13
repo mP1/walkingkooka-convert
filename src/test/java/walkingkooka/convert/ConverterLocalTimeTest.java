@@ -25,11 +25,4 @@ public final class ConverterLocalTimeTest extends ConverterTestCase<ConverterLoc
     public Class<ConverterLocalTime<ConverterContext>> type() {
         return Cast.to(ConverterLocalTime.class);
     }
-
-    // class............................................................................................................
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }
