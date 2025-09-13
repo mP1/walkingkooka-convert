@@ -43,7 +43,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertCharSequenceDate() {
+    public void testConvertCharSequenceTime() {
         this.convertToListAndCheck(
             new StringBuilder(DATE_TIME_STRING),
             DATE_TIME
@@ -51,7 +51,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringQuotedDate() {
+    public void testConvertStringQuotedTime() {
         this.convertToListAndCheck(
             "\"1:11:58\"",
             DATE_TIME
@@ -59,7 +59,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringQuotedBackslashDate() {
+    public void testConvertStringQuotedBackslashTime() {
         this.convertToListAndCheck(
             "\"\\1:11:58\"",
             DATE_TIME
@@ -67,7 +67,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringSpacesQuotedDate() {
+    public void testConvertStringSpacesQuotedTime() {
         this.convertToListAndCheck(
             " \"1:11:58\"",
             DATE_TIME
@@ -75,7 +75,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringSpaceSpaceQuotedDate() {
+    public void testConvertStringSpaceSpaceQuotedTime() {
         this.convertToListAndCheck(
             "  \"1:11:58\"",
             DATE_TIME
@@ -83,7 +83,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringQuotedDateSpaces() {
+    public void testConvertStringQuotedTimeSpaces() {
         this.convertToListAndCheck(
             "\"1:11:58\" ",
             DATE_TIME
@@ -91,7 +91,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringQuotedDateSpaceSpace() {
+    public void testConvertStringQuotedTimeSpaceSpace() {
         this.convertToListAndCheck(
             "\"1:11:58\" ",
             DATE_TIME
@@ -99,7 +99,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringSpaceDate() {
+    public void testConvertStringSpaceTime() {
         this.convertToListAndCheck(
             "1:11:58",
             DATE_TIME
@@ -107,7 +107,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertStringDateSpace() {
+    public void testConvertStringTimeSpace() {
         this.convertToListAndCheck(
             "1:11:58",
             DATE_TIME
@@ -115,14 +115,14 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertDateSeparatorFails() {
+    public void testConvertTimeSeparatorFails() {
         this.convertToListFails(
             "1:11:58*"
         );
     }
 
     @Test
-    public void testConvertDateSeparatorDate() {
+    public void testConvertTimeSeparatorTime() {
         this.convertToListAndCheck(
             "1:11:58*2:22:59",
             DATE_TIME,
@@ -131,7 +131,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertDateSeparatorDateSeparatorDate() {
+    public void testConvertTimeSeparatorTimeSeparatorTime() {
         this.convertToListAndCheck(
             "1:11:58*2:22:59*1:11:58",
             DATE_TIME,
@@ -141,7 +141,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertDateSeparatorDateSeparatorDateExtraSpacesIgnored() {
+    public void testConvertTimeSeparatorTimeSeparatorTimeExtraSpacesIgnored() {
         this.convertToListAndCheck(
             "1:11:58 * 2:22:59 *1:11:58 ",
             DATE_TIME,
@@ -151,7 +151,7 @@ public final class ConverterTextToListLocalTimeListTest extends ConverterTextToL
     }
 
     @Test
-    public void testConvertDateSeparatorDateSeparatorDateExtraSpacesIgnored2() {
+    public void testConvertTimeSeparatorTimeSeparatorTimeExtraSpacesIgnored2() {
         this.convertToListAndCheck(
             " 1:11:58 * 2:22:59 * 1:11:58 ",
             DATE_TIME,
