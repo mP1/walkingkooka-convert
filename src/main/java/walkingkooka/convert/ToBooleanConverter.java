@@ -26,7 +26,7 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
-final class ToBooleanConverter<V, C extends ConverterContext> implements Converter<C> {
+final class ToBooleanConverter<V, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     static <V, C extends ConverterContext> ToBooleanConverter<V, C> with(final Predicate<Object> source,
                                                                          final Predicate<Class<?>> target,
@@ -71,16 +71,14 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements Convert
     private final Predicate<Class<?>> target;
 
     @Override
-    public <T> Either<T, String> convert(final Object value,
-                                         final Class<T> type,
-                                         final C context) {
-        return this.canConvert(value, type, context) ?
-            Cast.to(
-                this.trueValue.test(value) ?
-                    this.trueAnswer :
-                    this.falseAnswer
-            ) :
-            this.failConversion(value, type);
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
+        return Cast.to(
+            this.trueValue.test(value) ?
+                this.trueAnswer :
+                this.falseAnswer
+        );
     }
 
     private final Predicate<Object> trueValue;
