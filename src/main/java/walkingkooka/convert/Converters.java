@@ -148,10 +148,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see HasTextToStringConverter}
+     * {@see ConverterHasTextToString}
      */
     public static <C extends ConverterContext> Converter<C> hasTextToString() {
-        return HasTextToStringConverter.instance();
+        return ConverterHasTextToString.instance();
     }
 
     /**
