@@ -356,14 +356,14 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ToBooleanConverter}
+     * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
                                                                          final Predicate<Class<?>> target,
                                                                          final Predicate<Object> trueValue,
                                                                          final V trueAnswer,
                                                                          final V falseAnswer) {
-        return ToBooleanConverter.with(
+        return ConverterToBoolean.with(
             source,
             target,
             trueValue,

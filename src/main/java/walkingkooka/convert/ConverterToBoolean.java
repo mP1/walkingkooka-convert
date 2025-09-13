@@ -26,9 +26,9 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} that knows how to convert towards a boolean answer.
  */
-final class ToBooleanConverter<V, C extends ConverterContext> implements ShortCircuitingConverter<C> {
+final class ConverterToBoolean<V, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
-    static <V, C extends ConverterContext> ToBooleanConverter<V, C> with(final Predicate<Object> source,
+    static <V, C extends ConverterContext> ConverterToBoolean<V, C> with(final Predicate<Object> source,
                                                                          final Predicate<Class<?>> target,
                                                                          final Predicate<Object> trueValue,
                                                                          final V trueAnswer,
@@ -37,7 +37,7 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements ShortCi
         Objects.requireNonNull(target, "target");
         Objects.requireNonNull(trueValue, "trueValue");
 
-        return new ToBooleanConverter<>(
+        return new ConverterToBoolean<>(
             source,
             target,
             trueValue,
@@ -46,7 +46,7 @@ final class ToBooleanConverter<V, C extends ConverterContext> implements ShortCi
         );
     }
 
-    private ToBooleanConverter(final Predicate<Object> source,
+    private ConverterToBoolean(final Predicate<Object> source,
                                final Predicate<Class<?>> target,
                                final Predicate<Object> trueValue,
                                final V trueAnswer,
