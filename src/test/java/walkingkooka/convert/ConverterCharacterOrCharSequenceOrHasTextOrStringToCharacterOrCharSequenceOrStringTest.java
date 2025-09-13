@@ -31,7 +31,7 @@ import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
-public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverterTest extends ConverterTestCase2<CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<ConverterContext>> {
+public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringTest extends ConverterTestCase2<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> {
 
     // character.........................................................................................................
 
@@ -394,8 +394,8 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
     }
 
     @Override
-    public CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<ConverterContext> createConverter() {
-        return CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter.instance();
+    public ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext> createConverter() {
+        return ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.instance();
     }
 
     @Override
@@ -447,10 +447,20 @@ public final class CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequ
         );
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
-    public Class<CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter<ConverterContext>> type() {
-        return Cast.to(CharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringConverter.class);
+    public Class<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> type() {
+        return Cast.to(ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.class);
+    }
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
     }
 }
