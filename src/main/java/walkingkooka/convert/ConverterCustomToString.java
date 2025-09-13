@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * Wraps another {@link Converter} replacing or ignoring its {@link Converter#toString()} with the provided {@link String}.
  */
-final class CustomToStringConverter<C extends ConverterContext> implements Converter<C> {
+final class ConverterCustomToString<C extends ConverterContext> implements Converter<C> {
 
     static <C extends ConverterContext> Converter<C> wrap(final Converter<C> converter,
                                                           final String toString) {
@@ -41,19 +41,19 @@ final class CustomToStringConverter<C extends ConverterContext> implements Conve
             }
 
             Converter<C> wrap = converter;
-            if (converter instanceof CustomToStringConverter) {
+            if (converter instanceof ConverterCustomToString) {
                 // unwrap then re-wrap the converter...
-                final CustomToStringConverter<C> custom = Cast.to(wrap);
+                final ConverterCustomToString<C> custom = Cast.to(wrap);
                 wrap = custom.converter;
             }
-            result = new CustomToStringConverter<>(wrap, toString);
+            result = new ConverterCustomToString<>(wrap, toString);
             break;
         }
 
         return result;
     }
 
-    private CustomToStringConverter(final Converter<C> converter, final String toString) {
+    private ConverterCustomToString(final Converter<C> converter, final String toString) {
         this.converter = converter;
         this.toString = toString;
     }
@@ -84,10 +84,10 @@ final class CustomToStringConverter<C extends ConverterContext> implements Conve
 
     @Override
     public boolean equals(final Object other) {
-        return this == other || other instanceof CustomToStringConverter && this.equals0(Cast.to(other));
+        return this == other || other instanceof ConverterCustomToString && this.equals0(Cast.to(other));
     }
 
-    private boolean equals0(final CustomToStringConverter<?> other) {
+    private boolean equals0(final ConverterCustomToString<?> other) {
         return this.converter.equals(other.converter) &&
             this.toString.equals(other.toString);
     }
