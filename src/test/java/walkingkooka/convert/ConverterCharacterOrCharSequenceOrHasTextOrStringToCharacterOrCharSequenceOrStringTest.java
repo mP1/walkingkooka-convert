@@ -404,7 +404,7 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
     }
 
 
-    // ChainConverter...................................................................................................
+    // ConverterChain...................................................................................................
 
     @Test
     public void testChainConverterNumberToStringToCharacter() {

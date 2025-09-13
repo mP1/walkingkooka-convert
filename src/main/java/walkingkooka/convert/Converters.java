@@ -99,12 +99,12 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ChainConverter}
+     * {@see ConverterChain}
      */
     public static <C extends ConverterContext> Converter<C> chain(final Converter<C> first,
                                                                   final Class<?> intermediateType,
                                                                   final Converter<C> second) {
-        return ChainConverter.with(
+        return ConverterChain.with(
             first,
             intermediateType,
             second

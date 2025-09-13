@@ -34,23 +34,23 @@ import java.util.Objects;
  * StringToJsonNode -> JsonNodeToUnmarshall
  * <pre>
  */
-final class ChainConverter<C extends ConverterContext> implements Converter<C> {
+final class ConverterChain<C extends ConverterContext> implements Converter<C> {
 
-    static <C extends ConverterContext> ChainConverter<C> with(final Converter<C> first,
+    static <C extends ConverterContext> ConverterChain<C> with(final Converter<C> first,
                                                                final Class<?> intermediateType,
                                                                final Converter<C> second) {
         Objects.requireNonNull(first, "first");
         Objects.requireNonNull(intermediateType, "intermediateType");
         Objects.requireNonNull(second, "second");
 
-        return new ChainConverter<>(
+        return new ConverterChain<>(
             first,
             intermediateType,
             second
         );
     }
 
-    private ChainConverter(final Converter<C> first,
+    private ConverterChain(final Converter<C> first,
                            final Class<?> intermediateType,
                            final Converter<C> second) {
         super();
@@ -124,10 +124,10 @@ final class ChainConverter<C extends ConverterContext> implements Converter<C> {
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-            other instanceof ChainConverter && this.equals0(Cast.to(other));
+            other instanceof ConverterChain && this.equals0(Cast.to(other));
     }
 
-    private boolean equals0(final ChainConverter<?> other) {
+    private boolean equals0(final ConverterChain<?> other) {
         return this.first.equals(other.first) &&
             this.intermediateType.equals(other.intermediateType) &&
             this.second.equals(other.second);
