@@ -314,10 +314,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see SimpleConverter}
+     * {@see ConverterSimple}
      */
     public static <C extends ConverterContext> Converter<C> simple() {
-        return SimpleConverter.instance();
+        return ConverterSimple.instance();
     }
 
     /**

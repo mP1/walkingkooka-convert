@@ -196,7 +196,7 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
                 )
             ),
             "ConverterCollection\n" +
-                "  if type (walkingkooka.convert.SimpleConverter)\n" +
+                "  if type (walkingkooka.convert.ConverterSimple)\n" +
                 "  Number to Boolean (walkingkooka.convert.ConverterNumberToBoolean)\n" +
                 "  Number to Number (walkingkooka.convert.ConverterNumberToNumber)\n"
         );

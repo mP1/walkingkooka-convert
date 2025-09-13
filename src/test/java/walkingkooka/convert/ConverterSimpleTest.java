@@ -19,13 +19,11 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.ToStringTesting;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
 
-public final class SimpleConverterTest implements ConverterTesting2<SimpleConverter<FakeConverterContext>, FakeConverterContext>,
-    ToStringTesting<SimpleConverter<FakeConverterContext>> {
+public final class ConverterSimpleTest extends ConverterTestCase2<ConverterSimple<ConverterContext>> {
 
     @Test
     public void testConvertNull() {
@@ -76,13 +74,13 @@ public final class SimpleConverterTest implements ConverterTesting2<SimpleConver
     }
 
     @Override
-    public SimpleConverter<FakeConverterContext> createConverter() {
-        return SimpleConverter.instance();
+    public ConverterSimple<ConverterContext> createConverter() {
+        return ConverterSimple.instance();
     }
 
     @Override
-    public FakeConverterContext createContext() {
-        return (FakeConverterContext) ConverterContexts.fake();
+    public ConverterContext createContext() {
+        return ConverterContexts.fake();
     }
 
     // toString.........................................................................................................
@@ -98,7 +96,12 @@ public final class SimpleConverterTest implements ConverterTesting2<SimpleConver
     // Class............................................................................................................
 
     @Override
-    public Class<SimpleConverter<FakeConverterContext>> type() {
-        return Cast.to(SimpleConverter.class);
+    public Class<ConverterSimple<ConverterContext>> type() {
+        return Cast.to(ConverterSimple.class);
+    }
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
     }
 }

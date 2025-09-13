@@ -27,6 +27,11 @@ public abstract class ConverterTestCase2<C extends Converter<ConverterContext>> 
 
     @Test
     public final void testNullInvalidTypeFails() {
-        this.convertFails(null, Void.class);
+        if(false == this instanceof ConverterSimpleTest) {
+            this.convertFails(
+                null,
+                Void.class
+            );
+        }
     }
 }
