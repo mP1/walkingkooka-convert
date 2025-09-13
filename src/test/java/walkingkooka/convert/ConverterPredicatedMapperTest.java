@@ -33,17 +33,38 @@ public final class ConverterPredicatedMapperTest extends ConverterTestCase2<Conv
 
     @Test
     public void testWithNullSourceTypeFails() {
-        assertThrows(NullPointerException.class, () -> ConverterPredicatedMapper.with(null, TARGET, MAPPER));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterPredicatedMapper.with(
+                null,
+                TARGET,
+                MAPPER
+            )
+        );
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> ConverterPredicatedMapper.with(SOURCE, null, MAPPER));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterPredicatedMapper.with(
+                SOURCE,
+                null,
+                MAPPER
+            )
+        );
     }
 
     @Test
     public void testWithNullMapperFunctionFails() {
-        assertThrows(NullPointerException.class, () -> ConverterPredicatedMapper.with(null, TARGET, null));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterPredicatedMapper.with(
+                null,
+                TARGET,
+                null
+            )
+        );
     }
 
     // converter........................................................................................................
