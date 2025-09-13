@@ -22,21 +22,21 @@ import walkingkooka.Cast;
 /**
  * A {@link Converter} that invokes {@link Object#toString()} to convert any value into a {@link String}
  */
-final class ObjectToStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterObjectToString<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Instance
      */
-    static <C extends ConverterContext> ObjectToStringConverter<C> instance() {
+    static <C extends ConverterContext> ConverterObjectToString<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ObjectToStringConverter<?> INSTANCE = new ObjectToStringConverter<>();
+    private final static ConverterObjectToString<?> INSTANCE = new ConverterObjectToString<>();
 
-    private ObjectToStringConverter() {
+    private ConverterObjectToString() {
         super();
     }
 
