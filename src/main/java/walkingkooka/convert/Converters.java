@@ -283,10 +283,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ToObjectConverter}
+     * {@see ConverterToObject}
      */
     public static <C extends ConverterContext> Converter<C> object() {
-        return ToObjectConverter.instance();
+        return ConverterToObject.instance();
     }
 
     /**

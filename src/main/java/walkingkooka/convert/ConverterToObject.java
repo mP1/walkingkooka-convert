@@ -24,20 +24,20 @@ import walkingkooka.Cast;
  *
  * @param <C>
  */
-final class ToObjectConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterToObject<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
     /**
      * Instance
      */
-    static <C extends ConverterContext> ToObjectConverter<C> instance() {
+    static <C extends ConverterContext> ConverterToObject<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ToObjectConverter<?> INSTANCE = new ToObjectConverter<>();
+    private final static ConverterToObject<?> INSTANCE = new ConverterToObject<>();
 
-    private ToObjectConverter() {
+    private ConverterToObject() {
         super();
     }
 
