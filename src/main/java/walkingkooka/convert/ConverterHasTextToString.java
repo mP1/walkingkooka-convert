@@ -23,24 +23,24 @@ import walkingkooka.text.HasText;
 /**
  * A Converter that converts any {@link HasText} into a {@link String}.
  */
-final class HasTextToStringConverter<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterHasTextToString<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> HasTextToStringConverter<C> instance() {
+    static <C extends ConverterContext> ConverterHasTextToString<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static HasTextToStringConverter<?> INSTANCE = new HasTextToStringConverter<>();
+    private final static ConverterHasTextToString<?> INSTANCE = new ConverterHasTextToString<>();
 
     /**
      * Private to stop sub classing.
      */
-    private HasTextToStringConverter() {
+    private ConverterHasTextToString() {
         super();
     }
 
