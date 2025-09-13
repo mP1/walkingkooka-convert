@@ -17,7 +17,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [character-or-char-sequence-or-has-text-or-string-to-character-or-char-sequence-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.java)
 - [collection](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCollection.java)
 - [custom-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCustomToString.java)
-- [has-text-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasTextToString.java)
+- [has-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasText.java)
 - [local-date-time-to-local-date](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToLocalDate.java)
 - [local-date-time-to-local-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToLocalTime.java)
 - [local-date-time-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToNumber.java)

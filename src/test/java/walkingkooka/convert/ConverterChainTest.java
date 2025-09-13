@@ -46,7 +46,7 @@ public final class ConverterChainTest extends ConverterTestCase2<ConverterChain<
         assertThrows(
             NullPointerException.class,
             () -> ConverterChain.with(
-                Converters.hasTextToString(),
+                Converters.hasText(),
                 null,
                 Converters.stringToCharacterOrString()
             )
@@ -58,7 +58,7 @@ public final class ConverterChainTest extends ConverterTestCase2<ConverterChain<
         assertThrows(
             NullPointerException.class,
             () -> ConverterChain.with(
-                Converters.hasTextToString(),
+                Converters.hasText(),
                 String.class,
                 null
             )
@@ -123,7 +123,7 @@ public final class ConverterChainTest extends ConverterTestCase2<ConverterChain<
     @Override
     public ConverterChain<ConverterContext> createConverter() {
         return ConverterChain.with(
-            Converters.hasTextToString(),
+            Converters.hasText(),
             String.class,
             Converters.stringToCharacterOrString()
         );
