@@ -33,9 +33,9 @@ import java.util.function.Function;
  * A {@link Converter} that accepts only {@link String} and then invokes a {@link Parser}. If the parser is successful,
  * the {@link Function parserTokenToValue} is used to make the {@link ParserToken} into the target value.
  */
-final class ParserConverter<V, P extends ParserContext, C extends ConverterContext> implements Converter<C> {
+final class ConverterParser<V, P extends ParserContext, C extends ConverterContext> implements Converter<C> {
 
-    static <V, P extends ParserContext, C extends ConverterContext> ParserConverter<V, P, C> with(final Class<V> parserValueType,
+    static <V, P extends ParserContext, C extends ConverterContext> ConverterParser<V, P, C> with(final Class<V> parserValueType,
                                                                                                   final Parser<P> parser,
                                                                                                   final Function<C, P> converterContextToParserContext,
                                                                                                   final BiFunction<ParserToken, C, V> parserTokenToValue) {
@@ -44,7 +44,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
         Objects.requireNonNull(converterContextToParserContext, "converterContextToParserContext");
         Objects.requireNonNull(parserTokenToValue, "parserTokenToValue");
 
-        return new ParserConverter<>(
+        return new ConverterParser<>(
             parserValueType,
             parser,
             converterContextToParserContext,
@@ -55,7 +55,7 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     /**
      * Private ctor use factory.
      */
-    private ParserConverter(final Class<V> parserValueType,
+    private ConverterParser(final Class<V> parserValueType,
                             final Parser<P> parser,
                             final Function<C, P> converterContextToParserContext,
                             final BiFunction<ParserToken, C, V> parserTokenToValue) {
@@ -160,10 +160,10 @@ final class ParserConverter<V, P extends ParserContext, C extends ConverterConte
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-            other instanceof ParserConverter && this.equals0((ParserConverter<?, ?, ?>) other);
+            other instanceof ConverterParser && this.equals0((ConverterParser<?, ?, ?>) other);
     }
 
-    private boolean equals0(final ParserConverter<?, ?, ?> other) {
+    private boolean equals0(final ConverterParser<?, ?, ?> other) {
         return this.parserValueType.equals(other.parserValueType) &&
             this.parser.equals(other.parser) &&
             this.converterContextToParserContext.equals(other.converterContextToParserContext) &&
