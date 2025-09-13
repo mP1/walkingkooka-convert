@@ -19,26 +19,17 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 
-import java.time.temporal.Temporal;
-
 public final class ConverterTemporalTest extends ConverterTestCase<ConverterTemporal<?, ?, ?>> {
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
     public Class<ConverterTemporal<?, ?, ?>> type() {
         return Cast.to(ConverterTemporal.class);
     }
 
-    // TypeNameTesting..................................................................................................
-
     @Override
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return Temporal.class.getSimpleName();
     }
 }

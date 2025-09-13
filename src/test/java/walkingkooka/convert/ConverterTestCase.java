@@ -27,10 +27,15 @@ public abstract class ConverterTestCase<C> implements ClassTesting2<C>, TypeName
         super();
     }
 
-    // ClassTesting.....................................................................................................
+    // class............................................................................................................
 
     @Override
     public final JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
+    }
+
+    @Override
+    public final String typeNameSuffix() {
+        return "";
     }
 }

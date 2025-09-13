@@ -138,9 +138,4 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
     public final String typeNamePrefix() {
         return Converter.class.getSimpleName() + DecimalFormat.class.getSimpleName();
     }
-
-    @Override
-    public final String typeNameSuffix() {
-        return "";
-    }
 }

@@ -107,11 +107,6 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
     }
 
     @Override
-    public String typeNameSuffix() {
-        return "";
-    }
-
-    @Override
     public ConverterCustomToString<ConverterContext> createObject() {
         return this.createConverter();
     }

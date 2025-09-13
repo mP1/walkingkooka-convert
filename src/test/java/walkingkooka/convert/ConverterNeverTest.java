@@ -67,9 +67,4 @@ public final class ConverterNeverTest extends ConverterTestCase2<ConverterNever<
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "Never";
-    }
 }

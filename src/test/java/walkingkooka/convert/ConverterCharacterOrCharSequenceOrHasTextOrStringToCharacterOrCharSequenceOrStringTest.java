@@ -458,9 +458,4 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
-    }
 }

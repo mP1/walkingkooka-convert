@@ -57,11 +57,4 @@ public abstract class ConverterTemporalTestCase<C extends ConverterTemporal<S, D
     }
 
     abstract Class<D> targetType();
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public final String typeNameSuffix() {
-        return this.targetType().getSimpleName();
-    }
 }

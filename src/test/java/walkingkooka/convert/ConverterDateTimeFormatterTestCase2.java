@@ -172,10 +172,5 @@ public abstract class ConverterDateTimeFormatterTestCase2<C extends ConverterDat
         return Converter.class.getSimpleName() + DateTimeFormatter.class.getSimpleName();
     }
 
-    @Override
-    public final String typeNameSuffix() {
-        return "";
-    }
-
     abstract Class<T> targetType();
 }
