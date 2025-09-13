@@ -35,17 +35,44 @@ public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterTo
 
     @Test
     public void testWithNullSourceFails() {
-        assertThrows(NullPointerException.class, () -> ConverterToBoolean.with(null, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterToBoolean.with(
+                null,
+                TARGET_TESTER,
+                TRUE_VALUE,
+                TRUE_ANSWER,
+                FALSE_ANSWER
+            )
+        );
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> ConverterToBoolean.with(SOURCE_TESTER, null, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterToBoolean.with(
+                SOURCE_TESTER,
+                null,
+                TRUE_VALUE,
+                TRUE_ANSWER,
+                FALSE_ANSWER
+            )
+        );
     }
 
     @Test
     public void testWithNullFalseValueFails() {
-        assertThrows(NullPointerException.class, () -> ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, null, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterToBoolean.with(
+                SOURCE_TESTER,
+                TARGET_TESTER,
+                null,
+                TRUE_ANSWER,
+                FALSE_ANSWER
+            )
+        );
     }
 
     @Test
@@ -67,7 +94,13 @@ public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterTo
     @Test
     public void testConvertTrueNullAnswer() {
         this.convertAndCheck(
-            ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
+            ConverterToBoolean.with(
+                SOURCE_TESTER,
+                TARGET_TESTER,
+                TRUE_VALUE,
+                null,
+                FALSE_ANSWER
+            ),
             1,
             String.class,
             null
@@ -85,7 +118,13 @@ public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterTo
     @Test
     public void testConvertFalseNullAnswer() {
         this.convertAndCheck(
-            ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
+            ConverterToBoolean.with(
+                SOURCE_TESTER,
+                TARGET_TESTER,
+                TRUE_VALUE,
+                TRUE_ANSWER,
+                null
+            ),
             2,
             String.class,
             null
@@ -94,7 +133,13 @@ public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterTo
 
     @Override
     public ConverterToBoolean<String, ConverterContext> createConverter() {
-        return ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER);
+        return ConverterToBoolean.with(
+            SOURCE_TESTER,
+            TARGET_TESTER,
+            TRUE_VALUE,
+            TRUE_ANSWER,
+            FALSE_ANSWER
+        );
     }
 
     @Override
