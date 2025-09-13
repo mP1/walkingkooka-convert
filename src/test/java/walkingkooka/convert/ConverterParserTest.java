@@ -251,9 +251,4 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
-    }
 }

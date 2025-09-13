@@ -25,9 +25,4 @@ public final class ConverterDateTimeFormatterTest extends ConverterDateTimeForma
     public Class<ConverterDateTimeFormatter<?, ?, ?>> type() {
         return Cast.to(ConverterDateTimeFormatter.class);
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
-    }
 }

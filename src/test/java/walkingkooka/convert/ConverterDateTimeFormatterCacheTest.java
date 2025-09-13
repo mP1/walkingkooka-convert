@@ -38,9 +38,4 @@ public final class ConverterDateTimeFormatterCacheTest extends ConverterDateTime
     public Class<ConverterDateTimeFormatterCache> type() {
         return ConverterDateTimeFormatterCache.class;
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "Cache";
-    }
 }

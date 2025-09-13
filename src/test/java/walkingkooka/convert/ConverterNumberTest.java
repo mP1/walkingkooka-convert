@@ -28,15 +28,10 @@ public final class ConverterNumberTest extends ConverterTestCase<ConverterNumber
         return Cast.to(ConverterNumber.class);
     }
 
-    // TypeNameTesting..................................................................................................
+    // class............................................................................................................
 
     @Override
     public String typeNamePrefix() {
         return Converter.class.getSimpleName() + Number.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
     }
 }

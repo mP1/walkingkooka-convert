@@ -190,9 +190,4 @@ public final class ConverterBooleanToNumberTest extends ConverterTestCase2<Conve
     public String typeNamePrefix() {
         return Converter.class.getSimpleName() + Boolean.class.getSimpleName() + "To" + Number.class.getSimpleName();
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
-    }
 }

@@ -67,17 +67,10 @@ public final class ConverterLocalTimeToLocalDateTimeTest extends ConverterLocalT
         return ConverterContexts.fake();
     }
 
-    // ClassTesting.....................................................................................................
+    // class............................................................................................................
 
     @Override
     public Class<ConverterLocalTimeToLocalDateTime<ConverterContext>> type() {
         return Cast.to(ConverterLocalTimeToLocalDateTime.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNameSuffix() {
-        return LocalDateTime.class.getSimpleName();
     }
 }

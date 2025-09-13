@@ -104,9 +104,4 @@ public final class ConverterPredicatedMapperTest extends ConverterTestCase2<Conv
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
-    }
 }

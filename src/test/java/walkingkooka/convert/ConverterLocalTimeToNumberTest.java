@@ -186,17 +186,10 @@ public final class ConverterLocalTimeToNumberTest extends ConverterLocalTimeTest
         );
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
     public Class<ConverterLocalTimeToNumber<ConverterContext>> type() {
         return Cast.to(ConverterLocalTimeToNumber.class);
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public String typeNameSuffix() {
-        return Number.class.getSimpleName();
     }
 }

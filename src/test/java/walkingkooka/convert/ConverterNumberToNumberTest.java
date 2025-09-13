@@ -1133,22 +1133,15 @@ public final class ConverterNumberToNumberTest extends ConverterTestCase2<Conver
         return ConverterContexts.fake();
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
     public Class<ConverterNumberToNumber<ConverterContext>> type() {
         return Cast.to(ConverterNumberToNumber.class);
     }
 
-    // TypeNameTesting..................................................................................................
-
     @Override
     public String typeNamePrefix() {
         return ConverterNumberToNumber.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return Number.class.getSimpleName() + "To" + Number.class.getSimpleName();
     }
 }

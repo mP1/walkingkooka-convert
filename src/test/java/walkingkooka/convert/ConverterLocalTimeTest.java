@@ -19,8 +19,6 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 
-import java.time.LocalTime;
-
 public final class ConverterLocalTimeTest extends ConverterTestCase<ConverterLocalTime<ConverterContext>> {
 
     @Override
@@ -28,15 +26,10 @@ public final class ConverterLocalTimeTest extends ConverterTestCase<ConverterLoc
         return Cast.to(ConverterLocalTime.class);
     }
 
-    // TypeNameTesting..................................................................................................
+    // class............................................................................................................
 
     @Override
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return LocalTime.class.getSimpleName();
     }
 }

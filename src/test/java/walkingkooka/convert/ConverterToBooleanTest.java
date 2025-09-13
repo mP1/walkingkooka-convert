@@ -123,9 +123,4 @@ public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterTo
     public String typeNamePrefix() {
         return Converter.class.getSimpleName();
     }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
-    }
 }
