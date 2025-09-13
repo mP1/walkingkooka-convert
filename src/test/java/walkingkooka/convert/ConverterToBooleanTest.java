@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanConverter<String, ConverterContext>> {
+public final class ConverterToBooleanTest extends ConverterTestCase2<ConverterToBoolean<String, ConverterContext>> {
 
     private final static Predicate<Object> SOURCE_TESTER = Predicates.customToString((t) -> t instanceof Integer, "Integer");
     private final static Predicate<Class<?>> TARGET_TESTER = Predicates.customToString((t) -> t == String.class, "String");
@@ -35,17 +35,17 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
 
     @Test
     public void testWithNullSourceFails() {
-        assertThrows(NullPointerException.class, () -> ToBooleanConverter.with(null, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(NullPointerException.class, () -> ConverterToBoolean.with(null, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
     }
 
     @Test
     public void testWithNullTargetTypeFails() {
-        assertThrows(NullPointerException.class, () -> ToBooleanConverter.with(SOURCE_TESTER, null, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(NullPointerException.class, () -> ConverterToBoolean.with(SOURCE_TESTER, null, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER));
     }
 
     @Test
     public void testWithNullFalseValueFails() {
-        assertThrows(NullPointerException.class, () -> ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, null, TRUE_ANSWER, FALSE_ANSWER));
+        assertThrows(NullPointerException.class, () -> ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, null, TRUE_ANSWER, FALSE_ANSWER));
     }
 
     @Test
@@ -67,7 +67,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     @Test
     public void testConvertTrueNullAnswer() {
         this.convertAndCheck(
-            ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
+            ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, null, FALSE_ANSWER),
             1,
             String.class,
             null
@@ -85,7 +85,7 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     @Test
     public void testConvertFalseNullAnswer() {
         this.convertAndCheck(
-            ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
+            ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, null),
             2,
             String.class,
             null
@@ -93,8 +93,8 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
     }
 
     @Override
-    public ToBooleanConverter<String, ConverterContext> createConverter() {
-        return ToBooleanConverter.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER);
+    public ConverterToBoolean<String, ConverterContext> createConverter() {
+        return ConverterToBoolean.with(SOURCE_TESTER, TARGET_TESTER, TRUE_VALUE, TRUE_ANSWER, FALSE_ANSWER);
     }
 
     @Override
@@ -112,10 +112,20 @@ public final class ToBooleanConverterTest extends ConverterTestCase2<ToBooleanCo
         );
     }
 
-    // ClassTesting.....................................................................................................
+    // class............................................................................................................
 
     @Override
-    public Class<ToBooleanConverter<String, ConverterContext>> type() {
-        return Cast.to(ToBooleanConverter.class);
+    public Class<ConverterToBoolean<String, ConverterContext>> type() {
+        return Cast.to(ConverterToBoolean.class);
+    }
+
+    @Override
+    public String typeNamePrefix() {
+        return Converter.class.getSimpleName();
+    }
+
+    @Override
+    public String typeNameSuffix() {
+        return "";
     }
 }
