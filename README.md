@@ -53,6 +53,7 @@ into sequence which are tried one by one [ConverterCollect](https://github.com/m
 - stringToLocalDate
 - stringToLocalDateList
 - stringToLocalDateTime
+- stringToLocalDateTimeList
 - stringToLocalTime
 - stringToNumber
 - stringToBooleanList
