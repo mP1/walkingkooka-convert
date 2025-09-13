@@ -356,6 +356,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListBooleanList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToBooleanList() {
+        return ConverterTextToListBooleanList.instance();
+    }
+
+    /**
      * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
