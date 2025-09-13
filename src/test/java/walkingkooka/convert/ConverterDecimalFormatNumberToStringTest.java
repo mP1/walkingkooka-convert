@@ -1,0 +1,125 @@
+/*
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+package walkingkooka.convert;
+
+import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
+import walkingkooka.math.DecimalNumberContext;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.DecimalFormat;
+import java.util.Locale;
+import java.util.function.Function;
+
+public final class ConverterDecimalFormatNumberToStringTest extends ConverterDecimalFormatTestCase<ConverterDecimalFormatNumberToString<ConverterContext>> {
+
+    @Test
+    public void testInvalidLocaleFails() {
+        this.convertFails(this.createConverter(),
+            0,
+            String.class,
+            this.createContext(Locale.ENGLISH));
+    }
+
+    @Test
+    public void testConvertNull() {
+        this.convertAndCheck(
+            null,
+            String.class
+        );
+    }
+
+    @Test
+    public void testConvertByte() {
+        this.convertAndCheck2("#.000", Byte.MAX_VALUE, "127.000");
+    }
+
+    @Test
+    public void testConvertShort() {
+        this.convertAndCheck2("#.000", Short.MAX_VALUE, "32767.000");
+    }
+
+    @Test
+    public void testConvertInteger() {
+        this.convertAndCheck2("$ #.000", 123, "$ 123.000");
+    }
+
+    @Test
+    public void testConvertLong() {
+        this.convertAndCheck2("$ #.000", 123L, "$ 123.000");
+    }
+
+    @Test
+    public void testConvertFloat() {
+        this.convertAndCheck2("$ #.000", 123.5f, "$ 123.500");
+    }
+
+    @Test
+    public void testConvertDouble() {
+        this.convertAndCheck2("$ #.000", 123.5, "$ 123.500");
+    }
+
+    @Test
+    public void testConvertBigDecimal() {
+        this.convertAndCheck2("$ #.000", BigDecimal.valueOf(123.5), "$ 123.500");
+    }
+
+    @Test
+    public void testConvertBigInteger() {
+        this.convertAndCheck2("$ #.000", BigInteger.valueOf(123), "$ 123.000");
+    }
+
+    @Test
+    public void testConvertLocaleChange() {
+        final ConverterDecimalFormatNumberToString<ConverterContext> converter = this.createConverter("$ ###.00");
+        this.convertAndCheck(converter,
+            1.25,
+            String.class,
+            this.createContext(Locale.CANADA),
+            "$ 1.25");
+
+        this.convertAndCheck(converter,
+            1234.5,
+            String.class,
+            this.createContext(Locale.GERMANY),
+            "$ 1234,50");
+    }
+
+    // ConverterTesting..................................................................................................
+
+    @Override
+    ConverterDecimalFormatNumberToString<ConverterContext> createConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+        return ConverterDecimalFormatNumberToString.with(decimalFormat);
+    }
+
+    @Override
+    public Class<ConverterDecimalFormatNumberToString<ConverterContext>> type() {
+        return Cast.to(ConverterDecimalFormatNumberToString.class);
+    }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            this.createConverter(),
+            "DecimalFormat Number to String"
+        );
+    }
+}

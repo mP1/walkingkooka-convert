@@ -33,12 +33,12 @@ import java.util.function.Function;
 /**
  * Base class for a {@link Converter} that parses or formats using a {@link DecimalFormat}.
  */
-abstract class DecimalFormatConverter<C extends ConverterContext> implements ShortCircuitingConverter<C> {
+abstract class ConverterDecimalFormat<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     /**
      * Private ctor use factory
      */
-    DecimalFormatConverter(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    ConverterDecimalFormat(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         super();
         this.decimalFormat = Objects.requireNonNull(decimalFormat, "decimalFormat");
     }

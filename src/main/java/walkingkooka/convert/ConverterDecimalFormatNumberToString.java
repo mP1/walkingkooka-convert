@@ -27,13 +27,13 @@ import java.util.function.Function;
 /**
  * A {@link Converter} that parses {@link String} into {@link Number numbers}.
  */
-final class DecimalFormatConverterNumberToString<C extends ConverterContext> extends DecimalFormatConverter<C> {
+final class ConverterDecimalFormatNumberToString<C extends ConverterContext> extends ConverterDecimalFormat<C> {
 
-    static <C extends ConverterContext> DecimalFormatConverterNumberToString<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        return new DecimalFormatConverterNumberToString<>(decimalFormat);
+    static <C extends ConverterContext> ConverterDecimalFormatNumberToString<C> with(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+        return new ConverterDecimalFormatNumberToString<>(decimalFormat);
     }
 
-    private DecimalFormatConverterNumberToString(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+    private ConverterDecimalFormatNumberToString(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         super(decimalFormat);
     }
 

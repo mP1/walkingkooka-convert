@@ -276,10 +276,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see DecimalFormatConverterNumberToString}
+     * {@see ConverterDecimalFormatNumberToString}
      */
     public static <C extends ConverterContext> Converter<C> numberToString(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        return DecimalFormatConverterNumberToString.with(decimalFormat);
+        return ConverterDecimalFormatNumberToString.with(decimalFormat);
     }
 
     /**
@@ -349,10 +349,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see DecimalFormatConverterStringToNumber}
+     * {@see ConverterDecimalFormatStringToNumber}
      */
     public static <C extends ConverterContext> Converter<C> stringToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        return DecimalFormatConverterStringToNumber.with(decimalFormat);
+        return ConverterDecimalFormatStringToNumber.with(decimalFormat);
     }
 
     /**
