@@ -377,6 +377,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListLocalTimeList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalTimeList() {
+        return ConverterTextToListLocalTimeList.instance();
+    }
+
+    /**
      * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
