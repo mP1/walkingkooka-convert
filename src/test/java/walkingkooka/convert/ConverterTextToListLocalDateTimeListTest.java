@@ -43,7 +43,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertCharSequenceDate() {
+    public void testConvertCharSequenceDateTime() {
         this.convertToListAndCheck(
             new StringBuilder(DATE_TIME_STRING),
             DATE_TIME
@@ -51,7 +51,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringQuotedDate() {
+    public void testConvertStringQuotedDateTime() {
         this.convertToListAndCheck(
             "\"1999/12/31 1:11:58\"",
             DATE_TIME
@@ -59,7 +59,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringQuotedBackslashDate() {
+    public void testConvertStringQuotedBackslashDateTime() {
         this.convertToListAndCheck(
             "\"\\1999/12/31 1:11:58\"",
             DATE_TIME
@@ -67,7 +67,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringSpacesQuotedDate() {
+    public void testConvertStringSpacesQuotedDateTime() {
         this.convertToListAndCheck(
             " \"1999/12/31 1:11:58\"",
             DATE_TIME
@@ -75,7 +75,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringSpaceSpaceQuotedDate() {
+    public void testConvertStringSpaceSpaceQuotedDateTime() {
         this.convertToListAndCheck(
             "  \"1999/12/31 1:11:58\"",
             DATE_TIME
@@ -83,7 +83,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringQuotedDateSpaces() {
+    public void testConvertStringQuotedDateTimeSpaces() {
         this.convertToListAndCheck(
             "\"1999/12/31 1:11:58\" ",
             DATE_TIME
@@ -91,7 +91,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringQuotedDateSpaceSpace() {
+    public void testConvertStringQuotedDateTimeSpaceSpace() {
         this.convertToListAndCheck(
             "\"1999/12/31 1:11:58\" ",
             DATE_TIME
@@ -99,7 +99,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringSpaceDate() {
+    public void testConvertStringSpaceDateTime() {
         this.convertToListAndCheck(
             "1999/12/31 1:11:58",
             DATE_TIME
@@ -107,7 +107,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertStringDateSpace() {
+    public void testConvertStringDateTimeSpace() {
         this.convertToListAndCheck(
             "1999/12/31 1:11:58",
             DATE_TIME
@@ -115,14 +115,14 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertDateSeparatorFails() {
+    public void testConvertDateTimeSeparatorFails() {
         this.convertToListFails(
             "1999/12/31 1:11:58*"
         );
     }
 
     @Test
-    public void testConvertDateSeparatorDate() {
+    public void testConvertDateTimeSeparatorDateTime() {
         this.convertToListAndCheck(
             "1999/12/31 1:11:58*2000/1/2 2:22:59",
             DATE_TIME,
@@ -131,7 +131,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertDateSeparatorDateSeparatorDate() {
+    public void testConvertDateTimeSeparatorDateTimeSeparatorDateTime() {
         this.convertToListAndCheck(
             "1999/12/31 1:11:58*2000/1/2 2:22:59*1999/12/31 1:11:58",
             DATE_TIME,
@@ -141,7 +141,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertDateSeparatorDateSeparatorDateExtraSpacesIgnored() {
+    public void testConvertDateTimeSeparatorDateTimeSeparatorDateTimeExtraSpacesIgnored() {
         this.convertToListAndCheck(
             "1999/12/31 1:11:58 * 2000/1/2 2:22:59 *1999/12/31 1:11:58 ",
             DATE_TIME,
@@ -151,7 +151,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertDateSeparatorDateSeparatorDateExtraSpacesIgnored2() {
+    public void testConvertDateTimeSeparatorDateTimeSeparatorDateTimeExtraSpacesIgnored2() {
         this.convertToListAndCheck(
             " 1999/12/31 1:11:58 * 2000/1/2 2:22:59 * 1999/12/31 1:11:58 ",
             DATE_TIME,
