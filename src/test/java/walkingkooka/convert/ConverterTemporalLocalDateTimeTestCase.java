@@ -18,7 +18,6 @@
 package walkingkooka.convert;
 
 import java.time.LocalDateTime;
-import java.time.temporal.Temporal;
 
 public abstract class ConverterTemporalLocalDateTimeTestCase<C extends ConverterTemporalLocalDateTime<D, ConverterContext>, D> extends ConverterTemporalTestCase<C, LocalDateTime, D> {
 
@@ -26,12 +25,5 @@ public abstract class ConverterTemporalLocalDateTimeTestCase<C extends Converter
 
     ConverterTemporalLocalDateTimeTestCase() {
         super();
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public final String typeNamePrefix() {
-        return Converter.class.getSimpleName() + Temporal.class.getSimpleName() + LocalDateTime.class.getSimpleName();
     }
 }

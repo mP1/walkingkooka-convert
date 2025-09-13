@@ -245,10 +245,4 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
     public Class<ConverterParser<BigDecimal, ParserContext, ConverterContext>> type() {
         return Cast.to(ConverterParser.class);
     }
-
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

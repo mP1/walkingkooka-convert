@@ -131,11 +131,4 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
             this.createContext(locale),
             expected);
     }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public final String typeNamePrefix() {
-        return Converter.class.getSimpleName() + DecimalFormat.class.getSimpleName();
-    }
 }

@@ -17,18 +17,9 @@
 
 package walkingkooka.convert;
 
-import java.time.format.DateTimeFormatter;
-
 public abstract class ConverterDateTimeFormatterTestCase<T> extends ConverterTestCase<T> {
 
     ConverterDateTimeFormatterTestCase() {
         super();
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public final String typeNamePrefix() {
-        return Converter.class.getSimpleName() + DateTimeFormatter.class.getSimpleName();
     }
 }

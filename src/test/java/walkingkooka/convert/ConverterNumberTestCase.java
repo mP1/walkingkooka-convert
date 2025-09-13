@@ -81,11 +81,4 @@ public abstract class ConverterNumberTestCase<C extends ConverterNumber<T, Conve
     }
 
     abstract Class<T> targetType();
-
-    // class............................................................................................................
-
-    @Override
-    public final String typeNamePrefix() {
-        return Converter.class.getSimpleName() + Number.class.getSimpleName();
-    }
 }

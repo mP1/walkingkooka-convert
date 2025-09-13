@@ -185,9 +185,4 @@ public final class ConverterBooleanToNumberTest extends ConverterTestCase2<Conve
     public Class<ConverterBooleanToNumber<ConverterContext>> type() {
         return Cast.to(ConverterBooleanToNumber.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName() + Boolean.class.getSimpleName() + "To" + Number.class.getSimpleName();
-    }
 }

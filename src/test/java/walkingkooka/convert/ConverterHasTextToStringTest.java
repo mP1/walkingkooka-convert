@@ -70,9 +70,4 @@ public final class ConverterHasTextToStringTest extends ConverterTestCase2<Conve
     public Class<ConverterHasTextToString<ConverterContext>> type() {
         return Cast.to(ConverterHasTextToString.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

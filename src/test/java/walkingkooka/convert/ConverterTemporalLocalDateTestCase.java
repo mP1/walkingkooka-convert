@@ -18,18 +18,10 @@
 package walkingkooka.convert;
 
 import java.time.LocalDate;
-import java.time.temporal.Temporal;
 
 public abstract class ConverterTemporalLocalDateTestCase<C extends ConverterTemporalLocalDate<D, ConverterContext>, D> extends ConverterTemporalTestCase<C, LocalDate, D> {
 
     ConverterTemporalLocalDateTestCase() {
         super();
-    }
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    public final String typeNamePrefix() {
-        return Converter.class.getSimpleName() + Temporal.class.getSimpleName() + LocalDate.class.getSimpleName();
     }
 }

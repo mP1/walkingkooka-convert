@@ -99,9 +99,4 @@ public final class ConverterSimpleTest extends ConverterTestCase2<ConverterSimpl
     public Class<ConverterSimple<ConverterContext>> type() {
         return Cast.to(ConverterSimple.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

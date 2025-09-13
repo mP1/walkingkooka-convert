@@ -62,9 +62,4 @@ public final class ConverterNeverTest extends ConverterTestCase2<ConverterNever<
     public Class<ConverterNever<ConverterContext>> type() {
         return Cast.to(ConverterNever.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }

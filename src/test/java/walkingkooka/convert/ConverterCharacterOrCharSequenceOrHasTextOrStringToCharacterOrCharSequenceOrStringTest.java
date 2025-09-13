@@ -453,9 +453,4 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
     public Class<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> type() {
         return Cast.to(ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.class);
     }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
 }
