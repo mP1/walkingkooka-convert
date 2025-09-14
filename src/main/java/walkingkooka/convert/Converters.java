@@ -133,6 +133,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterCollectionToList}
+     */
+    public static <C extends ConverterContext> Converter<C> collectionToList() {
+        return ConverterCollectionToList.instance();
+    }
+
+    /**
      * {@see ConverterCustomToString}
      */
     public static <C extends ConverterContext> Converter<C> customToString(final Converter<C> converter,
