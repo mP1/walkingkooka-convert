@@ -44,6 +44,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [string-to-local-date-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter.java)
 - [string-to-local-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter.java)
 - [text-to-boolean-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListBooleanList.java)
+- [text-to-csv-string-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListCsvStringList.java)
 - [text-to-local-date-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListDateList.java)
 - [text-to-local-date-time-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListDateTimeList.java)
 - [text-to-local-time-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListTimeList.java)
