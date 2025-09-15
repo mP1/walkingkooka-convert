@@ -767,7 +767,7 @@ public final class ConverterCollectionToListTest extends ConverterTestCase2<Conv
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "List to"
+            "Collection to List"
         );
     }
 

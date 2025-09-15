@@ -151,6 +151,6 @@ final class ConverterCollectionToList<C extends ConverterContext> implements Sho
 
     @Override
     public String toString() {
-        return "List to";
+        return "Collection to List";
     }
 }
