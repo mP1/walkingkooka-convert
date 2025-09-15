@@ -370,6 +370,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListCsvStringList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
+        return ConverterTextToListCsvStringList.instance();
+    }
+
+    /**
      * {@see ConverterTextToListLocalDateList}
      */
     public static <C extends ConverterContext> Converter<C> textToLocalDateList() {
