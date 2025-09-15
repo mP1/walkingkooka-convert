@@ -48,6 +48,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [text-to-local-date-time-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListDateTimeList.java)
 - [text-to-local-time-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListTimeList.java)
 - [text-to-number-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListNumberList.java)
+- [text-to-string-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListStringList.java)
 - [to-boolean](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToBoolean.java)
 
 Note more `Converter` implementations are available in many different repos to support useful conversions for other types.
