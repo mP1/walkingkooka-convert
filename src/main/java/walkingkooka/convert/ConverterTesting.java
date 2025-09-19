@@ -41,7 +41,7 @@ public interface ConverterTesting extends TreePrintableTesting {
         this.checkEquals(
             true,
             converter.canConvert(value, target, context),
-            () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
+            () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName()
         );
 
         final Either<T, String> result = converter.convert(
@@ -52,7 +52,7 @@ public interface ConverterTesting extends TreePrintableTesting {
         this.checkEquals(
             false,
             result.isRight(),
-            () -> converter + " convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName() + ")"
+            () -> converter + " convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName()
         );
 
         final T convertedValue = result.leftValue();
