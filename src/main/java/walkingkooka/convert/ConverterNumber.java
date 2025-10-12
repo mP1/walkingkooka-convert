@@ -26,7 +26,7 @@ import java.math.BigInteger;
 /**
  * A {@link Converter} that handles converting {@link Number} to another {@link Number} type.
  */
-abstract class ConverterNumber<T, C extends ConverterContext> implements ShortCircuitingConverter<C> {
+abstract class ConverterNumber<N, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     ConverterNumber() {
         super();
@@ -40,7 +40,7 @@ abstract class ConverterNumber<T, C extends ConverterContext> implements ShortCi
             this.targetType() == type;
     }
 
-    abstract Class<T> targetType();
+    abstract Class<N> targetType();
 
     @Override
     public <T> Either<T, String> doConvert(final Object value,
@@ -80,13 +80,13 @@ abstract class ConverterNumber<T, C extends ConverterContext> implements ShortCi
         return result;
     }
 
-    abstract Either<T, String> bigDecimal(final BigDecimal value,
+    abstract Either<N, String> bigDecimal(final BigDecimal value,
                                           final ConverterContext context);
 
-    abstract Either<T, String> bigInteger(final BigInteger value,
+    abstract Either<N, String> bigInteger(final BigInteger value,
                                           final ConverterContext context);
 
-    final Either<T, String> floatValue(final Float value,
+    final Either<N, String> floatValue(final Float value,
                                        final ConverterContext context) {
         return this.doubleValue(
             value.doubleValue(),
@@ -94,10 +94,10 @@ abstract class ConverterNumber<T, C extends ConverterContext> implements ShortCi
         );
     }
 
-    abstract Either<T, String> doubleValue(final Double value,
+    abstract Either<N, String> doubleValue(final Double value,
                                            final ConverterContext context);
 
-    final Either<T, String> number(final Number value,
+    final Either<N, String> number(final Number value,
                                    final ConverterContext context) {
         return this.longValue(
             value.longValue(),
@@ -105,7 +105,7 @@ abstract class ConverterNumber<T, C extends ConverterContext> implements ShortCi
         );
     }
 
-    abstract Either<T, String> longValue(final Long value,
+    abstract Either<N, String> longValue(final Long value,
                                          final ConverterContext context);
 
     // Object...........................................................................................................
