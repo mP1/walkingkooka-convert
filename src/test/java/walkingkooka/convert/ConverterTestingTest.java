@@ -200,20 +200,18 @@ public final class ConverterTestingTest implements ConverterTesting {
     public void testConvertOrFailFailed() {
         assertThrows(
             ConverterException.class,
-            () -> {
-                new FakeConverter<>() {
-                    @Override
-                    public <T> Either<T, String> convert(final Object value,
-                                                         final Class<T> type,
-                                                         final ConverterContext context) {
-                        return this.failConversion(value, type);
-                    }
-                }.convertOrFail(
-                    this,
-                    Boolean.class,
-                    ConverterContexts.fake()
-                );
-            }
+            () -> new FakeConverter<>() {
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> type,
+                                                     final ConverterContext context) {
+                    return this.failConversion(value, type);
+                }
+            }.convertOrFail(
+                this,
+                Boolean.class,
+                ConverterContexts.fake()
+            )
         );
     }
 
