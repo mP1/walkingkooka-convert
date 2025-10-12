@@ -18,8 +18,11 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Either;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterExceptionTest implements StandardThrowableTesting<ConverterException> {
 
@@ -56,6 +59,104 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
         this.checkEquals(VALUE, exception.value(), "value");
         this.checkEquals(TYPE, exception.type(), "type");
         this.checkCause(exception, cause);
+    }
+
+    // setPrefix........................................................................................................
+
+    @Test
+    public void testSetPrefixWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> new ConverterException(
+                "Message",
+                null,
+                Void.class
+            ).setPrefix(null)
+        );
+    }
+
+    private final static String MESSAGE = "Message 123";
+
+    @Test
+    public void testSetPrefixWithEmpty() {
+        final ConverterException exception = new ConverterException(
+            MESSAGE,
+            1,
+            Void.class
+        ).setPrefix("");
+
+        this.checkMessage(
+            exception,
+            MESSAGE
+        );
+    }
+
+    @Test
+    public void testSetPrefixWithNonEmpty() {
+        final ConverterException exception = new ConverterException(
+            MESSAGE,
+            1,
+            Void.class
+        ).setPrefix("Hello: ");
+
+        this.checkMessage(
+            exception,
+            "Hello: " + MESSAGE
+        );
+    }
+
+    @Test
+    public void testConverterFailsAndGetMessage() {
+        final ConverterException thrown = assertThrows(
+            ConverterException.class,
+            () -> new FakeConverter<>() {
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> type,
+                                                     final ConverterContext context) {
+                    return this.failConversion(
+                        value,
+                        type
+                    );
+                }
+            }.convertOrFail(
+                123,
+                String.class,
+                ConverterContexts.fake()
+            )
+        );
+
+        this.checkMessage(
+            thrown,
+            "Failed to convert 123 (java.lang.Integer) to java.lang.String"
+        );
+    }
+
+    @Test
+    public void testConverterFailsSetPrefixAndGetMessage() {
+        final ConverterException thrown = assertThrows(
+            ConverterException.class,
+            () -> new FakeConverter<>() {
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> type,
+                                                     final ConverterContext context) {
+                    return this.failConversion(
+                        value,
+                        type
+                    );
+                }
+            }.convertOrFail(
+                123,
+                String.class,
+                ConverterContexts.fake()
+            )
+        );
+
+        this.checkMessage(
+            thrown.setPrefix("Hello: "),
+            "Hello: Failed to convert 123 (java.lang.Integer) to java.lang.String"
+        );
     }
 
     @Override
