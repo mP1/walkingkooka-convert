@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
 
-public final class ConversionExceptionTest implements StandardThrowableTesting<ConversionException> {
+public final class ConverterExceptionTest implements StandardThrowableTesting<ConverterException> {
 
     private final static Object VALUE = 123;
 
@@ -29,7 +29,7 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
 
     @Test
     public void testNew() {
-        final ConversionException exception = new ConversionException(
+        final ConverterException exception = new ConverterException(
             MESSAGE,
             VALUE,
             TYPE
@@ -45,7 +45,7 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     public void testNewWithCause() {
         final Throwable cause = new Throwable();
 
-        final ConversionException exception = new ConversionException(
+        final ConverterException exception = new ConverterException(
             MESSAGE,
             VALUE,
             TYPE,
@@ -59,8 +59,8 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     }
 
     @Override
-    public ConversionException createThrowable(final String message) {
-        return new ConversionException(
+    public ConverterException createThrowable(final String message) {
+        return new ConverterException(
             message,
             VALUE,
             TYPE
@@ -68,8 +68,8 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     }
 
     @Override
-    public ConversionException createThrowable(final String message, final Throwable cause) {
-        return new ConversionException(
+    public ConverterException createThrowable(final String message, final Throwable cause) {
+        return new ConverterException(
             message,
             VALUE,
             TYPE,
@@ -78,8 +78,8 @@ public final class ConversionExceptionTest implements StandardThrowableTesting<C
     }
 
     @Override
-    public Class<ConversionException> type() {
-        return ConversionException.class;
+    public Class<ConverterException> type() {
+        return ConverterException.class;
     }
 
     @Override

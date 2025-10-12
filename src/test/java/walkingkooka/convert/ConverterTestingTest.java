@@ -199,7 +199,7 @@ public final class ConverterTestingTest implements ConverterTesting {
     @Test
     public void testConvertOrFailFailed() {
         assertThrows(
-            ConversionException.class,
+            ConverterException.class,
             () -> {
                 new FakeConverter<ConverterContext>() {
                     @Override

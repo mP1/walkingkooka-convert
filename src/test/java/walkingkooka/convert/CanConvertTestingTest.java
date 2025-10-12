@@ -126,7 +126,7 @@ public final class CanConvertTestingTest implements Testing {
 
     @Test
     public void testConvertOrFailFails() {
-        assertThrows(ConversionException.class, () ->
+        assertThrows(ConverterException.class, () ->
             this.create(true, Either.right("Failed!"))
                 .convertOrFailAndCheck(VALUE, TARGET, CONVERTED));
     }

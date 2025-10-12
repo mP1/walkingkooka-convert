@@ -27,26 +27,26 @@ import java.util.Objects;
  * <br>
  * This is typically thrown by {@link Converter#convertOrFail(Object, Class, ConverterContext)} to report conversion failures.
  */
-public class ConversionException extends SystemException implements Value<Object> {
+public class ConverterException extends SystemException implements Value<Object> {
 
     private static final long serialVersionUID = 1;
 
-    protected ConversionException() {
+    protected ConverterException() {
         super();
     }
 
-    public ConversionException(final String message,
-                               final Object value,
-                               final Class<?> type) {
+    public ConverterException(final String message,
+                              final Object value,
+                              final Class<?> type) {
         super(message);
         this.value = value;
         this.type = Objects.requireNonNull(type, "type");
     }
 
-    public ConversionException(final String message,
-                               final Object value,
-                               final Class<?> type,
-                               final Throwable cause) {
+    public ConverterException(final String message,
+                              final Object value,
+                              final Class<?> type,
+                              final Throwable cause) {
         super(message, cause);
         this.value = value;
         this.type = Objects.requireNonNull(type, "type");

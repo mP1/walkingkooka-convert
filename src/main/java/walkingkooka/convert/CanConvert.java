@@ -57,7 +57,7 @@ public interface CanConvert {
                                   final Class<T> target);
 
     /**
-     * Converts the given value to the {@link Class target type} or throws a {@link ConversionException}
+     * Converts the given value to the {@link Class target type} or throws a {@link ConverterException}
      */
     default <T> T convertOrFail(final Object value,
                                 final Class<T> target) {
@@ -104,7 +104,7 @@ public interface CanConvert {
     default RuntimeException convertThrowable(final String message,
                                               final Object value,
                                               final Class<?> type) {
-        return new ConversionException(
+        return new ConverterException(
             message,
             value,
             type
