@@ -52,16 +52,20 @@ public class ConverterException extends SystemException implements Value<Object>
         this.type = Objects.requireNonNull(type, "type");
     }
 
-    private Object value;
+    // Value............................................................................................................
 
     @Override
     public Object value() {
         return this.value;
     }
 
-    private Class<?> type;
+    private Object value;
+
+    // type.............................................................................................................
 
     public Class<?> type() {
         return this.type;
     }
+
+    private Class<?> type;
 }
