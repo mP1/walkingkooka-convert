@@ -39,6 +39,8 @@ public class ConverterException extends SystemException implements Value<Object>
                               final Object value,
                               final Class<?> type) {
         super(message);
+
+        this.prefix = "";
         this.value = value;
         this.type = Objects.requireNonNull(type, "type");
     }
@@ -48,9 +50,31 @@ public class ConverterException extends SystemException implements Value<Object>
                               final Class<?> type,
                               final Throwable cause) {
         super(message, cause);
+
+        this.prefix = "";
         this.value = value;
         this.type = Objects.requireNonNull(type, "type");
     }
+
+    @Override
+    public String getMessage() {
+        return this.prefix + super.getMessage();
+    }
+
+    // prefix...........................................................................................................
+
+    public String prefix() {
+        return this.prefix;
+    }
+
+    public ConverterException setPrefix(final String prefix) {
+        Objects.requireNonNull(prefix, "prefix");
+
+        this.prefix = prefix;
+        return this;
+    }
+
+    private String prefix;
 
     // Value............................................................................................................
 
