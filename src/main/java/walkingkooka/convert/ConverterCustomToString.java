@@ -23,7 +23,7 @@ import walkingkooka.text.Whitespace;
 import java.util.Objects;
 
 /**
- * Wraps another {@link Converter} replacing or ignoring its {@link Converter#toString()} with the provided {@link String}.
+ * Wraps another {@link Converter} replacing or ignoring its {@link Object#toString()} with the provided {@link String}.
  */
 final class ConverterCustomToString<C extends ConverterContext> implements Converter<C> {
 
