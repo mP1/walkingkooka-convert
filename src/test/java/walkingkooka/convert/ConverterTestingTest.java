@@ -68,7 +68,7 @@ public final class ConverterTestingTest implements ConverterTesting {
         assertThrows(
             AssertionError.class,
             () -> this.convertAndCheck(
-                new FakeConverter<ConverterContext>() {
+                new FakeConverter<>() {
                     @Override
                     public boolean canConvert(final Object v,
                                               final Class<?> t,
@@ -104,7 +104,7 @@ public final class ConverterTestingTest implements ConverterTesting {
         final ConverterContext context = ConverterContexts.fake();
 
         this.convertFails(
-            new Converter<ConverterContext>() {
+            new Converter<>() {
                 @Override
                 public boolean canConvert(final Object v,
                                           final Class<?> t,
@@ -181,7 +181,7 @@ public final class ConverterTestingTest implements ConverterTesting {
     public void testConvertOrFailSuccess() {
         this.checkEquals(
             1,
-            new FakeConverter<ConverterContext>() {
+            new FakeConverter<>() {
                 @Override
                 public <T> Either<T, String> convert(final Object value,
                                                      final Class<T> type,
@@ -201,7 +201,7 @@ public final class ConverterTestingTest implements ConverterTesting {
         assertThrows(
             ConverterException.class,
             () -> {
-                new FakeConverter<ConverterContext>() {
+                new FakeConverter<>() {
                     @Override
                     public <T> Either<T, String> convert(final Object value,
                                                          final Class<T> type,
