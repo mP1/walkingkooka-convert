@@ -30,19 +30,41 @@ import java.util.function.Supplier;
  */
 public interface ConverterTesting extends TreePrintableTesting {
 
+    default <C extends ConverterContext> void canConvertAndCheck(final Converter<C> converter,
+                                                                 final Object value,
+                                                                 final Class<?> target,
+                                                                 final C context,
+                                                                 final boolean expected) {
+        final Supplier<String> className = () -> null != value ?
+            " (" + value.getClass().getName() + ")" :
+            "";
+        this.checkEquals(
+            expected,
+            converter.canConvert(
+                value,
+                target,
+                context
+            ),
+            () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName()
+        );
+    }
+
     default <T, C extends ConverterContext> T convertAndCheck(final Converter<C> converter,
                                                               final Object value,
                                                               final Class<T> target,
                                                               final C context,
                                                               final T expected) {
+        this.canConvertAndCheck(
+            converter,
+            value,
+            target,
+            context,
+            true
+        );
+
         final Supplier<String> className = () -> null != value ?
             " (" + value.getClass().getName() + ")" :
             "";
-        this.checkEquals(
-            true,
-            converter.canConvert(value, target, context),
-            () -> converter + " can convert " + CharSequences.quoteIfChars(value) + className.get() + " to " + target.getName()
-        );
 
         final Either<T, String> result = converter.convert(
             value,
