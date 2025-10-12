@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * An {@link RuntimeException} that reports that a value could not be converted to type.
  * <br>
- * This is typically thrown by {@link CanConvert#convertThrowable(String)} or {@link Converter#convertOrFail(Object, Class, ConverterContext)}
+ * This is typically thrown by {@link Converter#convertOrFail(Object, Class, ConverterContext)} to report conversion failures.
  */
 public class ConversionException extends SystemException implements Value<Object> {
 
