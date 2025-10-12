@@ -44,7 +44,7 @@ public final class ConverterSimpleTest extends ConverterTestCase2<ConverterSimpl
     @Test
     public void testConvertSubClass() {
         this.convertAndCheck(
-            new ArrayList(),
+            new ArrayList<>(),
             AbstractList.class
         );
     }
