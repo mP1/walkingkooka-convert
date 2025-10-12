@@ -52,6 +52,7 @@ public interface ConverterContext extends CanConvert,
     /**
      * Useful to report a failed conversion with a standard error message.
      */
+    @Override
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target) {
         return FailConversion.handle(value, target);
@@ -60,6 +61,7 @@ public interface ConverterContext extends CanConvert,
     /**
      * Useful to report a failed conversion with a standard error message, which includes a {@link Throwable#getMessage()}.
      */
+    @Override
     default <T> Either<T, String> failConversion(final Object value,
                                                  final Class<T> target,
                                                  final Throwable cause) {

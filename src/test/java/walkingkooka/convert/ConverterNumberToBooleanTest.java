@@ -69,7 +69,7 @@ public final class ConverterNumberToBooleanTest extends ConverterNumberTestCase<
     public void testConvertDoublePositiveInfinityFails() {
     }
 
-    @Test
+    @Override
     public void testConvertDoubleNegativeInfinityFails() {
     }
 
