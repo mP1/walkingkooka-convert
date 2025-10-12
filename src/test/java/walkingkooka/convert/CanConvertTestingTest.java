@@ -169,7 +169,7 @@ public final class CanConvertTestingTest implements Testing {
 
     private <T> CanConvertTesting<CanConvert> create(final boolean can,
                                                      final Either<T, String> result) {
-        return new CanConvertTesting<CanConvert>() {
+        return new CanConvertTesting<>() {
 
             @Override
             public CanConvert createCanConvert() {
