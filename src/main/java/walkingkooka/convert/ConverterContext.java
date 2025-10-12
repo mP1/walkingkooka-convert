@@ -18,7 +18,6 @@
 package walkingkooka.convert;
 
 import walkingkooka.Context;
-import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 
@@ -48,23 +47,4 @@ public interface ConverterContext extends CanConvert,
      * The character that separates one or more values within a {@link String}, such as a CSV.
      */
     char valueSeparator();
-
-    /**
-     * Useful to report a failed conversion with a standard error message.
-     */
-    @Override
-    default <T> Either<T, String> failConversion(final Object value,
-                                                 final Class<T> target) {
-        return FailConversion.handle(value, target);
-    }
-
-    /**
-     * Useful to report a failed conversion with a standard error message, which includes a {@link Throwable#getMessage()}.
-     */
-    @Override
-    default <T> Either<T, String> failConversion(final Object value,
-                                                 final Class<T> target,
-                                                 final Throwable cause) {
-        return FailConversion.handle(value, target, cause);
-    }
 }
