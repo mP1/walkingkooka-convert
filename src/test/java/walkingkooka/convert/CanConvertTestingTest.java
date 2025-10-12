@@ -53,29 +53,27 @@ public final class CanConvertTestingTest implements Testing {
     public void testCanConvertOrFailFails() {
         final String message = "message 1234";
 
-        final RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            new CanConvert() {
+        final RuntimeException thrown = assertThrows(RuntimeException.class, () -> new CanConvert() {
 
-                @Override
-                public boolean canConvert(final Object value,
-                                          final Class<?> type) {
-                    return false;
-                }
+            @Override
+            public boolean canConvert(final Object value,
+                                      final Class<?> type) {
+                return false;
+            }
 
-                @Override //
-                public <T> Either<T, String> convert(final Object value,
-                                                     final Class<T> target) {
-                    throw new UnsupportedOperationException();
-                }
+            @Override //
+            public <T> Either<T, String> convert(final Object value,
+                                                 final Class<T> target) {
+                throw new UnsupportedOperationException();
+            }
 
-                @Override
-                public RuntimeException convertThrowable(final String ignored,
-                                                         final Object value,
-                                                         final Class<?> type) {
-                    return new RuntimeException(message);
-                }
-            }.canConvertOrFail(VALUE, TARGET);
-        });
+            @Override
+            public RuntimeException convertThrowable(final String ignored,
+                                                     final Object value,
+                                                     final Class<?> type) {
+                return new RuntimeException(message);
+            }
+        }.canConvertOrFail(VALUE, TARGET));
         this.checkEquals(message, thrown.getMessage(), "message");
     }
 
@@ -135,29 +133,27 @@ public final class CanConvertTestingTest implements Testing {
     public void testConvertOrFailCustomConvertThrowableFails() {
         final String message = "message 123";
         final RuntimeException thrown = assertThrows(RuntimeException.class,
-            () -> {
-                new CanConvert() {
+            () -> new CanConvert() {
 
-                    @Override
-                    public boolean canConvert(final Object value,
-                                              final Class<?> type) {
-                        return false;
-                    }
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return false;
+                }
 
-                    @Override //
-                    public <T> Either<T, String> convert(final Object value,
-                                                         final Class<T> target) {
-                        return Either.right(message);
-                    }
+                @Override //
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return Either.right(message);
+                }
 
-                    @Override
-                    public RuntimeException convertThrowable(final String message,
-                                                             final Object value,
-                                                             final Class<?> type) {
-                        return new RuntimeException(message);
-                    }
-                }.convertOrFail(this, this.getClass());
-            });
+                @Override
+                public RuntimeException convertThrowable(final String message,
+                                                         final Object value,
+                                                         final Class<?> type) {
+                    return new RuntimeException(message);
+                }
+            }.convertOrFail(this, this.getClass()));
 
         this.checkEquals(message, thrown.getMessage(), "message");
     }
