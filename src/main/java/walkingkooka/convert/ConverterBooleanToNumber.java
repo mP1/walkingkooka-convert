@@ -23,8 +23,7 @@ import walkingkooka.math.Maths;
 /**
  * Handles converting {@link Number} to {@link Boolean}.
  */
-final class ConverterBooleanToNumber<C extends ConverterContext> implements Converter<C>,
-    TryingShortCircuitingConverter<C> {
+final class ConverterBooleanToNumber<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
