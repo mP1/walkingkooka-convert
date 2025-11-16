@@ -33,7 +33,7 @@ import java.util.function.Function;
  * A {@link Converter} that accepts only {@link String} and then invokes a {@link Parser}. If the parser is successful,
  * the {@link Function parserTokenToValue} is used to make the {@link ParserToken} into the target value.
  */
-final class ConverterParser<V, P extends ParserContext, C extends ConverterContext> implements Converter<C> {
+final class ConverterParser<V, P extends ParserContext, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     static <V, P extends ParserContext, C extends ConverterContext> ConverterParser<V, P, C> with(final Class<V> parserValueType,
                                                                                                   final Parser<P> parser,
@@ -79,26 +79,15 @@ final class ConverterParser<V, P extends ParserContext, C extends ConverterConte
     private final Class<V> parserValueType;
 
     @Override
-    public <T> Either<T, String> convert(final Object value,
-                                         final Class<T> type,
-                                         final C context) {
-        return this.canConvert(
-            value,
+    public <T> Either<T, String> doConvert(Object value, Class<T> type, C context) {
+        return this.parse(
+            context.convertOrFail(
+                value,
+                CharSequence.class
+            ),
             type,
             context
-        ) ?
-            this.parse(
-                context.convertOrFail(
-                    value,
-                    CharSequence.class
-                ),
-                type,
-                context
-            ) :
-            this.failConversion(
-                value,
-                type
-            );
+        );
     }
 
     private <T> Either<T, String> parse(final CharSequence text,
