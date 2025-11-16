@@ -24,7 +24,7 @@ import walkingkooka.Either;
  * A {@link Converter} that supports considering {@link Character} as equivalent to {@link String}.
  * Note if the input is a {@link String} then that will be returned.
  */
-final class ConverterCharacterOrStringToString<C extends ConverterContext> implements Converter<C> {
+final class ConverterCharacterOrStringToString<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     static <C extends ConverterContext> ConverterCharacterOrStringToString<C> instance() {
         return Cast.to(INSTANCE);
@@ -35,6 +35,8 @@ final class ConverterCharacterOrStringToString<C extends ConverterContext> imple
     private ConverterCharacterOrStringToString() {
         super();
     }
+
+    // ShortCircuitingConverter.........................................................................................
 
     @Override
     public boolean canConvert(final Object value,
@@ -49,20 +51,16 @@ final class ConverterCharacterOrStringToString<C extends ConverterContext> imple
     }
 
     @Override
-    public <T> Either<T, String> convert(final Object value,
-                                         final Class<T> type,
-                                         final C context) {
-        return this.canConvert(
-            value,
-            type,
-            context
-        ) ?
-            this.successfulConversion(
-                null != value ? value.toString() : null,
-                type
-            ) :
-            this.failConversion(value, type);
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
+        return this.successfulConversion(
+            null != value ? value.toString() : null,
+            type
+        );
     }
+
+    // Object...........................................................................................................
 
     @Override
     public String toString() {
