@@ -16,6 +16,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [chain](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterChain.java)
 - [character-or-char-sequence-or-has-text-or-string-to-character-or-char-sequence-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString.java)
 - [collection](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCollection.java)
+- [collection-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCollectionTo.java)
 - [collection-to-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCollectionToList.java)
 - [custom-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCustomToString.java)
 - [has-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasText.java)

@@ -140,6 +140,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterCollectionTo}
+     */
+    public static <C extends ConverterContext> Converter<C> collectionTo() {
+        return ConverterCollectionTo.instance();
+    }
+
+    /**
      * {@see ConverterCustomToString}
      */
     public static <C extends ConverterContext> Converter<C> customToString(final Converter<C> converter,
