@@ -37,6 +37,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [number-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNumberToNumber.java)
 - [object](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToObject.java)
 - [object-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterObjectToString.java)
+- [optional-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterOptionalTo.java)
 - [parser](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterParser.java)
 - [simple](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterSimple.java)
 - [string-to-character-or-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterSimple.java)

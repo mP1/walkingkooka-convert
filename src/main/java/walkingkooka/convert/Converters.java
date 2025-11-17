@@ -304,6 +304,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterOptionalTo}
+     */
+    public static <C extends ConverterContext> Converter<C> optionalTo() {
+        return ConverterOptionalTo.instance();
+    }
+
+    /**
      * {@see ConverterParser}
      */
     public static <V,
