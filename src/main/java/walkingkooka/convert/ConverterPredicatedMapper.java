@@ -26,7 +26,7 @@ import java.util.function.Predicate;
 /**
  * A {@link Converter} passes the given value to a {@link Function} such as a method handle to a static method which performs the conversion.
  */
-final class ConverterPredicatedMapper<S, D, C extends ConverterContext> implements Converter<C> {
+final class ConverterPredicatedMapper<S, D, C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     static <S, D, C extends ConverterContext> ConverterPredicatedMapper<S, D, C> with(final Predicate<Object> source,
                                                                                       final Predicate<Class<?>> target,
@@ -61,15 +61,13 @@ final class ConverterPredicatedMapper<S, D, C extends ConverterContext> implemen
     private final Predicate<Class<?>> target;
 
     @Override
-    public <T> Either<T, String> convert(final Object value,
-                                         final Class<T> type,
-                                         final C context) {
-        return this.canConvert(value, type, context) ?
-            this.successfulConversion(
-                this.mapper.apply((S) value),
-                type
-            ) :
-            this.failConversion(value, type);
+    public <T> Either<T, String> doConvert(final Object value,
+                                           final Class<T> type,
+                                           final C context) {
+        return this.successfulConversion(
+            this.mapper.apply((S) value),
+            type
+        );
     }
 
     private final Function<S, D> mapper;
