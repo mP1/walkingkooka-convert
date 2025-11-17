@@ -23,8 +23,7 @@ import walkingkooka.Cast;
  * A {@link Converter} that returns the value if the requested target type is actually the requested target type.
  * This is unfortunate limit of J2CL the Class#isInstance is not support/available.
  */
-final class ConverterSimple<C extends ConverterContext> implements Converter<C>,
-    TryingShortCircuitingConverter<C> {
+final class ConverterSimple<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe getter
