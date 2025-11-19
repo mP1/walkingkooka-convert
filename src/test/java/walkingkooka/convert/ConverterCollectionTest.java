@@ -58,10 +58,10 @@ public final class ConverterCollectionTest extends ConverterTestCase2<ConverterC
     }
 
     @Test
-    public void testConvertNull() {
-        this.convertAndCheck(
+    public void testConvertNullToBooleanFails() {
+        this.convertFails(
             null,
-            false
+            Boolean.class
         );
     }
 

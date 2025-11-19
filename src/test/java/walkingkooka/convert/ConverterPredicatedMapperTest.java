@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterPredicatedMapperTest extends ConverterTestCase2<ConverterPredicatedMapper<String, Boolean, ConverterContext>> {
 
-    private final static Predicate<Object> SOURCE = (t) -> t instanceof String;
+    private final static Predicate<Object> SOURCE = (t) -> null == t || t instanceof String;
     private final static Predicate<Class<?>> TARGET = Predicate.isEqual(Boolean.class);
     private final static Function<String, Boolean> MAPPER = Boolean::valueOf;
 
@@ -70,10 +70,19 @@ public final class ConverterPredicatedMapperTest extends ConverterTestCase2<Conv
     // converter........................................................................................................
 
     @Test
-    public void testConvertNull() {
+    public void testConvertNullToNonBoolean() {
+        this.convertFails(
+            null,
+            Void.class
+        );
+    }
+
+    @Test
+    public void testConvertNullToBoolean() {
         this.convertAndCheck(
             null,
-            false
+            Boolean.class,
+            false// Boolean.valueOf(null) -> false
         );
     }
 

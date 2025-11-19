@@ -53,7 +53,7 @@ final class ConverterPredicatedMapper<S, D, C extends ConverterContext> implemen
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return (value == null || this.source.test(value)) &&
+        return this.source.test(value) &&
             this.target.test(type);
     }
 
