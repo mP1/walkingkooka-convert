@@ -384,6 +384,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToLineEnding}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLineEnding() {
+        return ConverterTextToLineEnding.instance();
+    }
+
+    /**
      * {@see ConverterTextToListCsvStringList}
      */
     public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
