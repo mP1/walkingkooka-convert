@@ -30,6 +30,14 @@ import java.util.Locale;
 public final class ConverterStringToCharacterOrStringTest implements ConverterTesting2<ConverterStringToCharacterOrString<FakeConverterContext>, FakeConverterContext> {
 
     @Test
+    public void testConvertNonStringToString() {
+        this.convertFails(
+            Locale.ENGLISH,
+            String.class
+        );
+    }
+
+    @Test
     public void testConvertNull() {
         this.convertAndCheck(
             null,
