@@ -47,9 +47,22 @@ final class ConverterStringToCharacterOrString<C extends ConverterContext> imple
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return Character.class == type &&
-            (null == value || value instanceof String && ((String) value).length() == 1) ||
-            String.class == type;
+        boolean canConvert = false;
+
+        if (Character.class == type || String.class == type) {
+            canConvert = null == value;
+
+            if (false == canConvert) {
+                if (value instanceof String) {
+                    canConvert = Character.class == type ?
+                        ((String) value).length() == 1 :
+                        true
+                    ;
+                }
+            }
+        }
+
+        return canConvert;
     }
 
     @Override
