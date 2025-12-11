@@ -79,6 +79,7 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
             Converters.fake(),
             DateTimeContexts.fake(),
             DecimalNumberContexts.basic(
+                DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT,
                 DecimalNumberSymbols.fromDecimalFormatSymbols(
                     '+',
                     new DecimalFormatSymbols(locale)

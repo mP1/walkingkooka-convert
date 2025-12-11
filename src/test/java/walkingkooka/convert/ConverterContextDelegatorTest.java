@@ -38,6 +38,11 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
     }
 
     @Override
+    public int decimalNumberDigitCount() {
+        return DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT;
+    }
+
+    @Override
     public DecimalNumberContext decimalNumberContext() {
         return this.createContext();
     }

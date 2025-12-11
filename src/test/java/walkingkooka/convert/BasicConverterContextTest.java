@@ -152,8 +152,14 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     @Override
+    public int decimalNumberDigitCount() {
+        return DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT;
+    }
+
+    @Override
     public DecimalNumberContext decimalNumberContext() {
         return DecimalNumberContexts.basic(
+            DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT,
             DecimalNumberSymbols.with(
                 MINUS,
                 PLUS,
