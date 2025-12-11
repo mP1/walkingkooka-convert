@@ -751,6 +751,7 @@ public final class ConverterCollectionToListTest extends ConverterTestCase2<Conv
             }
 
             private final DecimalNumberContext decimalNumberContext = DecimalNumberContexts.basic(
+                DEFAULT_NUMBER_DIGIT_COUNT,
                 DecimalNumberSymbols.fromDecimalFormatSymbols(
                     '+',
                     new DecimalFormatSymbols(this.locale())
