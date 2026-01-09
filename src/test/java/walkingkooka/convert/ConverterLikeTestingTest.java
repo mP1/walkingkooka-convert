@@ -163,9 +163,9 @@ public final class ConverterLikeTestingTest implements Testing {
         this.create(true, Either.left(CONVERTED));
     }
 
-    private <T> ConvertLikeTesting<ConverterLike> create(final boolean can,
-                                                         final Either<T, String> result) {
-        return new ConvertLikeTesting<>() {
+    private <T> ConverterLikeTesting<ConverterLike> create(final boolean can,
+                                                           final Either<T, String> result) {
+        return new ConverterLikeTesting<>() {
 
             @Override
             public ConverterLike createConverterLike() {

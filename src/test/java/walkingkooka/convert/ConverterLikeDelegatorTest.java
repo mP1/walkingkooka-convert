@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public final class ConverterLikeDelegatorTest implements ConvertLikeTesting<TestConverterLikeDelegator> {
+public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<TestConverterLikeDelegator> {
 
     @Test
     public void testConvert() {
