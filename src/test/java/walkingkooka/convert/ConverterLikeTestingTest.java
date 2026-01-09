@@ -25,7 +25,7 @@ import walkingkooka.test.Testing;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class CanConvertTestingTest implements Testing {
+public final class ConverterLikeTestingTest implements Testing {
 
     final Object VALUE = 123;
     final Class<String> TARGET = String.class;
@@ -33,7 +33,7 @@ public final class CanConvertTestingTest implements Testing {
 
     @Test
     public void testCanConvertOrFail() {
-        new CanConvert() {
+        new ConverterLike() {
 
             @Override
             public boolean canConvert(final Object value,
@@ -53,7 +53,7 @@ public final class CanConvertTestingTest implements Testing {
     public void testCanConvertOrFailFails() {
         final String message = "message 1234";
 
-        final RuntimeException thrown = assertThrows(RuntimeException.class, () -> new CanConvert() {
+        final RuntimeException thrown = assertThrows(RuntimeException.class, () -> new ConverterLike() {
 
             @Override
             public boolean canConvert(final Object value,
@@ -133,7 +133,7 @@ public final class CanConvertTestingTest implements Testing {
     public void testConvertOrFailCustomConvertThrowableFails() {
         final String message = "message 123";
         final RuntimeException thrown = assertThrows(RuntimeException.class,
-            () -> new CanConvert() {
+            () -> new ConverterLike() {
 
                 @Override
                 public boolean canConvert(final Object value,
@@ -163,13 +163,13 @@ public final class CanConvertTestingTest implements Testing {
         this.create(true, Either.left(CONVERTED));
     }
 
-    private <T> CanConvertTesting<CanConvert> create(final boolean can,
-                                                     final Either<T, String> result) {
-        return new CanConvertTesting<>() {
+    private <T> ConvertLikeTesting<ConverterLike> create(final boolean can,
+                                                         final Either<T, String> result) {
+        return new ConvertLikeTesting<>() {
 
             @Override
-            public CanConvert createCanConvert() {
-                return new CanConvert() {
+            public ConverterLike createConverterLike() {
+                return new ConverterLike() {
 
                     @Override
                     public boolean canConvert(final Object value,

@@ -25,19 +25,19 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import java.util.Locale;
 
 public interface ConverterContextDelegator extends ConverterContext,
-    CanConvertDelegator,
+    ConverterLikeDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
-
-    @Override
-    default CanConvert canConvert() {
-        return this.converterContext();
-    }
 
     @Override
     default boolean canNumbersHaveGroupSeparator() {
         return this.converterContext()
             .canNumbersHaveGroupSeparator();
+    }
+
+    @Override
+    default ConverterLike converterLike() {
+        return this.converterContext();
     }
 
     @Override

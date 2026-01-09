@@ -14,31 +14,28 @@
  * limitations under the License.
  *
  */
-
 package walkingkooka.convert;
 
-import walkingkooka.Either;
+import walkingkooka.datetime.DateTimeContextTesting2;
+import walkingkooka.math.DecimalNumberContextTesting2;
 
-public interface CanConvertDelegator extends CanConvert {
+/**
+ * Mixing testing interface for {@link ConverterContext}
+ */
+public interface ConverterLikeTesting<C extends ConverterContext> extends ConvertLikeTesting<C>,
+    DateTimeContextTesting2<C>,
+    DecimalNumberContextTesting2<C> {
 
+    /**
+     * Delegates to {@link #createContext()}.
+     */
     @Override
-    default boolean canConvert(final Object value,
-                               final Class<?> type) {
-        return this.canConvert()
-            .canConvert(
-                value,
-                type
-            );
+    default C createConverterLike() {
+        return this.createContext();
     }
 
     @Override
-    default <T> Either<T, String> convert(final Object value,
-                                          final Class<T> type) {
-        return this.canConvert().convert(
-            value,
-            type
-        );
+    default String typeNameSuffix() {
+        return ConverterContext.class.getSimpleName();
     }
-
-    CanConvert canConvert();
 }

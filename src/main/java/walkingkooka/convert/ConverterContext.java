@@ -24,7 +24,7 @@ import walkingkooka.math.DecimalNumberContext;
 /**
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
  */
-public interface ConverterContext extends CanConvert,
+public interface ConverterContext extends ConverterLike,
     DateTimeContext,
     DecimalNumberContext {
 
