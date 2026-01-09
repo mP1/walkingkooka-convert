@@ -36,7 +36,7 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
-    ConverterContextTesting<BasicConverterContext>,
+    ConverterLikeTesting<BasicConverterContext>,
     DecimalNumberContextDelegator {
 
     private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;

@@ -23,17 +23,17 @@ import walkingkooka.text.CharSequences;
 /**
  * Interface that includes a method to convert a value to a target type.
  */
-public interface CanConvert {
+public interface ConverterLike {
 
     /**
-     * Queries whether this {@link CanConvert} supports converting to the requested {@link Class class}. A returned true
+     * Queries whether this {@link ConverterLike} supports converting to the requested {@link Class class}. A returned true
      * does not actually guarantee that the convert method will success, the result should still be tested.
      */
     boolean canConvert(final Object value,
                        final Class<?> type);
 
     /**
-     * Queries whether this {@link CanConvert} supports converting the value to the target type, throwing an exception
+     * Queries whether this {@link ConverterLike} supports converting the value to the target type, throwing an exception
      * if it fails, and always returning <code>true</code>
      */
     default boolean canConvertOrFail(final Object value,

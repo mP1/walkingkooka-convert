@@ -18,7 +18,7 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.convert.CanConvertDelegatorTest.TestCanConvertDelegator;
+import walkingkooka.convert.ConverterLikeDelegatorTest.TestConverterLikeDelegator;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContexts;
@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanConvertDelegator> {
+public final class ConverterLikeDelegatorTest implements ConvertLikeTesting<TestConverterLikeDelegator> {
 
     @Test
     public void testConvert() {
@@ -46,13 +46,13 @@ public final class CanConvertDelegatorTest implements CanConvertTesting<TestCanC
     }
 
     @Override
-    public TestCanConvertDelegator createCanConvert() {
-        return new TestCanConvertDelegator();
+    public TestConverterLikeDelegator createConverterLike() {
+        return new TestConverterLikeDelegator();
     }
 
-    static class TestCanConvertDelegator implements CanConvertDelegator {
+    static class TestConverterLikeDelegator implements ConverterLikeDelegator {
         @Override
-        public CanConvert canConvert() {
+        public ConverterLike converterLike() {
             final Locale locale = Locale.forLanguageTag("EN-AU");
 
             return ConverterContexts.basic(

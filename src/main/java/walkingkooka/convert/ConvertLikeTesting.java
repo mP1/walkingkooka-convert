@@ -22,17 +22,17 @@ import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 
 /**
- * Mixing testing interface for {@link CanConvert}
+ * Mixing testing interface for {@link ConverterLike}
  */
-public interface CanConvertTesting<C extends CanConvert> extends Testing {
+public interface ConvertLikeTesting<C extends ConverterLike> extends Testing {
 
     default <T> T convertAndCheck(final Object value,
                                   final Class<T> target,
                                   final T expected) {
-        return this.convertAndCheck(this.createCanConvert(), value, target, expected);
+        return this.convertAndCheck(this.createConverterLike(), value, target, expected);
     }
 
-    default <T> T convertAndCheck(final CanConvert context,
+    default <T> T convertAndCheck(final ConverterLike context,
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
@@ -58,10 +58,10 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
 
     default void convertFails(final Object value,
                               final Class<?> type) {
-        this.convertFails(this.createCanConvert(), value, type);
+        this.convertFails(this.createConverterLike(), value, type);
     }
 
-    default void convertFails(final CanConvert context,
+    default void convertFails(final ConverterLike context,
                               final Object value,
                               final Class<?> type) {
         final Either<?, String> result = context.convert(value, type);
@@ -73,13 +73,13 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
     default <T> T convertOrFailAndCheck(final Object value,
                                         final Class<T> target,
                                         final T expected) {
-        return this.convertOrFailAndCheck(this.createCanConvert(),
+        return this.convertOrFailAndCheck(this.createConverterLike(),
             value,
             target,
             expected);
     }
 
-    default <T> T convertOrFailAndCheck(final CanConvert can,
+    default <T> T convertOrFailAndCheck(final ConverterLike can,
                                         final Object value,
                                         final Class<T> target,
                                         final T expected) {
@@ -93,7 +93,7 @@ public interface CanConvertTesting<C extends CanConvert> extends Testing {
     }
 
     /**
-     * Factory that creates a {@link CanConvert}.
+     * Factory that creates a {@link ConverterLike}.
      */
-    C createCanConvert();
+    C createConverterLike();
 }
