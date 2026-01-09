@@ -25,6 +25,7 @@ import walkingkooka.naming.Name;
 import walkingkooka.naming.Names;
 import walkingkooka.naming.StringName;
 import walkingkooka.text.HasText;
+import walkingkooka.text.LineEnding;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -422,7 +423,8 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
             Character.class,
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
-                0,
+                0, // dateTimeOffset
+                LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
                 DateTimeContexts.fake(),

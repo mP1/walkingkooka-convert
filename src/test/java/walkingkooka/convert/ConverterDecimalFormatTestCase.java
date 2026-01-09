@@ -23,6 +23,7 @@ import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
 import java.text.DecimalFormat;
@@ -75,6 +76,7 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
+            LineEnding.NL,
             ',', // valueSeparator
             Converters.fake(),
             DateTimeContexts.fake(),

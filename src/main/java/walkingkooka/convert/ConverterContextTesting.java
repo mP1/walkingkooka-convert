@@ -18,13 +18,15 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContextTesting2;
 import walkingkooka.math.DecimalNumberContextTesting2;
+import walkingkooka.text.HasLineEndingTesting;
 
 /**
  * Mixing testing interface for {@link ConverterContext}
  */
 public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting<C>,
     DateTimeContextTesting2<C>,
-    DecimalNumberContextTesting2<C> {
+    DecimalNumberContextTesting2<C>,
+    HasLineEndingTesting {
 
     /**
      * Delegates to {@link #createContext()}.

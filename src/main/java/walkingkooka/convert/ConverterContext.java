@@ -20,13 +20,15 @@ package walkingkooka.convert;
 import walkingkooka.Context;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.text.HasLineEnding;
 
 /**
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
  */
 public interface ConverterContext extends ConverterLike,
     DateTimeContext,
-    DecimalNumberContext {
+    DecimalNumberContext,
+    HasLineEnding {
 
     /**
      * A flag that controls whether text holding a number may or may not include a group-separator.

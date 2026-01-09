@@ -22,6 +22,7 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
+import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
 import java.util.Locale;
@@ -39,10 +40,12 @@ final class BasicConverterContext implements ConverterContext,
      */
     static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
+                                      final LineEnding lineEnding,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
+        Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
@@ -50,6 +53,7 @@ final class BasicConverterContext implements ConverterContext,
         return new BasicConverterContext(
             canNumbersHaveGroupSeparator,
             dateOffset,
+            lineEnding,
             valueSeparator,
             converter,
             dateTimeContext,
@@ -62,6 +66,7 @@ final class BasicConverterContext implements ConverterContext,
      */
     private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
+                                  final LineEnding lineEnding,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
                                   final DateTimeContext dateTimeContext,
@@ -70,6 +75,7 @@ final class BasicConverterContext implements ConverterContext,
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
         this.dateOffset = dateOffset;
+        this.lineEnding = lineEnding;
         this.valueSeparator = valueSeparator;
 
         this.converter = converter;
@@ -104,6 +110,13 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final Converter<ConverterContext> converter;
+
+    @Override
+    public LineEnding lineEnding() {
+        return this.lineEnding;
+    }
+
+    private final LineEnding lineEnding;
 
     @Override
     public char valueSeparator() {
