@@ -27,6 +27,7 @@ import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
 import java.text.DateFormatSymbols;
@@ -58,8 +59,25 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static char PLUS = '+';
     private final static char ZERO_DIGIT = '0';
 
+    private final static LineEnding LINE_ENDING = LineEnding.NL;
     private final static Locale LOCALE = Locale.ENGLISH;
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
+
+    @Test
+    public void testWithNullLineEndingFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                NUMBER_TO_DATE_OFFSET,
+                null,
+                VALUE_SEPARATOR,
+                CONVERTER,
+                this.dateTimeContext(),
+                this.decimalNumberContext()
+            )
+        );
+    }
 
     @Test
     public void testWithNullConverterFails() {
@@ -68,6 +86,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
+                LINE_ENDING,
                 VALUE_SEPARATOR,
                 null,
                 this.dateTimeContext(),
@@ -83,6 +102,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
+                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 null,
@@ -97,6 +117,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
+                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 this.dateTimeContext(),
@@ -130,6 +151,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         return BasicConverterContext.with(
             CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
             NUMBER_TO_DATE_OFFSET,
+            LINE_ENDING,
             VALUE_SEPARATOR,
             CONVERTER,
             this.dateTimeContext(),

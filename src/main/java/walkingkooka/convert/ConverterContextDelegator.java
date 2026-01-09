@@ -21,6 +21,7 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
+import walkingkooka.text.LineEnding;
 
 import java.util.Locale;
 
@@ -65,6 +66,12 @@ public interface ConverterContextDelegator extends ConverterContext,
     default char valueSeparator() {
         return this.converterContext()
             .valueSeparator();
+    }
+
+    @Override
+    default LineEnding lineEnding() {
+        return this.converterContext()
+            .lineEnding();
     }
 
     ConverterContext converterContext();

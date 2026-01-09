@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.text.LineEnding;
 
 /**
  * Factory methods for numerous {@link Converter converters}.
@@ -31,6 +32,7 @@ public final class ConverterContexts implements PublicStaticHelper {
      */
     public static ConverterContext basic(final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
+                                         final LineEnding lineEnding,
                                          final char valueSeparator,
                                          final Converter<ConverterContext> converter,
                                          final DateTimeContext dateTimeContext,
@@ -38,6 +40,7 @@ public final class ConverterContexts implements PublicStaticHelper {
         return BasicConverterContext.with(
             canNumbersHaveGroupSeparator,
             dateOffset,
+            lineEnding,
             valueSeparator,
             converter,
             dateTimeContext,

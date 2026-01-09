@@ -21,6 +21,7 @@ import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.FakeDecimalNumberContext;
 import walkingkooka.test.Fake;
+import walkingkooka.text.LineEnding;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -124,6 +125,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
 
     @Override
     public char valueSeparator() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public LineEnding lineEnding() {
         throw new UnsupportedOperationException();
     }
 }
