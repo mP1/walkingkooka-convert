@@ -22,6 +22,7 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
@@ -40,11 +41,13 @@ final class BasicConverterContext implements ConverterContext,
      */
     static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
+                                      final Indentation indentation,
                                       final LineEnding lineEnding,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
+        Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
@@ -53,6 +56,7 @@ final class BasicConverterContext implements ConverterContext,
         return new BasicConverterContext(
             canNumbersHaveGroupSeparator,
             dateOffset,
+            indentation,
             lineEnding,
             valueSeparator,
             converter,
@@ -66,6 +70,7 @@ final class BasicConverterContext implements ConverterContext,
      */
     private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
+                                  final Indentation indentation,
                                   final LineEnding lineEnding,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
@@ -75,6 +80,7 @@ final class BasicConverterContext implements ConverterContext,
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
         this.dateOffset = dateOffset;
+        this.indentation = indentation;
         this.lineEnding = lineEnding;
         this.valueSeparator = valueSeparator;
 
@@ -110,6 +116,13 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final Converter<ConverterContext> converter;
+
+    @Override
+    public Indentation indentation() {
+        return this.indentation;
+    }
+
+    private final Indentation indentation;
 
     @Override
     public LineEnding lineEnding() {

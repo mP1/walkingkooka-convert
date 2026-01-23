@@ -22,6 +22,7 @@ import walkingkooka.convert.ConverterLikeDelegatorTest.TestConverterLikeDelegato
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
@@ -59,6 +60,7 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
+                Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.stringToLocalDate(

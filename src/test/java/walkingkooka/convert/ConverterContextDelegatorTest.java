@@ -23,6 +23,7 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
@@ -75,6 +76,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
+                Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
