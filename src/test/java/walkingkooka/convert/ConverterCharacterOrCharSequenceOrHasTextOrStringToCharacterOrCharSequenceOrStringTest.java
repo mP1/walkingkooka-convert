@@ -25,6 +25,7 @@ import walkingkooka.naming.Name;
 import walkingkooka.naming.Names;
 import walkingkooka.naming.StringName;
 import walkingkooka.text.HasText;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.BigDecimal;
@@ -424,6 +425,7 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
+                Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),

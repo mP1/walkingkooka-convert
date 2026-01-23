@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.BigDecimal;
@@ -111,6 +112,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 0, // dateOffset
+                Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
