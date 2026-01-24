@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.Context;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.text.HasIndentation;
 import walkingkooka.text.HasLineEnding;
 import walkingkooka.text.Indentation;
 
@@ -29,6 +30,7 @@ import walkingkooka.text.Indentation;
 public interface ConverterContext extends ConverterLike,
     DateTimeContext,
     DecimalNumberContext,
+    HasIndentation,
     HasLineEnding {
 
     /**

@@ -18,8 +18,8 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContextTesting2;
 import walkingkooka.math.DecimalNumberContextTesting2;
+import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.HasLineEndingTesting;
-import walkingkooka.text.Indentation;
 
 /**
  * Mixing testing interface for {@link ConverterContext}
@@ -27,18 +27,8 @@ import walkingkooka.text.Indentation;
 public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting<C>,
     DateTimeContextTesting2<C>,
     DecimalNumberContextTesting2<C>,
+    HasIndentationTesting,
     HasLineEndingTesting {
-
-    // indentation......................................................................................................
-
-    default void indentationAndCheck(final C context,
-                                     final Indentation indentation) {
-        this.checkEquals(
-            indentation,
-            context.indentation(),
-            context::toString
-        );
-    }
 
     /**
      * Delegates to {@link #createContext()}.
