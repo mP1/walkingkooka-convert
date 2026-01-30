@@ -22,7 +22,6 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.text.HasIndentation;
 import walkingkooka.text.HasLineEnding;
-import walkingkooka.text.Indentation;
 
 /**
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
@@ -47,11 +46,6 @@ public interface ConverterContext extends ConverterLike,
      * The offset (relative to 1/1/1970) added when converting a number to a {@link java.time.LocalDate}.
      */
     long dateOffset();
-
-    /**
-     * The {@link Indentation} if required.
-     */
-    Indentation indentation();
 
     /**
      * The character that separates one or more values within a {@link String}, such as a CSV.
