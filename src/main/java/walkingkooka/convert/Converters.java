@@ -433,6 +433,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToZoneOffset}
+     */
+    public static <C extends ConverterContext> Converter<C> textToZoneOffset() {
+        return ConverterTextToZoneOffset.instance();
+    }
+
+    /**
      * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
