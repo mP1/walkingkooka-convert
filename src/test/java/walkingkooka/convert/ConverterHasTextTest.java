@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.text.HasText;
+import walkingkooka.text.LineEnding;
 
 public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasText<ConverterContext>> {
 
@@ -43,6 +44,16 @@ public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasT
                 }
             },
             text
+        );
+    }
+
+    @Test
+    public void testConvertLineEndingToString() {
+        final LineEnding lineEnding = LineEnding.NL;
+
+        this.convertAndCheck(
+            lineEnding,
+            lineEnding.text()
         );
     }
 
