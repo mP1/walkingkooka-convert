@@ -218,6 +218,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterLocaleToString}
+     */
+    public static <C extends ConverterContext> Converter<C> localeToText() {
+        return ConverterLocaleToString.instance();
+    }
+
+    /**
      * {@see ConverterLocalTimeToLocalDateTime}
      */
     public static <C extends ConverterContext> Converter<C> localTimeToLocalDateTime() {

@@ -29,6 +29,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [local-time-to-local-date-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocalTimeToLocalDateTime.java)
 - [local-time-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocalTimeToNumber.java)
 - [local-time-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter.java)
+- [locale-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToString.java)
 - [mapper](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterPredicatedMapper.java)
 - [never](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNever.java)
 - [number-to-boolean](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNumberToBoolean.java)
