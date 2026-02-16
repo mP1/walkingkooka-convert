@@ -398,6 +398,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToLocale}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocale() {
+        return ConverterTextToLocale.instance();
+    }
+
+    /**
      * {@see ConverterTextToListCsvStringList}
      */
     public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
