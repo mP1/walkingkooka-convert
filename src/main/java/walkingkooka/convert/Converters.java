@@ -220,7 +220,7 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterLocaleToString}
      */
-    public static <C extends ConverterContext> Converter<C> localeToText() {
+    public static <C extends ConverterContext> Converter<C> localeToString() {
         return ConverterLocaleToString.instance();
     }
 
