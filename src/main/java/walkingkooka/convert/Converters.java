@@ -216,7 +216,7 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> localDateTimeToString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return ConverterDateTimeFormatterLocalDateTimeToStringDateTimeFormatter.with(formatter);
     }
-
+    
     /**
      * {@see ConverterLocaleToString}
      */
@@ -243,6 +243,20 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> localTimeToString(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return ConverterDateTimeFormatterLocalTimeToStringDateTimeFormatter.with(formatter);
+    }
+
+    /**
+     * {@see ConverterLocaleToDateTimeSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> localeToDateTimeSymbols() {
+        return ConverterLocaleToDateTimeSymbols.instance();
+    }
+
+    /**
+     * {@see ConverterLocaleToDecimalNumberSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> localeToDecimalNumberSymbols() {
+        return ConverterLocaleToDecimalNumberSymbols.instance();
     }
 
     /**
@@ -470,6 +484,13 @@ public final class Converters implements PublicStaticHelper {
         );
     }
 
+    /**
+     * {@see ConverterLocaleToLocale}
+     */
+    public static <C extends ConverterContext> Converter<C> toLocale() {
+        return ConverterLocaleToLocale.instance();
+    }
+    
     /**
      * Stop creation
      */

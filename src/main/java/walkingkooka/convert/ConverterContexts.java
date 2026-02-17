@@ -18,6 +18,8 @@
 package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
+import walkingkooka.locale.CanDateTimeSymbolsForLocale;
+import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.Indentation;
@@ -31,7 +33,9 @@ public final class ConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicConverterContext}
      */
-    public static ConverterContext basic(final boolean canNumbersHaveGroupSeparator,
+    public static ConverterContext basic(final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
+                                         final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
+                                         final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
                                          final Indentation indentation,
                                          final LineEnding lineEnding,
@@ -40,6 +44,8 @@ public final class ConverterContexts implements PublicStaticHelper {
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
         return BasicConverterContext.with(
+            canDateTimeSymbolsForLocale,
+            canDecimalNumberSymbolsForLocale,
             canNumbersHaveGroupSeparator,
             dateOffset,
             indentation,

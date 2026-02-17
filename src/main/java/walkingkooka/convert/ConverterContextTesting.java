@@ -17,6 +17,8 @@
 package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContextTesting2;
+import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting2;
+import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting2;
 import walkingkooka.math.DecimalNumberContextTesting2;
 import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.HasLineEndingTesting;
@@ -25,10 +27,22 @@ import walkingkooka.text.HasLineEndingTesting;
  * Mixing testing interface for {@link ConverterContext}
  */
 public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting<C>,
+    CanDateTimeSymbolsForLocaleTesting2<C>,
+    CanDecimalNumberSymbolsForLocaleTesting2<C>,
     DateTimeContextTesting2<C>,
     DecimalNumberContextTesting2<C>,
     HasIndentationTesting,
     HasLineEndingTesting {
+
+    @Override
+    default C createCanDateTimeSymbolsForLocale() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanDecimalNumberSymbolsForLocale() {
+        return this.createContext();
+    }
 
     /**
      * Delegates to {@link #createContext()}.

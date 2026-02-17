@@ -163,6 +163,13 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.basic(
+            (l) -> {
+                throw new UnsupportedOperationException();
+            }, // canDateTimeSymbolsForLocale
+            (l) -> {
+                throw new UnsupportedOperationException();
+            }, // canDecimalNumberSymbolsForLocale
+
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,

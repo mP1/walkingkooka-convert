@@ -30,6 +30,7 @@ import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Locale;
+import java.util.Objects;
 
 public final class ConverterContextDelegatorTest implements ConverterContextTesting<TestConverterContextDelegator>,
     DecimalNumberContextDelegator {
@@ -74,6 +75,14 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
             final Locale locale = Locale.ENGLISH;
 
             return ConverterContexts.basic(
+                (l) -> {
+                    Objects.requireNonNull(l, "locale");
+                    throw new UnsupportedOperationException();
+                }, // canDateTimeSymbolsForLocale
+                (l) -> {
+                    Objects.requireNonNull(l, "locale");
+                    throw new UnsupportedOperationException();
+                }, // canDecimalNumberSymbolsForLocale
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,
