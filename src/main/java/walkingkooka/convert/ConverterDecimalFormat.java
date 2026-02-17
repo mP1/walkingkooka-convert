@@ -79,7 +79,9 @@ abstract class ConverterDecimalFormat<C extends ConverterContext> implements Sho
 
                 final Locale locale = context.locale();
                 try {
-                    format.setCurrency(Currency.getInstance(locale));
+                    format.setCurrency(
+                        Currency.getInstance(locale)
+                    );
                 } catch (final IllegalArgumentException cause) {
                     throw new ConverterException(
                         "Unable to set currency, probably an invalid locale " + CharSequences.quoteAndEscape(locale.toLanguageTag()),

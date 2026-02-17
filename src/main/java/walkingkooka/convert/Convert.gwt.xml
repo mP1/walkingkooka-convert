@@ -17,7 +17,7 @@
   -->
 
 <module>
-    <inherits name="walkingkooka.locale.Locale"/>
+    <inherits name="walkingkooka.currency.Currency"/>
     <inherits name="walkingkooka.text.cursor.parser.Parser"/>
 
     <source path=""/>
