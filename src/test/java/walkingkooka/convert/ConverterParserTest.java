@@ -165,6 +165,9 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
         return ConverterContexts.basic(
             (l) -> {
                 throw new UnsupportedOperationException();
+            }, // canCurrencyForLocale
+            (l) -> {
+                throw new UnsupportedOperationException();
             }, // canDateTimeSymbolsForLocale
             (l) -> {
                 throw new UnsupportedOperationException();

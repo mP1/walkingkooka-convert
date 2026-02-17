@@ -77,6 +77,9 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
         return ConverterContexts.basic(
             (l) -> {
                 throw new UnsupportedOperationException();
+            }, // canCurrencyForLocale
+            (l) -> {
+                throw new UnsupportedOperationException();
             }, // canDateTimeSymbolsForLocale
             (l) -> {
                 throw new UnsupportedOperationException();

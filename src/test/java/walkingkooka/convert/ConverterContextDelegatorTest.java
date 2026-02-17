@@ -78,6 +78,10 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                 (l) -> {
                     Objects.requireNonNull(l, "locale");
                     throw new UnsupportedOperationException();
+                }, // canCurrencyForLocale
+                (l) -> {
+                    Objects.requireNonNull(l, "locale");
+                    throw new UnsupportedOperationException();
                 }, // canDateTimeSymbolsForLocale
                 (l) -> {
                     Objects.requireNonNull(l, "locale");

@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
@@ -33,7 +34,8 @@ public final class ConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicConverterContext}
      */
-    public static ConverterContext basic(final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
+    public static ConverterContext basic(final CanCurrencyForLocale canCurrencyForLocale,
+                                         final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
                                          final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
                                          final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
@@ -44,6 +46,7 @@ public final class ConverterContexts implements PublicStaticHelper {
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
         return BasicConverterContext.with(
+            canCurrencyForLocale,
             canDateTimeSymbolsForLocale,
             canDecimalNumberSymbolsForLocale,
             canNumbersHaveGroupSeparator,

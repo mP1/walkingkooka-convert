@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -36,6 +37,7 @@ import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -45,6 +47,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
     ConverterContextTesting<BasicConverterContext>,
     DecimalNumberContextDelegator {
+
+    private final static CanCurrencyForLocale CAN_CURRENCY_FOR_LOCALE = (locale) -> {
+        Objects.requireNonNull(locale, "locale");
+
+        return Optional.of(
+            Currency.getInstance(locale)
+        );
+    };
 
     private final static CanDateTimeSymbolsForLocale CAN_DATE_TIME_SYMBOLS_FOR_LOCALE = (locale) -> {
         Objects.requireNonNull(locale, "locale");
@@ -92,10 +102,31 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
 
     @Test
+    public void testWithNullCanCurrencyForLocaleFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                null,
+                CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
+                CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                NUMBER_TO_DATE_OFFSET,
+                INDENTATION,
+                LINE_ENDING,
+                VALUE_SEPARATOR,
+                CONVERTER,
+                this.dateTimeContext(),
+                this.decimalNumberContext()
+            )
+        );
+    }
+
+    @Test
     public void testWithNullCanDateTimeSymbolsForLocaleFails() {
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 null,
                 CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -115,6 +146,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
                 null,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -134,6 +166,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
                 CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -153,6 +186,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
                 CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -172,6 +206,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
                 CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -191,6 +226,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
                 CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -209,6 +245,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
+                CAN_CURRENCY_FOR_LOCALE,
                 CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
                 CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
@@ -246,6 +283,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Override
     public BasicConverterContext createContext() {
         return BasicConverterContext.with(
+            CAN_CURRENCY_FOR_LOCALE,
             CAN_DATE_TIME_SYMBOLS_FOR_LOCALE,
             CAN_DECIMAL_NUMBER_SYMBOLS_FOR_LOCALE,
             CAN_NUMBERS_HAVE_GROUP_SEPARATOR,

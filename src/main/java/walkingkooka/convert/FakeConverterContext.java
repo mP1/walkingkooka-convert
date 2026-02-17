@@ -26,6 +26,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -64,6 +65,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
 
     @Override
     public String ampm(final int hourOfDay) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<Currency> currencyForLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 

@@ -124,6 +124,9 @@ public final class ConverterStringToCharacterOrStringTest implements ConverterTe
             ConverterContexts.basic(
                 (l) -> {
                     throw new UnsupportedOperationException();
+                }, // canCurrencyForLocale
+                (l) -> {
+                    throw new UnsupportedOperationException();
                 }, // canDateTimeSymbolsForLocale
                 (l) -> {
                     throw new UnsupportedOperationException();
