@@ -86,6 +86,9 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
             (l) -> {
                 throw new UnsupportedOperationException();
             }, // canDecimalNumberSymbolsForLocale
+            (lt) -> {
+                throw new UnsupportedOperationException();
+            }, // canLocaleForLanguageTag
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,

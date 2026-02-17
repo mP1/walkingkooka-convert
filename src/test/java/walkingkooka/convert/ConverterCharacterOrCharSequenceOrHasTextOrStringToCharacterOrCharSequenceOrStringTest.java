@@ -434,7 +434,9 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
                 (l) -> {
                     throw new UnsupportedOperationException();
                 }, // canDecimalNumberSymbolsForLocale
-
+                (lt) -> {
+                    throw new UnsupportedOperationException();
+                }, // canLocaleForLanguageTag
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,

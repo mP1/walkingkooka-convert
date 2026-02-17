@@ -67,6 +67,9 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                 (l) -> {
                     throw new UnsupportedOperationException();
                 }, // canDecimalNumberSymbolsForLocale
+                (lt) -> {
+                    throw new UnsupportedOperationException();
+                }, // canLocaleForLanguageTag
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                 Indentation.SPACES2,

@@ -87,6 +87,10 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                     Objects.requireNonNull(l, "locale");
                     throw new UnsupportedOperationException();
                 }, // canDecimalNumberSymbolsForLocale
+                (lt) -> {
+                    Objects.requireNonNull(lt, "languageTag");
+                    throw new UnsupportedOperationException();
+                }, // canLocaleForLanguageTag
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,

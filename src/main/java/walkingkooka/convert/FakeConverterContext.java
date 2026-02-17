@@ -59,6 +59,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
+    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public List<String> ampms() {
         throw new UnsupportedOperationException();
     }

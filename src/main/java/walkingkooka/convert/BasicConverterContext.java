@@ -24,6 +24,7 @@ import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
+import walkingkooka.locale.CanLocaleForLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -49,6 +50,7 @@ final class BasicConverterContext implements ConverterContext,
     static BasicConverterContext with(final CanCurrencyForLocale canCurrencyForLocale,
                                       final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
                                       final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
+                                      final CanLocaleForLanguageTag canLocaleForLanguageTag,
                                       final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
                                       final Indentation indentation,
@@ -60,6 +62,7 @@ final class BasicConverterContext implements ConverterContext,
         Objects.requireNonNull(canCurrencyForLocale, "canCurrencyForLocale");
         Objects.requireNonNull(canDateTimeSymbolsForLocale, "canDateTimeSymbolsForLocale");
         Objects.requireNonNull(canDecimalNumberSymbolsForLocale, "canDecimalNumberSymbolsForLocale");
+        Objects.requireNonNull(canLocaleForLanguageTag, "canLocaleForLanguageTag");
         Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
@@ -70,6 +73,7 @@ final class BasicConverterContext implements ConverterContext,
             canCurrencyForLocale,
             canDateTimeSymbolsForLocale,
             canDecimalNumberSymbolsForLocale,
+            canLocaleForLanguageTag,
             canNumbersHaveGroupSeparator,
             dateOffset,
             indentation,
@@ -87,6 +91,7 @@ final class BasicConverterContext implements ConverterContext,
     private BasicConverterContext(final CanCurrencyForLocale canCurrencyForLocale,
                                   final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
                                   final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
+                                  final CanLocaleForLanguageTag canLocaleForLanguageTag,
                                   final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
                                   final Indentation indentation,
@@ -100,6 +105,7 @@ final class BasicConverterContext implements ConverterContext,
         this.canCurrencyForLocale = canCurrencyForLocale;
         this.canDateTimeSymbolsForLocale = canDateTimeSymbolsForLocale;
         this.canDecimalNumberSymbolsForLocale = canDecimalNumberSymbolsForLocale;
+        this.canLocaleForLanguageTag = canLocaleForLanguageTag;
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
 
@@ -187,6 +193,15 @@ final class BasicConverterContext implements ConverterContext,
 
     private final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale;
 
+    // CanLocaleForLanguageTag..........................................................................................
+
+    @Override
+    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+        return this.canLocaleForLanguageTag.localeForLanguageTag(languageTag);
+    }
+
+    private final CanLocaleForLanguageTag canLocaleForLanguageTag;
+    
     // DateTimeContext..................................................................................................
 
     @Override

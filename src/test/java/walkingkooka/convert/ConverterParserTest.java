@@ -172,7 +172,9 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
             (l) -> {
                 throw new UnsupportedOperationException();
             }, // canDecimalNumberSymbolsForLocale
-
+            (lt) -> {
+                throw new UnsupportedOperationException();
+            }, // canLocaleForLanguageTag
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,
