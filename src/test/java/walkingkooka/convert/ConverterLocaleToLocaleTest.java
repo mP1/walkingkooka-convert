@@ -103,6 +103,9 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
             (l) -> {
                 throw new UnsupportedOperationException();
             }, // canDecimalNumberSymbolsForLocale
+            (lt) -> {
+                throw new UnsupportedOperationException();
+            }, // canLocaleForLanguageTag
             false, // canNumbersHaveGroupSeparator
             Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
             Indentation.SPACES2,

@@ -121,7 +121,9 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
                 (l) -> {
                     throw new UnsupportedOperationException();
                 }, // canDecimalNumberSymbolsForLocale
-
+                (lt) -> {
+                    throw new UnsupportedOperationException();
+                }, // canLocaleForLanguageTag
                 false, // canNumbersHaveGroupSeparator
                 0, // dateOffset
                 Indentation.SPACES2,

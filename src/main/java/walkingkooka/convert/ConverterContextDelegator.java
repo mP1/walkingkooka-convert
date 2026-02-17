@@ -103,5 +103,11 @@ public interface ConverterContextDelegator extends ConverterContext,
             .lineEnding();
     }
 
+    @Override
+    default Optional<Locale> localeForLanguageTag(final String languageTag) {
+        return this.converterContext()
+            .localeForLanguageTag(languageTag);
+    }
+
     ConverterContext converterContext();
 }
