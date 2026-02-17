@@ -58,6 +58,12 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
             final Locale locale = Locale.forLanguageTag("EN-AU");
 
             return ConverterContexts.basic(
+                (l) -> {
+                    throw new UnsupportedOperationException();
+                }, // canDateTimeSymbolsForLocale
+                (l) -> {
+                    throw new UnsupportedOperationException();
+                }, // canDecimalNumberSymbolsForLocale
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                 Indentation.SPACES2,

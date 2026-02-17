@@ -122,6 +122,12 @@ public final class ConverterStringToCharacterOrStringTest implements ConverterTe
             BigDecimal.valueOf(5),
             Character.class,
             ConverterContexts.basic(
+                (l) -> {
+                    throw new UnsupportedOperationException();
+                }, // canDateTimeSymbolsForLocale
+                (l) -> {
+                    throw new UnsupportedOperationException();
+                }, // canDecimalNumberSymbolsForLocale
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,

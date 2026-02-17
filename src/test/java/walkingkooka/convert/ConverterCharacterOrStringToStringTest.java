@@ -110,6 +110,13 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
             '5',
             Number.class,
             ConverterContexts.basic(
+                (l) -> {
+                    throw new UnsupportedOperationException();
+                }, // canDateTimeSymbolsForLocale
+                (l) -> {
+                    throw new UnsupportedOperationException();
+                }, // canDecimalNumberSymbolsForLocale
+
                 false, // canNumbersHaveGroupSeparator
                 0, // dateOffset
                 Indentation.SPACES2,

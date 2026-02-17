@@ -75,6 +75,12 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
 
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(
+            (l) -> {
+                throw new UnsupportedOperationException();
+            }, // canDateTimeSymbolsForLocale
+            (l) -> {
+                throw new UnsupportedOperationException();
+            }, // canDecimalNumberSymbolsForLocale
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,

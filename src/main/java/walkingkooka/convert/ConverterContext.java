@@ -19,6 +19,8 @@ package walkingkooka.convert;
 
 import walkingkooka.Context;
 import walkingkooka.datetime.DateTimeContext;
+import walkingkooka.locale.CanDateTimeSymbolsForLocale;
+import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.text.HasIndentation;
 import walkingkooka.text.HasLineEnding;
@@ -27,6 +29,8 @@ import walkingkooka.text.HasLineEnding;
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
  */
 public interface ConverterContext extends ConverterLike,
+    CanDateTimeSymbolsForLocale,
+    CanDecimalNumberSymbolsForLocale,
     DateTimeContext,
     DecimalNumberContext,
     HasIndentation,

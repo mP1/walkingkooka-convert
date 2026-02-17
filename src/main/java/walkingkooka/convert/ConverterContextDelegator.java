@@ -19,12 +19,15 @@ package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.util.Locale;
+import java.util.Optional;
 
 public interface ConverterContextDelegator extends ConverterContext,
     ConverterLikeDelegator,
@@ -48,8 +51,20 @@ public interface ConverterContextDelegator extends ConverterContext,
     }
 
     @Override
+    default Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+        return this.converterContext()
+            .dateTimeSymbolsForLocale(locale);
+    }
+
+    @Override
     default DecimalNumberContext decimalNumberContext() {
         return this.converterContext();
+    }
+
+    @Override
+    default Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+        return this.converterContext()
+            .decimalNumberSymbolsForLocale(locale);
     }
 
     @Override

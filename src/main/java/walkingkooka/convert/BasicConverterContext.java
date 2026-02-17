@@ -20,14 +20,19 @@ package walkingkooka.convert;
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
+import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.CanDateTimeSymbolsForLocale;
+import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
@@ -39,7 +44,9 @@ final class BasicConverterContext implements ConverterContext,
     /**
      * Creates a new {@link BasicConverterContext}.
      */
-    static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
+    static BasicConverterContext with(final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
+                                      final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
+                                      final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
                                       final Indentation indentation,
                                       final LineEnding lineEnding,
@@ -47,6 +54,8 @@ final class BasicConverterContext implements ConverterContext,
                                       final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
+        Objects.requireNonNull(canDateTimeSymbolsForLocale, "canDateTimeSymbolsForLocale");
+        Objects.requireNonNull(canDecimalNumberSymbolsForLocale, "canDecimalNumberSymbolsForLocale");
         Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
@@ -54,6 +63,8 @@ final class BasicConverterContext implements ConverterContext,
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
         return new BasicConverterContext(
+            canDateTimeSymbolsForLocale,
+            canDecimalNumberSymbolsForLocale,
             canNumbersHaveGroupSeparator,
             dateOffset,
             indentation,
@@ -68,7 +79,9 @@ final class BasicConverterContext implements ConverterContext,
     /**
      * Private ctor use factory
      */
-    private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
+    private BasicConverterContext(final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
+                                  final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
+                                  final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
                                   final Indentation indentation,
                                   final LineEnding lineEnding,
@@ -78,7 +91,11 @@ final class BasicConverterContext implements ConverterContext,
                                   final DecimalNumberContext decimalNumberContext) {
         super();
 
+        this.canDateTimeSymbolsForLocale = canDateTimeSymbolsForLocale;
+        this.canDecimalNumberSymbolsForLocale = canDecimalNumberSymbolsForLocale;
+
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
+
         this.dateOffset = dateOffset;
         this.indentation = indentation;
         this.lineEnding = lineEnding;
@@ -137,6 +154,24 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final char valueSeparator;
+
+    // CanDateTimeSymbolsForLocale......................................................................................
+
+    @Override
+    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+        return this.canDateTimeSymbolsForLocale.dateTimeSymbolsForLocale(locale);
+    }
+
+    private final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale;
+
+    // CanDecimalNumberSymbolsForLocale.................................................................................
+
+    @Override
+    public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+        return this.canDecimalNumberSymbolsForLocale.decimalNumberSymbolsForLocale(locale);
+    }
+
+    private final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale;
 
     // DateTimeContext..................................................................................................
 

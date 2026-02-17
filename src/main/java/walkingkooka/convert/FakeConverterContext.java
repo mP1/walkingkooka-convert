@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.FakeDecimalNumberContext;
 import walkingkooka.test.Fake;
 import walkingkooka.text.Indentation;
@@ -26,6 +27,8 @@ import walkingkooka.text.LineEnding;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 
 /**
  * A {@link ConverterContext} where all methods throw {@link UnsupportedOperationException}.
@@ -41,6 +44,16 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     @Override
     public <T> Either<T, String> convert(final Object value,
                                          final Class<T> target) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 
