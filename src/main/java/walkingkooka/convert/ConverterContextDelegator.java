@@ -26,6 +26,7 @@ import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
+import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -33,6 +34,12 @@ public interface ConverterContextDelegator extends ConverterContext,
     ConverterLikeDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
+
+    @Override
+    default Optional<Currency> currencyForLocale(final Locale locale) {
+        return this.converterContext()
+            .currencyForLocale(locale);
+    }
 
     @Override
     default boolean canNumbersHaveGroupSeparator() {

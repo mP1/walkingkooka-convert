@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Context;
+import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
@@ -29,6 +30,7 @@ import walkingkooka.text.HasLineEnding;
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
  */
 public interface ConverterContext extends ConverterLike,
+    CanCurrencyForLocale,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
     DateTimeContext,
