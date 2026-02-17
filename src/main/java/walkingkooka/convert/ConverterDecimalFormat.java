@@ -23,7 +23,6 @@ import walkingkooka.text.CharSequences;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Currency;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -80,7 +79,8 @@ abstract class ConverterDecimalFormat<C extends ConverterContext> implements Sho
                 final Locale locale = context.locale();
                 try {
                     format.setCurrency(
-                        Currency.getInstance(locale)
+                        context.currencyForLocale(locale)
+                            .orElseThrow(() -> new IllegalArgumentException("Missing currency for locale " + locale))
                     );
                 } catch (final IllegalArgumentException cause) {
                     throw new ConverterException(

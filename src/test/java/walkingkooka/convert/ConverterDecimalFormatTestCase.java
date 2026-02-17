@@ -29,7 +29,9 @@ import walkingkooka.text.LineEnding;
 import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Currency;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -75,9 +77,9 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
 
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canCurrencyForLocale
+            (l) -> Optional.of(
+                Currency.getInstance(l)
+            ), // canCurrencyForLocale
             (l) -> {
                 throw new UnsupportedOperationException();
             }, // canDateTimeSymbolsForLocale

@@ -41,8 +41,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public final class ConverterCollectionToListTest extends ConverterTestCase2<ConverterCollectionToList<ConverterContext>> {
 
@@ -759,6 +761,13 @@ public final class ConverterCollectionToListTest extends ConverterTestCase2<Conv
                 this.locale(),
                 MathContext.DECIMAL32
             );
+
+            @Override
+            public Optional<Currency> currencyForLocale(final Locale locale) {
+                return Optional.of(
+                    Currency.getInstance(locale)
+                );
+            }
         };
     }
 

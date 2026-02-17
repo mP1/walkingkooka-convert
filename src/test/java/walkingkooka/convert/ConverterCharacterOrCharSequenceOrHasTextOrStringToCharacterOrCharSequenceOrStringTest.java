@@ -31,7 +31,9 @@ import walkingkooka.text.LineEnding;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.DecimalFormat;
+import java.util.Currency;
 import java.util.Locale;
+import java.util.Optional;
 
 public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringTest extends ConverterTestCase2<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> {
 
@@ -423,9 +425,9 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
             BigDecimal.valueOf(5),
             Character.class,
             ConverterContexts.basic(
-                (l) -> {
-                    throw new UnsupportedOperationException();
-                }, // canCurrencyForLocale
+                (l) -> Optional.of(
+                    Currency.getInstance(l)
+                ), // canCurrencyForLocale
                 (l) -> {
                     throw new UnsupportedOperationException();
                 }, // canDateTimeSymbolsForLocale
