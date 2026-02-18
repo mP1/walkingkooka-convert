@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -166,15 +167,6 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
             (l) -> {
                 throw new UnsupportedOperationException();
             }, // canCurrencyForLocale
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canDateTimeSymbolsForLocale
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canDecimalNumberSymbolsForLocale
-            (lt) -> {
-                throw new UnsupportedOperationException();
-            }, // canLocaleForLanguageTag
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,
@@ -182,7 +174,8 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
             DateTimeContexts.fake(),
-            DecimalNumberContexts.american(MathContext.DECIMAL32)
+            DecimalNumberContexts.american(MathContext.DECIMAL32),
+            LocaleContexts.fake()
         );
     }
 

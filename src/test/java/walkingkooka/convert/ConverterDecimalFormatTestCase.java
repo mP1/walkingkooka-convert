@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -80,15 +81,6 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
             (l) -> Optional.of(
                 Currency.getInstance(l)
             ), // canCurrencyForLocale
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canDateTimeSymbolsForLocale
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canDecimalNumberSymbolsForLocale
-            (lt) -> {
-                throw new UnsupportedOperationException();
-            }, // canLocaleForLanguageTag
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,
@@ -104,7 +96,8 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
                 ),
                 locale,
                 MathContext.DECIMAL32
-            )
+            ),
+            LocaleContexts.jre(locale)
         );
     }
 

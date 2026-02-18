@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -115,15 +116,6 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
                 (l) -> Optional.of(
                     Currency.getInstance(l)
                 ), // canCurrencyForLocale
-                (l) -> {
-                    throw new UnsupportedOperationException();
-                }, // canDateTimeSymbolsForLocale
-                (l) -> {
-                    throw new UnsupportedOperationException();
-                }, // canDecimalNumberSymbolsForLocale
-                (lt) -> {
-                    throw new UnsupportedOperationException();
-                }, // canLocaleForLanguageTag
                 false, // canNumbersHaveGroupSeparator
                 0, // dateOffset
                 Indentation.SPACES2,
@@ -131,7 +123,10 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
                 ',', // valueSeparator
                 Converters.fake(),
                 DateTimeContexts.fake(),
-                DecimalNumberContexts.american(MathContext.DECIMAL32)
+                DecimalNumberContexts.american(MathContext.DECIMAL32),
+                LocaleContexts.jre(
+                    Locale.forLanguageTag("en-AU")
+                )
             ),
             BigDecimal.valueOf(5)
         );
