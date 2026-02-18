@@ -302,6 +302,13 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
                 public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
                     return Optional.of(DATE_TIME_SYMBOLS);
                 }
+
+                @Override
+                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                    return Optional.of(
+                        Locale.forLanguageTag(languageTag)
+                    );
+                }
             },
             DateTimeSymbols.fromDateFormatSymbols(
                 new DateFormatSymbols(locale)
