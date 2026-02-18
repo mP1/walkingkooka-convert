@@ -306,6 +306,13 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
                 public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
                     return Optional.of(DECIMAL_NUMBER_SYMBOLS);
                 }
+
+                @Override
+                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                    return Optional.of(
+                        Locale.forLanguageTag(languageTag)
+                    );
+                }
             },
             DECIMAL_NUMBER_SYMBOLS
         );

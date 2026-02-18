@@ -98,7 +98,7 @@ final class ConverterLocaleToLocale<C extends ConverterContext> extends Converte
                         .locale()
                         .orElse(null);
                 } else {
-                    locale = Locale.forLanguageTag(
+                    locale = context.localeForLanguageTagOrFail(
                         context.convertOrFail(
                             value,
                             String.class
