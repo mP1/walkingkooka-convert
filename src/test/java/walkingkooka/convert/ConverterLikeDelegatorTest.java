@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.convert.ConverterLikeDelegatorTest.TestConverterLikeDelegator;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -61,15 +62,6 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                 (l) -> {
                     throw new UnsupportedOperationException();
                 }, // canCurrencyForLocale
-                (l) -> {
-                    throw new UnsupportedOperationException();
-                }, // canDateTimeSymbolsForLocale
-                (l) -> {
-                    throw new UnsupportedOperationException();
-                }, // canDecimalNumberSymbolsForLocale
-                (lt) -> {
-                    throw new UnsupportedOperationException();
-                }, // canLocaleForLanguageTag
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                 Indentation.SPACES2,
@@ -87,7 +79,8 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                     50, // twoDigitYear
                     LocalDateTime::now
                 ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32)
+                DecimalNumberContexts.american(MathContext.DECIMAL32),
+                LocaleContexts.jre(locale)
             );
         }
     }

@@ -22,9 +22,7 @@ import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.locale.CanDateTimeSymbolsForLocale;
-import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
-import walkingkooka.locale.CanLocaleForLanguageTag;
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -48,9 +46,6 @@ final class BasicConverterContext implements ConverterContext,
      * Creates a new {@link BasicConverterContext}.
      */
     static BasicConverterContext with(final CanCurrencyForLocale canCurrencyForLocale,
-                                      final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
-                                      final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
-                                      final CanLocaleForLanguageTag canLocaleForLanguageTag,
                                       final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
                                       final Indentation indentation,
@@ -58,22 +53,18 @@ final class BasicConverterContext implements ConverterContext,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
                                       final DateTimeContext dateTimeContext,
-                                      final DecimalNumberContext decimalNumberContext) {
+                                      final DecimalNumberContext decimalNumberContext,
+                                      final LocaleContext localeContext) {
         Objects.requireNonNull(canCurrencyForLocale, "canCurrencyForLocale");
-        Objects.requireNonNull(canDateTimeSymbolsForLocale, "canDateTimeSymbolsForLocale");
-        Objects.requireNonNull(canDecimalNumberSymbolsForLocale, "canDecimalNumberSymbolsForLocale");
-        Objects.requireNonNull(canLocaleForLanguageTag, "canLocaleForLanguageTag");
         Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
+        Objects.requireNonNull(localeContext, "localeContext");
 
         return new BasicConverterContext(
             canCurrencyForLocale,
-            canDateTimeSymbolsForLocale,
-            canDecimalNumberSymbolsForLocale,
-            canLocaleForLanguageTag,
             canNumbersHaveGroupSeparator,
             dateOffset,
             indentation,
@@ -81,7 +72,8 @@ final class BasicConverterContext implements ConverterContext,
             valueSeparator,
             converter,
             dateTimeContext,
-            decimalNumberContext
+            decimalNumberContext,
+            localeContext
         );
     }
 
@@ -89,9 +81,6 @@ final class BasicConverterContext implements ConverterContext,
      * Private ctor use factory
      */
     private BasicConverterContext(final CanCurrencyForLocale canCurrencyForLocale,
-                                  final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
-                                  final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
-                                  final CanLocaleForLanguageTag canLocaleForLanguageTag,
                                   final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
                                   final Indentation indentation,
@@ -99,13 +88,11 @@ final class BasicConverterContext implements ConverterContext,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
                                   final DateTimeContext dateTimeContext,
-                                  final DecimalNumberContext decimalNumberContext) {
+                                  final DecimalNumberContext decimalNumberContext,
+                                  final LocaleContext localeContext) {
         super();
 
         this.canCurrencyForLocale = canCurrencyForLocale;
-        this.canDateTimeSymbolsForLocale = canDateTimeSymbolsForLocale;
-        this.canDecimalNumberSymbolsForLocale = canDecimalNumberSymbolsForLocale;
-        this.canLocaleForLanguageTag = canLocaleForLanguageTag;
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
 
@@ -117,6 +104,7 @@ final class BasicConverterContext implements ConverterContext,
         this.converter = converter;
         this.dateTimeContext = dateTimeContext;
         this.decimalNumberContext = decimalNumberContext;
+        this.localeContext = localeContext;
     }
 
     @Override
@@ -175,33 +163,6 @@ final class BasicConverterContext implements ConverterContext,
 
     private final char valueSeparator;
 
-    // CanDateTimeSymbolsForLocale......................................................................................
-
-    @Override
-    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-        return this.canDateTimeSymbolsForLocale.dateTimeSymbolsForLocale(locale);
-    }
-
-    private final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale;
-
-    // CanDecimalNumberSymbolsForLocale.................................................................................
-
-    @Override
-    public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
-        return this.canDecimalNumberSymbolsForLocale.decimalNumberSymbolsForLocale(locale);
-    }
-
-    private final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale;
-
-    // CanLocaleForLanguageTag..........................................................................................
-
-    @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
-        return this.canLocaleForLanguageTag.localeForLanguageTag(languageTag);
-    }
-
-    private final CanLocaleForLanguageTag canLocaleForLanguageTag;
-    
     // DateTimeContext..................................................................................................
 
     @Override
@@ -229,6 +190,29 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final DecimalNumberContext decimalNumberContext;
+
+    // CanDateTimeSymbolsForLocale......................................................................................
+
+    @Override
+    public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+        return this.localeContext.dateTimeSymbolsForLocale(locale);
+    }
+
+    // CanDecimalNumberSymbolsForLocale.................................................................................
+
+    @Override
+    public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+        return this.localeContext.decimalNumberSymbolsForLocale(locale);
+    }
+
+    // CanLocaleForLanguageTag..........................................................................................
+
+    @Override
+    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+        return this.localeContext.localeForLanguageTag(languageTag);
+    }
+
+    private final LocaleContext localeContext;
 
     @Override
     public String toString() {

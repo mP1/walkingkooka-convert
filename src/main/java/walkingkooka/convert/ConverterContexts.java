@@ -19,9 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.datetime.DateTimeContext;
-import walkingkooka.locale.CanDateTimeSymbolsForLocale;
-import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
-import walkingkooka.locale.CanLocaleForLanguageTag;
+import walkingkooka.locale.LocaleContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.Indentation;
@@ -36,9 +34,6 @@ public final class ConverterContexts implements PublicStaticHelper {
      * {@see BasicConverterContext}
      */
     public static ConverterContext basic(final CanCurrencyForLocale canCurrencyForLocale,
-                                         final CanDateTimeSymbolsForLocale canDateTimeSymbolsForLocale,
-                                         final CanDecimalNumberSymbolsForLocale canDecimalNumberSymbolsForLocale,
-                                         final CanLocaleForLanguageTag canLocaleForLanguageTag,
                                          final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
                                          final Indentation indentation,
@@ -46,12 +41,10 @@ public final class ConverterContexts implements PublicStaticHelper {
                                          final char valueSeparator,
                                          final Converter<ConverterContext> converter,
                                          final DateTimeContext dateTimeContext,
-                                         final DecimalNumberContext decimalNumberContext) {
+                                         final DecimalNumberContext decimalNumberContext,
+                                         final LocaleContext localeContext) {
         return BasicConverterContext.with(
             canCurrencyForLocale,
-            canDateTimeSymbolsForLocale,
-            canDecimalNumberSymbolsForLocale,
-            canLocaleForLanguageTag,
             canNumbersHaveGroupSeparator,
             dateOffset,
             indentation,
@@ -59,7 +52,8 @@ public final class ConverterContexts implements PublicStaticHelper {
             valueSeparator,
             converter,
             dateTimeContext,
-            decimalNumberContext
+            decimalNumberContext,
+            localeContext
         );
     }
 
