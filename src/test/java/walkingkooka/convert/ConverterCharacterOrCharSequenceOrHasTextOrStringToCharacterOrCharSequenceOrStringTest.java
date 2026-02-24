@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
@@ -34,6 +35,7 @@ import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.util.Currency;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 
 public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrStringTest extends ConverterTestCase2<ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString<ConverterContext>> {
@@ -426,20 +428,29 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
             BigDecimal.valueOf(5),
             Character.class,
             ConverterContexts.basic(
-                (l) -> Optional.of(
-                    Currency.getInstance(l)
-                ), // canCurrencyForLocale
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                new FakeCurrencyContext() {
+
+                    @Override
+                    public Optional<Currency> currencyForLocale(final Locale locale) {
+                        Objects.requireNonNull(locale, "locale");
+
+                        return Optional.of(
+                            Currency.getInstance(locale)
+                        );
+                    }
+                }.setLocaleContext(
+                    LocaleContexts.jre(
+                        Locale.forLanguageTag("en-AU")
+                    )
+                ),
                 DateTimeContexts.fake(),
-                DecimalNumberContexts.american(MathContext.DECIMAL32),
-                LocaleContexts.jre(
-                    Locale.forLanguageTag("en-AU")
-                )
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
             ),
             '5'
         );

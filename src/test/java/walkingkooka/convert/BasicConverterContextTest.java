@@ -18,11 +18,11 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.currency.CanCurrencyForLocale;
+import walkingkooka.currency.CurrencyLocaleContext;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
@@ -47,14 +47,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     ConverterContextTesting<BasicConverterContext>,
     DecimalNumberContextDelegator {
 
-    private final static CanCurrencyForLocale CAN_CURRENCY_FOR_LOCALE = (locale) -> {
-        Objects.requireNonNull(locale, "locale");
-
-        return Optional.of(
-            Currency.getInstance(locale)
-        );
-    };
-
     private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;
     private final static long NUMBER_TO_DATE_OFFSET = 0;
     private final static char VALUE_SEPARATOR = ',';
@@ -78,44 +70,37 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static LineEnding LINE_ENDING = LineEnding.NL;
     private final static Locale LOCALE = Locale.ENGLISH;
 
-    private final static LocaleContext LOCALE_CONTEXT = LocaleContexts.jre(LOCALE);
+    private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = new FakeCurrencyContext() {
+
+        @Override
+        public Optional<Currency> currencyForLocale(final Locale locale) {
+            Objects.requireNonNull(locale, "locale");
+
+            return Optional.of(
+                Currency.getInstance(locale)
+            );
+        }
+    }.setLocaleContext(
+        LocaleContexts.jre(LOCALE)
+    );
 
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
 
-    @Test
-    public void testWithNullCanCurrencyForLocaleFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> BasicConverterContext.with(
-                null,
-                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
-                VALUE_SEPARATOR,
-                CONVERTER,
-                this.dateTimeContext(),
-                this.decimalNumberContext(),
-                LOCALE_CONTEXT
-            )
-        );
-    }
 
     @Test
     public void testWithNullIndentationFails() {
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
-                CAN_CURRENCY_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 null,
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
-                this.decimalNumberContext(),
-                LOCALE_CONTEXT
+                this.decimalNumberContext()
             )
         );
     }
@@ -125,16 +110,15 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
-                CAN_CURRENCY_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 null,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
-                this.decimalNumberContext(),
-                LOCALE_CONTEXT
+                this.decimalNumberContext()
             )
         );
     }
@@ -144,26 +128,24 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
-                CAN_CURRENCY_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 null,
+                CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
-                this.decimalNumberContext(),
-                LOCALE_CONTEXT
+                this.decimalNumberContext()
             )
         );
     }
 
     @Test
-    public void testWithNullDateTimeContextFails() {
+    public void testWithNullCurrencyLocaleContextFails() {
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
-                CAN_CURRENCY_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
@@ -171,8 +153,27 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 VALUE_SEPARATOR,
                 CONVERTER,
                 null,
-                this.decimalNumberContext(),
-                LOCALE_CONTEXT
+                this.dateTimeContext(),
+                this.decimalNumberContext()
+            )
+        );
+    }
+
+
+    @Test
+    public void testWithNullDateTimeContextFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                NUMBER_TO_DATE_OFFSET,
+                INDENTATION,
+                LINE_ENDING,
+                VALUE_SEPARATOR,
+                CONVERTER,
+                CURRENCY_LOCALE_CONTEXT,
+                null,
+                this.decimalNumberContext()
             )
         );
     }
@@ -182,34 +183,14 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
-                CAN_CURRENCY_FOR_LOCALE,
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
-                null,
-                LOCALE_CONTEXT
-            )
-        );
-    }
-
-    @Test
-    public void testWithNullLocaleContextFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> BasicConverterContext.with(
-                CAN_CURRENCY_FOR_LOCALE,
-                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
-                VALUE_SEPARATOR,
-                CONVERTER,
-                this.dateTimeContext(),
-                this.decimalNumberContext(),
                 null
             )
         );
@@ -239,16 +220,15 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Override
     public BasicConverterContext createContext() {
         return BasicConverterContext.with(
-            CAN_CURRENCY_FOR_LOCALE,
             CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
             NUMBER_TO_DATE_OFFSET,
             INDENTATION,
             LINE_ENDING,
             VALUE_SEPARATOR,
             CONVERTER,
+            CURRENCY_LOCALE_CONTEXT,
             this.dateTimeContext(),
-            decimalNumberContext(),
-            LOCALE_CONTEXT
+            decimalNumberContext()
         );
     }
 

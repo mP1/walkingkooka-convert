@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.currency.CurrencyContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
@@ -95,20 +96,20 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.basic(
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canCurrencyForLocale
             false, // canNumbersHaveGroupSeparator
             Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
             Indentation.SPACES2,
             LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+            CurrencyContexts.fake()
+                .setLocaleContext(
+                    LocaleContexts.jre(
+                        Locale.forLanguageTag("en-AU")
+                    )
+                ),
             DateTimeContexts.fake(),
-            DecimalNumberContexts.fake(),
-            LocaleContexts.jre(
-                Locale.forLanguageTag("en-AU")
-            )
+            DecimalNumberContexts.fake()
         );
     }
 

@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.convert.ConverterContextDelegatorTest.TestConverterContextDelegator;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.locale.LocaleContexts;
@@ -30,8 +31,10 @@ import walkingkooka.text.LineEnding;
 import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class ConverterContextDelegatorTest implements ConverterContextTesting<TestConverterContextDelegator>,
     DecimalNumberContextDelegator {
@@ -76,16 +79,23 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
             final Locale locale = Locale.ENGLISH;
 
             return ConverterContexts.basic(
-                (l) -> {
-                    Objects.requireNonNull(l, "locale");
-                    throw new UnsupportedOperationException();
-                }, // canCurrencyForLocale
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                new FakeCurrencyContext() {
+                    @Override
+                    public Optional<Currency> currencyForLocale(final Locale locale) {
+                        Objects.requireNonNull(locale, "locale");
+                        return Optional.of(
+                            Currency.getInstance(locale)
+                        );
+                    }
+                }.setLocaleContext(
+                    LocaleContexts.jre(locale)
+                ),
                 DateTimeContexts.basic(
                     DateTimeSymbols.fromDateFormatSymbols(
                         new DateFormatSymbols(locale)
@@ -95,8 +105,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                     50,
                     LocalDateTime::now
                 ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32),
-                LocaleContexts.jre(locale)
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
             );
         }
 

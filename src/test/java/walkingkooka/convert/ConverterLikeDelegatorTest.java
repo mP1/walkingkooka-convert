@@ -19,9 +19,9 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.ConverterLikeDelegatorTest.TestConverterLikeDelegator;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -59,9 +59,6 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
             final Locale locale = Locale.forLanguageTag("EN-AU");
 
             return ConverterContexts.basic(
-                (l) -> {
-                    throw new UnsupportedOperationException();
-                }, // canCurrencyForLocale
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                 Indentation.SPACES2,
@@ -70,6 +67,7 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                 Converters.stringToLocalDate(
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                 ),
+                CurrencyLocaleContexts.fake(),
                 DateTimeContexts.basic(
                     DateTimeSymbols.fromDateFormatSymbols(
                         new DateFormatSymbols(locale)
@@ -79,8 +77,7 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                     50, // twoDigitYear
                     LocalDateTime::now
                 ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32),
-                LocaleContexts.jre(locale)
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
             );
         }
     }

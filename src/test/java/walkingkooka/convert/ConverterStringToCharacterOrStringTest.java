@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
@@ -125,18 +126,26 @@ public final class ConverterStringToCharacterOrStringTest implements ConverterTe
             BigDecimal.valueOf(5),
             Character.class,
             ConverterContexts.basic(
-                (l) -> Optional.of(
-                    Currency.getInstance(l)
-                ), // canCurrencyForLocale
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                new FakeCurrencyContext() {
+                    @Override
+                    public Optional<Currency> currencyForLocale(final Locale locale) {
+                        return Optional.of(
+                            Currency.getInstance(locale)
+                        );
+                    }
+                }.setLocaleContext(
+                    LocaleContexts.jre(
+                        Locale.forLanguageTag("en-AU")
+                    )
+                ),
                 DateTimeContexts.fake(),
-                DecimalNumberContexts.american(MathContext.DECIMAL32),
-                LocaleContexts.fake()
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
             ),
             '5'
         );

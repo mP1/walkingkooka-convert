@@ -17,9 +17,8 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.currency.CanCurrencyForLocale;
+import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.datetime.DateTimeContext;
-import walkingkooka.locale.LocaleContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.Indentation;
@@ -33,27 +32,25 @@ public final class ConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicConverterContext}
      */
-    public static ConverterContext basic(final CanCurrencyForLocale canCurrencyForLocale,
-                                         final boolean canNumbersHaveGroupSeparator,
+    public static ConverterContext basic(final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
                                          final Indentation indentation,
                                          final LineEnding lineEnding,
                                          final char valueSeparator,
                                          final Converter<ConverterContext> converter,
+                                         final CurrencyLocaleContext currencyLocaleContext,
                                          final DateTimeContext dateTimeContext,
-                                         final DecimalNumberContext decimalNumberContext,
-                                         final LocaleContext localeContext) {
+                                         final DecimalNumberContext decimalNumberContext) {
         return BasicConverterContext.with(
-            canCurrencyForLocale,
             canNumbersHaveGroupSeparator,
             dateOffset,
             indentation,
             lineEnding,
             valueSeparator,
             converter,
+            currencyLocaleContext,
             dateTimeContext,
-            decimalNumberContext,
-            localeContext
+            decimalNumberContext
         );
     }
 

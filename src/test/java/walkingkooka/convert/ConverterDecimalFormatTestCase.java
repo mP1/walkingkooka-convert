@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
@@ -78,15 +79,22 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
 
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(
-            (l) -> Optional.of(
-                Currency.getInstance(l)
-            ), // canCurrencyForLocale
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,
             LineEnding.NL,
             ',', // valueSeparator
             Converters.fake(),
+            new FakeCurrencyContext() {
+                @Override
+                public Optional<Currency> currencyForLocale(final Locale locale) {
+                    return Optional.of(
+                        Currency.getInstance(locale)
+                    );
+                }
+            }.setLocaleContext(
+                LocaleContexts.jre(locale)
+            ),
             DateTimeContexts.fake(),
             DecimalNumberContexts.basic(
                 DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT,
@@ -96,8 +104,7 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
                 ),
                 locale,
                 MathContext.DECIMAL32
-            ),
-            LocaleContexts.jre(locale)
+            )
         );
     }
 
