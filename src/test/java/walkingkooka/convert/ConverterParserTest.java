@@ -20,8 +20,8 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -164,18 +164,15 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
     @Override
     public ConverterContext createContext() {
         return ConverterContexts.basic(
-            (l) -> {
-                throw new UnsupportedOperationException();
-            }, // canCurrencyForLocale
             false, // canNumbersHaveGroupSeparator
             0, // dateOffset
             Indentation.SPACES2,
             LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+            CurrencyLocaleContexts.fake(),
             DateTimeContexts.fake(),
-            DecimalNumberContexts.american(MathContext.DECIMAL32),
-            LocaleContexts.fake()
+            DecimalNumberContexts.american(MathContext.DECIMAL32)
         );
     }
 
