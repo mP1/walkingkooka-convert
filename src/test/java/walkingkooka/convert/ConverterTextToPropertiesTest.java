@@ -23,7 +23,7 @@ import walkingkooka.Either;
 import walkingkooka.props.Properties;
 import walkingkooka.props.PropertiesPath;
 
-public final class ConverterTextToPropertiesTest implements ConverterTesting2<ConverterTextToProperties<FakeConverterContext>, FakeConverterContext> {
+public final class ConverterTextToPropertiesTest extends ConverterTextToTestCase<ConverterTextToProperties<ConverterContext>, Properties> {
 
     @Test
     public void testConvertNullToPropertiesFails() {
@@ -48,7 +48,7 @@ public final class ConverterTextToPropertiesTest implements ConverterTesting2<Co
     }
 
     @Override
-    public ConverterTextToProperties<FakeConverterContext> createConverter() {
+    public ConverterTextToProperties<ConverterContext> createConverter() {
         return ConverterTextToProperties.instance();
     }
 
@@ -93,17 +93,7 @@ public final class ConverterTextToPropertiesTest implements ConverterTesting2<Co
     // class............................................................................................................
 
     @Override
-    public Class<ConverterTextToProperties<FakeConverterContext>> type() {
+    public Class<ConverterTextToProperties<ConverterContext>> type() {
         return Cast.to(ConverterTextToProperties.class);
-    }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
     }
 }
