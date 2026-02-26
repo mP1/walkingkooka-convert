@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 import java.time.ZoneOffset;
 
 /**
- * A converter that supports converting text into a {@link ZoneOffset} using {@link ZoneOffset#parse(String)}
+ * A converter that supports converting text into a {@link ZoneOffset} using {@link ZoneOffset#of(String)}
  */
 final class ConverterTextToZoneOffset<C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
 
