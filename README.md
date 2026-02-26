@@ -56,6 +56,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [text-to-local-time-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListTimeList.java)
 - [text-to-locale](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToLocale.java)
 - [text-to-number-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListNumberList.java)
+- [text-to-properties](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToProperties.java)
 - [text-to-string-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToListStringList.java)
 - [text-to-zone-offset](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToZoneOffset.java)
 - [to-boolean](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToBoolean.java)
