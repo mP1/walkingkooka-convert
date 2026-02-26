@@ -43,8 +43,7 @@ final class ConverterTextToLocale<C extends ConverterContext> extends ConverterT
     public boolean isTargetType(final Object value,
                                 final Class<?> type,
                                 final C context) {
-        return value != Locale.class &&
-            Locale.class == type;
+        return Locale.class == type;
     }
 
     @Override
