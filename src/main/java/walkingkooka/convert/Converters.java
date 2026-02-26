@@ -454,6 +454,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToProperties}
+     */
+    public static <C extends ConverterContext> Converter<C> textToProperties() {
+        return ConverterTextToProperties.instance();
+    }
+
+    /**
      * {@see ConverterTextToListStringList}
      */
     public static <C extends ConverterContext> Converter<C> textToStringList() {
