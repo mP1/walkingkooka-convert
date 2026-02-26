@@ -162,6 +162,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterHasProperties}
+     */
+    public static <C extends ConverterContext> Converter<C> hasProperties() {
+        return ConverterHasProperties.instance();
+    }
+    
+    /**
      * {@see ConverterHasText}
      */
     public static <C extends ConverterContext> Converter<C> hasText() {
