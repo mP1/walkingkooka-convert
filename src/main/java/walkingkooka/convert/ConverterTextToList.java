@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Base class that includes the logic for parsing a string with a separator and converting each element to the element type.
  */
-abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
+abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends ConverterContext> extends ConverterTextTo<L, C> {
 
     ConverterTextToList() {
         super();

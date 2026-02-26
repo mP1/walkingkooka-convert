@@ -23,7 +23,7 @@ import walkingkooka.collect.list.Lists;
 
 import java.util.List;
 
-public abstract class ConverterTextToListTestCase<L extends ImmutableList<E>, E, C extends ConverterTextToList<L, E, ConverterContext>> extends ConverterTestCase2<C> implements ConverterTesting2<C, ConverterContext> {
+public abstract class ConverterTextToListTestCase<L extends ImmutableList<E>, E, C extends ConverterTextToList<L, E, ConverterContext>> extends ConverterTextToTestCase<C, L> {
 
     ConverterTextToListTestCase() {
         super();
