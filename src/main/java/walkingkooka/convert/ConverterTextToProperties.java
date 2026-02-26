@@ -23,7 +23,7 @@ import walkingkooka.props.Properties;
 /**
  * A {@link Converter} that reads {@link Properties} from a {@link String}.
  */
-final class ConverterTextToProperties<C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
+final class ConverterTextToProperties<C extends ConverterContext> extends ConverterTextTo<Properties, C> {
 
     /**
      * Type safe instance getter
