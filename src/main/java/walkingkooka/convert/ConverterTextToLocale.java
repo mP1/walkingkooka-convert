@@ -24,7 +24,7 @@ import java.util.Locale;
 /**
  * A {@link Converter} that converts an Locale as a {@link String} into a {@link Locale}.
  */
-final class ConverterTextToLocale<C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
+final class ConverterTextToLocale<C extends ConverterContext> extends ConverterTextTo<Locale, C> {
 
     /**
      * Type safe instance getter
