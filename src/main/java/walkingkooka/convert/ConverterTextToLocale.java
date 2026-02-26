@@ -40,10 +40,8 @@ final class ConverterTextToLocale<C extends ConverterContext> extends ConverterT
     }
 
     @Override
-    public boolean isTargetType(final Object value,
-                                final Class<?> type,
-                                final C context) {
-        return Locale.class == type;
+    Class<Locale> targetType() {
+        return Locale.class;
     }
 
     @Override
@@ -51,10 +49,5 @@ final class ConverterTextToLocale<C extends ConverterContext> extends ConverterT
                             final Class<?> type,
                             final C context) {
         return context.localeForLanguageTagOrFail(value);
-    }
-
-    @Override
-    public String toString() {
-        return "Text to " + Locale.class.getSimpleName();
     }
 }

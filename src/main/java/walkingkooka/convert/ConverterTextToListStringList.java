@@ -51,7 +51,7 @@ final class ConverterTextToListStringList<C extends ConverterContext> extends Co
     }
 
     @Override
-    Class<StringList> listType() {
+    Class<StringList> targetType() {
         return StringList.class;
     }
 

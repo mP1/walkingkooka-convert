@@ -50,7 +50,7 @@ final class ConverterTextToListNumberList<C extends ConverterContext> extends Co
     }
 
     @Override
-    Class<NumberList> listType() {
+    Class<NumberList> targetType() {
         return NumberList.class;
     }
 

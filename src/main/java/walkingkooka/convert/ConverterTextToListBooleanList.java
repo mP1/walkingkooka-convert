@@ -50,7 +50,7 @@ final class ConverterTextToListBooleanList<C extends ConverterContext> extends C
     }
 
     @Override
-    Class<BooleanList> listType() {
+    Class<BooleanList> targetType() {
         return BooleanList.class;
     }
 

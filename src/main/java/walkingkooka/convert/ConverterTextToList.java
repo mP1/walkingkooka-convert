@@ -33,16 +33,6 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
         super();
     }
 
-
-    @Override
-    public boolean isTargetType(final Object value,
-                                final Class<?> type,
-                                final C context) {
-        return this.listType() == type;
-    }
-
-    abstract Class<L> listType();
-
     @Override
     public final Object parseText(final String text,
                                   final Class<?> type,
@@ -209,11 +199,4 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
      * The converted elements will be added to this empty list giving the target.
      */
     abstract L emptyList();
-
-    // Object...........................................................................................................
-
-    @Override
-    public final String toString() {
-        return "text to " + this.listType().getSimpleName();
-    }
 }

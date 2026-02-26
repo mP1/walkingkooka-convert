@@ -42,7 +42,7 @@ final class ConverterTextToListCsvStringList<C extends ConverterContext> extends
     }
 
     @Override
-    Class<CsvStringList> listType() {
+    Class<CsvStringList> targetType() {
         return CsvStringList.class;
     }
 

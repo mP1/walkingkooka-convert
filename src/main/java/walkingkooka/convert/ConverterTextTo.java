@@ -20,9 +20,26 @@ package walkingkooka.convert;
 /**
  * A {@link Converter} that handles converting text to another type
  */
-abstract class ConverterTextTo<N, C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
+abstract class ConverterTextTo<T, C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
 
     ConverterTextTo() {
         super();
+    }
+
+    @Override
+    public boolean isTargetType(final Object value,
+                                final Class<?> type,
+                                final C context) {
+        return this.targetType()  == type;
+    }
+
+    abstract Class<T> targetType();
+
+    // Object...........................................................................................................
+
+    @Override
+    public final String toString() {
+        return "text to " + this.targetType()
+            .getSimpleName();
     }
 }
