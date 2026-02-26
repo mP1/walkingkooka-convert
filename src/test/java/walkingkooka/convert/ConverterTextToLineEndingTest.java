@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.text.LineEnding;
 
-public final class ConverterTextToLineEndingTest implements ConverterTesting2<ConverterTextToLineEnding<FakeConverterContext>, FakeConverterContext> {
+public final class ConverterTextToLineEndingTest extends ConverterTextToTestCase<ConverterTextToLineEnding<ConverterContext>, LineEnding> {
 
     @Test
     public void testConvertNullFails() {
@@ -158,12 +158,12 @@ public final class ConverterTextToLineEndingTest implements ConverterTesting2<Co
     }
 
     @Override
-    public ConverterTextToLineEnding<FakeConverterContext> createConverter() {
+    public ConverterTextToLineEnding<ConverterContext> createConverter() {
         return ConverterTextToLineEnding.instance();
     }
 
     @Override
-    public FakeConverterContext createContext() {
+    public ConverterContext createContext() {
         return new FakeConverterContext() {
 
             @Override
@@ -186,7 +186,7 @@ public final class ConverterTextToLineEndingTest implements ConverterTesting2<Co
                 );
             }
 
-            private final Converter<FakeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+            private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
         };
     }
 
@@ -203,17 +203,7 @@ public final class ConverterTextToLineEndingTest implements ConverterTesting2<Co
     // class............................................................................................................
 
     @Override
-    public Class<ConverterTextToLineEnding<FakeConverterContext>> type() {
+    public Class<ConverterTextToLineEnding<ConverterContext>> type() {
         return Cast.to(ConverterTextToLineEnding.class);
-    }
-
-    @Override
-    public String typeNamePrefix() {
-        return Converter.class.getSimpleName();
-    }
-
-    @Override
-    public String typeNameSuffix() {
-        return "";
     }
 }
