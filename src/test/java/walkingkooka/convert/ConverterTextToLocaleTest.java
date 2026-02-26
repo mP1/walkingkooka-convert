@@ -24,7 +24,7 @@ import walkingkooka.Either;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class ConverterTextToLocaleTest extends ConverterTestCase2<ConverterTextToLocale<ConverterContext>> {
+public final class ConverterTextToLocaleTest extends ConverterTextToTestCase<ConverterTextToLocale<ConverterContext>, Locale> {
 
     @Test
     public void testConvertStringToStringFails() {
