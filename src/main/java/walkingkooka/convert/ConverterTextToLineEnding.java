@@ -23,7 +23,7 @@ import walkingkooka.text.LineEnding;
 /**
  * A converter that supports converting text into a {@link LineEnding} using {@link LineEnding#parse(String)}
  */
-final class ConverterTextToLineEnding<C extends ConverterContext> implements TextToTryingShortCircuitingConverter<C> {
+final class ConverterTextToLineEnding<C extends ConverterContext> extends ConverterTextTo<LineEnding, C> {
 
     /**
      * Type safe instance getter
