@@ -61,7 +61,7 @@ public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasT
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "HasText to String"
+            "HasText"
         );
     }
 

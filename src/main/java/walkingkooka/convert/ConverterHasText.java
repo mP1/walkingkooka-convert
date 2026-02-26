@@ -64,6 +64,6 @@ final class ConverterHasText<C extends ConverterContext> implements TryingShortC
 
     @Override
     public String toString() {
-        return "HasText to String";
+        return "HasText";
     }
 }
