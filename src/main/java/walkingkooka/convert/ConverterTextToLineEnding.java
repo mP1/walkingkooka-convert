@@ -38,12 +38,9 @@ final class ConverterTextToLineEnding<C extends ConverterContext> extends Conver
         super();
     }
 
-
     @Override
-    public boolean isTargetType(final Object value,
-                                final Class<?> type,
-                                final C context) {
-        return LineEnding.class == type;
+    Class<LineEnding> targetType() {
+        return LineEnding.class;
     }
 
     @Override
@@ -51,12 +48,5 @@ final class ConverterTextToLineEnding<C extends ConverterContext> extends Conver
                                 final Class<?> type,
                                 final C context) {
         return LineEnding.parse(text);
-    }
-
-    // Object...........................................................................................................
-
-    @Override
-    public String toString() {
-        return "text to " + LineEnding.class.getSimpleName();
     }
 }

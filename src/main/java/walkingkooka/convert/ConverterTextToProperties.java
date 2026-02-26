@@ -39,11 +39,8 @@ final class ConverterTextToProperties<C extends ConverterContext> extends Conver
     }
 
     @Override
-    public boolean isTargetType(final Object value,
-                                final Class<?> type,
-                                final C context) {
-        return value != Properties.class &&
-            Properties.class == type;
+    Class<Properties> targetType() {
+        return Properties.class;
     }
 
     @Override
@@ -51,10 +48,5 @@ final class ConverterTextToProperties<C extends ConverterContext> extends Conver
                             final Class<?> type,
                             final C context) {
         return Properties.parse(value);
-    }
-
-    @Override
-    public String toString() {
-        return "text to " + Properties.class.getSimpleName();
     }
 }

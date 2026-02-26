@@ -52,7 +52,7 @@ final class ConverterTextToListLocalDateTimeList<C extends ConverterContext> ext
     }
 
     @Override
-    Class<LocalDateTimeList> listType() {
+    Class<LocalDateTimeList> targetType() {
         return LocalDateTimeList.class;
     }
 
