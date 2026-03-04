@@ -18,6 +18,8 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
@@ -38,6 +40,7 @@ import java.util.Optional;
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
 final class BasicConverterContext implements ConverterContext,
+    CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
 
@@ -178,6 +181,13 @@ final class BasicConverterContext implements ConverterContext,
 
     private final DecimalNumberContext decimalNumberContext;
 
+    // CurrencyCodeLanguageTagContextDelegator..........................................................................
+
+    @Override
+    public CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext() {
+        return this.currencyLocaleContext;
+    }
+
     // CanCurrencyForLocale.............................................................................................
 
     @Override
@@ -197,13 +207,6 @@ final class BasicConverterContext implements ConverterContext,
     @Override
     public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
         return this.currencyLocaleContext.decimalNumberSymbolsForLocale(locale);
-    }
-
-    // CanLocaleForLanguageTag..........................................................................................
-
-    @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
-        return this.currencyLocaleContext.localeForLanguageTag(languageTag);
     }
 
     private final CurrencyLocaleContext currencyLocaleContext;

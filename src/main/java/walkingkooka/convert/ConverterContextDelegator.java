@@ -17,6 +17,8 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -32,6 +34,7 @@ import java.util.Optional;
 
 public interface ConverterContextDelegator extends ConverterContext,
     ConverterLikeDelegator,
+    CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
 
@@ -104,9 +107,8 @@ public interface ConverterContextDelegator extends ConverterContext,
     }
 
     @Override
-    default Optional<Locale> localeForLanguageTag(final String languageTag) {
-        return this.converterContext()
-            .localeForLanguageTag(languageTag);
+    default CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext() {
+        return this.converterContext();
     }
 
     ConverterContext converterContext();

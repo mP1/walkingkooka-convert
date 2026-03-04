@@ -49,6 +49,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
+    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
