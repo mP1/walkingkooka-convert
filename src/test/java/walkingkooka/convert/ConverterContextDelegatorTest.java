@@ -86,6 +86,13 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                 ',', // valueSeparator
                 Converters.fake(),
                 new FakeCurrencyContext() {
+
+                    @Override
+                    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+                        Objects.requireNonNull(currencyCode, "currencyCode");
+                        throw new UnsupportedOperationException();
+                    }
+
                     @Override
                     public Optional<Currency> currencyForLocale(final Locale locale) {
                         Objects.requireNonNull(locale, "locale");

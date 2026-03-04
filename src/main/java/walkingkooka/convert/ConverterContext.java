@@ -19,10 +19,10 @@ package walkingkooka.convert;
 
 import walkingkooka.Context;
 import walkingkooka.currency.CanCurrencyForLocale;
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
-import walkingkooka.locale.CanLocaleForLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.text.HasIndentation;
 import walkingkooka.text.HasLineEnding;
@@ -34,7 +34,7 @@ public interface ConverterContext extends ConverterLike,
     CanCurrencyForLocale,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
-    CanLocaleForLanguageTag,
+    CurrencyCodeLanguageTagContext,
     DateTimeContext,
     DecimalNumberContext,
     HasIndentation,

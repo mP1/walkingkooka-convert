@@ -73,6 +73,12 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = new FakeCurrencyContext() {
 
         @Override
+        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+            Objects.requireNonNull(currencyCode, "currencyCode");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public Optional<Currency> currencyForLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
 
