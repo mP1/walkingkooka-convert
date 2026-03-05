@@ -74,11 +74,6 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
-    public String ampm(final int hourOfDay) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public Optional<Currency> currencyForLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
