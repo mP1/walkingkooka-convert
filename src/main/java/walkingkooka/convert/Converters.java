@@ -363,6 +363,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterPropertiesToDateTimeSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> propertiesToDateTimeSymbols() {
+        return ConverterPropertiesToDateTimeSymbols.instance();
+    }
+
+    /**
      * {@see ConverterSimple}
      */
     public static <C extends ConverterContext> Converter<C> simple() {
