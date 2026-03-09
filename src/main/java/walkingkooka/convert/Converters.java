@@ -370,6 +370,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterPropertiesToDecimalNumberSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> propertiesToDecimalNumberSymbols() {
+        return ConverterPropertiesToDecimalNumberSymbols.instance();
+    }
+
+    /**
      * {@see ConverterSimple}
      */
     public static <C extends ConverterContext> Converter<C> simple() {
