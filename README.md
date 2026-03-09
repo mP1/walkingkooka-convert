@@ -45,6 +45,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [optional-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterOptionalTo.java)
 - [parser](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterParser.java)
 - [properties-to-date-time-symbols](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterPropertiesToDateTimeSymbols.java)
+- [properties-to-decimal-number-symbols](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterPropertiesToDecimalNumberSymbols.java)
 - [simple](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterSimple.java)
 - [string-to-character-or-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterSimple.java)
 - [string-to-local-date](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter.java)
