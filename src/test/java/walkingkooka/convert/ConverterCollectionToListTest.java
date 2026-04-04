@@ -676,7 +676,7 @@ public final class ConverterCollectionToListTest extends ConverterTestCase2<Conv
                     Converters.textToLocalTime(
                         (c) -> DateTimeFormatter.ofPattern("H:m")
                     ),
-                    Converters.stringToNumber(
+                    Converters.textToNumber(
                         (c) -> (DecimalFormat) DecimalFormat.getInstance()
                     )
                 )

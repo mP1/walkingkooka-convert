@@ -104,7 +104,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
         final Converter<ConverterContext> converter = Converters.chain(
             Converters.characterOrStringToString(),
             String.class,
-            Converters.stringToNumber(
+            Converters.textToNumber(
                 (x) -> (DecimalFormat) DecimalFormat.getInstance(Locale.forLanguageTag("EN-AU"))
             )
         );

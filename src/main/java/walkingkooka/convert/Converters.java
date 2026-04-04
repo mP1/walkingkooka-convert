@@ -391,13 +391,6 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterDecimalFormatStringToNumber}
-     */
-    public static <C extends ConverterContext> Converter<C> stringToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
-        return ConverterDecimalFormatStringToNumber.with(decimalFormat);
-    }
-
-    /**
      * {@see ConverterTextToListBooleanList}
      */
     public static <C extends ConverterContext> Converter<C> textToBooleanList() {
@@ -437,6 +430,13 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> textToLocale() {
         return ConverterTextToLocale.instance();
+    }
+
+    /**
+     * {@see ConverterDecimalFormatStringToNumber}
+     */
+    public static <C extends ConverterContext> Converter<C> textToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
+        return ConverterDecimalFormatStringToNumber.with(decimalFormat);
     }
 
     /**
