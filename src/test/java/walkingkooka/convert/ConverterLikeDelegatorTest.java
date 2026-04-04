@@ -64,7 +64,7 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                 Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
-                Converters.stringToLocalDate(
+                Converters.textToLocalDate(
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                 ),
                 CurrencyLocaleContexts.fake(),
