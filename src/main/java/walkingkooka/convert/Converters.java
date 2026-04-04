@@ -398,6 +398,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListCsvStringList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
+        return ConverterTextToListCsvStringList.instance();
+    }
+
+    /**
      * {@see ConverterTextToCurrencyCode}
      */
     public static <C extends ConverterContext> Converter<C> textToCurrencyCode() {
@@ -419,6 +426,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListLocalDateList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalDateList() {
+        return ConverterTextToListLocalDateList.instance();
+    }
+
+    /**
      * {@see ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter}
      */
     public static <C extends ConverterContext> Converter<C> textToLocalDateTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
@@ -426,10 +440,24 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToListLocalDateTimeList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalDateTimeList() {
+        return ConverterTextToListLocalDateTimeList.instance();
+    }
+
+    /**
      * {@see ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter}
      */
     public static <C extends ConverterContext> Converter<C> textToLocalTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
         return ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter.with(formatter);
+    }
+
+    /**
+     * {@see ConverterTextToListLocalTimeList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalTimeList() {
+        return ConverterTextToListLocalTimeList.instance();
     }
 
     /**
@@ -451,34 +479,6 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> textToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
         return ConverterDecimalFormatStringToNumber.with(decimalFormat);
-    }
-
-    /**
-     * {@see ConverterTextToListCsvStringList}
-     */
-    public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
-        return ConverterTextToListCsvStringList.instance();
-    }
-
-    /**
-     * {@see ConverterTextToListLocalDateList}
-     */
-    public static <C extends ConverterContext> Converter<C> textToLocalDateList() {
-        return ConverterTextToListLocalDateList.instance();
-    }
-
-    /**
-     * {@see ConverterTextToListLocalDateTimeList}
-     */
-    public static <C extends ConverterContext> Converter<C> textToLocalDateTimeList() {
-        return ConverterTextToListLocalDateTimeList.instance();
-    }
-
-    /**
-     * {@see ConverterTextToListLocalTimeList}
-     */
-    public static <C extends ConverterContext> Converter<C> textToLocalTimeList() {
-        return ConverterTextToListLocalTimeList.instance();
     }
 
     /**
