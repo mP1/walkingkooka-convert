@@ -398,6 +398,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToCurrencyCode}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCurrencyCode() {
+        return ConverterTextToLineEnding.instance();
+    }
+
+    /**
      * {@see ConverterTextToLineEnding}
      */
     public static <C extends ConverterContext> Converter<C> textToLineEnding() {
