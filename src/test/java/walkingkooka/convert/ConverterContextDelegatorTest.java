@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.convert.ConverterContextDelegatorTest.TestConverterContextDelegator;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -88,7 +89,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                 new FakeCurrencyContext() {
 
                     @Override
-                    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+                    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
                         Objects.requireNonNull(currencyCode, "currencyCode");
                         throw new UnsupportedOperationException();
                     }

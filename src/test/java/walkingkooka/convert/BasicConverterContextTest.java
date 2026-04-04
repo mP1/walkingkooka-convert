@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContext;
@@ -73,7 +74,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = new FakeCurrencyContext() {
 
         @Override
-        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
             throw new UnsupportedOperationException();
         }

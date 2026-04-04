@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.FakeDecimalNumberContext;
@@ -49,7 +50,7 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
-    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
         throw new UnsupportedOperationException();
     }
 
