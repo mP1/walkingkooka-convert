@@ -440,6 +440,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToLocaleLanguageTag}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocaleLanguageTag() {
+        return ConverterTextToLocaleLanguageTag.instance();
+    }
+
+    /**
      * {@see ConverterDecimalFormatStringToNumber}
      */
     public static <C extends ConverterContext> Converter<C> textToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
