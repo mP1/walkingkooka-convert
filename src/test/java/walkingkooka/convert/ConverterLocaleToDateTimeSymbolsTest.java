@@ -41,6 +41,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.datetime.HasDateTimeSymbols;
 import walkingkooka.datetime.HasOptionalDateTimeSymbols;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
@@ -304,9 +305,11 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
                 }
 
                 @Override
-                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
                     return Optional.of(
-                        Locale.forLanguageTag(languageTag)
+                        Locale.forLanguageTag(
+                            languageTag.value()
+                        )
                     );
                 }
             },

@@ -38,6 +38,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.HasDecimalNumberSymbols;
 import walkingkooka.math.HasOptionalDecimalNumberSymbols;
@@ -308,9 +309,11 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
                 }
 
                 @Override
-                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
                     return Optional.of(
-                        Locale.forLanguageTag(languageTag)
+                        Locale.forLanguageTag(
+                            languageTag.value()
+                        )
                     );
                 }
             },

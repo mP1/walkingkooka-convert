@@ -34,6 +34,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
@@ -99,9 +100,11 @@ final class ConverterLocaleToLocale<C extends ConverterContext> extends Converte
                         .orElse(null);
                 } else {
                     locale = context.localeForLanguageTagOrFail(
-                        context.convertOrFail(
-                            value,
-                            String.class
+                        LocaleLanguageTag.parse(
+                            context.convertOrFail(
+                                value,
+                                String.class
+                            )
                         )
                     );
                 }
