@@ -391,27 +391,6 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter}
-     */
-    public static <C extends ConverterContext> Converter<C> stringToLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter.with(formatter);
-    }
-
-    /**
-     * {@see ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter}
-     */
-    public static <C extends ConverterContext> Converter<C> stringToLocalDateTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter.with(formatter);
-    }
-
-    /**
-     * {@see ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter}
-     */
-    public static <C extends ConverterContext> Converter<C> stringToLocalTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
-        return ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter.with(formatter);
-    }
-
-    /**
      * {@see ConverterDecimalFormatStringToNumber}
      */
     public static <C extends ConverterContext> Converter<C> stringToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
@@ -430,6 +409,27 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> textToLineEnding() {
         return ConverterTextToLineEnding.instance();
+    }
+
+    /**
+     * {@see ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalDate(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return ConverterDateTimeFormatterStringToLocalDateDateTimeFormatter.with(formatter);
+    }
+
+    /**
+     * {@see ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalDateTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return ConverterDateTimeFormatterStringToLocalDateTimeDateTimeFormatter.with(formatter);
+    }
+
+    /**
+     * {@see ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLocalTime(final Function<DateTimeContext, DateTimeFormatter> formatter) {
+        return ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter.with(formatter);
     }
 
     /**

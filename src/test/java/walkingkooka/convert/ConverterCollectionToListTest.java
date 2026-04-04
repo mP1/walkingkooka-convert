@@ -667,13 +667,13 @@ public final class ConverterCollectionToListTest extends ConverterTestCase2<Conv
                         Boolean.TRUE,
                         Boolean.FALSE
                     ),
-                    Converters.stringToLocalDate(
+                    Converters.textToLocalDate(
                         (c) -> DateTimeFormatter.ofPattern("yyyy/M/d")
                     ),
-                    Converters.stringToLocalDateTime(
+                    Converters.textToLocalDateTime(
                         (c) -> DateTimeFormatter.ofPattern("yyyy/M/d H:m")
                     ),
-                    Converters.stringToLocalTime(
+                    Converters.textToLocalTime(
                         (c) -> DateTimeFormatter.ofPattern("H:m")
                     ),
                     Converters.stringToNumber(
