@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Cast;
+import walkingkooka.locale.LocaleLanguageTag;
 
 import java.util.Locale;
 
@@ -48,6 +49,8 @@ final class ConverterTextToLocale<C extends ConverterContext> extends ConverterT
     public Object parseText(final String value,
                             final Class<?> type,
                             final C context) {
-        return context.localeForLanguageTagOrFail(value);
+        return context.localeForLanguageTagOrFail(
+            LocaleLanguageTag.parse(value)
+        );
     }
 }

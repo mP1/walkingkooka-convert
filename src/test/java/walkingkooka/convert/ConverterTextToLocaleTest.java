@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.locale.LocaleLanguageTag;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -93,9 +94,11 @@ public final class ConverterTextToLocaleTest extends ConverterTextToTestCase<Con
             private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
 
             @Override
-            public Optional<Locale> localeForLanguageTag(final String languageTag) {
+            public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
                 return Optional.of(
-                    Locale.forLanguageTag(languageTag)
+                    Locale.forLanguageTag(
+                        languageTag.value()
+                    )
                 );
             }
         };

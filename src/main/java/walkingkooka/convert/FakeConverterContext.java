@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.Either;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.FakeDecimalNumberContext;
 import walkingkooka.test.Fake;
@@ -65,7 +66,7 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+    public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         throw new UnsupportedOperationException();
     }
 
