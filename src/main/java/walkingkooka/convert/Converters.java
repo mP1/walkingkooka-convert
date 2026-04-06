@@ -419,6 +419,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToCollectionSetCurrencyCodeSet}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCurrencyCodeSet() {
+        return ConverterTextToCollectionSetCurrencyCodeSet.instance();
+    }
+
+    /**
      * {@see ConverterTextToLineEnding}
      */
     public static <C extends ConverterContext> Converter<C> textToLineEnding() {
