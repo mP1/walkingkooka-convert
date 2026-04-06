@@ -21,6 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.datetime.LocalDateList;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * A Converter that handles converting a string such as a CSV with date literals to a {@link LocalDateList}. Padding
@@ -33,21 +34,21 @@ import java.time.LocalDate;
  * )
  * </pre>
  */
-final class ConverterTextToListLocalDateList<C extends ConverterContext> extends ConverterTextToList<LocalDateList, LocalDate, C> {
+final class ConverterTextToCollectionListLocalDateList<C extends ConverterContext> extends ConverterTextToCollectionList<LocalDateList, LocalDate, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterTextToListLocalDateList<C> instance() {
+    static <C extends ConverterContext> ConverterTextToCollectionListLocalDateList<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterTextToListLocalDateList<?> INSTANCE = new ConverterTextToListLocalDateList<>();
+    private final static ConverterTextToCollectionListLocalDateList<?> INSTANCE = new ConverterTextToCollectionListLocalDateList<>();
 
-    private ConverterTextToListLocalDateList() {
+    private ConverterTextToCollectionListLocalDateList() {
         super();
     }
 
@@ -62,7 +63,7 @@ final class ConverterTextToListLocalDateList<C extends ConverterContext> extends
     }
 
     @Override
-    LocalDateList emptyList() {
-        return LocalDateList.EMPTY;
+    LocalDateList toImmutableCollection(final List<LocalDate> mutableCollection) {
+        return LocalDateList.EMPTY.setElements(mutableCollection);
     }
 }

@@ -21,119 +21,119 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.datetime.LocalDateTimeList;
+import walkingkooka.datetime.LocalTimeList;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public final class ConverterTextToListLocalDateTimeListTest extends ConverterTextToListTestCase<LocalDateTimeList, LocalDateTime, ConverterTextToListLocalDateTimeList<ConverterContext>> {
+public final class ConverterTextToCollectionListLocalTimeListTest extends ConverterTextToCollectionListTestCase<LocalTimeList, LocalTime, ConverterTextToCollectionListLocalTimeList<ConverterContext>> {
 
-    private final static LocalDateTime DATE_TIME = LocalDateTime.of(1999, 12, 31, 1, 11, 58);
+    private final static LocalTime DATE_TIME = LocalTime.of(1, 11, 58);
 
-    private final static String DATE_TIME_STRING = "1999/12/31 1:11:58";
+    private final static String DATE_TIME_STRING = "1:11:58";
 
-    private final static LocalDateTime DATE_TIME2 = LocalDateTime.of(2000, 1, 2, 2, 22, 59);
+    private final static LocalTime DATE_TIME2 = LocalTime.of(2, 22, 59);
 
     @Test
     public void testConvertString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             DATE_TIME_STRING,
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertCharSequenceDateTime() {
-        this.convertToListAndCheck(
+    public void testConvertCharSequenceTime() {
+        this.convertToCollectionAndCheck(
             new StringBuilder(DATE_TIME_STRING),
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringQuotedDateTime() {
-        this.convertToListAndCheck(
-            "\"1999/12/31 1:11:58\"",
+    public void testConvertStringQuotedTime() {
+        this.convertToCollectionAndCheck(
+            "\"1:11:58\"",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringQuotedBackslashDateTime() {
-        this.convertToListAndCheck(
-            "\"\\1999/12/31 1:11:58\"",
+    public void testConvertStringQuotedBackslashTime() {
+        this.convertToCollectionAndCheck(
+            "\"\\1:11:58\"",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringSpacesQuotedDateTime() {
-        this.convertToListAndCheck(
-            " \"1999/12/31 1:11:58\"",
+    public void testConvertStringSpacesQuotedTime() {
+        this.convertToCollectionAndCheck(
+            " \"1:11:58\"",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringSpaceSpaceQuotedDateTime() {
-        this.convertToListAndCheck(
-            "  \"1999/12/31 1:11:58\"",
+    public void testConvertStringSpaceSpaceQuotedTime() {
+        this.convertToCollectionAndCheck(
+            "  \"1:11:58\"",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringQuotedDateTimeSpaces() {
-        this.convertToListAndCheck(
-            "\"1999/12/31 1:11:58\" ",
+    public void testConvertStringQuotedTimeSpaces() {
+        this.convertToCollectionAndCheck(
+            "\"1:11:58\" ",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringQuotedDateTimeSpaceSpace() {
-        this.convertToListAndCheck(
-            "\"1999/12/31 1:11:58\" ",
+    public void testConvertStringQuotedTimeSpaceSpace() {
+        this.convertToCollectionAndCheck(
+            "\"1:11:58\" ",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringSpaceDateTime() {
-        this.convertToListAndCheck(
-            "1999/12/31 1:11:58",
+    public void testConvertStringSpaceTime() {
+        this.convertToCollectionAndCheck(
+            "1:11:58",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertStringDateTimeSpace() {
-        this.convertToListAndCheck(
-            "1999/12/31 1:11:58",
+    public void testConvertStringTimeSpace() {
+        this.convertToCollectionAndCheck(
+            "1:11:58",
             DATE_TIME
         );
     }
 
     @Test
-    public void testConvertDateTimeSeparatorFails() {
-        this.convertToListFails(
-            "1999/12/31 1:11:58*"
+    public void testConvertTimeSeparatorFails() {
+        this.convertToCollectionFails(
+            "1:11:58*"
         );
     }
 
     @Test
-    public void testConvertDateTimeSeparatorDateTime() {
-        this.convertToListAndCheck(
-            "1999/12/31 1:11:58*2000/1/2 2:22:59",
+    public void testConvertTimeSeparatorTime() {
+        this.convertToCollectionAndCheck(
+            "1:11:58*2:22:59",
             DATE_TIME,
             DATE_TIME2
         );
     }
 
     @Test
-    public void testConvertDateTimeSeparatorDateTimeSeparatorDateTime() {
-        this.convertToListAndCheck(
-            "1999/12/31 1:11:58*2000/1/2 2:22:59*1999/12/31 1:11:58",
+    public void testConvertTimeSeparatorTimeSeparatorTime() {
+        this.convertToCollectionAndCheck(
+            "1:11:58*2:22:59*1:11:58",
             DATE_TIME,
             DATE_TIME2,
             DATE_TIME
@@ -141,9 +141,9 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertDateTimeSeparatorDateTimeSeparatorDateTimeExtraSpacesIgnored() {
-        this.convertToListAndCheck(
-            "1999/12/31 1:11:58 * 2000/1/2 2:22:59 *1999/12/31 1:11:58 ",
+    public void testConvertTimeSeparatorTimeSeparatorTimeExtraSpacesIgnored() {
+        this.convertToCollectionAndCheck(
+            "1:11:58 * 2:22:59 *1:11:58 ",
             DATE_TIME,
             DATE_TIME2,
             DATE_TIME
@@ -151,9 +151,9 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Test
-    public void testConvertDateTimeSeparatorDateTimeSeparatorDateTimeExtraSpacesIgnored2() {
-        this.convertToListAndCheck(
-            " 1999/12/31 1:11:58 * 2000/1/2 2:22:59 * 1999/12/31 1:11:58 ",
+    public void testConvertTimeSeparatorTimeSeparatorTimeExtraSpacesIgnored2() {
+        this.convertToCollectionAndCheck(
+            " 1:11:58 * 2:22:59 * 1:11:58 ",
             DATE_TIME,
             DATE_TIME2,
             DATE_TIME
@@ -161,8 +161,8 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Override
-    public ConverterTextToListLocalDateTimeList<ConverterContext> createConverter() {
-        return ConverterTextToListLocalDateTimeList.instance();
+    public ConverterTextToCollectionListLocalTimeList<ConverterContext> createConverter() {
+        return ConverterTextToCollectionListLocalTimeList.instance();
     }
 
     @Override
@@ -202,7 +202,7 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
                         public boolean canConvert(final Object value,
                                                   final Class<?> type,
                                                   final FakeConverterContext context) {
-                            return value instanceof String && LocalDateTime.class == type;
+                            return value instanceof String && LocalTime.class == type;
                         }
 
                         @Override
@@ -210,9 +210,9 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
                                                                final Class<T> type,
                                                                final FakeConverterContext context) {
                             return this.successfulConversion(
-                                LocalDateTime.parse(
+                                LocalTime.parse(
                                     (String) value,
-                                    DateTimeFormatter.ofPattern("yyyy/M/d H:m:s")
+                                    DateTimeFormatter.ofPattern("H:m:s")
                                 ),
                                 type
                             );
@@ -224,19 +224,19 @@ public final class ConverterTextToListLocalDateTimeListTest extends ConverterTex
     }
 
     @Override
-    Class<LocalDateTimeList> listType() {
-        return LocalDateTimeList.class;
+    Class<LocalTimeList> collectionType() {
+        return LocalTimeList.class;
     }
 
     @Override
-    LocalDateTimeList emptyList() {
-        return LocalDateTimeList.EMPTY;
+    LocalTimeList emptyList() {
+        return LocalTimeList.EMPTY;
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<ConverterTextToListLocalDateTimeList<ConverterContext>> type() {
-        return Cast.to(ConverterTextToListLocalDateTimeList.class);
+    public Class<ConverterTextToCollectionListLocalTimeList<ConverterContext>> type() {
+        return Cast.to(ConverterTextToCollectionListLocalTimeList.class);
     }
 }

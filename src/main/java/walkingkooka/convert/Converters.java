@@ -391,17 +391,17 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToListBooleanList}
+     * {@see ConverterTextToCollectionListBooleanList}
      */
     public static <C extends ConverterContext> Converter<C> textToBooleanList() {
-        return ConverterTextToListBooleanList.instance();
+        return ConverterTextToCollectionListBooleanList.instance();
     }
 
     /**
-     * {@see ConverterTextToListCsvStringList}
+     * {@see ConverterTextToCollectionListCsvStringList}
      */
     public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
-        return ConverterTextToListCsvStringList.instance();
+        return ConverterTextToCollectionListCsvStringList.instance();
     }
 
     /**
@@ -426,10 +426,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToListLocalDateList}
+     * {@see ConverterTextToCollectionListLocalDateList}
      */
     public static <C extends ConverterContext> Converter<C> textToLocalDateList() {
-        return ConverterTextToListLocalDateList.instance();
+        return ConverterTextToCollectionListLocalDateList.instance();
     }
 
     /**
@@ -440,10 +440,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToListLocalDateTimeList}
+     * {@see ConverterTextToCollectionListLocalDateTimeList}
      */
     public static <C extends ConverterContext> Converter<C> textToLocalDateTimeList() {
-        return ConverterTextToListLocalDateTimeList.instance();
+        return ConverterTextToCollectionListLocalDateTimeList.instance();
     }
 
     /**
@@ -454,10 +454,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToListLocalTimeList}
+     * {@see ConverterTextToCollectionListLocalTimeList}
      */
     public static <C extends ConverterContext> Converter<C> textToLocalTimeList() {
-        return ConverterTextToListLocalTimeList.instance();
+        return ConverterTextToCollectionListLocalTimeList.instance();
     }
 
     /**
@@ -482,10 +482,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToListNumberList}
+     * {@see ConverterTextToCollectionListNumberList}
      */
     public static <C extends ConverterContext> Converter<C> textToNumberList() {
-        return ConverterTextToListNumberList.instance();
+        return ConverterTextToCollectionListNumberList.instance();
     }
 
     /**
@@ -496,10 +496,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToListStringList}
+     * {@see ConverterTextToCollectionListStringList}
      */
     public static <C extends ConverterContext> Converter<C> textToStringList() {
-        return ConverterTextToListStringList.instance();
+        return ConverterTextToCollectionListStringList.instance();
     }
 
     /**

@@ -18,41 +18,34 @@
 package walkingkooka.convert;
 
 import walkingkooka.Cast;
-import walkingkooka.collect.list.StringList;
+import walkingkooka.collect.list.CsvStringList;
+
+import java.util.List;
 
 /**
- * A Converter that handles converting a string such as a CSV with string literals to a {@link StringList}. Padding
- * spaces are ignored. Each token between separators is trimmed of space and converted to {@link String}.
- * <pre>
- * "a,bc,def" ->
- * Lists.of(
- *   "a",
- *   "bc",
- *   "def"
- * )
- * </pre>
+ * A Converter that handles converting a CSV {@link String} to a {@link walkingkooka.collect.list.CsvStringList}.
  */
-final class ConverterTextToListStringList<C extends ConverterContext> extends ConverterTextToList<StringList, String, C> {
+final class ConverterTextToCollectionListCsvStringList<C extends ConverterContext> extends ConverterTextToCollectionList<CsvStringList, String, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterTextToListStringList<C> instance() {
+    static <C extends ConverterContext> ConverterTextToCollectionListCsvStringList<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterTextToListStringList<?> INSTANCE = new ConverterTextToListStringList<>();
+    private final static ConverterTextToCollectionListCsvStringList<?> INSTANCE = new ConverterTextToCollectionListCsvStringList<>();
 
-    private ConverterTextToListStringList() {
+    private ConverterTextToCollectionListCsvStringList() {
         super();
     }
 
     @Override
-    Class<StringList> targetType() {
-        return StringList.class;
+    Class<CsvStringList> targetType() {
+        return CsvStringList.class;
     }
 
     @Override
@@ -61,7 +54,7 @@ final class ConverterTextToListStringList<C extends ConverterContext> extends Co
     }
 
     @Override
-    StringList emptyList() {
-        return StringList.EMPTY;
+    CsvStringList toImmutableCollection(final List<String> mutableCollection) {
+        return CsvStringList.EMPTY.setElements(mutableCollection);
     }
 }

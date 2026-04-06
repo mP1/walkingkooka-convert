@@ -23,11 +23,11 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.BooleanList;
 import walkingkooka.collect.list.Lists;
 
-public final class ConverterTextToListBooleanListTest extends ConverterTextToListTestCase<BooleanList, Boolean, ConverterTextToListBooleanList<ConverterContext>> {
+public final class ConverterTextToCollectionListBooleanListTest extends ConverterTextToCollectionListTestCase<BooleanList, Boolean, ConverterTextToCollectionListBooleanList<ConverterContext>> {
 
     @Test
     public void testConvertStringTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "TRUE",
             Boolean.TRUE
         );
@@ -35,7 +35,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertCharSequenceTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             new StringBuilder("TRUE"),
             Boolean.TRUE
         );
@@ -43,7 +43,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringQuotedTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "\"TRUE\"",
             Boolean.TRUE
         );
@@ -51,7 +51,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringQuotedBackslashTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "\"\\TRUE\"",
             Boolean.TRUE
         );
@@ -59,7 +59,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringSpacesQuotedTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " \"TRUE\"",
             Boolean.TRUE
         );
@@ -67,7 +67,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringSpaceSpaceQuotedTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "  \"TRUE\"",
             Boolean.TRUE
         );
@@ -75,7 +75,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringQuotedTrueSpaces() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "\"TRUE\" ",
             Boolean.TRUE
         );
@@ -83,7 +83,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringQuotedTrueSpaceSpace() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "\"TRUE\" ",
             Boolean.TRUE
         );
@@ -91,7 +91,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringFalse() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "FALSE",
             Boolean.FALSE
         );
@@ -99,7 +99,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringSpaceTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " TRUE",
             Boolean.TRUE
         );
@@ -107,7 +107,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertStringTrueSpace() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " TRUE",
             Boolean.TRUE
         );
@@ -115,14 +115,14 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertTrueSeparatorFails() {
-        this.convertToListFails(
+        this.convertToCollectionFails(
             "TRUE*"
         );
     }
 
     @Test
     public void testConvertTrueSeparatorFalse() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "TRUE*FALSE",
             true,
             false
@@ -131,7 +131,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertTrueSeparatorFalseSeparatorTrue() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "TRUE*FALSE*TRUE",
             true,
             false,
@@ -141,7 +141,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertTrueSeparatorFalseSeparatorTrueExtraSpacesIgnored() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " TRUE * FALSE * TRUE ",
             true,
             false,
@@ -151,7 +151,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
 
     @Test
     public void testConvertTrueSeparatorFalseSeparatorTrueExtraSpacesIgnored2() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " true * false * true ",
             true,
             false,
@@ -160,8 +160,8 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
     }
 
     @Override
-    public ConverterTextToListBooleanList<ConverterContext> createConverter() {
-        return ConverterTextToListBooleanList.instance();
+    public ConverterTextToCollectionListBooleanList<ConverterContext> createConverter() {
+        return ConverterTextToCollectionListBooleanList.instance();
     }
 
     @Override
@@ -225,7 +225,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
     }
 
     @Override
-    Class<BooleanList> listType() {
+    Class<BooleanList> collectionType() {
         return BooleanList.class;
     }
 
@@ -237,7 +237,7 @@ public final class ConverterTextToListBooleanListTest extends ConverterTextToLis
     // class............................................................................................................
 
     @Override
-    public Class<ConverterTextToListBooleanList<ConverterContext>> type() {
-        return Cast.to(ConverterTextToListBooleanList.class);
+    public Class<ConverterTextToCollectionListBooleanList<ConverterContext>> type() {
+        return Cast.to(ConverterTextToCollectionListBooleanList.class);
     }
 }

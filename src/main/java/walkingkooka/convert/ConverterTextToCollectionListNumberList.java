@@ -20,6 +20,8 @@ package walkingkooka.convert;
 import walkingkooka.Cast;
 import walkingkooka.math.NumberList;
 
+import java.util.List;
+
 /**
  * A Converter that handles converting a string such as a CSV with number literals to a {@link NumberList}. Padding
  * spaces are ignored. Each token between separators is trimmed of space and converted to {@link Number}.
@@ -31,21 +33,21 @@ import walkingkooka.math.NumberList;
  * )
  * </pre>
  */
-final class ConverterTextToListNumberList<C extends ConverterContext> extends ConverterTextToList<NumberList, Number, C> {
+final class ConverterTextToCollectionListNumberList<C extends ConverterContext> extends ConverterTextToCollectionList<NumberList, Number, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterTextToListNumberList<C> instance() {
+    static <C extends ConverterContext> ConverterTextToCollectionListNumberList<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterTextToListNumberList<?> INSTANCE = new ConverterTextToListNumberList<>();
+    private final static ConverterTextToCollectionListNumberList<?> INSTANCE = new ConverterTextToCollectionListNumberList<>();
 
-    private ConverterTextToListNumberList() {
+    private ConverterTextToCollectionListNumberList() {
         super();
     }
 
@@ -60,7 +62,7 @@ final class ConverterTextToListNumberList<C extends ConverterContext> extends Co
     }
 
     @Override
-    NumberList emptyList() {
-        return NumberList.EMPTY;
+    NumberList toImmutableCollection(final List<Number> mutableCollection) {
+        return NumberList.EMPTY.setElements(mutableCollection);
     }
 }

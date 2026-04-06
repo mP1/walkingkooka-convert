@@ -19,10 +19,10 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 
-public final class ConverterTextToListTest extends ConverterTestCase<ConverterTextToList<?, ?, ?>> {
+public final class ConverterTextToCollectionTest extends ConverterTestCase<ConverterTextToCollection<?, ?, ?, ?>> {
 
     @Override
-    public Class<ConverterTextToList<?, ?, ?>> type() {
-        return Cast.to(ConverterTextToList.class);
+    public Class<ConverterTextToCollection<?, ?, ?, ?>> type() {
+        return Cast.to(ConverterTextToCollection.class);
     }
 }
