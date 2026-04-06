@@ -23,7 +23,7 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.math.NumberList;
 
-public final class ConverterTextToListNumberListTest extends ConverterTextToListTestCase<NumberList, Number, ConverterTextToListNumberList<ConverterContext>> {
+public final class ConverterTextToCollectionListNumberListTest extends ConverterTextToCollectionListTestCase<NumberList, Number, ConverterTextToCollectionListNumberList<ConverterContext>> {
 
     private final static Number NUMBER = 1;
 
@@ -33,7 +33,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             NUMBER_STRING,
             NUMBER
         );
@@ -41,7 +41,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertCharSequenceNumber() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             new StringBuilder(NUMBER_STRING),
             NUMBER
         );
@@ -49,7 +49,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertStringQuotedNumber() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "\"1\"",
             NUMBER
         );
@@ -57,7 +57,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertNumberSeparatorNumber() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "1*22",
             NUMBER,
             NUMBER2
@@ -66,7 +66,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertNumberSeparatorNumberSeparatorNumber() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "1*22*1",
             NUMBER,
             NUMBER2,
@@ -76,7 +76,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertNumberSeparatorNumberSeparatorNumberExtraSpacesIgnored() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "1 * 22 *1 ",
             NUMBER,
             NUMBER2,
@@ -86,7 +86,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
 
     @Test
     public void testConvertNumberSeparatorNumberSeparatorNumberExtraSpacesIgnored2() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " 1 * 22 * 1 ",
             NUMBER,
             NUMBER2,
@@ -95,8 +95,8 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
     }
 
     @Override
-    public ConverterTextToListNumberList<ConverterContext> createConverter() {
-        return ConverterTextToListNumberList.instance();
+    public ConverterTextToCollectionListNumberList<ConverterContext> createConverter() {
+        return ConverterTextToCollectionListNumberList.instance();
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
     }
 
     @Override
-    Class<NumberList> listType() {
+    Class<NumberList> collectionType() {
         return NumberList.class;
     }
 
@@ -169,7 +169,7 @@ public final class ConverterTextToListNumberListTest extends ConverterTextToList
     // class............................................................................................................
 
     @Override
-    public Class<ConverterTextToListNumberList<ConverterContext>> type() {
-        return Cast.to(ConverterTextToListNumberList.class);
+    public Class<ConverterTextToCollectionListNumberList<ConverterContext>> type() {
+        return Cast.to(ConverterTextToCollectionListNumberList.class);
     }
 }

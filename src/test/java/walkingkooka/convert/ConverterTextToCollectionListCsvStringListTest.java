@@ -23,7 +23,7 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.collect.list.Lists;
 
-public final class ConverterTextToListCsvStringListTest extends ConverterTextToListTestCase<CsvStringList, String, ConverterTextToListCsvStringList<ConverterContext>> {
+public final class ConverterTextToCollectionListCsvStringListTest extends ConverterTextToCollectionListTestCase<CsvStringList, String, ConverterTextToCollectionListCsvStringList<ConverterContext>> {
 
     private final static String STRING = "abc";
 
@@ -33,7 +33,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
 
     @Test
     public void testConvertString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             STRING,
             STRING
         );
@@ -41,7 +41,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
 
     @Test
     public void testConvertStringSurroundingSpacesTrimmed() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             " " + STRING2 + " ",
             STRING2
         );
@@ -49,7 +49,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
 
     @Test
     public void testConvertCharSequenceString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             new StringBuilder(STRING),
             STRING
         );
@@ -57,7 +57,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
 
     @Test
     public void testConvertStringQuotedString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             "\"" + STRING + "\"",
             STRING
         );
@@ -65,7 +65,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
 
     @Test
     public void testConvertStringSeparatorString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             STRING + SEPARATOR + STRING2,
             STRING,
             STRING2
@@ -74,7 +74,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
 
     @Test
     public void testConvertStringSeparatorStringSeparatorString() {
-        this.convertToListAndCheck(
+        this.convertToCollectionAndCheck(
             STRING + SEPARATOR + STRING2 + SEPARATOR + STRING,
             STRING,
             STRING2,
@@ -83,8 +83,8 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
     }
 
     @Override
-    public ConverterTextToListCsvStringList<ConverterContext> createConverter() {
-        return ConverterTextToListCsvStringList.instance();
+    public ConverterTextToCollectionListCsvStringList<ConverterContext> createConverter() {
+        return ConverterTextToCollectionListCsvStringList.instance();
     }
 
     @Override
@@ -125,7 +125,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
     }
 
     @Override
-    Class<CsvStringList> listType() {
+    Class<CsvStringList> collectionType() {
         return CsvStringList.class;
     }
 
@@ -137,7 +137,7 @@ public final class ConverterTextToListCsvStringListTest extends ConverterTextToL
     // class............................................................................................................
 
     @Override
-    public Class<ConverterTextToListCsvStringList<ConverterContext>> type() {
-        return Cast.to(ConverterTextToListCsvStringList.class);
+    public Class<ConverterTextToCollectionListCsvStringList<ConverterContext>> type() {
+        return Cast.to(ConverterTextToCollectionListCsvStringList.class);
     }
 }

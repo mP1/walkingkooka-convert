@@ -19,24 +19,22 @@ package walkingkooka.convert;
 
 import walkingkooka.InvalidCharacterException;
 import walkingkooka.NeverError;
-import walkingkooka.collect.list.ImmutableList;
-import walkingkooka.collect.list.Lists;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Base class that includes the logic for parsing a string with a separator and converting each element to the element type.
  */
-abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends ConverterContext> extends ConverterTextTo<L, C> {
+abstract class ConverterTextToCollection<IMMUTABLE_COLLECTION extends Collection<E>, MUTABLE_COLLECTION extends Collection<E>, E, CONTEXT extends ConverterContext> extends ConverterTextTo<IMMUTABLE_COLLECTION, CONTEXT> {
 
-    ConverterTextToList() {
+    ConverterTextToCollection() {
         super();
     }
 
     @Override
     public final Object parseText(final String text,
                                   final Class<?> type,
-                                  final C context) {
+                                  final CONTEXT context) {
         final int MODE_OUTSIDE_QUOTES = 1;
         final int MODE_INSIDE_QUOTES = 2;
         final int MODE_INSIDE_QUOTES_ESCAPE_NEXT = 3;
@@ -48,7 +46,8 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
 
         final char separator = context.valueSeparator();
 
-        final List<E> list = Lists.array();
+        final MUTABLE_COLLECTION mutableCollection = this.mutableCollection();
+
         final StringBuilder element = new StringBuilder();
         int position = 0;
 
@@ -63,7 +62,7 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
                             if (separator == c) {
                                 this.addElement(
                                     element,
-                                    list,
+                                    mutableCollection,
                                     context
                                 );
                                 break;
@@ -77,7 +76,7 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
                         case DOUBLE_QUOTES:
                             this.addElement(
                                 element,
-                                list,
+                                mutableCollection,
                                 context
                             );
                             mode = MODE_AFTER_QUOTES;
@@ -99,7 +98,7 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
                             if (separator == c) {
                                 this.addElement(
                                     element,
-                                    list,
+                                    mutableCollection,
                                     context
                                 );
                             } else {
@@ -144,7 +143,7 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
                     .trim();
                 if(elementToString.isEmpty()) {
                     // must be trailing comma and nothing.. throw ICE!
-                    if(false == list.isEmpty()) {
+                    if(false == mutableCollection.isEmpty()) {
                         throw new InvalidCharacterException(
                             text,
                             position -1
@@ -153,7 +152,7 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
                 } else {
                     addElement(
                         element,
-                        list,
+                        mutableCollection,
                         context
                     );
                 }
@@ -174,14 +173,15 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
                 break;
         }
 
-        return this.emptyList()
-            .setElements(list);
+        return this.toImmutableCollection(mutableCollection);
     }
 
+    abstract MUTABLE_COLLECTION mutableCollection();
+
     private void addElement(final StringBuilder element,
-                            final List<E> list,
-                            final C context) {
-        list.add(
+                            final MUTABLE_COLLECTION mutableCollection,
+                            final CONTEXT context) {
+        mutableCollection.add(
             context.convertOrFail(
                 element.toString()
                     .trim(),
@@ -196,7 +196,7 @@ abstract class ConverterTextToList<L extends ImmutableList<E>, E, C extends Conv
     abstract Class<E> elementType();
 
     /**
-     * The converted elements will be added to this empty list giving the target.
+     * The converted elements will be added to this empty {@link Collection} giving the target type.
      */
-    abstract L emptyList();
+    abstract IMMUTABLE_COLLECTION toImmutableCollection(final MUTABLE_COLLECTION mutableCollection);
 }

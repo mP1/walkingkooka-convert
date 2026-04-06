@@ -20,6 +20,8 @@ package walkingkooka.convert;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.BooleanList;
 
+import java.util.List;
+
 /**
  * A Converter that handles converting a string such as a CSV with boolean literals to a {@link BooleanList}. Padding
  * spaces are ignored. Each token between separators is trimmed of space and converted to {@link Boolean}.
@@ -31,21 +33,21 @@ import walkingkooka.collect.list.BooleanList;
  * )
  * </pre>
  */
-final class ConverterTextToListBooleanList<C extends ConverterContext> extends ConverterTextToList<BooleanList, Boolean, C> {
+final class ConverterTextToCollectionListBooleanList<C extends ConverterContext> extends ConverterTextToCollectionList<BooleanList, Boolean, C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterTextToListBooleanList<C> instance() {
+    static <C extends ConverterContext> ConverterTextToCollectionListBooleanList<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterTextToListBooleanList<?> INSTANCE = new ConverterTextToListBooleanList<>();
+    private final static ConverterTextToCollectionListBooleanList<?> INSTANCE = new ConverterTextToCollectionListBooleanList<>();
 
-    private ConverterTextToListBooleanList() {
+    private ConverterTextToCollectionListBooleanList() {
         super();
     }
 
@@ -60,7 +62,7 @@ final class ConverterTextToListBooleanList<C extends ConverterContext> extends C
     }
 
     @Override
-    BooleanList emptyList() {
-        return BooleanList.EMPTY;
+    BooleanList toImmutableCollection(final List<Boolean> mutableCollection) {
+        return BooleanList.EMPTY.setElements(mutableCollection);
     }
 }
