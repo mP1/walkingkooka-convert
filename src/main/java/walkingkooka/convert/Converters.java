@@ -405,6 +405,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToCollectionSetCsvStringSet}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCsvStringSet() {
+        return ConverterTextToCollectionSetCsvStringSet.instance();
+    }
+
+    /**
      * {@see ConverterTextToCurrencyCode}
      */
     public static <C extends ConverterContext> Converter<C> textToCurrencyCode() {
