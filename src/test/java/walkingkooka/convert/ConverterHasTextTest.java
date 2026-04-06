@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.text.HasText;
 import walkingkooka.text.LineEnding;
 
@@ -48,6 +49,16 @@ public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasT
     }
 
     @Test
+    public void testConvertHasTextWithSeparatorToString() {
+        final String text = "aa,bb,ccc";
+
+        this.convertAndCheck(
+            CsvStringList.parse(text),
+            text.replace(',', ';')
+        );
+    }
+
+    @Test
     public void testConvertLineEndingToString() {
         final LineEnding lineEnding = LineEnding.NL;
 
@@ -72,7 +83,12 @@ public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasT
 
     @Override
     public ConverterContext createContext() {
-        return ConverterContexts.fake();
+        return new FakeConverterContext() {
+            @Override
+            public char valueSeparator() {
+                return ';';
+            }
+        };
     }
 
     // class............................................................................................................

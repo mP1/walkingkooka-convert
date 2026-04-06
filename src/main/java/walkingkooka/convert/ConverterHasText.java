@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.text.HasText;
+import walkingkooka.text.HasTextWithSeparator;
 
 /**
  * A Converter that converts any {@link HasText} into a {@link String}.
@@ -57,9 +58,23 @@ final class ConverterHasText<C extends ConverterContext> implements TryingShortC
     public Object tryConvertOrFail(final Object value,
                                    final Class<?> type,
                                    final C context) {
-        return null == value ?
-            null :
-            ((HasText) value).text();
+        final String text;
+
+        if (value instanceof HasTextWithSeparator) {
+            final HasTextWithSeparator hasTextWithSeparator = (HasTextWithSeparator) value;
+            text = hasTextWithSeparator.textWithSeparator(
+                context.valueSeparator()
+            );
+        } else {
+            if (value instanceof HasText) {
+                text = ((HasText) value)
+                    .text();
+            } else {
+                text = null;
+            }
+        }
+
+        return text;
     }
 
     @Override
