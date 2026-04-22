@@ -297,6 +297,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterNumberToCurrencyValue}
+     */
+    public static <C extends ConverterContext> Converter<C> numberToCurrencyValue() {
+        return ConverterNumberToCurrencyValue.instance();
+    }
+
+    /**
      * {@see ConverterNumberToLocalDate}
      */
     public static <C extends ConverterContext> Converter<C> numberToLocalDate() {
