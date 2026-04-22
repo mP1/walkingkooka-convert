@@ -87,6 +87,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 Currency.getInstance(locale)
             );
         }
+
+        @Override
+        public CurrencyCode currencyCode() {
+            return CurrencyCode.parse("XYZ");
+        }
     }.setLocaleContext(
         LocaleContexts.jre(LOCALE)
     );
@@ -284,6 +289,14 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Override
     public MathContext mathContext() {
         return MATH_CONTEXT;
+    }
+
+    @Test
+    public void testCurrencyCode() {
+        this.currencyCodeAndCheck(
+            this.createContext(),
+            CURRENCY_LOCALE_CONTEXT.currencyCode()
+        );
     }
 
     // class............................................................................................................
