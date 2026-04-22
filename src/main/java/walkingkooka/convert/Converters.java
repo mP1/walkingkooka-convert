@@ -147,6 +147,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterCurrencyCodeToCurrency}
+     */
+    public static <C extends ConverterContext> Converter<C> currencyCodeToCurrency() {
+        return ConverterCurrencyCodeToCurrency.instance();
+    }
+
+    /**
      * {@see ConverterCustomToString}
      */
     public static <C extends ConverterContext> Converter<C> customToString(final Converter<C> converter,
