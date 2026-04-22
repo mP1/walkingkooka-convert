@@ -36,6 +36,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [locale-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToString.java)
 - [mapper](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterPredicatedMapper.java)
 - [never](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNever.java)
+- [number-to-currency-value](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNumberToCurrencyValue.java)
 - [number-to-boolean](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNumberToBoolean.java)
 - [number-to-local-date](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNumberToLocalDate.java)
 - [number-to-local-date-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterNumberToLocalDateTime.java)
