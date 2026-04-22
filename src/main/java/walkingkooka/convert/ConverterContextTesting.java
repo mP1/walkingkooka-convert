@@ -18,6 +18,7 @@ package walkingkooka.convert;
 
 import walkingkooka.currency.CanCurrencyForLocaleTesting2;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting2;
+import walkingkooka.currency.HasCurrencyCodeTesting;
 import walkingkooka.datetime.DateTimeContextTesting2;
 import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting2;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting2;
@@ -35,6 +36,7 @@ public interface ConverterContextTesting<C extends ConverterContext> extends Con
     CurrencyCodeLanguageTagContextTesting2<C>,
     DateTimeContextTesting2<C>,
     DecimalNumberContextTesting2<C>,
+    HasCurrencyCodeTesting,
     HasIndentationTesting,
     HasLineEndingTesting {
 

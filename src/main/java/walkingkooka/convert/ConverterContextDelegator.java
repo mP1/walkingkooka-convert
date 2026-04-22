@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
 import walkingkooka.datetime.DateTimeContext;
@@ -92,6 +93,12 @@ public interface ConverterContextDelegator extends ConverterContext,
     default char valueSeparator() {
         return this.converterContext()
             .valueSeparator();
+    }
+
+    @Override
+    default CurrencyCode currencyCode() {
+        return this.converterContext()
+            .currencyCode();
     }
 
     @Override

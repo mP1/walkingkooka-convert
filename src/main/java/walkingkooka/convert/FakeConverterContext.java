@@ -136,6 +136,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     }
 
     @Override
+    public CurrencyCode currencyCode() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Indentation indentation() {
         throw new UnsupportedOperationException();
     }

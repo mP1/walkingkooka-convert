@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
 import walkingkooka.currency.CurrencyLocaleContext;
@@ -131,6 +132,11 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final Converter<ConverterContext> converter;
+
+    @Override
+    public CurrencyCode currencyCode() {
+        return this.currencyLocaleContext.currencyCode();
+    }
 
     @Override
     public Indentation indentation() {
