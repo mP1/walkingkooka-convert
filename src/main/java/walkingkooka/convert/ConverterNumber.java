@@ -74,7 +74,9 @@ abstract class ConverterNumber<N, C extends ConverterContext> implements ShortCi
                 type,
                 context
             );
-        } catch (final Exception cause) {
+        } catch (final UnsupportedOperationException rethrow) {
+            throw rethrow;
+        } catch (final RuntimeException cause) {
             result = Either.right(cause.getMessage());
         }
         return result;
