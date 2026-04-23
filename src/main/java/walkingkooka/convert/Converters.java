@@ -440,6 +440,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToCurrencyValue}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCurrencyValue() {
+        return ConverterTextToCurrencyValue.instance();
+    }
+    
+    /**
      * {@see ConverterTextToLineEnding}
      */
     public static <C extends ConverterContext> Converter<C> textToLineEnding() {
