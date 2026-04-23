@@ -110,6 +110,8 @@ abstract class ConverterDecimalFormat<C extends ConverterContext> implements Sho
                 type,
                 context
             );
+        } catch (final UnsupportedOperationException cause) {
+            throw cause;
         } catch (final RuntimeException cause) {
             result = this.failConversion(value, type, cause);
         }
