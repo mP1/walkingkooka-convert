@@ -24,7 +24,7 @@ import walkingkooka.currency.CurrencyCode;
 import java.util.Currency;
 
 /**
- * Converter that accepts a {@link walkingkooka.currency.CurrencyCode} returning the matching {@link java.util.Currency}.
+ * Converter that accepts a {@link CurrencyCode} returning the matching {@link Currency}.
  */
 final class ConverterCurrencyCodeToCurrency<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
