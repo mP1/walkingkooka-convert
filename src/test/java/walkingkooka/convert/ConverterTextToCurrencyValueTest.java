@@ -103,12 +103,36 @@ public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestC
     }
 
     @Test
+    public void testConvertStringWithCurrencyCodeNumberToCurrencyValue3() {
+        this.convertAndCheck(
+            "NZD 125",
+            CurrencyValue.class,
+            CurrencyValue.with(
+                BigDecimal.valueOf(125),
+                CurrencyCode.parse("NZD")
+            )
+        );
+    }
+
+    @Test
     public void testConvertStringWithNumberCurrencyCodeToCurrencyValue() {
         this.convertAndCheck(
             "12 NZD",
             CurrencyValue.class,
             CurrencyValue.with(
                 BigDecimal.valueOf(12),
+                CurrencyCode.parse("NZD")
+            )
+        );
+    }
+
+    @Test
+    public void testConvertStringWithNumberCurrencyCodeToCurrencyValue2() {
+        this.convertAndCheck(
+            "125 NZD",
+            CurrencyValue.class,
+            CurrencyValue.with(
+                BigDecimal.valueOf(125),
                 CurrencyCode.parse("NZD")
             )
         );

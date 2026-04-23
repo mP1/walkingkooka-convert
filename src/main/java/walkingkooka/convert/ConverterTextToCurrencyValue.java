@@ -76,27 +76,29 @@ final class ConverterTextToCurrencyValue<C extends ConverterContext> extends Con
             String secondToken = text.substring(whitespace + 1)
                 .trim();
 
-            CurrencyCode currencyCode = null;
-
             if (3 == firstToken.length()) {
                 // try AUD 123
-                currencyCode = context.convert(
+                final CurrencyCode currencyCodeOrNull = context.convert(
                     firstToken,
                     CurrencyCode.class
                 ).orElseLeft(null);
 
-                if (null != currencyCode) {
-                    currencyValue = CurrencyValue.with(
-                        context.convertOrFail(
-                            secondToken,
-                            Number.class
-                        ),
-                        currencyCode
-                    );
+                if (null != currencyCodeOrNull) {
+                    final Number numberOrNull = context.convert(
+                        secondToken,
+                        Number.class
+                    ).orElseLeft(null);
+
+                    if(null != numberOrNull) {
+                        currencyValue = CurrencyValue.with(
+                            numberOrNull,
+                            currencyCodeOrNull
+                        );
+                    }
                 }
             }
 
-            if (null == currencyCode) {
+            if (null == currencyValue) {
                 // try 123 AUD
                 currencyValue = CurrencyValue.with(
                     context.convertOrFail(
