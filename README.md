@@ -52,6 +52,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [string-to-character-or-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterSimple.java)
 - [text-to-boolean-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCollectionListBooleanList.java)
 - [text-to-csv-string-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCollectionListCsvStringList.java)
+- [text-to-currency](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCurrency.java)
 - [text-to-currency-code](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCurrencyCode.java)
 - [text-to-currency-code-set](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCollectionSetCurrencyCodeSet.java)
 - [text-to-currency-value](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCurrencyValue.java)
