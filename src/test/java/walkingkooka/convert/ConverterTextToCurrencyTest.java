@@ -20,13 +20,15 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.ValueTesting;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.currency.CurrencyCode;
 
 import java.util.Currency;
 import java.util.Optional;
 
-public final class ConverterTextToCurrencyTest extends ConverterTextToTestCase<ConverterTextToCurrency<ConverterContext>, Currency> {
+public final class ConverterTextToCurrencyTest extends ConverterTextToTestCase<ConverterTextToCurrency<ConverterContext>, Currency>
+    implements ValueTesting {
 
     @Test
     public void testConvertNullFails() {
@@ -84,7 +86,10 @@ public final class ConverterTextToCurrencyTest extends ConverterTextToTestCase<C
 
             @Override
             public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-                checkEquals("AUD", currencyCode.value());
+                valueAndCheck(
+                    currencyCode,
+                    "AUD"
+                );
                 return Optional.of(
                     Currency.getInstance(
                         currencyCode.value()
