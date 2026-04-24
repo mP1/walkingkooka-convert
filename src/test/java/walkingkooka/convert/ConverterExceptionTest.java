@@ -19,12 +19,14 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
+import walkingkooka.ValueTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterExceptionTest implements StandardThrowableTesting<ConverterException> {
+public final class ConverterExceptionTest implements StandardThrowableTesting<ConverterException>,
+    ValueTesting {
 
     private final static Object VALUE = 123;
 
@@ -39,7 +41,10 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
         );
 
         this.checkMessage(exception, MESSAGE);
-        this.checkEquals(VALUE, exception.value(), "value");
+        this.valueAndCheck(
+            exception,
+            VALUE
+        );
         this.checkEquals(TYPE, exception.type(), "type");
         this.checkCause(exception, null);
     }
@@ -56,7 +61,10 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
         );
 
         this.checkMessage(exception, MESSAGE);
-        this.checkEquals(VALUE, exception.value(), "value");
+        this.valueAndCheck(
+            exception,
+            VALUE
+        );
         this.checkEquals(TYPE, exception.type(), "type");
         this.checkCause(exception, cause);
     }
