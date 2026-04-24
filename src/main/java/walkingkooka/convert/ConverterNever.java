@@ -45,7 +45,7 @@ final class ConverterNever<C extends ConverterContext> implements ShortCircuitin
     public boolean canConvert(final Object value,
                               final Class<?> type,
                               final C context) {
-        return true;
+        return false;
     }
 
     @Override
