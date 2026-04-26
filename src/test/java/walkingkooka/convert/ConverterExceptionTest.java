@@ -40,7 +40,7 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             TYPE
         );
 
-        this.checkMessage(exception, MESSAGE);
+        this.getMessageAndCheck(exception, MESSAGE);
         this.valueAndCheck(
             exception,
             VALUE
@@ -60,7 +60,7 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             cause
         );
 
-        this.checkMessage(exception, MESSAGE);
+        this.getMessageAndCheck(exception, MESSAGE);
         this.valueAndCheck(
             exception,
             VALUE
@@ -93,7 +93,7 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             Void.class
         ).setPrefix("");
 
-        this.checkMessage(
+        this.getMessageAndCheck(
             exception,
             MESSAGE
         );
@@ -107,7 +107,7 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             Void.class
         ).setPrefix("Hello: ");
 
-        this.checkMessage(
+        this.getMessageAndCheck(
             exception,
             "Hello: " + MESSAGE
         );
@@ -134,7 +134,7 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             )
         );
 
-        this.checkMessage(
+        this.getMessageAndCheck(
             thrown,
             "Failed to convert 123 (java.lang.Integer) to java.lang.String"
         );
@@ -161,7 +161,7 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             )
         );
 
-        this.checkMessage(
+        this.getMessageAndCheck(
             thrown.setPrefix("Hello: "),
             "Hello: Failed to convert 123 (java.lang.Integer) to java.lang.String"
         );
