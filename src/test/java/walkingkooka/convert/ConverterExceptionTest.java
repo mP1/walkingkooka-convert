@@ -46,7 +46,10 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             VALUE
         );
         this.checkEquals(TYPE, exception.type(), "type");
-        this.checkCause(exception, null);
+        this.getCauseAndCheck(
+            exception,
+            null
+        );
     }
 
     @Test
@@ -66,7 +69,10 @@ public final class ConverterExceptionTest implements StandardThrowableTesting<Co
             VALUE
         );
         this.checkEquals(TYPE, exception.type(), "type");
-        this.checkCause(exception, cause);
+        this.getCauseAndCheck(
+            exception,
+            cause
+        );
     }
 
     // setPrefix........................................................................................................
