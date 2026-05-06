@@ -86,8 +86,8 @@ final class ConverterCollectionToList<C extends ConverterContext> implements Sho
             if (List.class == type || type == collection.getClass()) {
                 result = collection;
             } else {
-                ImmutableList<?> empty = null;
-                Class<?> elementType;
+                ImmutableList<?> empty;
+                final Class<?> elementType;
 
                 if (BooleanList.class == type) {
                     empty = BooleanList.EMPTY;
