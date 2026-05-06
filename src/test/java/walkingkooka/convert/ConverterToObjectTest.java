@@ -69,7 +69,7 @@ public final class ConverterToObjectTest extends ConverterTestCase2<ConverterToO
 
     @Override
     public ConverterContext createContext() {
-        return (ConverterContext) ConverterContexts.fake();
+        return ConverterContexts.fake();
     }
 
     // ClassTesting.....................................................................................................
