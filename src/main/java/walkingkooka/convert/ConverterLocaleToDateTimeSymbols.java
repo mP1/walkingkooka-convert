@@ -55,7 +55,7 @@ final class ConverterLocaleToDateTimeSymbols<C extends ConverterContext> extends
     /**
      * Singleton
      */
-    private final static ConverterLocaleToDateTimeSymbols INSTANCE = new ConverterLocaleToDateTimeSymbols();
+    private final static ConverterLocaleToDateTimeSymbols INSTANCE = new ConverterLocaleToDateTimeSymbols<>();
 
     private ConverterLocaleToDateTimeSymbols() {
         super();

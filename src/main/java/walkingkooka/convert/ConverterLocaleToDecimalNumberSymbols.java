@@ -55,7 +55,7 @@ final class ConverterLocaleToDecimalNumberSymbols<C extends ConverterContext> ex
     /**
      * Singleton
      */
-    private final static ConverterLocaleToDecimalNumberSymbols INSTANCE = new ConverterLocaleToDecimalNumberSymbols();
+    private final static ConverterLocaleToDecimalNumberSymbols INSTANCE = new ConverterLocaleToDecimalNumberSymbols<>();
 
     private ConverterLocaleToDecimalNumberSymbols() {
         super();
