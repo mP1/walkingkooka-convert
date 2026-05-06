@@ -55,7 +55,7 @@ final class ConverterLocaleToLocale<C extends ConverterContext> extends Converte
     /**
      * Singleton
      */
-    private final static ConverterLocaleToLocale INSTANCE = new ConverterLocaleToLocale();
+    private final static ConverterLocaleToLocale INSTANCE = new ConverterLocaleToLocale<>();
 
     private ConverterLocaleToLocale() {
         super();
