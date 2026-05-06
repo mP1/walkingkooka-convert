@@ -581,6 +581,13 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> toLocale() {
         return ConverterLocaleToLocale.instance();
     }
+
+    /**
+     * {@see ConverterValueTo}
+     */
+    public static <C extends ConverterContext> Converter<C> valueTo() {
+        return ConverterValueTo.instance();
+    }
     
     /**
      * Stop creation
