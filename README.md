@@ -56,6 +56,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [text-to-currency-code](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCurrencyCode.java)
 - [text-to-currency-code-set](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCollectionSetCurrencyCodeSet.java)
 - [text-to-currency-value](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCurrencyValue.java)
+- [text-to-indentation](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToIndentation.java)
 - [text-to-line-ending](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToLineEnding.java)
 - [text-to-local-date](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterDateTimeFormatterStringToLocalTimeDateTimeFormatter.java)
 - [text-to-local-date-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToCollectionListDateList.java)

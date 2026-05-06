@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 public final class ConverterTextToLineEndingTest extends ConverterTextToTestCase<ConverterTextToLineEnding<ConverterContext>, LineEnding> {
@@ -29,6 +30,14 @@ public final class ConverterTextToLineEndingTest extends ConverterTextToTestCase
         this.convertFails(
             null,
             LineEnding.class
+        );
+    }
+
+    @Test
+    public void testConvertStringToIndentationFails() {
+        this.convertFails(
+            "Invalid!",
+            Indentation.class
         );
     }
 

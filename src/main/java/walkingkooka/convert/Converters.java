@@ -452,6 +452,13 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> textToCurrencyValue() {
         return ConverterTextToCurrencyValue.instance();
     }
+
+    /**
+     * {@see ConverterTextToIndentation}
+     */
+    public static <C extends ConverterContext> Converter<C> textToIndentation() {
+        return ConverterTextToIndentation.instance();
+    }
     
     /**
      * {@see ConverterTextToLineEnding}
