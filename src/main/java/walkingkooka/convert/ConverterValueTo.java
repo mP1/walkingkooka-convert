@@ -17,11 +17,12 @@
 
 package walkingkooka.convert;
 
+import com.sun.jdi.Value;
 import walkingkooka.Either;
-import walkingkooka.Value;
+import walkingkooka.HasValue;
 
 /**
- * A {@link Converter} that unwraps {@link Value} and then converts that to the requested target type.
+ * A {@link Converter} that unwraps {@link HasValue} and then converts that to the requested target type.
  */
 final class ConverterValueTo<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
@@ -46,7 +47,7 @@ final class ConverterValueTo<C extends ConverterContext> implements ShortCircuit
                               final Class<?> type,
                               final C context) {
         return null == value ||
-            value instanceof Value;
+            value instanceof HasValue;
     }
 
     @Override
@@ -56,7 +57,7 @@ final class ConverterValueTo<C extends ConverterContext> implements ShortCircuit
         return context.convert(
             null == value ?
                 null :
-                ((Value<?>) value)
+                ((HasValue<?>) value)
                     .value(),
             type
         );

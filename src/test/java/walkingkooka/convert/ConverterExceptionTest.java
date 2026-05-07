@@ -19,14 +19,14 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
-import walkingkooka.ValueTesting;
+import walkingkooka.HasValueTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterExceptionTest implements StandardThrowableTesting<ConverterException>,
-    ValueTesting {
+    HasValueTesting {
 
     private final static Object VALUE = 123;
 
