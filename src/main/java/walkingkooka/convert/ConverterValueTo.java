@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import com.sun.jdi.Value;
 import walkingkooka.Either;
 import walkingkooka.HasValue;
 
@@ -67,6 +66,6 @@ final class ConverterValueTo<C extends ConverterContext> implements ShortCircuit
 
     @Override
     public String toString() {
-        return Value.class.getSimpleName() + " to";
+        return HasValue.class.getSimpleName() + " to";
     }
 }

@@ -98,7 +98,7 @@ public final class ConverterValueToTest extends ConverterTestCase2<ConverterValu
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "Value to"
+            "HasValue to"
         );
     }
 
