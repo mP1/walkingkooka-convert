@@ -24,7 +24,7 @@ import walkingkooka.HasValue;
 
 import java.util.Optional;
 
-public final class ConverterValueToTest extends ConverterTestCase2<ConverterValueTo<ConverterContext>> {
+public final class ConverterHasValueToTest extends ConverterTestCase2<ConverterHasValueTo<ConverterContext>> {
 
     @Test
     public void testConvertWithNull() {
@@ -60,8 +60,8 @@ public final class ConverterValueToTest extends ConverterTestCase2<ConverterValu
     }
 
     @Override
-    public ConverterValueTo<ConverterContext> createConverter() {
-        return ConverterValueTo.instance();
+    public ConverterHasValueTo<ConverterContext> createConverter() {
+        return ConverterHasValueTo.instance();
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class ConverterValueToTest extends ConverterTestCase2<ConverterValu
     // Class............................................................................................................
 
     @Override
-    public Class<ConverterValueTo<ConverterContext>> type() {
-        return Cast.to(ConverterValueTo.class);
+    public Class<ConverterHasValueTo<ConverterContext>> type() {
+        return Cast.to(ConverterHasValueTo.class);
     }
 }
