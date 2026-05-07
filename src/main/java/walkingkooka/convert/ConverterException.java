@@ -17,8 +17,8 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.HasValue;
 import walkingkooka.SystemException;
-import walkingkooka.Value;
 
 import java.util.Objects;
 
@@ -27,7 +27,7 @@ import java.util.Objects;
  * <br>
  * This is typically thrown by {@link Converter#convertOrFail(Object, Class, ConverterContext)} to report conversion failures.
  */
-public class ConverterException extends SystemException implements Value<Object> {
+public class ConverterException extends SystemException implements HasValue<Object> {
 
     private static final long serialVersionUID = 1;
 

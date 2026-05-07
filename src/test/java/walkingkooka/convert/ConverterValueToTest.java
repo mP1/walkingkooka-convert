@@ -20,7 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.Value;
+import walkingkooka.HasValue;
 
 import java.util.Optional;
 
@@ -47,7 +47,7 @@ public final class ConverterValueToTest extends ConverterTestCase2<ConverterValu
         final Long longValue = 123L;
 
         this.convertAndCheck(
-            new Value<>() {
+            new HasValue<>() {
 
                 @Override
                 public Long value() {

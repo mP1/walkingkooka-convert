@@ -20,7 +20,7 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.ValueTesting;
+import walkingkooka.HasValueTesting;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.currency.CurrencyCode;
 
@@ -28,7 +28,7 @@ import java.util.Currency;
 import java.util.Optional;
 
 public final class ConverterTextToCurrencyTest extends ConverterTextToTestCase<ConverterTextToCurrency<ConverterContext>, Currency>
-    implements ValueTesting {
+    implements HasValueTesting {
 
     @Test
     public void testConvertNullFails() {
