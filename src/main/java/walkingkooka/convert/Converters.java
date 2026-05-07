@@ -590,10 +590,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterValueTo}
+     * {@see ConverterHasValueTo}
      */
     public static <C extends ConverterContext> Converter<C> valueTo() {
-        return ConverterValueTo.instance();
+        return ConverterHasValueTo.instance();
     }
     
     /**

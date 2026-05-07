@@ -22,6 +22,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [custom-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCustomToString.java)
 - [has-properties](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasProperties.java)
 - [has-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasText.java)
+- [has-value-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasValueTo.java)
 - [local-date-time-to-local-date](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToLocalDate.java)
 - [local-date-time-to-local-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToLocalTime.java)
 - [local-date-time-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToNumber.java)
@@ -74,6 +75,5 @@ Converters may be used to convert values of one type to another. This is particu
 - [text-to-zone-offset](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToZoneOffset.java)
 - [to-boolean](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToBoolean.java)
 - [to-locale](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToLocale.java)
-- [value-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterValueTo.java)
 
 Note more `Converter` implementations are available in many different repos to support useful conversions for other types.

@@ -23,21 +23,21 @@ import walkingkooka.HasValue;
 /**
  * A {@link Converter} that unwraps {@link HasValue} and then converts that to the requested target type.
  */
-final class ConverterValueTo<C extends ConverterContext> implements ShortCircuitingConverter<C> {
+final class ConverterHasValueTo<C extends ConverterContext> implements ShortCircuitingConverter<C> {
 
     /**
      * Instance
      */
-    static <C extends ConverterContext> ConverterValueTo<C> instance() {
+    static <C extends ConverterContext> ConverterHasValueTo<C> instance() {
         return INSTANCE;
     }
 
     /**
      * Singleton
      */
-    private final static ConverterValueTo INSTANCE = new ConverterValueTo<>();
+    private final static ConverterHasValueTo INSTANCE = new ConverterHasValueTo<>();
 
-    private ConverterValueTo() {
+    private ConverterHasValueTo() {
         super();
     }
 
