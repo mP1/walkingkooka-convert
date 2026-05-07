@@ -183,6 +183,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterHasValueTo}
+     */
+    public static <C extends ConverterContext> Converter<C> hasValueTo() {
+        return ConverterHasValueTo.instance();
+    }
+
+    /**
      * {@see ConverterTemporalLocalDateToLocalDateTime}
      */
     public static <C extends ConverterContext> Converter<C> localDateToLocalDateTime() {
@@ -587,13 +594,6 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> toLocale() {
         return ConverterLocaleToLocale.instance();
-    }
-
-    /**
-     * {@see ConverterHasValueTo}
-     */
-    public static <C extends ConverterContext> Converter<C> valueTo() {
-        return ConverterHasValueTo.instance();
     }
     
     /**
