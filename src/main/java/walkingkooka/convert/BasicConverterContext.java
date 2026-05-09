@@ -159,7 +159,7 @@ final class BasicConverterContext implements ConverterContext,
 
     private final char valueSeparator;
 
-    // DateTimeContext..................................................................................................
+    // DateTimeContextDelegator.........................................................................................
 
     @Override
     public DateTimeContext dateTimeContext() {
@@ -168,7 +168,7 @@ final class BasicConverterContext implements ConverterContext,
 
     private final DateTimeContext dateTimeContext;
 
-    // DecimalNumberContext.............................................................................................
+    // DecimalNumberContextDelegator....................................................................................
 
     @Override
     public Locale locale() {
@@ -194,21 +194,21 @@ final class BasicConverterContext implements ConverterContext,
         return this.currencyLocaleContext;
     }
 
-    // CanCurrencyForLocale.............................................................................................
+    // CanCurrencyForLocaleDelegator....................................................................................
 
     @Override
     public Optional<Currency> currencyForLocale(final Locale locale) {
         return this.currencyLocaleContext.currencyForLocale(locale);
     }
 
-    // CanDateTimeSymbolsForLocale......................................................................................
+    // CanDateTimeSymbolsForLocaleDelegator.............................................................................
 
     @Override
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
         return this.currencyLocaleContext.dateTimeSymbolsForLocale(locale);
     }
 
-    // CanDecimalNumberSymbolsForLocale.................................................................................
+    // CanDecimalNumberSymbolsForLocaleDelegator........................................................................
 
     @Override
     public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
@@ -216,6 +216,8 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final CurrencyLocaleContext currencyLocaleContext;
+
+    // toString.........................................................................................................
 
     @Override
     public String toString() {
