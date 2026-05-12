@@ -208,7 +208,7 @@ final class BasicConverterContext implements ConverterContext,
         return this.currencyLocaleContext.dateTimeSymbolsForLocale(locale);
     }
 
-    // CanDecimalNumberSymbolsForLocaleDelegator........................................................................
+    // CurrencyLocaleContextDelegator...................................................................................
 
     @Override
     public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
