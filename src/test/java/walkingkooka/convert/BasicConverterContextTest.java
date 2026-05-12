@@ -19,8 +19,6 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.CurrencyExchangeRater;
-import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContext;
@@ -73,8 +71,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static LineEnding LINE_ENDING = LineEnding.NL;
     private final static Locale LOCALE = Locale.ENGLISH;
 
-    private final static CurrencyExchangeRater CURRENCY_EXCHANGE_RATER = CurrencyExchangeRaters.fake();
-
     private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = new FakeCurrencyContext() {
 
         @Override
@@ -114,7 +110,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
-                CURRENCY_EXCHANGE_RATER,
                 CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
                 this.decimalNumberContext()
@@ -133,7 +128,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 null,
                 VALUE_SEPARATOR,
                 CONVERTER,
-                CURRENCY_EXCHANGE_RATER,
                 CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
                 this.decimalNumberContext()
@@ -151,26 +145,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 INDENTATION,
                 LINE_ENDING,
                 VALUE_SEPARATOR,
-                null,
-                CURRENCY_EXCHANGE_RATER,
-                CURRENCY_LOCALE_CONTEXT,
-                this.dateTimeContext(),
-                this.decimalNumberContext()
-            )
-        );
-    }
-
-    @Test
-    public void testWithNullCurrencyExchangeRaterFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> BasicConverterContext.with(
-                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
-                VALUE_SEPARATOR,
-                CONVERTER,
                 null,
                 CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
@@ -190,7 +164,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
-                CURRENCY_EXCHANGE_RATER,
                 null,
                 this.dateTimeContext(),
                 this.decimalNumberContext()
@@ -210,7 +183,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
-                CURRENCY_EXCHANGE_RATER,
                 CURRENCY_LOCALE_CONTEXT,
                 null,
                 this.decimalNumberContext()
@@ -229,7 +201,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
-                CURRENCY_EXCHANGE_RATER,
                 CURRENCY_LOCALE_CONTEXT,
                 this.dateTimeContext(),
                 null
@@ -267,7 +238,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             LINE_ENDING,
             VALUE_SEPARATOR,
             CONVERTER,
-            CURRENCY_EXCHANGE_RATER,
             CURRENCY_LOCALE_CONTEXT,
             this.dateTimeContext(),
             decimalNumberContext()

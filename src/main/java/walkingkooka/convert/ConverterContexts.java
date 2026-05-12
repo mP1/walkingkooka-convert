@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import walkingkooka.currency.CurrencyExchangeRater;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
@@ -39,7 +38,6 @@ public final class ConverterContexts implements PublicStaticHelper {
                                          final LineEnding lineEnding,
                                          final char valueSeparator,
                                          final Converter<ConverterContext> converter,
-                                         final CurrencyExchangeRater currencyExchangeRater,
                                          final CurrencyLocaleContext currencyLocaleContext,
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
@@ -50,7 +48,6 @@ public final class ConverterContexts implements PublicStaticHelper {
             lineEnding,
             valueSeparator,
             converter,
-            currencyExchangeRater,
             currencyLocaleContext,
             dateTimeContext,
             decimalNumberContext

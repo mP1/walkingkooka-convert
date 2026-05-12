@@ -19,7 +19,6 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.ConverterLikeDelegatorTest.TestConverterLikeDelegator;
-import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -68,7 +67,6 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                 Converters.textToLocalDate(
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                 ),
-                CurrencyExchangeRaters.fake(),
                 CurrencyLocaleContexts.fake(),
                 DateTimeContexts.basic(
                     DateTimeSymbols.fromDateFormatSymbols(
