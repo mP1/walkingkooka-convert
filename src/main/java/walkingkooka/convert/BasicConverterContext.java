@@ -43,8 +43,8 @@ import java.util.Optional;
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
 final class BasicConverterContext implements ConverterContext,
-    CurrencyCodeLanguageTagContextDelegator,
     CurrencyExchangeRaterDelegator,
+    CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
 
@@ -57,14 +57,12 @@ final class BasicConverterContext implements ConverterContext,
                                       final LineEnding lineEnding,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
-                                      final CurrencyExchangeRater currencyExchangeRater,
                                       final CurrencyLocaleContext currencyLocaleContext,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
         Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
-        Objects.requireNonNull(currencyExchangeRater, "currencyExchangeRater");
         Objects.requireNonNull(currencyLocaleContext, "currencyLocaleContext");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
@@ -76,7 +74,6 @@ final class BasicConverterContext implements ConverterContext,
             lineEnding,
             valueSeparator,
             converter,
-            currencyExchangeRater,
             currencyLocaleContext,
             dateTimeContext,
             decimalNumberContext
@@ -92,7 +89,6 @@ final class BasicConverterContext implements ConverterContext,
                                   final LineEnding lineEnding,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
-                                  final CurrencyExchangeRater currencyExchangeRater,
                                   final CurrencyLocaleContext currencyLocaleContext,
                                   final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
@@ -106,8 +102,6 @@ final class BasicConverterContext implements ConverterContext,
         this.valueSeparator = valueSeparator;
 
         this.converter = converter;
-
-        this.currencyExchangeRater = currencyExchangeRater;
 
         this.currencyLocaleContext = currencyLocaleContext;
         this.dateTimeContext = dateTimeContext;
@@ -203,6 +197,13 @@ final class BasicConverterContext implements ConverterContext,
         return this.currencyLocaleContext;
     }
 
+    // CurrencyExchangeRaterDelegator...................................................................................
+
+    @Override
+    public CurrencyExchangeRater currencyExchangeRater() {
+        return this.currencyLocaleContext;
+    }
+
     // CanCurrencyForLocaleDelegator....................................................................................
 
     @Override
@@ -216,15 +217,6 @@ final class BasicConverterContext implements ConverterContext,
     public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
         return this.currencyLocaleContext.dateTimeSymbolsForLocale(locale);
     }
-
-    // CurrencyExchangeRaterDelegator...................................................................................
-
-    @Override
-    public CurrencyExchangeRater currencyExchangeRater() {
-        return this.currencyExchangeRater;
-    }
-
-    private final CurrencyExchangeRater currencyExchangeRater;
 
     // CurrencyLocaleContextDelegator...................................................................................
 
