@@ -20,7 +20,6 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.currency.CurrencyContexts;
-import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
@@ -103,7 +102,6 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
             LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
-            CurrencyExchangeRaters.fake(),
             CurrencyContexts.fake()
                 .setLocaleContext(
                     LocaleContexts.jre(

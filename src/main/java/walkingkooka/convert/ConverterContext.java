@@ -20,7 +20,6 @@ package walkingkooka.convert;
 import walkingkooka.Context;
 import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
-import walkingkooka.currency.CurrencyExchangeRater;
 import walkingkooka.currency.HasCurrencyCode;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
@@ -37,7 +36,6 @@ public interface ConverterContext extends ConverterLike,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
     CurrencyCodeLanguageTagContext,
-    CurrencyExchangeRater,
     DateTimeContext,
     DecimalNumberContext,
     HasCurrencyCode,

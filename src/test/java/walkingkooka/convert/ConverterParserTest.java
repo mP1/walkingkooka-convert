@@ -20,7 +20,6 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
-import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
@@ -171,7 +170,6 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
             LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
-            CurrencyExchangeRaters.fake(),
             CurrencyLocaleContexts.fake(),
             DateTimeContexts.fake(),
             DecimalNumberContexts.american(MathContext.DECIMAL32)
