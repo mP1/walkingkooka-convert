@@ -332,6 +332,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
     // toString.........................................................................................................
 
     @Test
+    @Override
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToDateTimeSymbols.instance(),

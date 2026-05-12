@@ -116,6 +116,7 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
     // toString.........................................................................................................
 
     @Test
+    @Override
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToLocale.instance(),
