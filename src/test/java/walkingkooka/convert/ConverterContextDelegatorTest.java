@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.convert.ConverterContextDelegatorTest.TestConverterContextDelegator;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -86,6 +87,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                CurrencyExchangeRaters.fake(),
                 new FakeCurrencyContext() {
 
                     @Override

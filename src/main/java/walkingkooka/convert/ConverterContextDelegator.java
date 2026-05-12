@@ -20,6 +20,8 @@ package walkingkooka.convert;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
+import walkingkooka.currency.CurrencyExchangeRater;
+import walkingkooka.currency.CurrencyExchangeRaterDelegator;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -36,6 +38,7 @@ import java.util.Optional;
 public interface ConverterContextDelegator extends ConverterContext,
     ConverterLikeDelegator,
     CurrencyCodeLanguageTagContextDelegator,
+    CurrencyExchangeRaterDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
 
@@ -119,4 +122,11 @@ public interface ConverterContextDelegator extends ConverterContext,
     }
 
     ConverterContext converterContext();
+
+    // CurrencyExchangeRaterDelegator...................................................................................
+
+    @Override
+    default CurrencyExchangeRater currencyExchangeRater() {
+        return this.converterContext();
+    }
 }

@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Either;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
@@ -32,6 +33,7 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * A {@link ConverterContext} where all methods throw {@link UnsupportedOperationException}.
@@ -147,6 +149,19 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
 
     @Override
     public LineEnding lineEnding() {
+        throw new UnsupportedOperationException();
+    }
+
+    // CurrencyExchangeRater............................................................................................
+
+    @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<Number> exchangeRate(final CurrencyExchange currencyExchange,
+                                         final Optional<LocalDateTime> dateTime) {
         throw new UnsupportedOperationException();
     }
 }
