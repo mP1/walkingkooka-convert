@@ -38,6 +38,7 @@ public final class ConverterContexts implements PublicStaticHelper {
                                          final LineEnding lineEnding,
                                          final char valueSeparator,
                                          final Converter<ConverterContext> converter,
+                                         final BinaryNumberConverterFunction<ConverterContext> multiplier,
                                          final CurrencyLocaleContext currencyLocaleContext,
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
@@ -48,6 +49,7 @@ public final class ConverterContexts implements PublicStaticHelper {
             lineEnding,
             valueSeparator,
             converter,
+            multiplier,
             currencyLocaleContext,
             dateTimeContext,
             decimalNumberContext

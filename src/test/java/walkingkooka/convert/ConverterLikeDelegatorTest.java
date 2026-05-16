@@ -67,6 +67,7 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                 Converters.textToLocalDate(
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                 ),
+                BinaryNumberConverterFunctions.fake(),
                 CurrencyLocaleContexts.fake(),
                 DateTimeContexts.basic(
                     DateTimeSymbols.fromDateFormatSymbols(

@@ -102,6 +102,7 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
             LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+            BinaryNumberConverterFunctions.multiply(),
             CurrencyContexts.fake()
                 .setLocaleContext(
                     LocaleContexts.jre(

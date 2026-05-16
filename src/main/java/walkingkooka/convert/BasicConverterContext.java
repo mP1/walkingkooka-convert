@@ -57,12 +57,14 @@ final class BasicConverterContext implements ConverterContext,
                                       final LineEnding lineEnding,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
+                                      final BinaryNumberConverterFunction<ConverterContext> multiplier,
                                       final CurrencyLocaleContext currencyLocaleContext,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
         Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
+        Objects.requireNonNull(multiplier, "multiplier");
         Objects.requireNonNull(currencyLocaleContext, "currencyLocaleContext");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
@@ -74,6 +76,7 @@ final class BasicConverterContext implements ConverterContext,
             lineEnding,
             valueSeparator,
             converter,
+            multiplier,
             currencyLocaleContext,
             dateTimeContext,
             decimalNumberContext
@@ -89,6 +92,7 @@ final class BasicConverterContext implements ConverterContext,
                                   final LineEnding lineEnding,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
+                                  final BinaryNumberConverterFunction<ConverterContext> multiplier,
                                   final CurrencyLocaleContext currencyLocaleContext,
                                   final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
@@ -102,6 +106,8 @@ final class BasicConverterContext implements ConverterContext,
         this.valueSeparator = valueSeparator;
 
         this.converter = converter;
+
+        this.multiplier = multiplier;
 
         this.currencyLocaleContext = currencyLocaleContext;
         this.dateTimeContext = dateTimeContext;
@@ -154,6 +160,20 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final LineEnding lineEnding;
+
+    @Override
+    public <N extends Number> N multiply(final Number left,
+                                         final Number right,
+                                         final Class<N> type) {
+        return this.multiplier.apply(
+            left,
+            right,
+            type,
+            this // ConverterContext
+        );
+    }
+
+    private final BinaryNumberConverterFunction<ConverterContext> multiplier;
 
     @Override
     public char valueSeparator() {

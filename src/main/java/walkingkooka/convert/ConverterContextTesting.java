@@ -16,6 +16,7 @@
  */
 package walkingkooka.convert;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CanCurrencyForLocaleTesting2;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting2;
 import walkingkooka.currency.HasCurrencyCodeTesting;
@@ -25,6 +26,8 @@ import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting2;
 import walkingkooka.math.DecimalNumberContextTesting2;
 import walkingkooka.text.HasIndentationTesting;
 import walkingkooka.text.HasLineEndingTesting;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Mixing testing interface for {@link ConverterContext}
@@ -39,6 +42,62 @@ public interface ConverterContextTesting<C extends ConverterContext> extends Con
     HasCurrencyCodeTesting,
     HasIndentationTesting,
     HasLineEndingTesting {
+    
+    // multiply.........................................................................................................
+
+    @Test
+    default void testMultiplyWithNullLeftFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .multiply(
+                    null,
+                    2,
+                    Number.class
+                )
+        );
+    }
+
+    @Test
+    default void testMultiplyWithNullRightFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .multiply(
+                    1,
+                    null,
+                    Number.class
+                )
+        );
+    }
+
+    @Test
+    default void testMultiplyWithNullTypeFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .multiply(
+                    1,
+                    2,
+                    null
+                )
+        );
+    }
+
+    default <N extends Number> void multiplyAndCheck(final C context,
+                                                     final Number left,
+                                                     final Number right,
+                                                     final Class<N> type,
+                                                     final N expected) {
+        this.checkEquals(
+            expected,
+            context.multiply(
+                left,
+                right,
+                type
+            )
+        );
+    }
 
     @Override
     default C createCanCurrencyForLocale() {

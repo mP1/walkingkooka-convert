@@ -128,6 +128,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         MATH_CONTEXT
     );
 
+    private final static BinaryNumberConverterFunction<ConverterContext> MULTIPLIER = BinaryNumberConverterFunctions.multiply();
+
     @Test
     public void testWithNullIndentationFails() {
         assertThrows(
@@ -139,6 +141,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                MULTIPLIER,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -157,6 +160,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 null,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                MULTIPLIER,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -174,6 +178,26 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 INDENTATION,
                 LINE_ENDING,
                 VALUE_SEPARATOR,
+                null,
+                MULTIPLIER,
+                CURRENCY_LOCALE_CONTEXT,
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullMultiplierFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                NUMBER_TO_DATE_OFFSET,
+                INDENTATION,
+                LINE_ENDING,
+                VALUE_SEPARATOR,
+                CONVERTER,
                 null,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
@@ -193,6 +217,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                MULTIPLIER,
                 null,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -212,6 +237,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                MULTIPLIER,
                 CURRENCY_LOCALE_CONTEXT,
                 null,
                 DECIMAL_NUMBER_CONTEXT
@@ -230,6 +256,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
+                MULTIPLIER,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 null
@@ -267,6 +294,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             LINE_ENDING,
             VALUE_SEPARATOR,
             CONVERTER,
+            MULTIPLIER,
             CURRENCY_LOCALE_CONTEXT,
             DATE_TIME_CONTEXT,
             decimalNumberContext()

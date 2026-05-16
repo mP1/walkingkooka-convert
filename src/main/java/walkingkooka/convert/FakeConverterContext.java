@@ -149,4 +149,11 @@ public class FakeConverterContext extends FakeDecimalNumberContext implements Co
     public LineEnding lineEnding() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public <N extends Number> N multiply(final Number left,
+                                         final Number right,
+                                         final Class<N> type) {
+        throw new UnsupportedOperationException();
+    }
 }

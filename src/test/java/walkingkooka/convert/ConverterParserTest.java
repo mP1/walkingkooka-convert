@@ -170,6 +170,7 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
             LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+            BinaryNumberConverterFunctions.fake(),
             CurrencyLocaleContexts.fake(),
             DateTimeContexts.fake(),
             DecimalNumberContexts.american(MathContext.DECIMAL32)
