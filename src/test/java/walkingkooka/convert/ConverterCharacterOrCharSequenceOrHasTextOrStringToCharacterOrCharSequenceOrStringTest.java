@@ -434,6 +434,7 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                BinaryNumberConverterFunctions.fake(),
                 new FakeCurrencyContext() {
 
                     @Override

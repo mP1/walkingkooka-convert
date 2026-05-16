@@ -86,6 +86,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                BinaryNumberConverterFunctions.multiply(),
                 new FakeCurrencyContext() {
 
                     @Override

@@ -58,6 +58,13 @@ public interface ConverterContext extends ConverterLike,
     long dateOffset();
 
     /**
+     * Multiplies two {@link Number} giving the result of the requested {@link Number} type.
+     */
+    <N extends Number> N multiply(final Number left,
+                                  final Number right,
+                                  final Class<N> type);
+
+    /**
      * The character that separates one or more values within a {@link String}, such as a CSV.
      */
     char valueSeparator();

@@ -85,6 +85,7 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
             LineEnding.NL,
             ',', // valueSeparator
             Converters.fake(),
+            BinaryNumberConverterFunctions.fake(),
             new FakeCurrencyContext() {
                 @Override
                 public Optional<Currency> currencyForLocale(final Locale locale) {

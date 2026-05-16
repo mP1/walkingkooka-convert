@@ -114,6 +114,18 @@ public interface ConverterContextDelegator extends ConverterContext,
     }
 
     @Override
+    default <N extends Number> N multiply(final Number left,
+                                          final Number right,
+                                          final Class<N> type) {
+        return this.converterContext()
+            .multiply(
+                left,
+                right,
+                type
+            );
+    }
+
+    @Override
     default CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext() {
         return this.converterContext();
     }

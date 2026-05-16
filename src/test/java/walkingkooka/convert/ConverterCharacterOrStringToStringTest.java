@@ -120,6 +120,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                BinaryNumberConverterFunctions.fake(),
                 new FakeCurrencyContext() {
                     @Override
                     public Optional<Currency> currencyForLocale(final Locale locale) {
