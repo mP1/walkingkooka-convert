@@ -54,19 +54,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
 
-    private final static String CURRENCY = "$$";
-    private final static char DECIMAL = ':';
-    private final static String EXPONENT = "X";
-    private final static char GROUP_SEPARATOR = '/';
-    private final static String INFINITY = "Infinity";
-    private final static char MINUS = '-';
-    private final static char MONETARY_DECIMAL = ';';
-    private final static String NAN = "Nan";
-    private final static char PERCENT = '!';
-    private final static char PERMILL = '^';
-    private final static char PLUS = '+';
-    private final static char ZERO_DIGIT = '0';
-
     private final static Indentation INDENTATION = Indentation.SPACES2;
     private final static LineEnding LINE_ENDING = LineEnding.NL;
     private final static Locale LOCALE = Locale.ENGLISH;
@@ -96,8 +83,50 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         LocaleContexts.jre(LOCALE)
     );
 
+    private final static DateTimeContext DATE_TIME_CONTEXT = DateTimeContexts.basic(
+        DateTimeSymbols.fromDateFormatSymbols(
+            new DateFormatSymbols(LOCALE)
+        ),
+        LOCALE,
+        1900,
+        20,
+        LocalDateTime::now
+    );
+
+    private final static String CURRENCY = "$$";
+    private final static char DECIMAL = ':';
+    private final static String EXPONENT = "X";
+    private final static char GROUP_SEPARATOR = '/';
+    private final static String INFINITY = "Infinity";
+    private final static char MINUS = '-';
+    private final static char MONETARY_DECIMAL = ';';
+    private final static String NAN = "Nan";
+    private final static char PERCENT = '!';
+    private final static char PERMILL = '^';
+    private final static char PLUS = '+';
+    private final static char ZERO_DIGIT = '0';
+
     private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
 
+    private final static DecimalNumberContext DECIMAL_NUMBER_CONTEXT = DecimalNumberContexts.basic(
+        DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT,
+        DecimalNumberSymbols.with(
+            MINUS,
+            PLUS,
+            ZERO_DIGIT,
+            CURRENCY,
+            DECIMAL,
+            EXPONENT,
+            GROUP_SEPARATOR,
+            INFINITY,
+            MONETARY_DECIMAL,
+            NAN,
+            PERCENT,
+            PERMILL
+        ),
+        LOCALE,
+        MATH_CONTEXT
+    );
 
     @Test
     public void testWithNullIndentationFails() {
@@ -111,8 +140,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 VALUE_SEPARATOR,
                 CONVERTER,
                 CURRENCY_LOCALE_CONTEXT,
-                this.dateTimeContext(),
-                this.decimalNumberContext()
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
             )
         );
     }
@@ -129,8 +158,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 VALUE_SEPARATOR,
                 CONVERTER,
                 CURRENCY_LOCALE_CONTEXT,
-                this.dateTimeContext(),
-                this.decimalNumberContext()
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
             )
         );
     }
@@ -147,8 +176,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 VALUE_SEPARATOR,
                 null,
                 CURRENCY_LOCALE_CONTEXT,
-                this.dateTimeContext(),
-                this.decimalNumberContext()
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
             )
         );
     }
@@ -165,8 +194,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 VALUE_SEPARATOR,
                 CONVERTER,
                 null,
-                this.dateTimeContext(),
-                this.decimalNumberContext()
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
             )
         );
     }
@@ -185,7 +214,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 CONVERTER,
                 CURRENCY_LOCALE_CONTEXT,
                 null,
-                this.decimalNumberContext()
+                DECIMAL_NUMBER_CONTEXT
             )
         );
     }
@@ -202,7 +231,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
                 VALUE_SEPARATOR,
                 CONVERTER,
                 CURRENCY_LOCALE_CONTEXT,
-                this.dateTimeContext(),
+                DATE_TIME_CONTEXT,
                 null
             )
         );
@@ -226,7 +255,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createContext(),
-            this.dateTimeContext() + " " + decimalNumberContext());
+            DATE_TIME_CONTEXT + " " + decimalNumberContext());
     }
 
     @Override
@@ -239,22 +268,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             VALUE_SEPARATOR,
             CONVERTER,
             CURRENCY_LOCALE_CONTEXT,
-            this.dateTimeContext(),
+            DATE_TIME_CONTEXT,
             decimalNumberContext()
-        );
-    }
-
-    private DateTimeContext dateTimeContext() {
-        final Locale locale = Locale.FRANCE;
-
-        return DateTimeContexts.basic(
-            DateTimeSymbols.fromDateFormatSymbols(
-                new DateFormatSymbols(locale)
-            ),
-            locale,
-            1900,
-            20,
-            LocalDateTime::now
         );
     }
 
@@ -265,25 +280,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     @Override
     public DecimalNumberContext decimalNumberContext() {
-        return DecimalNumberContexts.basic(
-            DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT,
-            DecimalNumberSymbols.with(
-                MINUS,
-                PLUS,
-                ZERO_DIGIT,
-                CURRENCY,
-                DECIMAL,
-                EXPONENT,
-                GROUP_SEPARATOR,
-                INFINITY,
-                MONETARY_DECIMAL,
-                NAN,
-                PERCENT,
-                PERMILL
-            ),
-            LOCALE,
-            MATH_CONTEXT
-        );
+        return DECIMAL_NUMBER_CONTEXT;
     }
 
     @Override
