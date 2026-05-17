@@ -268,7 +268,19 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     @Test
     public void testConvert() {
-        this.convertAndCheck(new StringBuilder("123"), String.class, "123");
+        this.convertAndCheck(
+            new StringBuilder("123"),
+            String.class,
+            "123"
+        );
+    }
+
+    @Test
+    public void testCurrencyCode() {
+        this.currencyCodeAndCheck(
+            this.createContext(),
+            CURRENCY_LOCALE_CONTEXT.currencyCode()
+        );
     }
 
     @Test
@@ -277,12 +289,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             this.createContext(),
             LOCALE
         );
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createContext(),
-            DATE_TIME_CONTEXT + " " + decimalNumberContext());
     }
 
     @Override
@@ -316,11 +322,13 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         return MATH_CONTEXT;
     }
 
+    // toString.........................................................................................................
+
     @Test
-    public void testCurrencyCode() {
-        this.currencyCodeAndCheck(
+    public void testToString() {
+        this.toStringAndCheck(
             this.createContext(),
-            CURRENCY_LOCALE_CONTEXT.currencyCode()
+            DATE_TIME_CONTEXT + " " + decimalNumberContext()
         );
     }
 
