@@ -18,7 +18,9 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContext;
@@ -41,6 +43,7 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -53,6 +56,13 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static char VALUE_SEPARATOR = ',';
 
     private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
+
+    private final static CurrencyExchange CURRENCY_EXCHANGE = CurrencyExchange.with(
+        CurrencyCode.parse("AUD"),
+        CurrencyCode.parse("NZD")
+    );
+
+    private final static Number CURRENCY_EXCHANGE_RATE = 12;
 
     private final static Indentation INDENTATION = Indentation.SPACES2;
     private final static LineEnding LINE_ENDING = LineEnding.NL;
@@ -78,6 +88,27 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         @Override
         public CurrencyCode currencyCode() {
             return CurrencyCode.parse("XYZ");
+        }
+
+        @Override
+        public Set<CurrencyExchange> currencyExchanges() {
+            return Sets.of(
+                CURRENCY_EXCHANGE
+            );
+        }
+
+        @Override
+        public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                     final Optional<LocalDateTime> dateTime) {
+            Objects.requireNonNull(currencyExchange, "currencyExchange");
+            Objects.requireNonNull(dateTime, "dateTime");
+
+            if(false == CURRENCY_EXCHANGE.equals(currencyExchange)) {
+                throw new IllegalArgumentException("Unexpected currency exchange " + currencyExchange);
+            }
+            return Optional.of(
+                CURRENCY_EXCHANGE_RATE
+            );
         }
     }.setLocaleContext(
         LocaleContexts.jre(LOCALE)
@@ -282,6 +313,27 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             CURRENCY_LOCALE_CONTEXT.currencyCode()
         );
     }
+
+    // currencyExchangeXXX..............................................................................................
+
+    @Test
+    public void testCurrencyExchanges() {
+        this.currencyExchangesAndCheck(
+            this.createContext(),
+            CURRENCY_EXCHANGE
+        );
+    }
+
+    @Test
+    public void testCurrencyExchangeRate() {
+        this.currencyExchangeRateAndCheck(
+            this.createContext(),
+            CURRENCY_EXCHANGE,
+            CURRENCY_EXCHANGE_RATE
+        );
+    }
+
+    // HasLocale........................................................................................................
 
     @Test
     public void testLocale() {

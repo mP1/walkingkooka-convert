@@ -61,6 +61,16 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
             .mathContext();
     }
 
+    @Override
+    public void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testCurrencyExchangeRateWithNullDateTimeFails() {
+        throw new UnsupportedOperationException();
+    }
+
     // class............................................................................................................
 
     @Override
