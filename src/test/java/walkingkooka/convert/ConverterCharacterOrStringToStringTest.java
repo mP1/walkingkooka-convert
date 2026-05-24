@@ -28,6 +28,7 @@ import walkingkooka.text.LineEnding;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.Currency;
 import java.util.Locale;
@@ -115,6 +116,7 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
             Number.class,
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
+                StandardCharsets.UTF_8,
                 0, // dateOffset
                 Indentation.SPACES2,
                 LineEnding.NL,

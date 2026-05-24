@@ -27,6 +27,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -60,6 +61,7 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
 
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
+                StandardCharsets.UTF_8,
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
                 Indentation.SPACES2,
                 LineEnding.NL,

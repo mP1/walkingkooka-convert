@@ -28,6 +28,7 @@ import walkingkooka.text.LineEnding;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -97,6 +98,7 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
     public ConverterContext createContext() {
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
+            StandardCharsets.UTF_8,
             Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
             Indentation.SPACES2,
             LineEnding.NL,
