@@ -22,6 +22,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [currency-value-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCurrencyValueTo.java)
 - [currency-value-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCurrencyValueToNumber.java)
 - [custom-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCustomToString.java)
+- [has-binary](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasBinaryToString.java)
 - [has-properties](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasProperties.java)
 - [has-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasText.java)
 - [has-value](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasValue.java)
