@@ -183,6 +183,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterHasBinaryToString}
+     */
+    public static <C extends ConverterContext> Converter<C> hasBinaryToString() {
+        return ConverterHasBinaryToString.instance();
+    }
+
+    /**
      * {@see ConverterHasProperties}
      */
     public static <C extends ConverterContext> Converter<C> hasProperties() {
