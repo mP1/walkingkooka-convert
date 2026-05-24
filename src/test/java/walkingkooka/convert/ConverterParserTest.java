@@ -35,6 +35,7 @@ import walkingkooka.text.cursor.parser.Parsers;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.nio.charset.StandardCharsets;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -165,6 +166,7 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
     public ConverterContext createContext() {
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
+            StandardCharsets.UTF_8,
             0, // dateOffset
             Indentation.SPACES2,
             LineEnding.NL,

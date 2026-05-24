@@ -37,6 +37,8 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -52,6 +54,9 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     DecimalNumberContextDelegator {
 
     private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;
+
+    private final static Charset CHARSET = StandardCharsets.UTF_8;
+
     private final static long NUMBER_TO_DATE_OFFSET = 0;
     private final static char VALUE_SEPARATOR = ',';
 
@@ -162,11 +167,32 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static BinaryNumberConverterFunction<ConverterContext> MULTIPLIER = BinaryNumberConverterFunctions.multiply();
 
     @Test
+    public void testWithNullCharsetFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> BasicConverterContext.with(
+                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                null,
+                NUMBER_TO_DATE_OFFSET,
+                INDENTATION,
+                LINE_ENDING,
+                VALUE_SEPARATOR,
+                CONVERTER,
+                MULTIPLIER,
+                CURRENCY_LOCALE_CONTEXT,
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
+            )
+        );
+    }
+
+    @Test
     public void testWithNullIndentationFails() {
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 null,
                 LINE_ENDING,
@@ -186,6 +212,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 null,
@@ -205,6 +232,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
@@ -224,6 +252,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
@@ -243,6 +272,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
@@ -263,6 +293,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
@@ -282,6 +313,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
                 INDENTATION,
                 LINE_ENDING,
@@ -347,6 +379,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public BasicConverterContext createContext() {
         return BasicConverterContext.with(
             CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
+            CHARSET,
             NUMBER_TO_DATE_OFFSET,
             INDENTATION,
             LINE_ENDING,

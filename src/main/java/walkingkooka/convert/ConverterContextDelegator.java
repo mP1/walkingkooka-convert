@@ -31,6 +31,7 @@ import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
+import java.nio.charset.Charset;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
@@ -52,6 +53,12 @@ public interface ConverterContextDelegator extends ConverterContext,
     default boolean canNumbersHaveGroupSeparator() {
         return this.converterContext()
             .canNumbersHaveGroupSeparator();
+    }
+
+    @Override
+    default Charset charset() {
+        return this.converterContext()
+            .charset();
     }
 
     @Override

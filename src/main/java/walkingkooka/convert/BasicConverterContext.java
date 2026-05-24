@@ -34,6 +34,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
+import java.nio.charset.Charset;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
@@ -52,6 +53,7 @@ final class BasicConverterContext implements ConverterContext,
      * Creates a new {@link BasicConverterContext}.
      */
     static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
+                                      final Charset charset,
                                       final long dateOffset,
                                       final Indentation indentation,
                                       final LineEnding lineEnding,
@@ -61,6 +63,7 @@ final class BasicConverterContext implements ConverterContext,
                                       final CurrencyLocaleContext currencyLocaleContext,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
+        Objects.requireNonNull(charset, "charset");
         Objects.requireNonNull(indentation, "indentation");
         Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
@@ -71,6 +74,7 @@ final class BasicConverterContext implements ConverterContext,
 
         return new BasicConverterContext(
             canNumbersHaveGroupSeparator,
+            charset,
             dateOffset,
             indentation,
             lineEnding,
@@ -87,6 +91,7 @@ final class BasicConverterContext implements ConverterContext,
      * Private ctor use factory
      */
     private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
+                                  final Charset charset,
                                   final long dateOffset,
                                   final Indentation indentation,
                                   final LineEnding lineEnding,
@@ -99,6 +104,8 @@ final class BasicConverterContext implements ConverterContext,
         super();
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
+
+        this.charset = charset;
 
         this.dateOffset = dateOffset;
         this.indentation = indentation;
@@ -120,6 +127,13 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final boolean canNumbersHaveGroupSeparator;
+
+    @Override
+    public Charset charset() {
+        return this.charset;
+    }
+
+    private final Charset charset;
 
     @Override
     public long dateOffset() {
