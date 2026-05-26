@@ -440,6 +440,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToCharset}
+     */
+    public static <C extends ConverterContext> Converter<C> textToCharset() {
+        return ConverterTextToCharset.instance();
+    }
+
+    /**
      * {@see ConverterTextToCollectionListCsvStringList}
      */
     public static <C extends ConverterContext> Converter<C> textToCsvStringList() {
