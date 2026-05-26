@@ -433,6 +433,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToBinary}
+     */
+    public static <C extends ConverterContext> Converter<C> textToBinary() {
+        return ConverterTextToBinary.instance();
+    }
+
+    /**
      * {@see ConverterTextToCollectionListBooleanList}
      */
     public static <C extends ConverterContext> Converter<C> textToBooleanList() {
