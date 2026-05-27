@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Context;
+import walkingkooka.HasCharset;
 import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyExchangeRater;
@@ -28,8 +29,6 @@ import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.text.HasIndentation;
 import walkingkooka.text.HasLineEnding;
-
-import java.nio.charset.Charset;
 
 /**
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
@@ -42,6 +41,7 @@ public interface ConverterContext extends ConverterLike,
     CurrencyExchangeRater,
     DateTimeContext,
     DecimalNumberContext,
+    HasCharset,
     HasCurrencyCode,
     HasIndentation,
     HasLineEnding {
@@ -55,11 +55,6 @@ public interface ConverterContext extends ConverterLike,
      * </pre>
      */
     boolean canNumbersHaveGroupSeparator();
-
-    /**
-     * The preferred or context default {@link Charset}
-     */
-    Charset charset();
 
     /**
      * The offset (relative to 1/1/1970) added when converting a number to a {@link java.time.LocalDate}.
