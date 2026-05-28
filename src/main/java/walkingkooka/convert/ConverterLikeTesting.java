@@ -66,14 +66,15 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         );
     }
 
-    default <T> T convertAndCheck(final ConverterLike converterLike,
+    default <T> T convertAndCheck(final C converterLike,
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
-        this.checkEquals(
-            true,
-            converterLike.canConvert(value, target),
-            () -> converterLike + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
+        this.canConvertAndCheck(
+            converterLike,
+            value,
+            target,
+            true
         );
 
         final Either<T, String> result = converterLike.convert(value, target);
