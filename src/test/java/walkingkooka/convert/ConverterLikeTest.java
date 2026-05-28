@@ -25,7 +25,7 @@ import walkingkooka.test.Testing;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterLikeTestingTest implements Testing {
+public final class ConverterLikeTest implements Testing {
 
     final Object VALUE = 123;
     final Class<String> TARGET = String.class;
