@@ -21,11 +21,14 @@ import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.test.Testing;
+import walkingkooka.reflect.ClassTesting;
+import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.ThrowableTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class ConverterLikeTest implements Testing {
+public final class ConverterLikeTest implements ClassTesting<ConverterLike>,
+    ThrowableTesting {
 
     final Object VALUE = 123;
     final Class<String> TARGET = String.class;
@@ -53,35 +56,43 @@ public final class ConverterLikeTest implements Testing {
     public void testCanConvertOrFailFails() {
         final String message = "message 1234";
 
-        final RuntimeException thrown = assertThrows(RuntimeException.class, () -> new ConverterLike() {
+        final RuntimeException thrown = assertThrows(
+            RuntimeException.class,
+            () -> new ConverterLike() {
 
-            @Override
-            public boolean canConvert(final Object value,
-                                      final Class<?> type) {
-                return false;
-            }
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return false;
+                }
 
-            @Override //
-            public <T> Either<T, String> convert(final Object value,
-                                                 final Class<T> target) {
-                throw new UnsupportedOperationException();
-            }
+                @Override //
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    throw new UnsupportedOperationException();
+                }
 
-            @Override
-            public RuntimeException convertThrowable(final String ignored,
-                                                     final Object value,
-                                                     final Class<?> type) {
-                return new RuntimeException(message);
-            }
-        }.canConvertOrFail(VALUE, TARGET));
-        this.checkEquals(message, thrown.getMessage(), "message");
+                @Override
+                public RuntimeException convertThrowable(final String ignored,
+                                                         final Object value,
+                                                         final Class<?> type) {
+                    return new RuntimeException(message);
+                }
+            }.canConvertOrFail(VALUE, TARGET));
+
+        this.getMessageAndCheck(
+            thrown,
+            message
+        );
     }
 
     @Test
     public void testConvertFailsFails() {
 
-        this.create(true, Either.right("failed message!"))
-            .convertFails(VALUE, TARGET);
+        this.create(
+            true,
+            Either.right("failed message!")
+        ).convertFails(VALUE, TARGET);
     }
 
     @Test
@@ -99,16 +110,28 @@ public final class ConverterLikeTest implements Testing {
 
     @Test
     public void testConvert() {
-        this.create(true, Either.left(CONVERTED))
-            .convertAndCheck(VALUE, TARGET, CONVERTED);
+        this.create(
+            true,
+            Either.left(CONVERTED)
+        ).convertAndCheck(
+            VALUE,
+            TARGET,
+            CONVERTED
+        );
     }
 
     @Test
     public void testConvertFails() {
         boolean pass = false;
         try {
-            this.create(true, Either.right("Failed message 123"))
-                .convertAndCheck(VALUE, TARGET, CONVERTED);
+            this.create(
+                true,
+                Either.right("Failed message 123")
+            ).convertAndCheck(
+                VALUE,
+                TARGET,
+                CONVERTED
+            );
             pass = true;
         } catch (final AssertionFailedError expected) {
         }
@@ -118,21 +141,36 @@ public final class ConverterLikeTest implements Testing {
 
     @Test
     public void testConvertOrFailPass() {
-        this.create(true, Either.left(CONVERTED))
-            .convertOrFailAndCheck(VALUE, TARGET, CONVERTED);
+        this.create(
+            true,
+            Either.left(CONVERTED)
+        ).convertOrFailAndCheck(
+            VALUE,
+            TARGET,
+            CONVERTED
+        );
     }
 
     @Test
     public void testConvertOrFailFails() {
-        assertThrows(ConverterException.class, () ->
-            this.create(true, Either.right("Failed!"))
-                .convertOrFailAndCheck(VALUE, TARGET, CONVERTED));
+        assertThrows(
+            ConverterException.class,
+            () -> this.create(
+                true,
+                Either.right("Failed!")
+            ).convertOrFailAndCheck(
+                VALUE,
+                TARGET,
+                CONVERTED
+            )
+        );
     }
 
     @Test
     public void testConvertOrFailCustomConvertThrowableFails() {
         final String message = "message 123";
-        final RuntimeException thrown = assertThrows(RuntimeException.class,
+        final RuntimeException thrown = assertThrows(
+            RuntimeException.class,
             () -> new ConverterLike() {
 
                 @Override
@@ -155,12 +193,18 @@ public final class ConverterLikeTest implements Testing {
                 }
             }.convertOrFail(this, this.getClass()));
 
-        this.checkEquals(message, thrown.getMessage(), "message");
+        this.getMessageAndCheck(
+            thrown,
+            message
+        );
     }
 
     @Test
     public void testConvertOrFailDoesntThrows() {
-        this.create(true, Either.left(CONVERTED));
+        this.create(
+            true,
+            Either.left(CONVERTED)
+        );
     }
 
     private <T> ConverterLikeTesting<ConverterLike> create(final boolean can,
@@ -189,5 +233,17 @@ public final class ConverterLikeTest implements Testing {
                 };
             }
         };
+    }
+
+    // class............................................................................................................
+
+    @Override
+    public Class<ConverterLike> type() {
+        return ConverterLike.class;
+    }
+
+    @Override
+    public JavaVisibility typeVisibility() {
+        return JavaVisibility.PUBLIC;
     }
 }
