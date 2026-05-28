@@ -25,6 +25,24 @@ import walkingkooka.text.LineEnding;
 public final class ConverterLikeTestingTest implements ConverterLikeTesting<TestConverterLike> {
 
     @Test
+    public void testCanConvertTrue() {
+        this.canConvertAndCheck(
+            LineEnding.NL,
+            String.class,
+            true
+        );
+    }
+
+    @Test
+    public void testCanConvertFalse() {
+        this.canConvertAndCheck(
+            this,
+            String.class,
+            false
+        );
+    }
+
+    @Test
     public void testConvert() {
         final LineEnding lineEnding = LineEnding.NL;
 
