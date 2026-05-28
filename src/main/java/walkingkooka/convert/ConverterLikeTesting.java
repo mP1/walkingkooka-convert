@@ -26,10 +26,17 @@ import walkingkooka.text.CharSequences;
  */
 public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
 
+    // convert..........................................................................................................
+
     default <T> T convertAndCheck(final Object value,
                                   final Class<T> target,
                                   final T expected) {
-        return this.convertAndCheck(this.createConverterLike(), value, target, expected);
+        return this.convertAndCheck(
+            this.createConverterLike(),
+            value,
+            target,
+            expected
+        );
     }
 
     default <T> T convertAndCheck(final ConverterLike context,
@@ -58,7 +65,11 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
 
     default void convertFails(final Object value,
                               final Class<?> type) {
-        this.convertFails(this.createConverterLike(), value, type);
+        this.convertFails(
+            this.createConverterLike(),
+            value,
+            type
+        );
     }
 
     default void convertFails(final ConverterLike context,
@@ -73,10 +84,12 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
     default <T> T convertOrFailAndCheck(final Object value,
                                         final Class<T> target,
                                         final T expected) {
-        return this.convertOrFailAndCheck(this.createConverterLike(),
+        return this.convertOrFailAndCheck(
+            this.createConverterLike(),
             value,
             target,
-            expected);
+            expected
+        );
     }
 
     default <T> T convertOrFailAndCheck(final ConverterLike can,
