@@ -66,17 +66,17 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         );
     }
 
-    default <T> T convertAndCheck(final ConverterLike context,
+    default <T> T convertAndCheck(final ConverterLike converterLike,
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
         this.checkEquals(
             true,
-            context.canConvert(value, target),
-            () -> context + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
+            converterLike.canConvert(value, target),
+            () -> converterLike + " can convert(" + CharSequences.quoteIfChars(value) + "(" + value.getClass().getName() + ")," + target.getName() + ")"
         );
 
-        final Either<T, String> result = context.convert(value, target);
+        final Either<T, String> result = converterLike.convert(value, target);
         if (result.isRight()) {
             throw new AssertionFailedError(result.rightValue());
         }
