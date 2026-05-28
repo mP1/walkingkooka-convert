@@ -26,6 +26,33 @@ import walkingkooka.text.CharSequences;
  */
 public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
 
+    // canConvert.......................................................................................................
+
+    default void canConvertAndCheck(final Object value,
+                                    final Class<?> type,
+                                    final boolean expected) {
+        this.canConvertAndCheck(
+            this.createConverterLike(),
+            value,
+            type,
+            expected
+        );
+    }
+
+    default void canConvertAndCheck(final C converterLike,
+                                    final Object value,
+                                    final Class<?> type,
+                                    final boolean expected) {
+        this.checkEquals(
+            expected,
+            converterLike.canConvert(
+                value,
+                type
+            ),
+            () -> "canConvert " + value + " " + type.getName()
+        );
+    }
+
     // convert..........................................................................................................
 
     default <T> T convertAndCheck(final Object value,
