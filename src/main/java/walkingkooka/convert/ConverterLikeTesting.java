@@ -72,10 +72,10 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         );
     }
 
-    default void convertFails(final ConverterLike context,
+    default void convertFails(final ConverterLike converterLike,
                               final Object value,
                               final Class<?> type) {
-        final Either<?, String> result = context.convert(value, type);
+        final Either<?, String> result = converterLike.convert(value, type);
         result.mapLeft(v -> {
             throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
         });
@@ -92,11 +92,11 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         );
     }
 
-    default <T> T convertOrFailAndCheck(final ConverterLike can,
+    default <T> T convertOrFailAndCheck(final ConverterLike converterLike,
                                         final Object value,
                                         final Class<T> target,
                                         final T expected) {
-        final T convertedValue = can.convertOrFail(value, target);
+        final T convertedValue = converterLike.convertOrFail(value, target);
         this.checkEquals(
             expected,
             convertedValue,
