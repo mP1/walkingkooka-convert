@@ -19,6 +19,7 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Binary;
+import walkingkooka.CanBinary;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 
@@ -47,6 +48,26 @@ public final class ConverterTextToBinaryTest extends ConverterTextToTestCase<Con
                 text.getBytes(CHARSET)
             )
         );
+    }
+
+    private final static Binary BINARY = Binary.with(
+        "Hello".getBytes(CHARSET)
+    );
+
+    @Test
+    public void testConvertCanBinaryToBinary() {
+        this.convertAndCheck(
+            new TestCanBinary(),
+            BINARY
+        );
+    }
+
+    static final class TestCanBinary implements CanBinary {
+
+        @Override
+        public Binary binary(final Charset charset) {
+            return BINARY;
+        }
     }
 
     @Override
