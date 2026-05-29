@@ -18,11 +18,13 @@
 package walkingkooka.convert;
 
 import walkingkooka.Binary;
+import walkingkooka.CanBinary;
 import walkingkooka.Cast;
 
 /**
  * A converter that supports converting text into a {@link Binary} using the {@link ConverterContext#charset()},
- * to encode the text into bytes.
+ * to encode the text into bytes.<br>
+ * Note {@link CanBinary} is special cased and used if the value implements {@link CanBinary}.
  */
 final class ConverterTextToBinary<C extends ConverterContext> extends ConverterTextTo<Binary, C> {
 
@@ -40,8 +42,33 @@ final class ConverterTextToBinary<C extends ConverterContext> extends ConverterT
     }
 
     @Override
+    public boolean canConvert(final Object value,
+                              final Class<?> type,
+                              final C context) {
+        // special case value instance CanBinary
+        return (value instanceof CanBinary && Binary.class == type) ||
+            // continue non CanBinary
+            super.canConvert(value, type, context);
+    }
+
+    @Override
     Class<Binary> targetType() {
         return Binary.class;
+    }
+
+    @Override
+    public Object tryConvertOrFail(final Object value,
+                                   final Class<?> type,
+                                   final C context) {
+        // special case value instance CanBinary
+        return value instanceof CanBinary ?
+            ((CanBinary) value).binary(context.charset()) :
+            // continue non CanBinary
+            super.tryConvertOrFail(
+                value,
+                type,
+                context
+            );
     }
 
     @Override
@@ -49,9 +76,9 @@ final class ConverterTextToBinary<C extends ConverterContext> extends ConverterT
                             final Class<?> type,
                             final C context) {
         return Binary.with(
-                text.getBytes(
-                        context.charset()
-                )
+            text.getBytes(
+                context.charset()
+            )
         );
     }
 }
