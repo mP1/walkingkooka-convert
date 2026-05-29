@@ -46,10 +46,12 @@ final class ConverterTextToBinary<C extends ConverterContext> extends ConverterT
 
     @Override
     public Binary parseText(final String text,
-                                 final Class<?> type,
-                                 final C context) {
+                            final Class<?> type,
+                            final C context) {
         return Binary.with(
-            text.getBytes(context.charset())
+                text.getBytes(
+                        context.charset()
+                )
         );
     }
 }
