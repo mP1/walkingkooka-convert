@@ -21,7 +21,8 @@ import walkingkooka.Binary;
 import walkingkooka.Cast;
 
 /**
- * A converter that supports converting text into a {@link Binary} using {@link Binary} using the {@link ConverterContext#charset()}.
+ * A converter that supports converting text into a {@link Binary} using the {@link ConverterContext#charset()},
+ * to encode the text into bytes.
  */
 final class ConverterTextToBinary<C extends ConverterContext> extends ConverterTextTo<Binary, C> {
 
