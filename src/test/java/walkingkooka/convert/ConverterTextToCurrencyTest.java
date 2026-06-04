@@ -112,7 +112,7 @@ public final class ConverterTextToCurrencyTest extends ConverterTextToTestCase<C
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to Currency"
+            "TEXT to Currency"
         );
     }
 

@@ -182,8 +182,8 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
             "ConverterCustomToString\n" +
                 "  Hello\n" +
                 "    ConverterCollection\n" +
-                "      text to Charset (walkingkooka.convert.ConverterTextToCharset)\n" +
-                "      text to Currency (walkingkooka.convert.ConverterTextToCurrency)\n"
+                "      TEXT to Charset (walkingkooka.convert.ConverterTextToCharset)\n" +
+                "      TEXT to Currency (walkingkooka.convert.ConverterTextToCurrency)\n"
         );
     }
 

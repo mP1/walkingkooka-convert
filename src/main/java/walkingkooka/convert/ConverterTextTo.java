@@ -39,7 +39,7 @@ abstract class ConverterTextTo<T, C extends ConverterContext> implements TextToT
 
     @Override
     public final String toString() {
-        return "text to " + this.targetType()
+        return TEXT + " to " + this.targetType()
             .getSimpleName();
     }
 }

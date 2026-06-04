@@ -205,7 +205,7 @@ public final class ConverterTextToLineEndingTest extends ConverterTextToTestCase
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to LineEnding"
+            "TEXT to LineEnding"
         );
     }
 

@@ -80,7 +80,7 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to LocaleLanguageTag"
+            "TEXT to LocaleLanguageTag"
         );
     }
 

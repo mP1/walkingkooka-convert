@@ -100,7 +100,7 @@ public final class ConverterTextToIndentationTest extends ConverterTextToTestCas
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to Indentation"
+            "TEXT to Indentation"
         );
     }
 

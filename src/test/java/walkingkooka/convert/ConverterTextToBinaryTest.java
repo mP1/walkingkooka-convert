@@ -114,7 +114,7 @@ public final class ConverterTextToBinaryTest extends ConverterTextToTestCase<Con
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to Binary"
+            "TEXT to Binary"
         );
     }
 

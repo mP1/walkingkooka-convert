@@ -86,7 +86,7 @@ public final class ConverterTextToPropertiesTest extends ConverterTextToTestCase
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to Properties"
+            "TEXT to Properties"
         );
     }
 
