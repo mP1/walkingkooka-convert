@@ -19,6 +19,8 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
+import walkingkooka.collect.list.Lists;
+import walkingkooka.text.printer.TreePrintable;
 
 import java.util.function.Predicate;
 
@@ -140,18 +142,47 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
         );
     }
 
-    // toString.........................................................................................................
-
     @Override
     public ConverterCustomToString<ConverterContext> createObject() {
         return this.createConverter();
     }
+
+    // toString.........................................................................................................
 
     @Test
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
             CUSTOM_TO_STRING
+        );
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrint2() {
+        this.treePrintAndCheck(
+            this.createConverter(),
+            "ConverterCustomToString\n" +
+                "  * to String (walkingkooka.convert.ConverterObjectToString)\n"
+        );
+    }
+
+    @Test
+    public void testTreePrintCollection() {
+        this.treePrintAndCheck(
+            (TreePrintable)
+                Converters.collection(
+                    Lists.of(
+                        Converters.textToCharset(),
+                        Converters.textToCurrency()
+                    )
+                ).setToString("Hello"),
+            "ConverterCustomToString\n" +
+                "  Hello\n" +
+                "    ConverterCollection\n" +
+                "      text to Charset (walkingkooka.convert.ConverterTextToCharset)\n" +
+                "      text to Currency (walkingkooka.convert.ConverterTextToCurrency)\n"
         );
     }
 
