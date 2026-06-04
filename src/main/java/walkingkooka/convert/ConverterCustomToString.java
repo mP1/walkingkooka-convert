@@ -19,13 +19,16 @@ package walkingkooka.convert;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.text.Whitespace;
+import walkingkooka.text.printer.IndentingPrinter;
+import walkingkooka.text.printer.TreePrintable;
 
 import java.util.Objects;
 
 /**
  * Wraps another {@link Converter} replacing or ignoring its {@link Object#toString()} with the provided {@link String}.
  */
-final class ConverterCustomToString<C extends ConverterContext> implements Converter<C> {
+final class ConverterCustomToString<C extends ConverterContext> implements Converter<C>,
+    TreePrintable {
 
     static <C extends ConverterContext> Converter<C> wrap(final Converter<C> converter,
                                                           final String toString) {
@@ -99,4 +102,24 @@ final class ConverterCustomToString<C extends ConverterContext> implements Conve
 
     // @VisibleForTesting
     final String toString;
+
+    // TreePrintable....................................................................................................
+
+    @Override
+    public void printTree(final IndentingPrinter printer) {
+        printer.println(this.getClass().getSimpleName());
+        printer.indent();
+        {
+            printer.println(this.toString());
+            printer.indent();
+            {
+                TreePrintable.printTreeOrToString(
+                    converter,
+                    printer
+                );
+            }
+            printer.outdent();
+        }
+        printer.outdent();
+    }
 }
