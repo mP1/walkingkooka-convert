@@ -34,27 +34,57 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
 
     @Test
     public void testWrapNullConverterFails() {
-        assertThrows(NullPointerException.class, () -> ConverterCustomToString.wrap(null, CUSTOM_TO_STRING));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterCustomToString.wrap(
+                null,
+                CUSTOM_TO_STRING
+            )
+        );
     }
 
     @Test
     public void testWrapNullToStringFails() {
-        assertThrows(NullPointerException.class, () -> ConverterCustomToString.wrap(WRAPPED, null));
+        assertThrows(
+            NullPointerException.class,
+            () -> ConverterCustomToString.wrap(
+                WRAPPED,
+                null
+            )
+        );
     }
 
     @Test
     public void testWrapEmptyToStringFails() {
-        assertThrows(IllegalArgumentException.class, () -> ConverterCustomToString.wrap(WRAPPED, ""));
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> ConverterCustomToString.wrap(
+                WRAPPED,
+                ""
+            )
+        );
     }
 
     @Test
     public void testWrapWhitespaceToStringFails() {
-        assertThrows(IllegalArgumentException.class, () -> ConverterCustomToString.wrap(WRAPPED, " \t"));
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> ConverterCustomToString.wrap(
+                WRAPPED,
+                " \t"
+            )
+        );
     }
 
     @Test
-    public void testDoesntWrapEquivalentToString() {
-        assertSame(WRAPPED, ConverterCustomToString.wrap(WRAPPED, WRAPPED.toString()));
+    public void testWrapEquivalentToString() {
+        assertSame(
+            WRAPPED,
+            ConverterCustomToString.wrap(
+                WRAPPED,
+                WRAPPED.toString()
+            )
+        );
     }
 
     @Test
@@ -68,22 +98,11 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
 
     @Test
     public void testConvert() {
-        this.convertAndCheck(123, String.class, String.valueOf(123));
-    }
-
-    @Test
-    public void testEqualsDifferentWrappedConverter() {
-        this.checkNotEquals(ConverterCustomToString.wrap(Converters.mapper(t -> t instanceof String, Predicate.isEqual(Boolean.class), (String v) -> Boolean.valueOf(v)), CUSTOM_TO_STRING));
-    }
-
-    @Test
-    public void testEqualsDifferentCustomToString() {
-        this.checkNotEquals(ConverterCustomToString.wrap(WRAPPED, "different"));
-    }
-
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createConverter(), CUSTOM_TO_STRING);
+        this.convertAndCheck(
+            123,
+            String.class,
+            String.valueOf(123)
+        );
     }
 
     @Override
@@ -96,13 +115,50 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
         return ConverterContexts.fake();
     }
 
-    @Override
-    public Class<ConverterCustomToString<ConverterContext>> type() {
-        return Cast.to(ConverterCustomToString.class);
+    // hashCode / equals................................................................................................
+
+    @Test
+    public void testEqualsDifferentWrappedConverter() {
+        this.checkNotEquals(
+            ConverterCustomToString.wrap(
+                Converters.mapper(
+                    t -> t instanceof String,
+                    Predicate.isEqual(Boolean.class),
+                    (String v) -> Boolean.valueOf(v)),
+                CUSTOM_TO_STRING
+            )
+        );
     }
+
+    @Test
+    public void testEqualsDifferentCustomToString() {
+        this.checkNotEquals(
+            ConverterCustomToString.wrap(
+                WRAPPED,
+                "different"
+            )
+        );
+    }
+
+    // toString.........................................................................................................
 
     @Override
     public ConverterCustomToString<ConverterContext> createObject() {
         return this.createConverter();
+    }
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            this.createConverter(),
+            CUSTOM_TO_STRING
+        );
+    }
+
+    // class............................................................................................................
+
+    @Override
+    public Class<ConverterCustomToString<ConverterContext>> type() {
+        return Cast.to(ConverterCustomToString.class);
     }
 }
