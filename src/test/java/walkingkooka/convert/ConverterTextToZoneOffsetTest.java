@@ -116,7 +116,7 @@ public final class ConverterTextToZoneOffsetTest implements ConverterTesting2<Co
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to ZoneOffset"
+            "TEXT to ZoneOffset"
         );
     }
 

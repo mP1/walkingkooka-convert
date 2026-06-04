@@ -58,6 +58,6 @@ final class ConverterTextToZoneOffset<C extends ConverterContext> implements Tex
 
     @Override
     public String toString() {
-        return "text to " + ZoneOffset.class.getSimpleName();
+        return TEXT + " to " + ZoneOffset.class.getSimpleName();
     }
 }

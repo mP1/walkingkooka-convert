@@ -89,7 +89,7 @@ public final class ConverterTextToCharsetTest extends ConverterTextToTestCase<Co
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to Charset"
+            "TEXT to Charset"
         );
     }
 

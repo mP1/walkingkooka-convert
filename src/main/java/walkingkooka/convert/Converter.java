@@ -27,6 +27,11 @@ import walkingkooka.text.CharSequences;
 public interface Converter<C extends ConverterContext> {
 
     /**
+     * Constant for converters that convert from or to "text".
+     */
+    String TEXT = "TEXT";
+
+    /**
      * Queries whether this {@link Converter} supports converting to the requested {@link Class class}. A returned true
      * does not actually guarantee that the convert method will success, the result should still be tested.
      */

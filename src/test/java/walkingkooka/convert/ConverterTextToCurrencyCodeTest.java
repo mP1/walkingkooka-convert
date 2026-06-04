@@ -88,7 +88,7 @@ public final class ConverterTextToCurrencyCodeTest extends ConverterTextToTestCa
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "text to CurrencyCode"
+            "TEXT to CurrencyCode"
         );
     }
 
