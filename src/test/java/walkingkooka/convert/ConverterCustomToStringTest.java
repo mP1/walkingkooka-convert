@@ -164,7 +164,8 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
         this.treePrintAndCheck(
             this.createConverter(),
             "ConverterCustomToString\n" +
-                "  * to String (walkingkooka.convert.ConverterObjectToString)\n"
+                "  !!custom-to-string!!\n" +
+                "    * to String (walkingkooka.convert.ConverterObjectToString)\n"
         );
     }
 
