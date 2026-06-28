@@ -49,12 +49,19 @@ final class ConverterTextToCollectionSetTsvStringSet<C extends ConverterContext>
     }
 
     @Override
+    public TsvStringSet parseText(final String text,
+                                  final Class<?> type,
+                                  final C context) {
+        return TsvStringSet.parse(text);
+    }
+
+    @Override
     Class<String> elementType() {
-        return String.class;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     TsvStringSet toImmutableCollection(final Set<String> mutableCollection) {
-        return TsvStringSet.EMPTY.setElements(mutableCollection);
+        throw new UnsupportedOperationException();
     }
 }

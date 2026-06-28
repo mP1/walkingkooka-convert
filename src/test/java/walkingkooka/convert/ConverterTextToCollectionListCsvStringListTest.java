@@ -32,11 +32,9 @@ public final class ConverterTextToCollectionListCsvStringListTest extends Conver
     private final static char SEPARATOR = ',';
 
     @Test
-    public void testConvertEmptyStringFails() {
-        this.convertFails(
-            this.createConverter(),
-            "",
-            CsvStringList.class
+    public void testConvertEmptyString() {
+        this.convertToCollectionAndCheck(
+            ""
         );
     }
 
@@ -49,10 +47,10 @@ public final class ConverterTextToCollectionListCsvStringListTest extends Conver
     }
 
     @Test
-    public void testConvertStringSurroundingSpacesTrimmed() {
+    public void testConvertStringSurroundingSpaces() {
         this.convertToCollectionAndCheck(
             " " + STRING2 + " ",
-            STRING2
+            " " + STRING2 + " "
         );
     }
 
@@ -100,10 +98,10 @@ public final class ConverterTextToCollectionListCsvStringListTest extends Conver
     public ConverterContext createContext() {
         return new FakeConverterContext() {
 
-            @Override
-            public char valueSeparator() {
-                return SEPARATOR;
-            }
+//            @Override
+//            public char valueSeparator() {
+//                return SEPARATOR;
+//            }
 
             @Override
             public boolean canConvert(final Object value,

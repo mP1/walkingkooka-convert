@@ -58,6 +58,17 @@ final class ConverterTextToCollectionListLocalDateTimeList<C extends ConverterCo
     }
 
     @Override
+    public Object parseText(final String text,
+                            final Class<?> type,
+                            final C context) {
+        return this.parseTextWithValueSeparator(
+            text,
+            type,
+            context
+        );
+    }
+
+    @Override
     Class<LocalDateTime> elementType() {
         return LocalDateTime.class;
     }

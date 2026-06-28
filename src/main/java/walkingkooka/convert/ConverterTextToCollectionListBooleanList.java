@@ -52,6 +52,17 @@ final class ConverterTextToCollectionListBooleanList<C extends ConverterContext>
     }
 
     @Override
+    public Object parseText(final String text,
+                            final Class<?> type,
+                            final C context) {
+        return this.parseTextWithValueSeparator(
+            text,
+            type,
+            context
+        );
+    }
+
+    @Override
     Class<BooleanList> targetType() {
         return BooleanList.class;
     }

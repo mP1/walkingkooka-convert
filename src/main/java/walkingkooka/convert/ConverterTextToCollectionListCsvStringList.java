@@ -49,12 +49,19 @@ final class ConverterTextToCollectionListCsvStringList<C extends ConverterContex
     }
 
     @Override
+    public Object parseText(final String text,
+                            final Class<?> type,
+                            final C context) {
+        return CsvStringList.parse(text);
+    }
+
+    @Override
     Class<String> elementType() {
-        return String.class;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     CsvStringList toImmutableCollection(final List<String> mutableCollection) {
-        return CsvStringList.EMPTY.setElements(mutableCollection);
+        throw new UnsupportedOperationException();
     }
 }
