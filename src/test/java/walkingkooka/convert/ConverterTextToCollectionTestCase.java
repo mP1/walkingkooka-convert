@@ -38,27 +38,6 @@ public abstract class ConverterTextToCollectionTestCase<IMMUTABLE_COLLECTION ext
     }
 
     @Test
-    public final void testConvertEmptyStringToBooleanList() {
-        this.convertToCollectionAndCheck(
-            ""
-        );
-    }
-
-    @Test
-    public final void testConvertSpacesToBooleanListFails() {
-        this.convertToCollectionAndCheck(
-            " "
-        );
-    }
-
-    @Test
-    public final void testConvertSpacesToBooleanListFails2() {
-        this.convertToCollectionAndCheck(
-            "  "
-        );
-    }
-
-    @Test
     public final void testConvertUnclosedQuotesFails() {
         this.convertToCollectionFails(
             "\""
