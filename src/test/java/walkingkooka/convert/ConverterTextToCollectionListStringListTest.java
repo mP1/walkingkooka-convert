@@ -32,6 +32,22 @@ public final class ConverterTextToCollectionListStringListTest extends Converter
     private final static char SEPARATOR = '*';
 
     @Test
+    public void testConvertEmptyString() {
+        this.convertFails(
+            "",
+            StringList.class
+        );
+    }
+
+    @Test
+    public void testConvertSpacesString() {
+        this.convertFails(
+            "  ",
+            StringList.class
+        );
+    }
+
+    @Test
     public void testConvertString() {
         this.convertToCollectionAndCheck(
             STRING,

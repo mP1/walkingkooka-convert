@@ -32,6 +32,20 @@ public final class ConverterTextToCollectionListNumberListTest extends Converter
     private final static Number NUMBER2 = 22;
 
     @Test
+    public void testConvertEmptyStringFails() {
+        this.convertToCollectionFails(
+            ""
+        );
+    }
+
+    @Test
+    public void testConvertSpacesStringFails() {
+        this.convertToCollectionFails(
+            " "
+        );
+    }
+
+    @Test
     public void testConvertString() {
         this.convertToCollectionAndCheck(
             NUMBER_STRING,

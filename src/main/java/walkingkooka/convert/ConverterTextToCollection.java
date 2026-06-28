@@ -142,6 +142,14 @@ abstract class ConverterTextToCollection<IMMUTABLE_COLLECTION extends Collection
                 final String elementToString = element.toString()
                     .trim();
                 if(elementToString.isEmpty()) {
+                    // only spaces BooleanList etc is an InvalidCharacterException
+                    if(mutableCollection.isEmpty()) {
+                        throw new InvalidCharacterException(
+                            text,
+                            0
+                        );
+                    }
+
                     // must be trailing comma and nothing.. throw ICE!
                     if(false == mutableCollection.isEmpty()) {
                         throw new InvalidCharacterException(

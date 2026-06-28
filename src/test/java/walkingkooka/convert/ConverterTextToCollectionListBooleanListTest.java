@@ -26,6 +26,27 @@ import walkingkooka.collect.list.Lists;
 public final class ConverterTextToCollectionListBooleanListTest extends ConverterTextToCollectionListTestCase<BooleanList, Boolean, ConverterTextToCollectionListBooleanList<ConverterContext>> {
 
     @Test
+    public void testConvertEmptyStringToBooleanList() {
+        this.convertToCollectionFails(
+            ""
+        );
+    }
+
+    @Test
+    public void testConvertSpacesToBooleanListFails() {
+        this.convertToCollectionFails(
+            " "
+        );
+    }
+
+    @Test
+    public void testConvertManySpacesToBooleanListFails() {
+        this.convertToCollectionFails(
+            "  "
+        );
+    }
+
+    @Test
     public void testConvertStringTrue() {
         this.convertToCollectionAndCheck(
             "TRUE",
