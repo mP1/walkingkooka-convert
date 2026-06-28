@@ -601,6 +601,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToCollectionListTsvStringList}
+     */
+    public static <C extends ConverterContext> Converter<C> textToTsvStringList() {
+        return ConverterTextToCollectionListTsvStringList.instance();
+    }
+
+    /**
      * {@see ConverterTextToZoneOffset}
      */
     public static <C extends ConverterContext> Converter<C> textToZoneOffset() {
