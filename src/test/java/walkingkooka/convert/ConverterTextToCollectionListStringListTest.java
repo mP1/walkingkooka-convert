@@ -33,17 +33,16 @@ public final class ConverterTextToCollectionListStringListTest extends Converter
 
     @Test
     public void testConvertEmptyString() {
-        this.convertFails(
-            "",
-            StringList.class
+        this.convertToCollectionAndCheck(
+            ""
         );
     }
 
     @Test
     public void testConvertSpacesString() {
-        this.convertFails(
+        this.convertToCollectionAndCheck(
             "  ",
-            StringList.class
+            ""
         );
     }
 
