@@ -32,6 +32,15 @@ public final class ConverterTextToCollectionListCsvStringListTest extends Conver
     private final static char SEPARATOR = ',';
 
     @Test
+    public void testConvertEmptyStringFails() {
+        this.convertFails(
+            this.createConverter(),
+            "",
+            CsvStringList.class
+        );
+    }
+
+    @Test
     public void testConvertString() {
         this.convertToCollectionAndCheck(
             STRING,

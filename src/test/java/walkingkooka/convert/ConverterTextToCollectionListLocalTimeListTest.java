@@ -35,6 +35,20 @@ public final class ConverterTextToCollectionListLocalTimeListTest extends Conver
     private final static LocalTime DATE_TIME2 = LocalTime.of(2, 22, 59);
 
     @Test
+    public void testConvertEmptyStringFails() {
+        this.convertToCollectionFails(
+            ""
+        );
+    }
+
+    @Test
+    public void testConvertSpacesStringFails() {
+        this.convertToCollectionFails(
+            " "
+        );
+    }
+
+    @Test
     public void testConvertString() {
         this.convertToCollectionAndCheck(
             DATE_TIME_STRING,

@@ -37,6 +37,20 @@ public final class ConverterTextToCollectionListLocalDateListTest extends Conver
     private final static String DATE_STRING2 = "2000/1/2";
 
     @Test
+    public void testConvertEmptyStringFails() {
+        this.convertToCollectionFails(
+            ""
+        );
+    }
+
+    @Test
+    public void testConvertSpacesStringFails() {
+        this.convertToCollectionFails(
+            " "
+        );
+    }
+
+    @Test
     public void testConvertString() {
         this.convertToCollectionAndCheck(
             DATE_STRING,
