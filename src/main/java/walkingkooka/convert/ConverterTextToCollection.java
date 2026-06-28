@@ -138,26 +138,18 @@ abstract class ConverterTextToCollection<IMMUTABLE_COLLECTION extends Collection
 
         switch (mode) {
             case MODE_OUTSIDE_QUOTES:
-                final String elementToString = element.toString()
-                    .trim();
-                if(elementToString.isEmpty()) {
-                    // only spaces BooleanList etc is an InvalidCharacterException
-                    if(mutableCollection.isEmpty()) {
-                        throw new InvalidCharacterException(
-                            text,
-                            0
-                        );
-                    }
-
-                    // must be trailing comma and nothing.. throw ICE!
-                    if(false == mutableCollection.isEmpty()) {
-                        throw new InvalidCharacterException(
-                            text,
-                            position -1
+                final Class<E> elementType = this.elementType();
+                if (String.class == elementType) {
+                    // skip trailing comma or empty string is empty StringList
+                    if (element.length() != 0) {
+                        this.addElement(
+                            element,
+                            mutableCollection,
+                            context
                         );
                     }
                 } else {
-                    addElement(
+                    this.addElement(
                         element,
                         mutableCollection,
                         context
