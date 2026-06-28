@@ -40,10 +40,10 @@ public final class ConverterTextToCollectionSetTsvStringSetTest extends Converte
     }
 
     @Test
-    public void testConvertStringSurroundingSpacesTrimmed() {
+    public void testConvertStringSurroundingSpaces() {
         this.convertToCollectionAndCheck(
             " " + STRING2 + " ",
-            STRING2
+            " " + STRING2 + " "
         );
     }
 

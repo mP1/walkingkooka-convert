@@ -49,6 +49,13 @@ final class ConverterTextToCollectionListTsvStringList<C extends ConverterContex
     }
 
     @Override
+    public Object parseText(final String text,
+                            final Class<?> type,
+                            final C context) {
+        return TsvStringList.parse(text);
+    }
+
+    @Override
     Class<String> elementType() {
         return String.class;
     }

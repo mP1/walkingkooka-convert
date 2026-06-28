@@ -31,10 +31,9 @@ abstract class ConverterTextToCollection<IMMUTABLE_COLLECTION extends Collection
         super();
     }
 
-    @Override
-    public final Object parseText(final String text,
-                                  final Class<?> type,
-                                  final CONTEXT context) {
+    final Object parseTextWithValueSeparator(final String text,
+                                             final Class<?> type,
+                                             final CONTEXT context) {
         final int MODE_OUTSIDE_QUOTES = 1;
         final int MODE_INSIDE_QUOTES = 2;
         final int MODE_INSIDE_QUOTES_ESCAPE_NEXT = 3;

@@ -40,14 +40,6 @@ public final class ConverterTextToCollectionListTsvStringListTest extends Conver
     }
 
     @Test
-    public void testConvertStringSurroundingSpacesTrimmed() {
-        this.convertToCollectionAndCheck(
-            " " + STRING2 + " ",
-            STRING2
-        );
-    }
-
-    @Test
     public void testConvertCharSequenceString() {
         this.convertToCollectionAndCheck(
             new StringBuilder(STRING),
