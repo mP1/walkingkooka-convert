@@ -33,7 +33,7 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
     }
 
     @Test
-    public void testConvertStringEnAuoLocaleLanguageTag() {
+    public void testConvertStringEnAuToLocaleLanguageTag() {
         this.convertAndCheck(
             "en-AU",
             LocaleLanguageTag.class,
