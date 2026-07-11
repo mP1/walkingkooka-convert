@@ -20,7 +20,11 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
+
+import java.util.Locale;
+import java.util.Optional;
 
 public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToTestCase<ConverterTextToLocaleLanguageTag<ConverterContext>, LocaleLanguageTag> {
 
@@ -38,6 +42,43 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
             "en-AU",
             LocaleLanguageTag.class,
             LocaleLanguageTag.parse("en-AU")
+        );
+    }
+
+    @Test
+    public void testConvertStringToLocaleLanguageTagToLocale() {
+        final Locale locale = Locale.forLanguageTag("en-AU");
+
+        this.checkEquals(
+            "AU",
+            locale.getCountry(),
+            "country"
+        );
+
+        this.checkEquals(
+            "en",
+            locale.getLanguage(),
+            "language"
+        );
+
+        this.checkEquals(
+            "en-AU",
+            locale.toLanguageTag(),
+            "toLanguageTag"
+        );
+
+        this.convertAndCheck(
+            Converters.textToLocale(),
+            locale.toLanguageTag(),
+            Locale.class,
+            locale
+        );
+
+        this.convertAndCheck(
+            Converters.textToLocaleLanguageTag(),
+            locale.toLanguageTag(),
+            LocaleLanguageTag.class,
+            LocaleLanguageTag.fromLocale(locale)
         );
     }
 
@@ -71,6 +112,12 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
             }
 
             private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+
+            @Override
+            public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
+                return LocaleContexts.jre(Locale.ENGLISH)
+                    .localeForLanguageTag(languageTag);
+            }
         };
     }
 
