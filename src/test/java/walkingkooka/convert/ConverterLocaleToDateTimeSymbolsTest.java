@@ -47,41 +47,12 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
 
     @Test
     public void testConvertHasLocaleToDateTimeSymbols() {
-        this.convertAndCheck(
+        this.convertAndCheck2(
             new HasLocale() {
 
                 @Override
                 public Locale locale() {
                     return LOCALE;
-                }
-            },
-            DateTimeSymbols.class,
-            new FakeConverterContext() {
-                @Override
-                public boolean canConvert(final Object value,
-                                          final Class<?> type) {
-                    return this.converter.canConvert(
-                        value,
-                        type,
-                        this
-                    );
-                }
-
-                @Override
-                public <T> Either<T, String> convert(final Object value,
-                                                     final Class<T> target) {
-                    return this.converter.convert(
-                        value,
-                        target,
-                        this
-                    );
-                }
-
-                private final Converter<ConverterContext> converter = Converters.toLocale();
-
-                @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
                 }
             },
             DATE_TIME_SYMBOLS
@@ -90,41 +61,12 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
 
     @Test
     public void testConvertHasOptionalLocaleToDateTimeSymbols() {
-        this.convertAndCheck(
+        this.convertAndCheck2(
             new HasOptionalLocale() {
 
                 @Override
                 public Optional<Locale> locale() {
                     return Optional.of(LOCALE);
-                }
-            },
-            DateTimeSymbols.class,
-            new FakeConverterContext() {
-                @Override
-                public boolean canConvert(final Object value,
-                                          final Class<?> type) {
-                    return this.converter.canConvert(
-                        value,
-                        type,
-                        this
-                    );
-                }
-
-                @Override
-                public <T> Either<T, String> convert(final Object value,
-                                                     final Class<T> target) {
-                    return this.converter.convert(
-                        value,
-                        target,
-                        this
-                    );
-                }
-
-                private final Converter<ConverterContext> converter = Converters.toLocale();
-
-                @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
                 }
             },
             DATE_TIME_SYMBOLS
@@ -133,7 +75,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
 
     @Test
     public void testConvertHasOptionalLocaleToDateTimeSymbolsWhenEmptyHasOptionalLocale() {
-        this.convertAndCheck(
+        this.convertAndCheck2(
             new HasOptionalLocale() {
 
                 @Override
@@ -141,75 +83,30 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
                     return Optional.empty();
                 }
             },
-            DateTimeSymbols.class,
-            new FakeConverterContext() {
-                @Override
-                public boolean canConvert(final Object value,
-                                          final Class<?> type) {
-                    return this.converter.canConvert(
-                        value,
-                        type,
-                        this
-                    );
-                }
-
-                @Override
-                public <T> Either<T, String> convert(final Object value,
-                                                     final Class<T> target) {
-                    return this.converter.convert(
-                        value,
-                        target,
-                        this
-                    );
-                }
-
-                private final Converter<ConverterContext> converter = Converters.toLocale();
-            },
             null
         );
     }
 
     @Test
     public void testConvertLocaleToDateTimeSymbols() {
-        this.convertAndCheck(
+        this.convertAndCheck2(
             LOCALE,
-            DateTimeSymbols.class,
-            new FakeConverterContext() {
-                @Override
-                public boolean canConvert(final Object value,
-                                          final Class<?> type) {
-                    return this.converter.canConvert(
-                        value,
-                        type,
-                        this
-                    );
-                }
-
-                @Override
-                public <T> Either<T, String> convert(final Object value,
-                                                     final Class<T> target) {
-                    return this.converter.convert(
-                        value,
-                        target,
-                        this
-                    );
-                }
-
-                private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
-
-                @Override
-                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
-                    return Optional.of(DATE_TIME_SYMBOLS);
-                }
-            },
             DATE_TIME_SYMBOLS
         );
     }
 
     @Test
     public void testConvertLocaleLanguageTagToDateTimeSymbols() {
-        this.convertAndCheck(
+        this.convertAndCheck2(
             LocaleLanguageTag.fromLocale(LOCALE),
+            DATE_TIME_SYMBOLS
+        );
+    }
+
+    private void convertAndCheck2(final Object value,
+                                  final DateTimeSymbols expected) {
+        this.convertAndCheck(
+            value,
             DateTimeSymbols.class,
             new FakeConverterContext() {
                 @Override
@@ -232,14 +129,24 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
                     );
                 }
 
-                private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+                private final Converter<ConverterContext> converter = Converters.collection(
+                    Lists.of(
+                        Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+                        Converters.toLocale()
+                    )
+                );
 
                 @Override
                 public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+                    checkEquals(
+                        LOCALE,
+                        locale,
+                        "locale"
+                    );
                     return Optional.of(DATE_TIME_SYMBOLS);
                 }
             },
-            DATE_TIME_SYMBOLS
+            expected
         );
     }
 
