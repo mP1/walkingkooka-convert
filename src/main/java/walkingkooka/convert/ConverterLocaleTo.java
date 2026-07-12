@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
@@ -40,6 +41,7 @@ abstract class ConverterLocaleTo<T, C extends ConverterContext> implements Tryin
         return (this.targetType() == type &&
             (
                 value instanceof Locale ||
+                    value instanceof LocaleLanguageTag ||
                     value instanceof HasLocale ||
                     value instanceof HasOptionalLocale ||
                     this.canConvertNotString(
@@ -68,14 +70,22 @@ abstract class ConverterLocaleTo<T, C extends ConverterContext> implements Tryin
                 (Locale) value,
                 context
             ) :
-            this.tryConvertNonLocale(
-                value,
-                context
-            );
+            value instanceof LocaleLanguageTag ?
+                this.tryConvertLocaleLanguageTag(
+                    (LocaleLanguageTag) value,
+                    context
+                ) :
+                this.tryConvertNonLocale(
+                    value,
+                    context
+                );
     }
 
     abstract T tryConvertLocale(final Locale locale,
                                 final C context);
+
+    abstract T tryConvertLocaleLanguageTag(final LocaleLanguageTag localeLanguageTag,
+                                           final C context);
 
     abstract T tryConvertNonLocale(final Object value,
                                    final C context);

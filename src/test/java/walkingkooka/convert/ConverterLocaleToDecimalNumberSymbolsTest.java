@@ -253,6 +253,43 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
     }
 
     @Test
+    public void testConvertLocaleLanguageTagToDecimalNumberSymbols() {
+        this.convertAndCheck(
+            LocaleLanguageTag.fromLocale(LOCALE),
+            DecimalNumberSymbols.class,
+            new FakeConverterContext() {
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+
+                @Override
+                public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                }
+            },
+            DECIMAL_NUMBER_SYMBOLS
+        );
+    }
+
+    @Test
     public void testConvertStringToDateSymbolsWithLocaleLanguageTag() {
         this.convertAndCheck(
             LOCALE.toLanguageTag(),

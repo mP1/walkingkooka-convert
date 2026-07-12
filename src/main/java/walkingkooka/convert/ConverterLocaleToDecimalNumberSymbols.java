@@ -17,6 +17,7 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.HasDecimalNumberSymbols;
 import walkingkooka.math.HasOptionalDecimalNumberSymbols;
@@ -64,6 +65,17 @@ final class ConverterLocaleToDecimalNumberSymbols<C extends ConverterContext> ex
                                           final C context) {
         return context.decimalNumberSymbolsForLocale(locale)
             .orElse(null);
+    }
+
+    @Override
+    DecimalNumberSymbols tryConvertLocaleLanguageTag(final LocaleLanguageTag localeLanguageTag,
+                                                     final C context) {
+        return this.tryConvertLocale(
+            Locale.forLanguageTag(
+                localeLanguageTag.value()
+            ),
+            context
+        );
     }
 
     @Override

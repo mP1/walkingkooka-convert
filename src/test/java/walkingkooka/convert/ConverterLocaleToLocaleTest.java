@@ -22,6 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.currency.CurrencyContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -39,6 +40,14 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
     @Test
     public void testConvertLocale() {
         this.convertAndCheck(LOCALE);
+    }
+
+    @Test
+    public void testConvertLocaleLanguageTag() {
+        this.convertAndCheck(
+            LocaleLanguageTag.fromLocale(LOCALE),
+            LOCALE
+        );
     }
 
     @Test
