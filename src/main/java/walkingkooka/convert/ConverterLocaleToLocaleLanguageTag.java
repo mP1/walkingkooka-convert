@@ -63,7 +63,9 @@ final class ConverterLocaleToLocaleLanguageTag<C extends ConverterContext> exten
     @Override
     LocaleLanguageTag tryConvertLocale(final Locale locale,
                                        final C context) {
-        return LocaleLanguageTag.fromLocale(locale);
+        return null != locale ?
+            LocaleLanguageTag.fromLocale(locale) :
+            null;
     }
 
     @Override
@@ -75,34 +77,13 @@ final class ConverterLocaleToLocaleLanguageTag<C extends ConverterContext> exten
     @Override
     LocaleLanguageTag tryConvertNonLocale(final Object value,
                                           final C context) {
-        Locale locale;
-
-        if (value instanceof Locale) {
-            locale = (Locale) value;
-        } else {
-            if (value instanceof HasLocale) {
-                locale = ((HasLocale) value)
-                    .locale();
-            } else {
-                if (value instanceof HasOptionalLocale) {
-                    locale = ((HasOptionalLocale) value)
-                        .locale()
-                        .orElse(null);
-                } else {
-                    locale = context.localeForLanguageTagOrFail(
-                        LocaleLanguageTag.parse(
-                            context.convertOrFail(
-                                value,
-                                String.class
-                            )
-                        )
-                    );
-                }
-            }
-        }
-
-        return null != locale ?
-            LocaleLanguageTag.fromLocale(locale) :
+        return null != value ?
+            LocaleLanguageTag.parse(
+                context.convertOrFail(
+                    value,
+                    String.class
+                )
+            ) :
             null;
     }
 }
