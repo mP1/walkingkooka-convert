@@ -644,6 +644,13 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> toLocale() {
         return ConverterLocaleToLocale.instance();
     }
+
+    /**
+     * {@see ConverterLocaleToLocaleLanguageTag}
+     */
+    public static <C extends ConverterContext> Converter<C> toLocaleLanguageTag() {
+        return ConverterLocaleToLocaleLanguageTag.instance();
+    }
     
     /**
      * Stop creation
