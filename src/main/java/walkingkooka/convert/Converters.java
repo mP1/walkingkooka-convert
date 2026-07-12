@@ -646,6 +646,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterToDateTimeSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> toDateTimeSymbols() {
+        return ConverterLocaleToDateTimeSymbols.instance();
+    }
+
+    /**
      * {@see ConverterLocaleToLocale}
      */
     public static <C extends ConverterContext> Converter<C> toLocale() {
