@@ -646,6 +646,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterLocaleToDecimalNumberSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> toDecimalSymbols() {
+        return ConverterLocaleToDecimalNumberSymbols.instance();
+    }
+
+    /**
      * {@see ConverterLocaleToLocale}
      */
     public static <C extends ConverterContext> Converter<C> toLocale() {

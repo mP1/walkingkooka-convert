@@ -83,6 +83,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [text-to-zone-offset](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTextToZoneOffset.java)
 - [to-boolean](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToBoolean.java)
 - [to-date-time-symbols](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToDateTimeSymbols.java)
+- [to-decimal-number-symbols](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToDecimalNumberSymbols.java)
 - [to-locale](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToLocale.java)
 - [to-locale-language-tag](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToLocaleLanguageTag.java)
 
