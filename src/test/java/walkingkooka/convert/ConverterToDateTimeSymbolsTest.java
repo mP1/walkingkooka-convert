@@ -24,7 +24,7 @@ import walkingkooka.datetime.DateTimeSymbols;
 import java.text.DateFormatSymbols;
 import java.util.Locale;
 
-public final class ConverterHasDateTimeSymbolsTest extends ConverterTestCase2<ConverterHasDateTimeSymbols<ConverterContext>> {
+public final class ConverterToDateTimeSymbolsTest extends ConverterTestCase2<ConverterToDateTimeSymbols<ConverterContext>> {
 
     @Test
     public void testConvertStringToDateTimeSymbolsFails() {
@@ -57,8 +57,8 @@ public final class ConverterHasDateTimeSymbolsTest extends ConverterTestCase2<Co
     }
 
     @Override
-    public ConverterHasDateTimeSymbols<ConverterContext> createConverter() {
-        return ConverterHasDateTimeSymbols.instance();
+    public ConverterToDateTimeSymbols<ConverterContext> createConverter() {
+        return ConverterToDateTimeSymbols.instance();
     }
 
     @Override
@@ -70,14 +70,14 @@ public final class ConverterHasDateTimeSymbolsTest extends ConverterTestCase2<Co
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "HasDateTimeSymbols"
+            "toDateTimeSymbols"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<ConverterHasDateTimeSymbols<ConverterContext>> type() {
-        return Cast.to(ConverterHasDateTimeSymbols.class);
+    public Class<ConverterToDateTimeSymbols<ConverterContext>> type() {
+        return Cast.to(ConverterToDateTimeSymbols.class);
     }
 }
