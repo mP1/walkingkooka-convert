@@ -190,10 +190,10 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterHasDateTimeSymbols}
+     * {@see ConverterToDateTimeSymbols}
      */
     public static <C extends ConverterContext> Converter<C> hasDateTimeSymbols() {
-        return ConverterHasDateTimeSymbols.instance();
+        return ConverterToDateTimeSymbols.instance();
     }
 
     /**

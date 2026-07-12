@@ -25,24 +25,24 @@ import walkingkooka.datetime.HasOptionalDateTimeSymbols;
 /**
  * A Converter that converts any {@link HasDateTimeSymbols} or {@link HasOptionalDateTimeSymbols} into a {@link DateTimeSymbols}.
  */
-final class ConverterHasDateTimeSymbols<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterToDateTimeSymbols<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterHasDateTimeSymbols<C> instance() {
+    static <C extends ConverterContext> ConverterToDateTimeSymbols<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterHasDateTimeSymbols<?> INSTANCE = new ConverterHasDateTimeSymbols<>();
+    private final static ConverterToDateTimeSymbols<?> INSTANCE = new ConverterToDateTimeSymbols<>();
 
     /**
      * Private to stop sub classing.
      */
-    private ConverterHasDateTimeSymbols() {
+    private ConverterToDateTimeSymbols() {
         super();
     }
 
@@ -72,6 +72,6 @@ final class ConverterHasDateTimeSymbols<C extends ConverterContext> implements T
 
     @Override
     public String toString() {
-        return HasDateTimeSymbols.class.getSimpleName();
+        return "to" + DateTimeSymbols.class.getSimpleName();
     }
 }
