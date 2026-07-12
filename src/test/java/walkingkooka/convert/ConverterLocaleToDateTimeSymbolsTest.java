@@ -207,6 +207,43 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
     }
 
     @Test
+    public void testConvertLocaleLanguageTagToDateTimeSymbols() {
+        this.convertAndCheck(
+            LocaleLanguageTag.fromLocale(LOCALE),
+            DateTimeSymbols.class,
+            new FakeConverterContext() {
+                @Override
+                public boolean canConvert(final Object value,
+                                          final Class<?> type) {
+                    return this.converter.canConvert(
+                        value,
+                        type,
+                        this
+                    );
+                }
+
+                @Override
+                public <T> Either<T, String> convert(final Object value,
+                                                     final Class<T> target) {
+                    return this.converter.convert(
+                        value,
+                        target,
+                        this
+                    );
+                }
+
+                private final Converter<ConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+
+                @Override
+                public Optional<DateTimeSymbols> dateTimeSymbolsForLocale(final Locale locale) {
+                    return Optional.of(DATE_TIME_SYMBOLS);
+                }
+            },
+            DATE_TIME_SYMBOLS
+        );
+    }
+
+    @Test
     public void testConvertHasDateTimeSymbols() {
         this.convertAndCheck(
             new HasDateTimeSymbols() {

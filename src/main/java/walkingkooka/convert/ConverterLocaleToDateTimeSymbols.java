@@ -20,6 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.datetime.HasDateTimeSymbols;
 import walkingkooka.datetime.HasOptionalDateTimeSymbols;
+import walkingkooka.locale.LocaleLanguageTag;
 
 import java.util.Locale;
 
@@ -64,6 +65,17 @@ final class ConverterLocaleToDateTimeSymbols<C extends ConverterContext> extends
                                      final C context) {
         return context.dateTimeSymbolsForLocale(locale)
             .orElse(null);
+    }
+
+    @Override
+    DateTimeSymbols tryConvertLocaleLanguageTag(final LocaleLanguageTag localeLanguageTag,
+                                                final C context) {
+        return this.tryConvertLocale(
+            Locale.forLanguageTag(
+                localeLanguageTag.value()
+            ),
+            context
+        );
     }
 
     @Override

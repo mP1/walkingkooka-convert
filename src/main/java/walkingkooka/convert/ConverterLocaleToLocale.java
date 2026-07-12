@@ -66,6 +66,17 @@ final class ConverterLocaleToLocale<C extends ConverterContext> extends Converte
     }
 
     @Override
+    Locale tryConvertLocaleLanguageTag(final LocaleLanguageTag localeLanguageTag,
+                                       final C context) {
+        return this.tryConvertLocale(
+            Locale.forLanguageTag(
+                localeLanguageTag.value()
+            ),
+            context
+        );
+    }
+
+    @Override
     Locale tryConvertNonLocale(final Object value,
                                final C context) {
         Locale locale;
