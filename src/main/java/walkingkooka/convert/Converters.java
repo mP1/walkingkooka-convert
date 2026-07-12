@@ -190,6 +190,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterHasDateTimeSymbols}
+     */
+    public static <C extends ConverterContext> Converter<C> hasDateTimeSymbols() {
+        return ConverterHasDateTimeSymbols.instance();
+    }
+
+    /**
      * {@see ConverterHasProperties}
      */
     public static <C extends ConverterContext> Converter<C> hasProperties() {
