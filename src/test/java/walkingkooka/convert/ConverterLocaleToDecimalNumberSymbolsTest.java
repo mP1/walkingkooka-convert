@@ -188,6 +188,11 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
 
                 @Override
                 public Optional<DecimalNumberSymbols> decimalNumberSymbolsForLocale(final Locale locale) {
+                    checkEquals(
+                        LOCALE,
+                        locale,
+                        "locale"
+                    );
                     return Optional.of(DECIMAL_NUMBER_SYMBOLS);
                 }
 

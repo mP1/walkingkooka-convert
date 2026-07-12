@@ -75,10 +75,23 @@ abstract class ConverterLocaleTo<T, C extends ConverterContext> implements Tryin
                     (LocaleLanguageTag) value,
                     context
                 ) :
-                this.tryConvertNonLocale(
-                    value,
-                    context
-                );
+                value instanceof HasLocale ?
+                    this.tryConvertLocale(
+                        ((HasLocale) value)
+                            .locale(),
+                        context
+                    ) :
+                    value instanceof HasOptionalLocale ?
+                        this.tryConvertLocale(
+                            ((HasOptionalLocale) value)
+                                .locale()
+                                .orElse(null),
+                            context
+                        ) :
+                        this.tryConvertNonLocale(
+                            value,
+                            context
+                        );
     }
 
     abstract T tryConvertLocale(final Locale locale,

@@ -63,8 +63,10 @@ final class ConverterLocaleToDateTimeSymbols<C extends ConverterContext> extends
     @Override
     DateTimeSymbols tryConvertLocale(final Locale locale,
                                      final C context) {
-        return context.dateTimeSymbolsForLocale(locale)
-            .orElse(null);
+        return null != locale ?
+            context.dateTimeSymbolsForLocale(locale)
+                .orElse(null) :
+            null;
     }
 
     @Override

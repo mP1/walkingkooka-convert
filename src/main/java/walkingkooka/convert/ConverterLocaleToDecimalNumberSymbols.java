@@ -63,8 +63,10 @@ final class ConverterLocaleToDecimalNumberSymbols<C extends ConverterContext> ex
     @Override
     DecimalNumberSymbols tryConvertLocale(final Locale locale,
                                           final C context) {
-        return context.decimalNumberSymbolsForLocale(locale)
-            .orElse(null);
+        return null != locale ?
+            context.decimalNumberSymbolsForLocale(locale)
+                .orElse(null) :
+            null;
     }
 
     @Override

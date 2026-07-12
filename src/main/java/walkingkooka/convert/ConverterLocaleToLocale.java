@@ -79,32 +79,13 @@ final class ConverterLocaleToLocale<C extends ConverterContext> extends Converte
     @Override
     Locale tryConvertNonLocale(final Object value,
                                final C context) {
-        Locale locale;
-
-        if (value instanceof Locale) {
-            locale = (Locale) value;
-        } else {
-            if (value instanceof HasLocale) {
-                locale = ((HasLocale) value)
-                    .locale();
-            } else {
-                if (value instanceof HasOptionalLocale) {
-                    locale = ((HasOptionalLocale) value)
-                        .locale()
-                        .orElse(null);
-                } else {
-                    locale = context.localeForLanguageTagOrFail(
-                        LocaleLanguageTag.parse(
-                            context.convertOrFail(
-                                value,
-                                String.class
-                            )
-                        )
-                    );
-                }
-            }
-        }
-
-        return locale;
+        return context.localeForLanguageTagOrFail(
+            LocaleLanguageTag.parse(
+                context.convertOrFail(
+                    value,
+                    String.class
+                )
+            )
+        );
     }
 }
