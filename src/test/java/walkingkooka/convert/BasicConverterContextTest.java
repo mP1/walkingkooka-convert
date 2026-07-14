@@ -33,8 +33,6 @@ import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
-import walkingkooka.text.BinaryTextContext;
-import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
 import java.text.DateFormatSymbols;
@@ -64,11 +62,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     );
 
     private final static Number CURRENCY_EXCHANGE_RATE = 12;
-
-    private final static BinaryTextContext BINARY_TEXT_CONTEXT = TextPrinting.with(
-        INDENTATION,
-        LINE_ENDING
-    ).setCharset(CHARSET);
 
     private final static Locale LOCALE = Locale.ENGLISH;
 
