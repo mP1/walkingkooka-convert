@@ -25,6 +25,7 @@ import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.text.cursor.parser.BigDecimalParserToken;
 import walkingkooka.text.cursor.parser.InvalidCharacterExceptionFactory;
 import walkingkooka.text.cursor.parser.Parser;
@@ -166,13 +167,14 @@ public final class ConverterParserTest extends ConverterTestCase2<ConverterParse
     public ConverterContext createContext() {
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
-            StandardCharsets.UTF_8,
             0, // dateOffset
-            Indentation.SPACES2,
-            LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
             BinaryNumberConverterFunctions.fake(),
+            TextPrinting.with(
+                Indentation.SPACES2,
+                LineEnding.NL
+            ).setCharset(StandardCharsets.UTF_8),
             CurrencyLocaleContexts.fake(),
             DateTimeContexts.fake(),
             DecimalNumberContexts.american(MathContext.DECIMAL32)

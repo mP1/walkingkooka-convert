@@ -26,6 +26,7 @@ import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
@@ -107,13 +108,14 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
     public ConverterContext createContext() {
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
-            StandardCharsets.UTF_8,
             Converters.EXCEL_1904_DATE_SYSTEM_OFFSET,
-            Indentation.SPACES2,
-            LineEnding.NL,
             ',', // valueSeparator
             Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
             BinaryNumberConverterFunctions.multiply(),
+            TextPrinting.with(
+                Indentation.SPACES2,
+                LineEnding.NL
+            ).setCharset(StandardCharsets.UTF_8),
             CurrencyContexts.fake()
                 .setLocaleContext(
                     LocaleContexts.jre(

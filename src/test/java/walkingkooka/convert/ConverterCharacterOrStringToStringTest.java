@@ -25,6 +25,7 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -116,13 +117,14 @@ public final class ConverterCharacterOrStringToStringTest implements ConverterTe
             Number.class,
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
-                StandardCharsets.UTF_8,
                 0, // dateOffset
-                Indentation.SPACES2,
-                LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
                 BinaryNumberConverterFunctions.fake(),
+                TextPrinting.with(
+                    Indentation.SPACES2,
+                    LineEnding.NL
+                ).setCharset(StandardCharsets.UTF_8),
                 new FakeCurrencyContext() {
                     @Override
                     public Optional<Currency> currencyForLocale(final Locale locale) {
