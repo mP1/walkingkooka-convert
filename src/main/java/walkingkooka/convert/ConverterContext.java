@@ -18,7 +18,6 @@
 package walkingkooka.convert;
 
 import walkingkooka.Context;
-import walkingkooka.HasCharset;
 import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyExchangeRater;
@@ -27,13 +26,13 @@ import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
 import walkingkooka.math.DecimalNumberContext;
-import walkingkooka.text.HasIndentation;
-import walkingkooka.text.HasLineEnding;
+import walkingkooka.text.BinaryTextContext;
 
 /**
  * {@link Context} that accompanies a {@link Converter} and is intended to carry values that may be locale or user aware.
  */
 public interface ConverterContext extends ConverterLike,
+    BinaryTextContext,
     CanCurrencyForLocale,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
@@ -41,10 +40,7 @@ public interface ConverterContext extends ConverterLike,
     CurrencyExchangeRater,
     DateTimeContext,
     DecimalNumberContext,
-    HasCharset,
-    HasCurrencyCode,
-    HasIndentation,
-    HasLineEnding {
+    HasCurrencyCode {
 
     /**
      * A flag that controls whether text holding a number may or may not include a group-separator.
