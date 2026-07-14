@@ -34,7 +34,6 @@ import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.BinaryTextContext;
-import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.TextPrinting;
 
@@ -67,7 +66,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     private final static Number CURRENCY_EXCHANGE_RATE = 12;
 
-    private final static Indentation INDENTATION = Indentation.SPACES2;
     private final static LineEnding LINE_ENDING = LineEnding.NL;
 
     private final static BinaryTextContext BINARY_TEXT_CONTEXT = TextPrinting.with(
