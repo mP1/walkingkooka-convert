@@ -33,8 +33,10 @@ import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.text.BinaryTextContext;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
@@ -71,6 +73,12 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     private final static Indentation INDENTATION = Indentation.SPACES2;
     private final static LineEnding LINE_ENDING = LineEnding.NL;
+
+    private final static BinaryTextContext BINARY_TEXT_CONTEXT = TextPrinting.with(
+        INDENTATION,
+        LineEnding.NL
+    ).setCharset(CHARSET);
+
     private final static Locale LOCALE = Locale.ENGLISH;
 
     private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = new FakeCurrencyContext() {
@@ -167,58 +175,16 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static BinaryNumberConverterFunction<ConverterContext> MULTIPLIER = BinaryNumberConverterFunctions.multiply();
 
     @Test
-    public void testWithNullCharsetFails() {
+    public void testWithNullBinaryTextContextFails() {
         assertThrows(
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                null,
                 NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 MULTIPLIER,
-                CURRENCY_LOCALE_CONTEXT,
-                DATE_TIME_CONTEXT,
-                DECIMAL_NUMBER_CONTEXT
-            )
-        );
-    }
-
-    @Test
-    public void testWithNullIndentationFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> BasicConverterContext.with(
-                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
-                NUMBER_TO_DATE_OFFSET,
                 null,
-                LINE_ENDING,
-                VALUE_SEPARATOR,
-                CONVERTER,
-                MULTIPLIER,
-                CURRENCY_LOCALE_CONTEXT,
-                DATE_TIME_CONTEXT,
-                DECIMAL_NUMBER_CONTEXT
-            )
-        );
-    }
-
-    @Test
-    public void testWithNullLineEndingFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> BasicConverterContext.with(
-                CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
-                NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                null,
-                VALUE_SEPARATOR,
-                CONVERTER,
-                MULTIPLIER,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -232,13 +198,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
                 VALUE_SEPARATOR,
                 null,
                 MULTIPLIER,
+                BINARY_TEXT_CONTEXT,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -252,13 +216,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 null,
+                BINARY_TEXT_CONTEXT,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -272,13 +234,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 MULTIPLIER,
+                BINARY_TEXT_CONTEXT,
                 null,
                 DATE_TIME_CONTEXT,
                 DECIMAL_NUMBER_CONTEXT
@@ -293,13 +253,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 MULTIPLIER,
+                BINARY_TEXT_CONTEXT,
                 CURRENCY_LOCALE_CONTEXT,
                 null,
                 DECIMAL_NUMBER_CONTEXT
@@ -313,13 +271,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
             NullPointerException.class,
             () -> BasicConverterContext.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-                CHARSET,
                 NUMBER_TO_DATE_OFFSET,
-                INDENTATION,
-                LINE_ENDING,
                 VALUE_SEPARATOR,
                 CONVERTER,
                 MULTIPLIER,
+                BINARY_TEXT_CONTEXT,
                 CURRENCY_LOCALE_CONTEXT,
                 DATE_TIME_CONTEXT,
                 null
@@ -365,6 +321,36 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         );
     }
 
+    // HasCharset.......................................................................................................
+
+    @Test
+    public void testCharset() {
+        this.charsetAndCheck(
+            this.createContext(),
+            CHARSET
+        );
+    }
+
+    // HasIndentation...................................................................................................
+
+    @Test
+    public void testIndentation() {
+        this.indentationAndCheck(
+            this.createContext(),
+            INDENTATION
+        );
+    }
+
+    // HasLineEnding....................................................................................................
+
+    @Test
+    public void testLineEnding() {
+        this.lineEndingAndCheck(
+            this.createContext(),
+            LINE_ENDING
+        );
+    }
+
     // HasLocale........................................................................................................
 
     @Test
@@ -379,13 +365,11 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public BasicConverterContext createContext() {
         return BasicConverterContext.with(
             CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
-            CHARSET,
             NUMBER_TO_DATE_OFFSET,
-            INDENTATION,
-            LINE_ENDING,
             VALUE_SEPARATOR,
             CONVERTER,
             MULTIPLIER,
+            BINARY_TEXT_CONTEXT,
             CURRENCY_LOCALE_CONTEXT,
             DATE_TIME_CONTEXT,
             decimalNumberContext()
@@ -413,7 +397,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testToString() {
         this.toStringAndCheck(
             this.createContext(),
-            DATE_TIME_CONTEXT + " " + decimalNumberContext()
+            BINARY_TEXT_CONTEXT + " " + DATE_TIME_CONTEXT + " " + decimalNumberContext()
         );
     }
 

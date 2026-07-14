@@ -28,6 +28,7 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
 import java.nio.charset.StandardCharsets;
@@ -92,13 +93,14 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
 
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
-                StandardCharsets.UTF_8,
                 0, // dateTimeOffset
-                Indentation.SPACES2,
-                LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
                 BinaryNumberConverterFunctions.multiply(),
+                TextPrinting.with(
+                        Indentation.SPACES2,
+                        LineEnding.NL)
+                    .setCharset(StandardCharsets.UTF_8),
                 new FakeCurrencyContext() {
 
                     @Override

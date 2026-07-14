@@ -21,10 +21,7 @@ import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
-
-import java.nio.charset.Charset;
+import walkingkooka.text.BinaryTextContext;
 
 /**
  * Factory methods for numerous {@link Converter converters}.
@@ -35,25 +32,21 @@ public final class ConverterContexts implements PublicStaticHelper {
      * {@see BasicConverterContext}
      */
     public static ConverterContext basic(final boolean canNumbersHaveGroupSeparator,
-                                         final Charset charset,
                                          final long dateOffset,
-                                         final Indentation indentation,
-                                         final LineEnding lineEnding,
                                          final char valueSeparator,
                                          final Converter<ConverterContext> converter,
                                          final BinaryNumberConverterFunction<ConverterContext> multiplier,
+                                         final BinaryTextContext binaryTextContext,
                                          final CurrencyLocaleContext currencyLocaleContext,
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
         return BasicConverterContext.with(
             canNumbersHaveGroupSeparator,
-            charset,
             dateOffset,
-            indentation,
-            lineEnding,
             valueSeparator,
             converter,
             multiplier,
+            binaryTextContext,
             currencyLocaleContext,
             dateTimeContext,
             decimalNumberContext

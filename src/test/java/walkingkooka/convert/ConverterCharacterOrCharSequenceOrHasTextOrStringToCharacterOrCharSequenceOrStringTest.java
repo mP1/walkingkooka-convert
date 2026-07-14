@@ -29,6 +29,7 @@ import walkingkooka.naming.StringName;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -430,13 +431,14 @@ public final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterO
             Character.class,
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
-                StandardCharsets.UTF_8,
                 0, // dateTimeOffset
-                Indentation.SPACES2,
-                LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
                 BinaryNumberConverterFunctions.fake(),
+                TextPrinting.with(
+                    Indentation.SPACES2,
+                    LineEnding.NL
+                ).setCharset(StandardCharsets.UTF_8),
                 new FakeCurrencyContext() {
 
                     @Override

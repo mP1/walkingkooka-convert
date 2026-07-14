@@ -30,11 +30,10 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberSymbols;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
+import walkingkooka.text.BinaryTextContext;
+import walkingkooka.text.BinaryTextContextDelegator;
 
 import java.math.MathContext;
-import java.nio.charset.Charset;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
@@ -47,40 +46,35 @@ final class BasicConverterContext implements ConverterContext,
     CurrencyExchangeRaterDelegator,
     CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
-    DecimalNumberContextDelegator {
+    DecimalNumberContextDelegator,
+    BinaryTextContextDelegator {
 
     /**
      * Creates a new {@link BasicConverterContext}.
      */
     static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
-                                      final Charset charset,
                                       final long dateOffset,
-                                      final Indentation indentation,
-                                      final LineEnding lineEnding,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
                                       final BinaryNumberConverterFunction<ConverterContext> multiplier,
+                                      final BinaryTextContext binaryTextContext,
                                       final CurrencyLocaleContext currencyLocaleContext,
                                       final DateTimeContext dateTimeContext,
                                       final DecimalNumberContext decimalNumberContext) {
-        Objects.requireNonNull(charset, "charset");
-        Objects.requireNonNull(indentation, "indentation");
-        Objects.requireNonNull(lineEnding, "lineEnding");
         Objects.requireNonNull(converter, "converter");
         Objects.requireNonNull(multiplier, "multiplier");
+        Objects.requireNonNull(binaryTextContext, "binaryTextContext");
         Objects.requireNonNull(currencyLocaleContext, "currencyLocaleContext");
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
         return new BasicConverterContext(
             canNumbersHaveGroupSeparator,
-            charset,
             dateOffset,
-            indentation,
-            lineEnding,
             valueSeparator,
             converter,
             multiplier,
+            binaryTextContext,
             currencyLocaleContext,
             dateTimeContext,
             decimalNumberContext
@@ -91,13 +85,11 @@ final class BasicConverterContext implements ConverterContext,
      * Private ctor use factory
      */
     private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
-                                  final Charset charset,
                                   final long dateOffset,
-                                  final Indentation indentation,
-                                  final LineEnding lineEnding,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
                                   final BinaryNumberConverterFunction<ConverterContext> multiplier,
+                                  final BinaryTextContext binaryTextContext,
                                   final CurrencyLocaleContext currencyLocaleContext,
                                   final DateTimeContext dateTimeContext,
                                   final DecimalNumberContext decimalNumberContext) {
@@ -105,17 +97,14 @@ final class BasicConverterContext implements ConverterContext,
 
         this.canNumbersHaveGroupSeparator = canNumbersHaveGroupSeparator;
 
-        this.charset = charset;
-
         this.dateOffset = dateOffset;
-        this.indentation = indentation;
-        this.lineEnding = lineEnding;
         this.valueSeparator = valueSeparator;
 
         this.converter = converter;
 
         this.multiplier = multiplier;
 
+        this.binaryTextContext = binaryTextContext;
         this.currencyLocaleContext = currencyLocaleContext;
         this.dateTimeContext = dateTimeContext;
         this.decimalNumberContext = decimalNumberContext;
@@ -127,13 +116,6 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final boolean canNumbersHaveGroupSeparator;
-
-    @Override
-    public Charset charset() {
-        return this.charset;
-    }
-
-    private final Charset charset;
 
     @Override
     public long dateOffset() {
@@ -162,20 +144,6 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     @Override
-    public Indentation indentation() {
-        return this.indentation;
-    }
-
-    private final Indentation indentation;
-
-    @Override
-    public LineEnding lineEnding() {
-        return this.lineEnding;
-    }
-
-    private final LineEnding lineEnding;
-
-    @Override
     public <N extends Number> N multiply(final Number left,
                                          final Number right,
                                          final Class<N> type) {
@@ -195,6 +163,15 @@ final class BasicConverterContext implements ConverterContext,
     }
 
     private final char valueSeparator;
+
+    // BinaryTextContextDelegator.......................................................................................
+
+    @Override
+    public BinaryTextContext binaryTextContext() {
+        return this.binaryTextContext;
+    }
+
+    private final BinaryTextContext binaryTextContext;
 
     // DateTimeContextDelegator.........................................................................................
 
@@ -265,6 +242,6 @@ final class BasicConverterContext implements ConverterContext,
 
     @Override
     public String toString() {
-        return this.dateTimeContext + " " + this.decimalNumberContext;
+        return this.binaryTextContext + " " + this.dateTimeContext + " " + this.decimalNumberContext;
     }
 }

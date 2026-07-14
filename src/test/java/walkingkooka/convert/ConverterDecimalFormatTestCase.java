@@ -27,6 +27,7 @@ import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
 import java.nio.charset.StandardCharsets;
@@ -81,13 +82,14 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
     final ConverterContext createContext(final Locale locale) {
         return ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
-            StandardCharsets.UTF_8,
-            0, // dateOffset
-            Indentation.SPACES2,
-            LineEnding.NL,
+            0, // dateOffset,
             ',', // valueSeparator
             Converters.fake(),
             BinaryNumberConverterFunctions.fake(),
+            TextPrinting.with(
+                    Indentation.SPACES2,
+                    LineEnding.NL)
+                .setCharset(StandardCharsets.UTF_8),
             new FakeCurrencyContext() {
                 @Override
                 public Optional<Currency> currencyForLocale(final Locale locale) {
