@@ -31,7 +31,6 @@ import walkingkooka.text.LineEnding;
 import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -100,7 +99,7 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
                 TextPrinting.with(
                         Indentation.SPACES2,
                         LineEnding.NL)
-                    .setCharset(StandardCharsets.UTF_8),
+                    .setCharset(CHARSET),
                 new FakeCurrencyContext() {
 
                     @Override

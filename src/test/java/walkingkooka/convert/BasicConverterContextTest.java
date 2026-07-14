@@ -39,8 +39,6 @@ import walkingkooka.text.LineEnding;
 import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -56,8 +54,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     DecimalNumberContextDelegator {
 
     private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;
-
-    private final static Charset CHARSET = StandardCharsets.UTF_8;
 
     private final static long NUMBER_TO_DATE_OFFSET = 0;
     private final static char VALUE_SEPARATOR = ',';
