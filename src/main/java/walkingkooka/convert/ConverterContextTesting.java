@@ -17,7 +17,6 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.HasCharsetTesting;
 import walkingkooka.currency.CanCurrencyForLocaleTesting2;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting2;
 import walkingkooka.currency.CurrencyExchangeRaterTesting2;
@@ -26,8 +25,7 @@ import walkingkooka.datetime.DateTimeContextTesting2;
 import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting2;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting2;
 import walkingkooka.math.DecimalNumberContextTesting2;
-import walkingkooka.text.HasIndentationTesting;
-import walkingkooka.text.HasLineEndingTesting;
+import walkingkooka.text.BinaryTextContextTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -35,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Mixing testing interface for {@link ConverterContext}
  */
 public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting<C>,
+    BinaryTextContextTesting,
     CanCurrencyForLocaleTesting2<C>,
     CanDateTimeSymbolsForLocaleTesting2<C>,
     CanDecimalNumberSymbolsForLocaleTesting2<C>,
@@ -42,10 +41,7 @@ public interface ConverterContextTesting<C extends ConverterContext> extends Con
     CurrencyExchangeRaterTesting2<C>,
     DateTimeContextTesting2<C>,
     DecimalNumberContextTesting2<C>,
-    HasCharsetTesting,
-    HasCurrencyCodeTesting,
-    HasIndentationTesting,
-    HasLineEndingTesting {
+    HasCurrencyCodeTesting {
 
     // multiply.........................................................................................................
 
