@@ -132,8 +132,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     private final static char PLUS = '+';
     private final static char ZERO_DIGIT = '0';
 
-    private final static MathContext MATH_CONTEXT = MathContext.DECIMAL32;
-
     private final static DecimalNumberContext DECIMAL_NUMBER_CONTEXT = DecimalNumberContexts.basic(
         DecimalNumberContext.DEFAULT_NUMBER_DIGIT_COUNT,
         DecimalNumberSymbols.with(
