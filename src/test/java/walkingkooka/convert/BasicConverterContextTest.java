@@ -63,8 +63,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
 
     private final static Number CURRENCY_EXCHANGE_RATE = 12;
 
-    private final static Locale LOCALE = Locale.ENGLISH;
-
     private final static CurrencyLocaleContext CURRENCY_LOCALE_CONTEXT = new FakeCurrencyContext() {
 
         @Override
