@@ -18,6 +18,7 @@ package walkingkooka.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.Either;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.Whitespace;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.TreePrintable;
@@ -110,11 +111,13 @@ final class ConverterCustomToString<C extends ConverterContext> implements Conve
         printer.println(this.getClass().getSimpleName());
         printer.indent();
         {
-            printer.println(this.toString());
+            printer.println(
+                CharSequences.quoteAndEscape(this.toString())
+            );
             printer.indent();
             {
                 TreePrintable.printTreeOrToString(
-                    converter,
+                    this.converter,
                     printer
                 );
             }

@@ -164,7 +164,7 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
         this.treePrintAndCheck(
             this.createConverter(),
             "ConverterCustomToString\n" +
-                "  !!custom-to-string!!\n" +
+                "  \"!!custom-to-string!!\"\n" +
                 "    * to String (walkingkooka.convert.ConverterObjectToString)\n"
         );
     }
@@ -180,7 +180,7 @@ public final class ConverterCustomToStringTest extends ConverterTestCase2<Conver
                     )
                 ).setToString("Hello"),
             "ConverterCustomToString\n" +
-                "  Hello\n" +
+                "  \"Hello\"\n" +
                 "    ConverterCollection\n" +
                 "      TEXT to Charset (walkingkooka.convert.ConverterTextToCharset)\n" +
                 "      TEXT to Currency (walkingkooka.convert.ConverterTextToCurrency)\n"
