@@ -23,7 +23,6 @@ Converters may be used to convert values of one type to another. This is particu
 - [currency-value-to](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCurrencyValueTo.java)
 - [currency-value-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCurrencyValueToNumber.java)
 - [custom-to-string](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterCustomToString.java)
-- [has-value](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterHasValue.java)
 - [local-date-time-to-local-date](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToLocalDate.java)
 - [local-date-time-to-local-time](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToLocalTime.java)
 - [local-date-time-to-number](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterTemporalLocalDateTimeToNumber.java)
@@ -86,5 +85,6 @@ Converters may be used to convert values of one type to another. This is particu
 - [to-locale-language-tag](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToLocaleLanguageTag.java)
 - [to-properties](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToProperties.java)
 - [to-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToText.java)
+- [to-value](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToValue.java)
 
 Note more `Converter` implementations are available in many different repos to support useful conversions for other types.
