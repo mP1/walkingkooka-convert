@@ -188,13 +188,6 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> fake() {
         return new FakeConverter<>();
     }
-    
-    /**
-     * {@see ConverterHasText}
-     */
-    public static <C extends ConverterContext> Converter<C> hasText() {
-        return ConverterHasText.instance();
-    }
 
     /**
      * {@see ConverterHasValueTo}
@@ -664,6 +657,13 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> toProperties() {
         return ConverterToProperties.instance();
+    }
+
+    /**
+     * {@see ConverterToText}
+     */
+    public static <C extends ConverterContext> Converter<C> toText() {
+        return ConverterToText.instance();
     }
     
     /**

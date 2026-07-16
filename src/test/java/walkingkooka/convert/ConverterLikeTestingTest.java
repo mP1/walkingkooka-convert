@@ -80,6 +80,6 @@ public final class ConverterLikeTestingTest implements ConverterLikeTesting<Test
             );
         }
 
-        private final Converter<ConverterContext> converter = Converters.hasText();
+        private final Converter<ConverterContext> converter = Converters.toText();
     }
 }
