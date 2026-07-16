@@ -24,24 +24,24 @@ import walkingkooka.HasBinary;
 /**
  * Handles converting {@link walkingkooka.Binary} to {@link String}.
  */
-final class ConverterHasBinaryToString<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterBinaryToString<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterHasBinaryToString<C> instance() {
+    static <C extends ConverterContext> ConverterBinaryToString<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterHasBinaryToString<?> INSTANCE = new ConverterHasBinaryToString<>();
+    private final static ConverterBinaryToString<?> INSTANCE = new ConverterBinaryToString<>();
 
     /**
      * Private ctor use singleton.
      */
-    private ConverterHasBinaryToString() {
+    private ConverterBinaryToString() {
         super();
     }
 
@@ -67,6 +67,6 @@ final class ConverterHasBinaryToString<C extends ConverterContext> implements Tr
 
     @Override
     public String toString() {
-        return HasBinary.class.getSimpleName() + " to " + String.class.getSimpleName();
+        return Binary.class.getSimpleName() + " to " + String.class.getSimpleName();
     }
 }

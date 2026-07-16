@@ -92,6 +92,13 @@ public final class Converters implements PublicStaticHelper {
     static final long NANOS_PER_DAY = NANOS_PER_HOUR * HOURS_PER_DAY;
 
     /**
+     * {@see ConverterBinaryToString}
+     */
+    public static <C extends ConverterContext> Converter<C> binaryToString() {
+        return ConverterBinaryToString.instance();
+    }
+
+    /**
      * {@see ConverterBooleanToNumber}
      */
     public static <C extends ConverterContext> Converter<C> booleanToNumber() {
@@ -180,13 +187,6 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> fake() {
         return new FakeConverter<>();
-    }
-
-    /**
-     * {@see ConverterHasBinaryToString}
-     */
-    public static <C extends ConverterContext> Converter<C> hasBinaryToString() {
-        return ConverterHasBinaryToString.instance();
     }
 
     /**
