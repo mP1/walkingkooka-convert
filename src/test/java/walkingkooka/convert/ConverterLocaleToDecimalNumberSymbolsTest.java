@@ -34,8 +34,6 @@ import java.util.Optional;
 
 public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLocaleToTestCase<ConverterLocaleToDecimalNumberSymbols<ConverterContext>, DecimalNumberSymbols> {
 
-    private final static Locale LOCALE = Locale.ENGLISH;
-
     private final static DecimalNumberSymbols DECIMAL_NUMBER_SYMBOLS = DecimalNumberSymbols.fromDecimalFormatSymbols(
         '+',
         new DecimalFormatSymbols(LOCALE)
@@ -107,7 +105,7 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
 
                 @Override
                 public Optional<Locale> locale() {
-                    return Optional.of(LOCALE);
+                    return OPTIONAL_LOCALE;
                 }
             },
             DECIMAL_NUMBER_SYMBOLS

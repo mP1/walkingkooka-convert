@@ -36,8 +36,6 @@ import java.util.Optional;
 
 public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase<ConverterLocaleToLocale<ConverterContext>, Locale> {
 
-    private final static Locale LOCALE = Locale.ENGLISH;
-
     @Test
     public void testConvertLocale() {
         this.convertAndCheck(LOCALE);
@@ -70,7 +68,7 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
             new HasOptionalLocale() {
                 @Override
                 public Optional<Locale> locale() {
-                    return Optional.of(LOCALE);
+                    return OPTIONAL_LOCALE;
                 }
             },
             LOCALE
