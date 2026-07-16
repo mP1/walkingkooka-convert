@@ -24,24 +24,24 @@ import walkingkooka.props.Properties;
 /**
  * A Converter that converts any {@link HasProperties} into a {@link Properties}.
  */
-final class ConverterHasProperties<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
+final class ConverterToProperties<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
     /**
      * Type safe instance getter
      */
-    static <C extends ConverterContext> ConverterHasProperties<C> instance() {
+    static <C extends ConverterContext> ConverterToProperties<C> instance() {
         return Cast.to(INSTANCE);
     }
 
     /**
      * Singleton
      */
-    private final static ConverterHasProperties<?> INSTANCE = new ConverterHasProperties<>();
+    private final static ConverterToProperties<?> INSTANCE = new ConverterToProperties<>();
 
     /**
      * Private to stop sub classing.
      */
-    private ConverterHasProperties() {
+    private ConverterToProperties() {
         super();
     }
 
@@ -65,6 +65,6 @@ final class ConverterHasProperties<C extends ConverterContext> implements Trying
 
     @Override
     public String toString() {
-        return "HasProperties";
+        return "toProperties";
     }
 }

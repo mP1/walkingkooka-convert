@@ -22,7 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.props.Properties;
 import walkingkooka.props.PropertiesPath;
 
-public final class ConverterHasPropertiesTest extends ConverterTestCase2<ConverterHasProperties<ConverterContext>> {
+public final class ConverterToPropertiesTest extends ConverterTestCase2<ConverterToProperties<ConverterContext>> {
 
     @Test
     public void testConvertStringToPropertiesFails() {
@@ -53,8 +53,8 @@ public final class ConverterHasPropertiesTest extends ConverterTestCase2<Convert
     }
 
     @Override
-    public ConverterHasProperties<ConverterContext> createConverter() {
-        return ConverterHasProperties.instance();
+    public ConverterToProperties<ConverterContext> createConverter() {
+        return ConverterToProperties.instance();
     }
 
     @Override
@@ -66,14 +66,14 @@ public final class ConverterHasPropertiesTest extends ConverterTestCase2<Convert
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "HasProperties"
+            "toProperties"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<ConverterHasProperties<ConverterContext>> type() {
-        return Cast.to(ConverterHasProperties.class);
+    public Class<ConverterToProperties<ConverterContext>> type() {
+        return Cast.to(ConverterToProperties.class);
     }
 }

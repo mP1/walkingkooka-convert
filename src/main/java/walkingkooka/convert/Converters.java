@@ -188,13 +188,6 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> fake() {
         return new FakeConverter<>();
     }
-
-    /**
-     * {@see ConverterHasProperties}
-     */
-    public static <C extends ConverterContext> Converter<C> hasProperties() {
-        return ConverterHasProperties.instance();
-    }
     
     /**
      * {@see ConverterHasText}
@@ -664,6 +657,13 @@ public final class Converters implements PublicStaticHelper {
      */
     public static <C extends ConverterContext> Converter<C> toLocaleLanguageTag() {
         return ConverterLocaleToLocaleLanguageTag.instance();
+    }
+
+    /**
+     * {@see ConverterToProperties}
+     */
+    public static <C extends ConverterContext> Converter<C> toProperties() {
+        return ConverterToProperties.instance();
     }
     
     /**
