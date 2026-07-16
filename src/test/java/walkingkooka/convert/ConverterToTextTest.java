@@ -23,7 +23,7 @@ import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.text.HasText;
 import walkingkooka.text.LineEnding;
 
-public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasText<ConverterContext>> {
+public final class ConverterToTextTest extends ConverterTestCase2<ConverterToText<ConverterContext>> {
 
     @Test
     public void testConvertNullToString() {
@@ -72,13 +72,13 @@ public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasT
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "HasText"
+            "toText"
         );
     }
 
     @Override
-    public ConverterHasText<ConverterContext> createConverter() {
-        return ConverterHasText.instance();
+    public ConverterToText<ConverterContext> createConverter() {
+        return ConverterToText.instance();
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class ConverterHasTextTest extends ConverterTestCase2<ConverterHasT
     // class............................................................................................................
 
     @Override
-    public Class<ConverterHasText<ConverterContext>> type() {
-        return Cast.to(ConverterHasText.class);
+    public Class<ConverterToText<ConverterContext>> type() {
+        return Cast.to(ConverterToText.class);
     }
 }
