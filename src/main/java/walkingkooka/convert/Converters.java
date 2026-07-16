@@ -601,6 +601,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterToBinary}
+     */
+    public static <C extends ConverterContext> Converter<C> toBinary() {
+        return ConverterToBinary.instance();
+    }
+    
+    /**
      * {@see ConverterToBoolean}
      */
     public static <V, C extends ConverterContext> Converter<C> toBoolean(final Predicate<Object> source,
