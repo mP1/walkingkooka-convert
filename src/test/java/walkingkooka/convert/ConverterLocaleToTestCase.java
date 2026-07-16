@@ -20,8 +20,10 @@ package walkingkooka.convert;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.util.HasLocaleTesting;
 
 public abstract class ConverterLocaleToTestCase<C extends ConverterLocaleTo<T, ConverterContext>, T> implements ConverterTesting2<C, ConverterContext>,
+    HasLocaleTesting,
     ToStringTesting<C>,
     ClassTesting<C> {
 

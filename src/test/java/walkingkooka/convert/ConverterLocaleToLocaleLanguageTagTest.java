@@ -75,7 +75,7 @@ public final class ConverterLocaleToLocaleLanguageTagTest extends ConverterLocal
             new HasOptionalLocale() {
                 @Override
                 public Optional<Locale> locale() {
-                    return Optional.of(LOCALE);
+                    return OPTIONAL_LOCALE;
                 }
             },
             LOCALE_LANGUAGE_TAG

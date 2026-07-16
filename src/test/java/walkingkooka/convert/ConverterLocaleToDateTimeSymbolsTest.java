@@ -34,8 +34,6 @@ import java.util.Optional;
 
 public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleToTestCase<ConverterLocaleToDateTimeSymbols<ConverterContext>, DateTimeSymbols> {
 
-    private final static Locale LOCALE = Locale.ENGLISH;
-
     private final static DateTimeSymbols DATE_TIME_SYMBOLS = DateTimeSymbols.fromDateFormatSymbols(
         new DateFormatSymbols(LOCALE)
     );
@@ -66,7 +64,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
 
                 @Override
                 public Optional<Locale> locale() {
-                    return Optional.of(LOCALE);
+                    return OPTIONAL_LOCALE;
                 }
             },
             DATE_TIME_SYMBOLS
@@ -192,10 +190,8 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
 
     @Test
     public void testConvertStringToDateSymbolsWithLocaleLanguageTag() {
-        final Locale locale = Locale.ENGLISH;
-
         this.convertAndCheck(
-            locale.toLanguageTag(),
+            LOCALE.toLanguageTag(),
             DateTimeSymbols.class,
             new FakeConverterContext() {
 
@@ -241,7 +237,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
                 }
             },
             DateTimeSymbols.fromDateFormatSymbols(
-                new DateFormatSymbols(locale)
+                new DateFormatSymbols(LOCALE)
             )
         );
     }
