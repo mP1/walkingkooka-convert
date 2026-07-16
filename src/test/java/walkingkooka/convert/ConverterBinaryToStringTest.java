@@ -24,7 +24,7 @@ import walkingkooka.Cast;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-public final class ConverterHasBinaryToStringTest extends ConverterTestCase2<ConverterHasBinaryToString<ConverterContext>> {
+public final class ConverterBinaryToStringTest extends ConverterTestCase2<ConverterBinaryToString<ConverterContext>> {
 
     private final static Charset CHARSET = StandardCharsets.UTF_8;
 
@@ -57,8 +57,8 @@ public final class ConverterHasBinaryToStringTest extends ConverterTestCase2<Con
     }
 
     @Override
-    public ConverterHasBinaryToString<ConverterContext> createConverter() {
-        return ConverterHasBinaryToString.instance();
+    public ConverterBinaryToString<ConverterContext> createConverter() {
+        return ConverterBinaryToString.instance();
     }
 
     @Override
@@ -75,14 +75,14 @@ public final class ConverterHasBinaryToStringTest extends ConverterTestCase2<Con
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "HasBinary to String"
+            "Binary to String"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<ConverterHasBinaryToString<ConverterContext>> type() {
-        return Cast.to(ConverterHasBinaryToString.class);
+    public Class<ConverterBinaryToString<ConverterContext>> type() {
+        return Cast.to(ConverterBinaryToString.class);
     }
 }
