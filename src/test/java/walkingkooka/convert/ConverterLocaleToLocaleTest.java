@@ -132,7 +132,7 @@ public final class ConverterLocaleToLocaleTest extends ConverterLocaleToTestCase
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToLocale.instance(),
-            Locale.class.getSimpleName()
+            "to " + Locale.class.getSimpleName()
         );
     }
 
