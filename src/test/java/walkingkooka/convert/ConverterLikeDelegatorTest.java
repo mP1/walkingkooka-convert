@@ -19,23 +19,20 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.convert.ConverterLikeDelegatorTest.TestConverterLikeDelegator;
+import walkingkooka.currency.CurrencyLocaleContextTesting;
 import walkingkooka.currency.CurrencyLocaleContexts;
-import walkingkooka.datetime.DateTimeContexts;
-import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.math.DecimalNumberContexts;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
-import walkingkooka.text.TextPrinting;
+import walkingkooka.datetime.DateTimeContextTesting;
+import walkingkooka.math.DecimalNumberContextTesting;
+import walkingkooka.text.BinaryTextContextTesting;
 
-import java.math.MathContext;
-import java.nio.charset.StandardCharsets;
-import java.text.DateFormatSymbols;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
-public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<TestConverterLikeDelegator> {
+public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<TestConverterLikeDelegator>,
+    BinaryTextContextTesting,
+    CurrencyLocaleContextTesting,
+    DateTimeContextTesting,
+    DecimalNumberContextTesting {
 
     @Test
     public void testConvert() {
@@ -58,8 +55,6 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
     static class TestConverterLikeDelegator implements ConverterLikeDelegator {
         @Override
         public ConverterLike converterLike() {
-            final Locale locale = Locale.forLanguageTag("EN-AU");
-
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 Converters.EXCEL_1900_DATE_SYSTEM_OFFSET,
@@ -68,21 +63,10 @@ public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<Te
                     (x) -> DateTimeFormatter.ofPattern("yyyy MM dd")
                 ),
                 BinaryNumberConverterFunctions.fake(),
-                TextPrinting.with(
-                    Indentation.SPACES2,
-                    LineEnding.NL
-                ).setCharset(StandardCharsets.UTF_8),
+                BINARY_TEXT_CONTEXT,
                 CurrencyLocaleContexts.fake(),
-                DateTimeContexts.basic(
-                    DateTimeSymbols.fromDateFormatSymbols(
-                        new DateFormatSymbols(locale)
-                    ),
-                    locale,
-                    1950, // defaultYear
-                    50, // twoDigitYear
-                    LocalDateTime::now
-                ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32)
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
             );
         }
     }
