@@ -20,11 +20,10 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.math.HasDecimalNumberSymbolsTesting;
 
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-
-public final class ConverterToDecimalNumberSymbolsTest extends ConverterTestCase2<ConverterToDecimalNumberSymbols<ConverterContext>> {
+public final class ConverterToDecimalNumberSymbolsTest extends ConverterTestCase2<ConverterToDecimalNumberSymbols<ConverterContext>>
+    implements HasDecimalNumberSymbolsTesting {
 
     @Test
     public void testConvertStringToDecimalNumberSymbolsFails() {
@@ -44,16 +43,9 @@ public final class ConverterToDecimalNumberSymbolsTest extends ConverterTestCase
 
     @Test
     public void testConvertHasDecimalNumberSymbolsToDecimalNumberSymbols() {
-        final DecimalNumberSymbols symbols = DecimalNumberSymbols.fromDecimalFormatSymbols(
-            '+',
-            new DecimalFormatSymbols(
-                Locale.ENGLISH
-            )
-        );
-
         this.convertAndCheck(
-            symbols,
-            symbols
+            DECIMAL_NUMBER_SYMBOLS,
+            DECIMAL_NUMBER_SYMBOLS
         );
     }
 

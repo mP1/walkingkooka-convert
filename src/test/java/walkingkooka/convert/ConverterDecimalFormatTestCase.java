@@ -25,6 +25,7 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.math.HasDecimalNumberSymbolsTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.TextPrinting;
@@ -40,7 +41,8 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalFormat<ConverterContext>> extends ConverterTestCase2<C> {
+public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalFormat<ConverterContext>> extends ConverterTestCase2<C>
+    implements HasDecimalNumberSymbolsTesting {
 
     ConverterDecimalFormatTestCase() {
         super();

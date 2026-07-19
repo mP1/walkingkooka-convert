@@ -24,20 +24,16 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.HasDecimalNumberSymbols;
+import walkingkooka.math.HasDecimalNumberSymbolsTesting;
 import walkingkooka.math.HasOptionalDecimalNumberSymbols;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
-import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLocaleToTestCase<ConverterLocaleToDecimalNumberSymbols<ConverterContext>, DecimalNumberSymbols> {
-
-    private final static DecimalNumberSymbols DECIMAL_NUMBER_SYMBOLS = DecimalNumberSymbols.fromDecimalFormatSymbols(
-        '+',
-        new DecimalFormatSymbols(LOCALE)
-    );
+public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLocaleToTestCase<ConverterLocaleToDecimalNumberSymbols<ConverterContext>, DecimalNumberSymbols>
+    implements HasDecimalNumberSymbolsTesting {
 
     @Test
     public void testConvertDecimalNumberSymbols() {
@@ -63,7 +59,7 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
             new HasOptionalDecimalNumberSymbols() {
                 @Override
                 public Optional<DecimalNumberSymbols> decimalNumberSymbols() {
-                    return Optional.of(DECIMAL_NUMBER_SYMBOLS);
+                    return OPTIONAL_DECIMAL_NUMBER_SYMBOLS;
                 }
             },
             DECIMAL_NUMBER_SYMBOLS
