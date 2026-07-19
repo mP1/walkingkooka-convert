@@ -66,7 +66,7 @@ public final class ConverterToPropertiesTest extends ConverterTestCase2<Converte
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "toProperties"
+            "to Properties"
         );
     }
 
