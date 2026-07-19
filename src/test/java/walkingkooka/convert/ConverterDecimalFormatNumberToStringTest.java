@@ -91,7 +91,7 @@ public final class ConverterDecimalFormatNumberToStringTest extends ConverterDec
         this.convertAndCheck(converter,
             1.25,
             String.class,
-            this.createContext(Locale.CANADA),
+            this.createContext(LOCALE),
             "$ 1.25");
 
         this.convertAndCheck(converter,

@@ -30,13 +30,12 @@ import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
-import walkingkooka.math.DecimalNumberSymbols;
+import walkingkooka.math.HasDecimalNumberSymbolsTesting;
+import walkingkooka.math.HasMathContextTesting;
 import walkingkooka.math.NumberList;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -46,7 +45,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class ConverterCollectionToListTest extends ConverterTestCase2<ConverterCollectionToList<ConverterContext>> {
+public final class ConverterCollectionToListTest extends ConverterTestCase2<ConverterCollectionToList<ConverterContext>>
+    implements HasDecimalNumberSymbolsTesting,
+    HasMathContextTesting {
 
     // testConvertNull..................................................................................................
 
@@ -754,12 +755,9 @@ public final class ConverterCollectionToListTest extends ConverterTestCase2<Conv
 
             private final DecimalNumberContext decimalNumberContext = DecimalNumberContexts.basic(
                 DEFAULT_NUMBER_DIGIT_COUNT,
-                DecimalNumberSymbols.fromDecimalFormatSymbols(
-                    '+',
-                    new DecimalFormatSymbols(this.locale())
-                ),
-                this.locale(),
-                MathContext.DECIMAL32
+                DECIMAL_NUMBER_SYMBOLS,
+                LOCALE,
+                MATH_CONTEXT
             );
 
             @Override
