@@ -65,6 +65,7 @@ final class ConverterToBinary<C extends ConverterContext> implements TryingShort
 
     @Override
     public String toString() {
-        return "toBinary";
+        // to Binary
+        return "to " + Binary.class.getSimpleName();
     }
 }
