@@ -139,7 +139,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
                         locale,
                         "locale"
                     );
-                    return Optional.of(DATE_TIME_SYMBOLS);
+                    return OPTIONAL_DATE_TIME_SYMBOLS;
                 }
             },
             expected
