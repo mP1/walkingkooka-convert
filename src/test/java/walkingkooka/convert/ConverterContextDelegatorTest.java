@@ -18,27 +18,14 @@
 package walkingkooka.convert;
 
 import walkingkooka.convert.ConverterContextDelegatorTest.TestConverterContextDelegator;
-import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.FakeCurrencyContext;
-import walkingkooka.datetime.DateTimeContexts;
-import walkingkooka.datetime.DateTimeSymbols;
-import walkingkooka.locale.LocaleContexts;
+import walkingkooka.currency.CurrencyLocaleContextTesting;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
-import walkingkooka.math.DecimalNumberContexts;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
-import walkingkooka.text.TextPrinting;
 
 import java.math.MathContext;
-import java.text.DateFormatSymbols;
-import java.time.LocalDateTime;
-import java.util.Currency;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Optional;
 
 public final class ConverterContextDelegatorTest implements ConverterContextTesting<TestConverterContextDelegator>,
+    CurrencyLocaleContextTesting,
     DecimalNumberContextDelegator {
 
     @Override
@@ -53,23 +40,12 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
 
     @Override
     public DecimalNumberContext decimalNumberContext() {
-        return this.createContext();
+        return DECIMAL_NUMBER_CONTEXT;
     }
 
     @Override
     public MathContext mathContext() {
-        return this.createContext()
-            .mathContext();
-    }
-
-    @Override
-    public void testCurrencyExchangeRateWithNullCurrencyExchangeFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testCurrencyExchangeRateWithNullDateTimeFails() {
-        throw new UnsupportedOperationException();
+        return MATH_CONTEXT;
     }
 
     // class............................................................................................................
@@ -88,46 +64,16 @@ public final class ConverterContextDelegatorTest implements ConverterContextTest
 
         @Override
         public ConverterContext converterContext() {
-            final Locale locale = Locale.ENGLISH;
-
             return ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 0, // dateTimeOffset
                 ',', // valueSeparator
                 Converters.fake(),
                 BinaryNumberConverterFunctions.multiply(),
-                TextPrinting.with(
-                        Indentation.SPACES2,
-                        LineEnding.NL)
-                    .setCharset(CHARSET),
-                new FakeCurrencyContext() {
-
-                    @Override
-                    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-                        Objects.requireNonNull(currencyCode, "currencyCode");
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public Optional<Currency> currencyForLocale(final Locale locale) {
-                        Objects.requireNonNull(locale, "locale");
-                        return Optional.of(
-                            Currency.getInstance(locale)
-                        );
-                    }
-                }.setLocaleContext(
-                    LocaleContexts.jre(locale)
-                ),
-                DateTimeContexts.basic(
-                    DateTimeSymbols.fromDateFormatSymbols(
-                        new DateFormatSymbols(locale)
-                    ),
-                    locale,
-                    1900,
-                    50,
-                    LocalDateTime::now
-                ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32)
+                BINARY_TEXT_CONTEXT,
+                CURRENCY_LOCALE_CONTEXT,
+                DATE_TIME_CONTEXT,
+                DECIMAL_NUMBER_CONTEXT
             );
         }
 
