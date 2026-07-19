@@ -111,32 +111,38 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
     final void convertAndCheck2(final String pattern,
                                 final Object value,
                                 final Object expected) {
-        this.convertAndCheck2(pattern,
+        this.convertAndCheck2(
+            pattern,
             value,
             Locale.UK,
-            expected);
+            expected
+        );
     }
 
     final void convertAndCheck2(final String pattern,
                                 final Object value,
                                 final Locale locale,
                                 final Object expected) {
-        this.convertAndCheck2(pattern,
+        this.convertAndCheck2(
+            pattern,
             value,
             Cast.to(expected.getClass()),
             locale,
-            expected);
+            expected
+        );
     }
 
     final <T> void convertAndCheck2(final String pattern,
                                     final Object value,
                                     final Class<T> type,
                                     final T expected) {
-        this.convertAndCheck2(pattern,
+        this.convertAndCheck2(
+            pattern,
             value,
             type,
             Locale.UK,
-            expected);
+            expected
+        );
     }
 
     final <T> void convertAndCheck2(final String pattern,
@@ -144,10 +150,12 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
                                     final Class<T> type,
                                     final Locale locale,
                                     final T expected) {
-        this.convertAndCheck(this.createConverter(pattern),
+        this.convertAndCheck(
+            this.createConverter(pattern),
             value,
             type,
             this.createContext(locale),
-            expected);
+            expected
+        );
     }
 }
