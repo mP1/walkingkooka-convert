@@ -65,6 +65,6 @@ final class ConverterToProperties<C extends ConverterContext> implements TryingS
 
     @Override
     public String toString() {
-        return "toProperties";
+        return "to " + Properties.class.getSimpleName();
     }
 }
