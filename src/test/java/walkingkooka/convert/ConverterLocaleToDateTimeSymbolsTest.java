@@ -259,7 +259,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToDateTimeSymbols.instance(),
-            DateTimeSymbols.class.getSimpleName()
+            "to " + DateTimeSymbols.class.getSimpleName()
         );
     }
 

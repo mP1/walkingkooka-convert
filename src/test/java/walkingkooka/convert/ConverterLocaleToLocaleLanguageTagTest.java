@@ -137,7 +137,7 @@ public final class ConverterLocaleToLocaleLanguageTagTest extends ConverterLocal
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToLocaleLanguageTag.instance(),
-            LocaleLanguageTag.class.getSimpleName()
+            "to " + LocaleLanguageTag.class.getSimpleName()
         );
     }
 
