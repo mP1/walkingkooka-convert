@@ -48,7 +48,12 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
 
     @Test
     public final void testWithNullFunctionFails() {
-        assertThrows(NullPointerException.class, () -> this.createConverter((Function<DecimalNumberContext, DecimalFormat>) null));
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createConverter(
+                (Function<DecimalNumberContext, DecimalFormat>) null
+            )
+        );
     }
 
     // toString.........................................................................................................
