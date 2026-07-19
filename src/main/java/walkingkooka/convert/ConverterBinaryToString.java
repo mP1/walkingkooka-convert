@@ -67,6 +67,6 @@ final class ConverterBinaryToString<C extends ConverterContext> implements Tryin
 
     @Override
     public String toString() {
-        return Binary.class.getSimpleName() + " to " + String.class.getSimpleName();
+        return Binary.class.getSimpleName() + " to " + TEXT;
     }
 }

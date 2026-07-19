@@ -75,7 +75,7 @@ public final class ConverterBinaryToStringTest extends ConverterTestCase2<Conver
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "Binary to String"
+            "Binary to TEXT"
         );
     }
 
