@@ -19,30 +19,28 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.currency.FakeCurrencyContext;
+import walkingkooka.currency.CurrencyContextTesting;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.math.HasDecimalNumberSymbolsTesting;
-import walkingkooka.text.Indentation;
-import walkingkooka.text.LineEnding;
-import walkingkooka.text.TextPrinting;
+import walkingkooka.math.HasMathContextTesting;
+import walkingkooka.text.BinaryTextContextTesting;
 
-import java.math.MathContext;
-import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Currency;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalFormat<ConverterContext>> extends ConverterTestCase2<C>
-    implements HasDecimalNumberSymbolsTesting {
+    implements BinaryTextContextTesting,
+    CurrencyContextTesting,
+    HasDecimalNumberSymbolsTesting,
+    HasMathContextTesting {
 
     ConverterDecimalFormatTestCase() {
         super();
@@ -78,7 +76,7 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
 
     @Override
     public final ConverterContext createContext() {
-        return this.createContext(Locale.UK);
+        return this.createContext(LOCALE);
     }
 
     final ConverterContext createContext(final Locale locale) {
@@ -88,18 +86,8 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
             ',', // valueSeparator
             Converters.fake(),
             BinaryNumberConverterFunctions.fake(),
-            TextPrinting.with(
-                    Indentation.SPACES2,
-                    LineEnding.NL)
-                .setCharset(StandardCharsets.UTF_8),
-            new FakeCurrencyContext() {
-                @Override
-                public Optional<Currency> currencyForLocale(final Locale locale) {
-                    return Optional.of(
-                        Currency.getInstance(locale)
-                    );
-                }
-            }.setLocaleContext(
+            BINARY_TEXT_CONTEXT,
+            CURRENCY_CONTEXT.setLocaleContext(
                 LocaleContexts.jre(locale)
             ),
             DateTimeContexts.fake(),
@@ -110,7 +98,7 @@ public abstract class ConverterDecimalFormatTestCase<C extends ConverterDecimalF
                     new DecimalFormatSymbols(locale)
                 ),
                 locale,
-                MathContext.DECIMAL32
+                MATH_CONTEXT
             )
         );
     }
