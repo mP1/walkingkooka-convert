@@ -23,9 +23,6 @@ import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.currency.FakeCurrencyContext;
-import walkingkooka.datetime.DateTimeContext;
-import walkingkooka.datetime.DateTimeContexts;
-import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
@@ -35,7 +32,6 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
 import java.math.MathContext;
-import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
@@ -107,16 +103,6 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
         }
     }.setLocaleContext(
         LocaleContexts.jre(LOCALE)
-    );
-
-    private final static DateTimeContext DATE_TIME_CONTEXT = DateTimeContexts.basic(
-        DateTimeSymbols.fromDateFormatSymbols(
-            new DateFormatSymbols(LOCALE)
-        ),
-        LOCALE,
-        1900,
-        20,
-        LocalDateTime::now
     );
 
     private final static String CURRENCY = "$$";
