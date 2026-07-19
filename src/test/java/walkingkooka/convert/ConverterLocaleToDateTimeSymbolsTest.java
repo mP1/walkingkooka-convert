@@ -23,6 +23,7 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.datetime.HasDateTimeSymbols;
+import walkingkooka.datetime.HasDateTimeSymbolsTesting;
 import walkingkooka.datetime.HasOptionalDateTimeSymbols;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.util.HasLocale;
@@ -32,11 +33,8 @@ import java.text.DateFormatSymbols;
 import java.util.Locale;
 import java.util.Optional;
 
-public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleToTestCase<ConverterLocaleToDateTimeSymbols<ConverterContext>, DateTimeSymbols> {
-
-    private final static DateTimeSymbols DATE_TIME_SYMBOLS = DateTimeSymbols.fromDateFormatSymbols(
-        new DateFormatSymbols(LOCALE)
-    );
+public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleToTestCase<ConverterLocaleToDateTimeSymbols<ConverterContext>, DateTimeSymbols>
+    implements HasDateTimeSymbolsTesting {
 
     @Test
     public void testConvertDateTimeSymbols() {
