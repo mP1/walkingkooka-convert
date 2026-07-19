@@ -66,7 +66,7 @@ public final class ConverterToBinaryTest extends ConverterTestCase2<ConverterToB
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "toBinary"
+            "to Binary"
         );
     }
 
