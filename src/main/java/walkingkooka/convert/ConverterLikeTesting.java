@@ -24,7 +24,7 @@ import walkingkooka.text.CharSequences;
 /**
  * Mixing testing interface for {@link ConverterLike}
  */
-public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
+public interface ConverterLikeTesting extends Testing {
 
     /**
      * A {@link ConverterLike} that always fails, but might be helpful as a dummy during testing.
@@ -45,18 +45,7 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
 
     // canConvert.......................................................................................................
 
-    default void canConvertAndCheck(final Object value,
-                                    final Class<?> type,
-                                    final boolean expected) {
-        this.canConvertAndCheck(
-            this.createConverterLike(),
-            value,
-            type,
-            expected
-        );
-    }
-
-    default void canConvertAndCheck(final C converterLike,
+    default void canConvertAndCheck(final ConverterLike converterLike,
                                     final Object value,
                                     final Class<?> type,
                                     final boolean expected) {
@@ -72,18 +61,7 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
 
     // convert..........................................................................................................
 
-    default <T> T convertAndCheck(final Object value,
-                                  final Class<T> target,
-                                  final T expected) {
-        return this.convertAndCheck(
-            this.createConverterLike(),
-            value,
-            target,
-            expected
-        );
-    }
-
-    default <T> T convertAndCheck(final C converterLike,
+    default <T> T convertAndCheck(final ConverterLike converterLike,
                                   final Object value,
                                   final Class<T> target,
                                   final T expected) {
@@ -108,15 +86,6 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         return convertedValue;
     }
 
-    default void convertFails(final Object value,
-                              final Class<?> type) {
-        this.convertFails(
-            this.createConverterLike(),
-            value,
-            type
-        );
-    }
-
     default void convertFails(final ConverterLike converterLike,
                               final Object value,
                               final Class<?> type) {
@@ -124,17 +93,6 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         result.mapLeft(v -> {
             throw new AssertionFailedError("Expected failure converting " + CharSequences.quoteIfChars(value) + " to " + type.getName() + " but got " + CharSequences.quoteIfChars(v));
         });
-    }
-
-    default <T> T convertOrFailAndCheck(final Object value,
-                                        final Class<T> target,
-                                        final T expected) {
-        return this.convertOrFailAndCheck(
-            this.createConverterLike(),
-            value,
-            target,
-            expected
-        );
     }
 
     default <T> T convertOrFailAndCheck(final ConverterLike converterLike,
@@ -149,9 +107,4 @@ public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
         );
         return convertedValue;
     }
-
-    /**
-     * Factory that creates a {@link ConverterLike}.
-     */
-    C createConverterLike();
 }

@@ -207,9 +207,9 @@ public final class ConverterLikeTest implements ClassTesting<ConverterLike>,
         );
     }
 
-    private <T> ConverterLikeTesting<ConverterLike> create(final boolean can,
-                                                           final Either<T, String> result) {
-        return new ConverterLikeTesting<>() {
+    private <T> ConverterLikeTesting2<ConverterLike> create(final boolean can,
+                                                            final Either<T, String> result) {
+        return new ConverterLikeTesting2<>() {
 
             @Override
             public ConverterLike createConverterLike() {

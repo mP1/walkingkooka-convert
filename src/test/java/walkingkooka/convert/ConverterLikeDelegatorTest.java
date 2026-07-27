@@ -28,7 +28,7 @@ import walkingkooka.text.BinaryTextContextTesting;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public final class ConverterLikeDelegatorTest implements ConverterLikeTesting<TestConverterLikeDelegator>,
+public final class ConverterLikeDelegatorTest implements ConverterLikeTesting2<TestConverterLikeDelegator>,
     BinaryTextContextTesting,
     CurrencyLocaleContextTesting,
     DateTimeContextTesting,
