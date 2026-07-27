@@ -26,6 +26,23 @@ import walkingkooka.text.CharSequences;
  */
 public interface ConverterLikeTesting<C extends ConverterLike> extends Testing {
 
+    /**
+     * A {@link ConverterLike} that always fails, but might be helpful as a dummy during testing.
+     */
+    ConverterLike CONVERTER_LIKE = new ConverterLike() {
+        @Override
+        public boolean canConvert(final Object value,
+                                  final Class<?> type) {
+            return false;
+        }
+
+        @Override
+        public <T> Either<T, String> convert(final Object value,
+                                             final Class<T> target) {
+            return this.failConversion(value, target);
+        }
+    };
+
     // canConvert.......................................................................................................
 
     default void canConvertAndCheck(final Object value,
