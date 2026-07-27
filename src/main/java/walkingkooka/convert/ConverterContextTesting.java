@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Mixing testing interface for {@link ConverterContext}
  */
-public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting<C>,
+public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting2<C>,
     BinaryTextContextTesting,
     CanCurrencyForLocaleTesting2<C>,
     CanDateTimeSymbolsForLocaleTesting2<C>,

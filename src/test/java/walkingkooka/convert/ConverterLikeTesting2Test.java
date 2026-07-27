@@ -19,10 +19,10 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
-import walkingkooka.convert.ConverterLikeTestingTest.TestConverterLike;
+import walkingkooka.convert.ConverterLikeTesting2Test.TestConverterLike;
 import walkingkooka.text.LineEnding;
 
-public final class ConverterLikeTestingTest implements ConverterLikeTesting<TestConverterLike> {
+public final class ConverterLikeTesting2Test implements ConverterLikeTesting2<TestConverterLike> {
 
     @Test
     public void testCanConvertTrue() {
