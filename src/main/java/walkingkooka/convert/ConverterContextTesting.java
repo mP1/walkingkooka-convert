@@ -18,9 +18,10 @@ package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.HasCharsetTesting;
+import walkingkooka.currency.CanCurrencyExchangeRateTesting2;
+import walkingkooka.currency.CanCurrencyExchangesTesting2;
 import walkingkooka.currency.CanCurrencyForLocaleTesting2;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting2;
-import walkingkooka.currency.CurrencyExchangeRaterTesting2;
 import walkingkooka.currency.HasCurrencyCodeTesting;
 import walkingkooka.datetime.DateTimeContextTesting2;
 import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting2;
@@ -35,11 +36,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting2<C>,
     BinaryTextContextTesting,
+    CanCurrencyExchangesTesting2<C>,
+    CanCurrencyExchangeRateTesting2<C>,
     CanCurrencyForLocaleTesting2<C>,
     CanDateTimeSymbolsForLocaleTesting2<C>,
     CanDecimalNumberSymbolsForLocaleTesting2<C>,
     CurrencyCodeLanguageTagContextTesting2<C>,
-    CurrencyExchangeRaterTesting2<C>,
     DateTimeContextTesting2<C>,
     DecimalNumberContextTesting2<C>,
     HasCharsetTesting,
@@ -102,6 +104,16 @@ public interface ConverterContextTesting<C extends ConverterContext> extends Con
     }
 
     @Override
+    default C createCanCurrencyExchangeRate() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanCurrencyExchanges() {
+        return this.createContext();
+    }
+
+    @Override
     default C createCanCurrencyForLocale() {
         return this.createContext();
     }
@@ -121,11 +133,6 @@ public interface ConverterContextTesting<C extends ConverterContext> extends Con
      */
     @Override
     default C createConverterLike() {
-        return this.createContext();
-    }
-
-    @Override
-    default C createCurrencyExchangeRater() {
         return this.createContext();
     }
 
