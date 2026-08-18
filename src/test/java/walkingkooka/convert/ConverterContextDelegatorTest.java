@@ -24,7 +24,7 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 
 import java.math.MathContext;
 
-public final class ConverterContextDelegatorTest implements ConverterContextTesting<TestConverterContextDelegator>,
+public final class ConverterContextDelegatorTest implements ConverterContextTesting2<TestConverterContextDelegator>,
     CurrencyLocaleContextTesting,
     DecimalNumberContextDelegator {
 

@@ -16,79 +16,37 @@
  */
 package walkingkooka.convert;
 
-import org.junit.jupiter.api.Test;
 import walkingkooka.HasCharsetTesting;
-import walkingkooka.currency.CanCurrencyExchangeRateTesting2;
-import walkingkooka.currency.CanCurrencyExchangesTesting2;
-import walkingkooka.currency.CanCurrencyForLocaleTesting2;
-import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting2;
+import walkingkooka.currency.CanCurrencyExchangeRateTesting;
+import walkingkooka.currency.CanCurrencyExchangesTesting;
+import walkingkooka.currency.CanCurrencyForLocaleTesting;
+import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting;
 import walkingkooka.currency.HasCurrencyCodeTesting;
-import walkingkooka.datetime.DateTimeContextTesting2;
-import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting2;
-import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting2;
-import walkingkooka.math.DecimalNumberContextTesting2;
+import walkingkooka.datetime.DateTimeContextTesting;
+import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting;
+import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting;
+import walkingkooka.math.DecimalNumberContextTesting;
 import walkingkooka.text.BinaryTextContextTesting;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Mixing testing interface for {@link ConverterContext}
  */
-public interface ConverterContextTesting<C extends ConverterContext> extends ConverterLikeTesting2<C>,
+public interface ConverterContextTesting extends ConverterLikeTesting,
     BinaryTextContextTesting,
-    CanCurrencyExchangesTesting2<C>,
-    CanCurrencyExchangeRateTesting2<C>,
-    CanCurrencyForLocaleTesting2<C>,
-    CanDateTimeSymbolsForLocaleTesting2<C>,
-    CanDecimalNumberSymbolsForLocaleTesting2<C>,
-    CurrencyCodeLanguageTagContextTesting2<C>,
-    DateTimeContextTesting2<C>,
-    DecimalNumberContextTesting2<C>,
+    CanCurrencyExchangesTesting,
+    CanCurrencyExchangeRateTesting,
+    CanCurrencyForLocaleTesting,
+    CanDateTimeSymbolsForLocaleTesting,
+    CanDecimalNumberSymbolsForLocaleTesting,
+    CurrencyCodeLanguageTagContextTesting,
+    DateTimeContextTesting,
+    DecimalNumberContextTesting,
     HasCharsetTesting,
     HasCurrencyCodeTesting {
 
     // multiply.........................................................................................................
 
-    @Test
-    default void testMultiplyWithNullLeftFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .multiply(
-                    null,
-                    2,
-                    Number.class
-                )
-        );
-    }
-
-    @Test
-    default void testMultiplyWithNullRightFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .multiply(
-                    1,
-                    null,
-                    Number.class
-                )
-        );
-    }
-
-    @Test
-    default void testMultiplyWithNullTypeFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .multiply(
-                    1,
-                    2,
-                    null
-                )
-        );
-    }
-
-    default <N extends Number> void multiplyAndCheck(final C context,
+    default <N extends Number> void multiplyAndCheck(final ConverterContext context,
                                                      final Number left,
                                                      final Number right,
                                                      final Class<N> type,
@@ -101,43 +59,5 @@ public interface ConverterContextTesting<C extends ConverterContext> extends Con
                 type
             )
         );
-    }
-
-    @Override
-    default C createCanCurrencyExchangeRate() {
-        return this.createContext();
-    }
-
-    @Override
-    default C createCanCurrencyExchanges() {
-        return this.createContext();
-    }
-
-    @Override
-    default C createCanCurrencyForLocale() {
-        return this.createContext();
-    }
-
-    @Override
-    default C createCanDateTimeSymbolsForLocale() {
-        return this.createContext();
-    }
-
-    @Override
-    default C createCanDecimalNumberSymbolsForLocale() {
-        return this.createContext();
-    }
-
-    /**
-     * Delegates to {@link #createContext()}.
-     */
-    @Override
-    default C createConverterLike() {
-        return this.createContext();
-    }
-
-    @Override
-    default String typeNameSuffix() {
-        return ConverterContext.class.getSimpleName();
     }
 }
