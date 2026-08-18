@@ -18,9 +18,10 @@
 package walkingkooka.convert;
 
 import walkingkooka.Context;
+import walkingkooka.currency.CanCurrencyExchangeRate;
+import walkingkooka.currency.CanCurrencyExchanges;
 import walkingkooka.currency.CanCurrencyForLocale;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
-import walkingkooka.currency.CurrencyExchangeRater;
 import walkingkooka.currency.HasCurrencyCode;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
@@ -33,11 +34,12 @@ import walkingkooka.text.BinaryTextContext;
  */
 public interface ConverterContext extends ConverterLike,
     BinaryTextContext,
+    CanCurrencyExchangeRate,
+    CanCurrencyExchanges,
     CanCurrencyForLocale,
     CanDateTimeSymbolsForLocale,
     CanDecimalNumberSymbolsForLocale,
     CurrencyCodeLanguageTagContext,
-    CurrencyExchangeRater,
     DateTimeContext,
     DecimalNumberContext,
     HasCurrencyCode {

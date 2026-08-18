@@ -21,8 +21,7 @@ import walkingkooka.Either;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
-import walkingkooka.currency.CurrencyExchangeRater;
-import walkingkooka.currency.CurrencyExchangeRaterDelegator;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
@@ -34,16 +33,17 @@ import walkingkooka.text.BinaryTextContext;
 import walkingkooka.text.BinaryTextContextDelegator;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
 final class BasicConverterContext implements ConverterContext,
-    CurrencyExchangeRaterDelegator,
     CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator,
@@ -173,6 +173,24 @@ final class BasicConverterContext implements ConverterContext,
 
     private final BinaryTextContext binaryTextContext;
 
+    // CanCurrencyExchangeRate..........................................................................................
+
+    @Override
+    public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                 final Optional<LocalDateTime> dateTime) {
+        return this.currencyLocaleContext.currencyExchangeRate(
+            currencyExchange,
+            dateTime
+        );
+    }
+
+    // CanCurrencyExchanges.............................................................................................
+
+    @Override
+    public Set<CurrencyExchange> currencyExchanges() {
+        return this.currencyLocaleContext.currencyExchanges();
+    }
+
     // DateTimeContextDelegator.........................................................................................
 
     @Override
@@ -205,13 +223,6 @@ final class BasicConverterContext implements ConverterContext,
 
     @Override
     public CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext() {
-        return this.currencyLocaleContext;
-    }
-
-    // CurrencyExchangeRaterDelegator...................................................................................
-
-    @Override
-    public CurrencyExchangeRater currencyExchangeRater() {
         return this.currencyLocaleContext;
     }
 

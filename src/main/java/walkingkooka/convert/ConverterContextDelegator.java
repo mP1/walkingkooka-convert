@@ -20,8 +20,7 @@ package walkingkooka.convert;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
-import walkingkooka.currency.CurrencyExchangeRater;
-import walkingkooka.currency.CurrencyExchangeRaterDelegator;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -32,14 +31,15 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 
 public interface ConverterContextDelegator extends ConverterContext,
     ConverterLikeDelegator,
     CurrencyCodeLanguageTagContextDelegator,
-    CurrencyExchangeRaterDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator {
 
@@ -64,6 +64,22 @@ public interface ConverterContextDelegator extends ConverterContext,
     @Override
     default ConverterLike converterLike() {
         return this.converterContext();
+    }
+
+    @Override
+    default Set<CurrencyExchange> currencyExchanges() {
+        return this.converterContext()
+            .currencyExchanges();
+    }
+
+    @Override
+    default Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                  final Optional<LocalDateTime> dateTime) {
+        return this.converterContext()
+            .currencyExchangeRate(
+                currencyExchange,
+                dateTime
+            );
     }
 
     @Override
@@ -137,13 +153,6 @@ public interface ConverterContextDelegator extends ConverterContext,
 
     @Override
     default CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext() {
-        return this.converterContext();
-    }
-
-    // CurrencyExchangeRaterDelegator...................................................................................
-
-    @Override
-    default CurrencyExchangeRater currencyExchangeRater() {
         return this.converterContext();
     }
 
