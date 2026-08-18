@@ -1,0 +1,123 @@
+/*
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+package walkingkooka.convert;
+
+import org.junit.jupiter.api.Test;
+import walkingkooka.currency.CanCurrencyExchangeRateTesting2;
+import walkingkooka.currency.CanCurrencyExchangesTesting2;
+import walkingkooka.currency.CanCurrencyForLocaleTesting2;
+import walkingkooka.currency.CurrencyCodeLanguageTagContextTesting2;
+import walkingkooka.datetime.DateTimeContextTesting2;
+import walkingkooka.locale.CanDateTimeSymbolsForLocaleTesting2;
+import walkingkooka.locale.CanDecimalNumberSymbolsForLocaleTesting2;
+import walkingkooka.math.DecimalNumberContextTesting2;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+/**
+ * Mixing testing interface for {@link ConverterContext}
+ */
+public interface ConverterContextTesting2<C extends ConverterContext> extends ConverterContextTesting,
+    ConverterLikeTesting2<C>,
+    CanCurrencyExchangesTesting2<C>,
+    CanCurrencyExchangeRateTesting2<C>,
+    CanCurrencyForLocaleTesting2<C>,
+    CanDateTimeSymbolsForLocaleTesting2<C>,
+    CanDecimalNumberSymbolsForLocaleTesting2<C>,
+    CurrencyCodeLanguageTagContextTesting2<C>,
+    DateTimeContextTesting2<C>,
+    DecimalNumberContextTesting2<C> {
+
+    // multiply.........................................................................................................
+
+    @Test
+    default void testMultiplyWithNullLeftFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .multiply(
+                    null,
+                    2,
+                    Number.class
+                )
+        );
+    }
+
+    @Test
+    default void testMultiplyWithNullRightFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .multiply(
+                    1,
+                    null,
+                    Number.class
+                )
+        );
+    }
+
+    @Test
+    default void testMultiplyWithNullTypeFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .multiply(
+                    1,
+                    2,
+                    null
+                )
+        );
+    }
+
+    @Override
+    default C createCanCurrencyExchangeRate() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanCurrencyExchanges() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanCurrencyForLocale() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanDateTimeSymbolsForLocale() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanDecimalNumberSymbolsForLocale() {
+        return this.createContext();
+    }
+
+    /**
+     * Delegates to {@link #createContext()}.
+     */
+    @Override
+    default C createConverterLike() {
+        return this.createContext();
+    }
+
+    @Override
+    default String typeNameSuffix() {
+        return ConverterContext.class.getSimpleName();
+    }
+}
