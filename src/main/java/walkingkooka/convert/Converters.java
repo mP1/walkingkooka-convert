@@ -615,13 +615,6 @@ public final class Converters implements PublicStaticHelper {
     public static <C extends ConverterContext> Converter<C> toBinary() {
         return ConverterToBinary.instance();
     }
-
-    /**
-     * {@see ConverterToCsvStringList}
-     */
-    public static <C extends ConverterContext> Converter<C> toCsvStringList() {
-        return ConverterToCsvStringList.instance();
-    }
     
     /**
      * {@see ConverterToBoolean}
@@ -638,6 +631,13 @@ public final class Converters implements PublicStaticHelper {
             trueAnswer,
             falseAnswer
         );
+    }
+
+    /**
+     * {@see ConverterToCsvStringList}
+     */
+    public static <C extends ConverterContext> Converter<C> toCsvStringList() {
+        return ConverterToCsvStringList.instance();
     }
 
     /**
