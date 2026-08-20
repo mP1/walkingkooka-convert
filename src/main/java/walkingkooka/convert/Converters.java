@@ -683,6 +683,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterToTsvStringList}
+     */
+    public static <C extends ConverterContext> Converter<C> toTsvStringList() {
+        return ConverterToTsvStringList.instance();
+    }
+    
+    /**
      * {@see ConverterToValue}
      */
     public static <C extends ConverterContext> Converter<C> toValue() {
