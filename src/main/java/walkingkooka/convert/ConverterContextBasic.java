@@ -18,6 +18,8 @@
 package walkingkooka.convert;
 
 import walkingkooka.Either;
+import walkingkooka.ToStringBuilder;
+import walkingkooka.UsesToStringBuilder;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
@@ -47,7 +49,8 @@ final class ConverterContextBasic implements ConverterContext,
     CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator,
-    BinaryTextContextDelegator {
+    BinaryTextContextDelegator,
+    UsesToStringBuilder {
 
     /**
      * Creates a new {@link ConverterContextBasic}.
@@ -253,6 +256,18 @@ final class ConverterContextBasic implements ConverterContext,
 
     @Override
     public String toString() {
-        return this.binaryTextContext + " " + this.dateTimeContext + " " + this.decimalNumberContext;
+        return ToStringBuilder.buildFrom(this);
+    }
+
+    // UsesToStringBuilder..............................................................................................
+
+    @Override
+    public void buildToString(final ToStringBuilder b) {
+        b.label("binaryTextContext")
+            .value(this.binaryTextContext)
+            .label("dateTimeContext")
+            .value(this.dateTimeContext)
+            .label("decimalNumberContext")
+            .value(this.decimalNumberContext);
     }
 }
