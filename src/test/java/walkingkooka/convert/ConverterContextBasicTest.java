@@ -41,8 +41,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicConverterContextTest implements ClassTesting2<BasicConverterContext>,
-    ConverterContextTesting2<BasicConverterContext>,
+public final class ConverterContextBasicTest implements ClassTesting2<ConverterContextBasic>,
+    ConverterContextTesting2<ConverterContextBasic>,
     DecimalNumberContextDelegator {
 
     private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;
@@ -144,7 +144,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testWithNullBinaryTextContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicConverterContext.with(
+            () -> ConverterContextBasic.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 VALUE_SEPARATOR,
@@ -162,7 +162,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testWithNullConverterFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicConverterContext.with(
+            () -> ConverterContextBasic.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 VALUE_SEPARATOR,
@@ -180,7 +180,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testWithNullMultiplierFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicConverterContext.with(
+            () -> ConverterContextBasic.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 VALUE_SEPARATOR,
@@ -198,7 +198,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testWithNullCurrencyLocaleContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicConverterContext.with(
+            () -> ConverterContextBasic.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 VALUE_SEPARATOR,
@@ -217,7 +217,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testWithNullDateTimeContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicConverterContext.with(
+            () -> ConverterContextBasic.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 VALUE_SEPARATOR,
@@ -235,7 +235,7 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     public void testWithNullDecimalNumberContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicConverterContext.with(
+            () -> ConverterContextBasic.with(
                 CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
                 NUMBER_TO_DATE_OFFSET,
                 VALUE_SEPARATOR,
@@ -328,8 +328,8 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     }
 
     @Override
-    public BasicConverterContext createContext() {
-        return BasicConverterContext.with(
+    public ConverterContextBasic createContext() {
+        return ConverterContextBasic.with(
             CAN_NUMBERS_HAVE_GROUP_SEPARATOR,
             NUMBER_TO_DATE_OFFSET,
             VALUE_SEPARATOR,
@@ -370,12 +370,17 @@ public final class BasicConverterContextTest implements ClassTesting2<BasicConve
     // class............................................................................................................
 
     @Override
-    public Class<BasicConverterContext> type() {
-        return BasicConverterContext.class;
+    public Class<ConverterContextBasic> type() {
+        return ConverterContextBasic.class;
     }
 
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }
