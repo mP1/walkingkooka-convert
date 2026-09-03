@@ -362,7 +362,7 @@ public final class ConverterContextBasicTest implements ClassTesting2<ConverterC
     public void testToString() {
         this.toStringAndCheck(
             this.createContext(),
-            BINARY_TEXT_CONTEXT + " " + DATE_TIME_CONTEXT + " " + decimalNumberContext()
+            "binaryTextContext=charset=\"UTF-8\" indentation=\"  \" lineEnding=\"\\n\" dateTimeContext=symbols=ampms=\"am\", \"pm\" monthNames=\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\", \"September\", \"October\", \"November\", \"December\" monthNameAbbreviations=\"Jan.\", \"Feb.\", \"Mar.\", \"Apr.\", \"May\", \"Jun.\", \"Jul.\", \"Aug.\", \"Sep.\", \"Oct.\", \"Nov.\", \"Dec.\" weekDayNames=\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\" weekDayNameAbbreviations=\"Sun.\", \"Mon.\", \"Tue.\", \"Wed.\", \"Thu.\", \"Fri.\", \"Sat.\" locale=\"en-AU\" twoDigitYear=50 decimalNumberContext=negativeSign='-' positiveSign='+' zeroDigit='0' currencySymbol=\"$$\" decimalSeparator=':' exponentSymbol=\"X\" groupSeparator='/' infinitySymbol=\"Infinity\" monetaryDecimalSeparator=';' nanSymbol=\"Nan\" percentSymbol='!' permillSymbol='^' en_AU precision=7 roundingMode=HALF_EVEN"
         );
     }
 
