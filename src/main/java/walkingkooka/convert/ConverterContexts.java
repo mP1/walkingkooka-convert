@@ -29,7 +29,7 @@ import walkingkooka.text.BinaryTextContext;
 public final class ConverterContexts implements PublicStaticHelper {
 
     /**
-     * {@see BasicConverterContext}
+     * {@see ConverterContextBasic}
      */
     public static ConverterContext basic(final boolean canNumbersHaveGroupSeparator,
                                          final long dateOffset,
@@ -40,7 +40,7 @@ public final class ConverterContexts implements PublicStaticHelper {
                                          final CurrencyLocaleContext currencyLocaleContext,
                                          final DateTimeContext dateTimeContext,
                                          final DecimalNumberContext decimalNumberContext) {
-        return BasicConverterContext.with(
+        return ConverterContextBasic.with(
             canNumbersHaveGroupSeparator,
             dateOffset,
             valueSeparator,

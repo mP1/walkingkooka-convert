@@ -43,16 +43,16 @@ import java.util.Set;
 /**
  * An adaptor for {@link DecimalNumberContext} to {@link ConverterContext}.
  */
-final class BasicConverterContext implements ConverterContext,
+final class ConverterContextBasic implements ConverterContext,
     CurrencyCodeLanguageTagContextDelegator,
     DateTimeContextDelegator,
     DecimalNumberContextDelegator,
     BinaryTextContextDelegator {
 
     /**
-     * Creates a new {@link BasicConverterContext}.
+     * Creates a new {@link ConverterContextBasic}.
      */
-    static BasicConverterContext with(final boolean canNumbersHaveGroupSeparator,
+    static ConverterContextBasic with(final boolean canNumbersHaveGroupSeparator,
                                       final long dateOffset,
                                       final char valueSeparator,
                                       final Converter<ConverterContext> converter,
@@ -68,7 +68,7 @@ final class BasicConverterContext implements ConverterContext,
         Objects.requireNonNull(dateTimeContext, "dateTimeContext");
         Objects.requireNonNull(decimalNumberContext, "decimalNumberContext");
 
-        return new BasicConverterContext(
+        return new ConverterContextBasic(
             canNumbersHaveGroupSeparator,
             dateOffset,
             valueSeparator,
@@ -84,7 +84,7 @@ final class BasicConverterContext implements ConverterContext,
     /**
      * Private ctor use factory
      */
-    private BasicConverterContext(final boolean canNumbersHaveGroupSeparator,
+    private ConverterContextBasic(final boolean canNumbersHaveGroupSeparator,
                                   final long dateOffset,
                                   final char valueSeparator,
                                   final Converter<ConverterContext> converter,
