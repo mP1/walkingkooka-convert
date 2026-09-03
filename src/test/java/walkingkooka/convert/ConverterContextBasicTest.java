@@ -23,7 +23,7 @@ import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyLocaleContext;
 import walkingkooka.currency.FakeCurrencyContext;
-import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleContextTesting;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
@@ -43,7 +43,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class ConverterContextBasicTest implements ClassTesting2<ConverterContextBasic>,
     ConverterContextTesting2<ConverterContextBasic>,
-    DecimalNumberContextDelegator {
+    DecimalNumberContextDelegator,
+    LocaleContextTesting {
 
     private final static boolean CAN_NUMBERS_HAVE_GROUP_SEPARATOR = false;
 
@@ -101,9 +102,7 @@ public final class ConverterContextBasicTest implements ClassTesting2<ConverterC
                 CURRENCY_EXCHANGE_RATE
             );
         }
-    }.setLocaleContext(
-        LocaleContexts.jre(LOCALE)
-    );
+    }.setLocaleContext(LOCALE_CONTEXT);
 
     private final static String CURRENCY = "$$";
     private final static char DECIMAL = ':';
@@ -338,7 +337,7 @@ public final class ConverterContextBasicTest implements ClassTesting2<ConverterC
             BINARY_TEXT_CONTEXT,
             CURRENCY_LOCALE_CONTEXT,
             DATE_TIME_CONTEXT,
-            decimalNumberContext()
+            DECIMAL_NUMBER_CONTEXT
         );
     }
 
