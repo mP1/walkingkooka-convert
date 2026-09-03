@@ -86,6 +86,7 @@ Converters may be used to convert values of one type to another. This is particu
 - [to-decimal-number-symbols](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToDecimalNumberSymbols.java)
 - [to-locale](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToLocale.java)
 - [to-locale-language-tag](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterLocaleToLocaleLanguageTag.java)
+- [to-multi-line-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToMultiLineText.java)
 - [to-properties](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToProperties.java)
 - [to-text](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToText.java)
 - [to-tsv-string-list](https://github.com/mP1/walkingkooka-convert/blob/master/src/main/java/walkingkooka/convert/ConverterToTsvStringList.java)

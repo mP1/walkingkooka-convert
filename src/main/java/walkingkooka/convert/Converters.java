@@ -669,6 +669,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterToMultiLineText}
+     */
+    public static <C extends ConverterContext> Converter<C> toMultiLineText() {
+        return ConverterToMultiLineText.instance();
+    }
+
+    /**
      * {@see ConverterToProperties}
      */
     public static <C extends ConverterContext> Converter<C> toProperties() {
