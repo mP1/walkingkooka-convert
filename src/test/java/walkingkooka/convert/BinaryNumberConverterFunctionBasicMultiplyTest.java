@@ -26,9 +26,9 @@ import walkingkooka.reflect.JavaVisibility;
 
 import java.math.BigInteger;
 
-public final class BasicMultiplyBinaryNumberConverterFunctionTest implements BinaryNumberConverterFunctionTesting2<BasicMultiplyBinaryNumberConverterFunction<FakeConverterContext>, FakeConverterContext>,
-    ClassTesting<BasicMultiplyBinaryNumberConverterFunction<FakeConverterContext>>,
-    ToStringTesting<BasicMultiplyBinaryNumberConverterFunction<FakeConverterContext>> {
+public final class BinaryNumberConverterFunctionBasicMultiplyTest implements BinaryNumberConverterFunctionTesting2<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>, FakeConverterContext>,
+    ClassTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>>,
+    ToStringTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>> {
 
     @Test
     public void testApplyFloatDoubleToInteger() {
@@ -80,8 +80,8 @@ public final class BasicMultiplyBinaryNumberConverterFunctionTest implements Bin
 
 
     @Override
-    public BasicMultiplyBinaryNumberConverterFunction<FakeConverterContext> createBinaryNumberConverterFunction() {
-        return BasicMultiplyBinaryNumberConverterFunction.instance();
+    public BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext> createBinaryNumberConverterFunction() {
+        return BinaryNumberConverterFunctionBasicMultiply.instance();
     }
 
     @Override
@@ -108,15 +108,15 @@ public final class BasicMultiplyBinaryNumberConverterFunctionTest implements Bin
     public void testToString() {
         this.toStringAndCheck(
             this.createBinaryNumberConverterFunction(),
-            BasicMultiplyBinaryNumberConverterFunction.class.getName()
+            BinaryNumberConverterFunctionBasicMultiply.class.getName()
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<BasicMultiplyBinaryNumberConverterFunction<FakeConverterContext>> type() {
-        return Cast.to(BasicMultiplyBinaryNumberConverterFunction.class);
+    public Class<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>> type() {
+        return Cast.to(BinaryNumberConverterFunctionBasicMultiply.class);
     }
 
     @Override

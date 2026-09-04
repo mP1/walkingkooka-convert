@@ -23,21 +23,21 @@ import java.util.Objects;
  * A {@link BinaryNumberConverterFunction} that first converts each of the two number parameters to the requested {@link Number}
  * type and then multiplies both.
  */
-final class BasicMultiplyBinaryNumberConverterFunction<C extends ConverterContext> implements BinaryNumberConverterFunction<C> {
+final class BinaryNumberConverterFunctionBasicMultiply<C extends ConverterContext> implements BinaryNumberConverterFunction<C> {
 
     /**
      * Type safe getter
      */
-    static <C extends ConverterContext> BasicMultiplyBinaryNumberConverterFunction<C> instance() {
+    static <C extends ConverterContext> BinaryNumberConverterFunctionBasicMultiply<C> instance() {
         return INSTANCE;
     }
 
     /**
      * Singleton
      */
-    private final static BasicMultiplyBinaryNumberConverterFunction INSTANCE = new BasicMultiplyBinaryNumberConverterFunction<>();
+    private final static BinaryNumberConverterFunctionBasicMultiply INSTANCE = new BinaryNumberConverterFunctionBasicMultiply<>();
 
-    private BasicMultiplyBinaryNumberConverterFunction() {
+    private BinaryNumberConverterFunctionBasicMultiply() {
         super();
     }
 
@@ -52,7 +52,7 @@ final class BasicMultiplyBinaryNumberConverterFunction<C extends ConverterContex
         Objects.requireNonNull(context, "context");
 
         return context.convertOrFail(
-            BasicMultiplyBinaryNumberConverterFunctionNumberVisitor.multiply(
+            BinaryNumberConverterFunctionBasicMultiplyNumberVisitor.multiply(
                 context.convertOrFail(
                     left,
                     targetType

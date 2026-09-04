@@ -20,11 +20,11 @@ package walkingkooka.convert;
 import walkingkooka.math.NumberVisitorTesting;
 import walkingkooka.reflect.JavaVisibility;
 
-public final class BasicMultiplyBinaryNumberConverterFunctionNumberVisitorTest implements NumberVisitorTesting<BasicMultiplyBinaryNumberConverterFunctionNumberVisitor> {
+public final class BinaryNumberConverterFunctionBasicMultiplyNumberVisitorTest implements NumberVisitorTesting<BinaryNumberConverterFunctionBasicMultiplyNumberVisitor> {
 
     @Override
-    public BasicMultiplyBinaryNumberConverterFunctionNumberVisitor createVisitor() {
-        return new BasicMultiplyBinaryNumberConverterFunctionNumberVisitor(
+    public BinaryNumberConverterFunctionBasicMultiplyNumberVisitor createVisitor() {
+        return new BinaryNumberConverterFunctionBasicMultiplyNumberVisitor(
             null,
             null
         );
@@ -32,12 +32,12 @@ public final class BasicMultiplyBinaryNumberConverterFunctionNumberVisitorTest i
 
     @Override
     public String typeNamePrefix() {
-        return BasicMultiplyBinaryNumberConverterFunction.class.getSimpleName();
+        return BinaryNumberConverterFunctionBasicMultiply.class.getSimpleName();
     }
 
     @Override
-    public Class<BasicMultiplyBinaryNumberConverterFunctionNumberVisitor> type() {
-        return BasicMultiplyBinaryNumberConverterFunctionNumberVisitor.class;
+    public Class<BinaryNumberConverterFunctionBasicMultiplyNumberVisitor> type() {
+        return BinaryNumberConverterFunctionBasicMultiplyNumberVisitor.class;
     }
 
 

@@ -32,10 +32,10 @@ public final class BinaryNumberConverterFunctions implements PublicStaticHelper 
     }
 
     /**
-     * {@see BasicMultiplyBinaryNumberConverterFunction}
+     * {@see BinaryNumberConverterFunctionBasicMultiply}
      */
     public static <C extends ConverterContext> BinaryNumberConverterFunction<C> multiply() {
-        return BasicMultiplyBinaryNumberConverterFunction.instance();
+        return BinaryNumberConverterFunctionBasicMultiply.instance();
     }
 
     /**
