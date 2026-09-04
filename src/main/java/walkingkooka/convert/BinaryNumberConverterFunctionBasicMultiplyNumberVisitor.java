@@ -26,12 +26,12 @@ import java.math.BigInteger;
 /**
  * Handles performing the multiplication of two numbers assuming they have both been converted to the same type.
  */
-final class BasicMultiplyBinaryNumberConverterFunctionNumberVisitor extends NumberVisitor {
+final class BinaryNumberConverterFunctionBasicMultiplyNumberVisitor extends NumberVisitor {
 
     static Number multiply(final Number left,
                            final Number right,
                            final HasMathContext hasMathContext) {
-        final BasicMultiplyBinaryNumberConverterFunctionNumberVisitor visitor = new BasicMultiplyBinaryNumberConverterFunctionNumberVisitor(
+        final BinaryNumberConverterFunctionBasicMultiplyNumberVisitor visitor = new BinaryNumberConverterFunctionBasicMultiplyNumberVisitor(
             left,
             hasMathContext
         );
@@ -40,7 +40,7 @@ final class BasicMultiplyBinaryNumberConverterFunctionNumberVisitor extends Numb
     }
 
     // @VisibleForTesting
-    BasicMultiplyBinaryNumberConverterFunctionNumberVisitor(final Number left,
+    BinaryNumberConverterFunctionBasicMultiplyNumberVisitor(final Number left,
                                                             final HasMathContext hasMathContext) {
         super();
         this.left = left;
