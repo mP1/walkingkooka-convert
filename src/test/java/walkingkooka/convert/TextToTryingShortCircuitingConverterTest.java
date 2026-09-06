@@ -121,6 +121,11 @@ public final class TextToTryingShortCircuitingConverterTest implements Converter
         return TestTextToTryingShortCircuitingConverter.class;
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     static class TestTextToTryingShortCircuitingConverter implements TextToTryingShortCircuitingConverter<FakeConverterContext> {
 
         @Override

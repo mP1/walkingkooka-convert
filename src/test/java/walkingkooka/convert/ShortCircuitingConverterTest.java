@@ -68,6 +68,11 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
         return TestShortCircuitingConverter.class;
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     static final class TestShortCircuitingConverter implements ShortCircuitingConverter<FakeConverterContext> {
 
         @Override

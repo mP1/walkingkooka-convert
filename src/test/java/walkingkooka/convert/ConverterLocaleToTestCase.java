@@ -19,7 +19,6 @@ package walkingkooka.convert;
 
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.util.HasLocaleTesting;
 
 public abstract class ConverterLocaleToTestCase<C extends ConverterLocaleTo<T, ConverterContext>, T> implements ConverterTesting2<C, ConverterContext>,
@@ -43,10 +42,5 @@ public abstract class ConverterLocaleToTestCase<C extends ConverterLocaleTo<T, C
     @Override
     public final String typeNameSuffix() {
         return "";
-    }
-
-    @Override
-    public final JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
