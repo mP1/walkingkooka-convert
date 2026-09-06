@@ -20,12 +20,14 @@ package walkingkooka.convert;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.ToStringTesting;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 import walkingkooka.reflect.TypeNameTesting;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public interface ConverterTesting2<C extends Converter<CC>, CC extends ConverterContext>
     extends ConverterTesting,
+    PackagePrivateClassTesting<C>,
     ToStringTesting<C>,
     TypeNameTesting<C> {
 
