@@ -29,7 +29,6 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.math.DecimalNumberSymbols;
 import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
 
 import java.math.MathContext;
 import java.time.LocalDateTime;
@@ -371,11 +370,6 @@ public final class ConverterContextBasicTest implements ClassTesting2<ConverterC
     @Override
     public Class<ConverterContextBasic> type() {
         return ConverterContextBasic.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 
     @Override
