@@ -553,6 +553,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterTextToLoggingLevel}
+     */
+    public static <C extends ConverterContext> Converter<C> textToLoggingLevel() {
+        return ConverterTextToLoggingLevel.instance();
+    }
+
+    /**
      * {@see ConverterDecimalFormatStringToNumber}
      */
     public static <C extends ConverterContext> Converter<C> textToNumber(final Function<DecimalNumberContext, DecimalFormat> decimalFormat) {
