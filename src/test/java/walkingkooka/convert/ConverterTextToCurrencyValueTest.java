@@ -32,8 +32,6 @@ import java.util.Optional;
 
 public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestCase<ConverterTextToCurrencyValue<ConverterContext>, CurrencyValue> {
 
-    private final static CurrencyCode CURRENCY_CODE = CurrencyCode.parse("AUD");
-
     @Test
     public void testConvertNullFails() {
         this.convertFails(
@@ -85,7 +83,7 @@ public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestC
             CurrencyValue.class,
             CurrencyValue.with(
                 BigDecimal.valueOf(12),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -97,7 +95,7 @@ public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestC
             CurrencyValue.class,
             CurrencyValue.with(
                 BigDecimal.valueOf(12.5),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -109,7 +107,7 @@ public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestC
             CurrencyValue.class,
             CurrencyValue.with(
                 BigDecimal.valueOf(125),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -121,7 +119,7 @@ public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestC
             CurrencyValue.class,
             CurrencyValue.with(
                 BigDecimal.valueOf(12),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }
@@ -133,7 +131,7 @@ public final class ConverterTextToCurrencyValueTest extends ConverterTextToTestC
             CurrencyValue.class,
             CurrencyValue.with(
                 BigDecimal.valueOf(125),
-                CurrencyCode.parse("NZD")
+                DIFFERENT_CURRENCY_CODE
             )
         );
     }

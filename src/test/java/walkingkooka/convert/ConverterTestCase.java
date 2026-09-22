@@ -17,12 +17,14 @@
 
 package walkingkooka.convert;
 
+import walkingkooka.currency.HasCurrencyCodeTesting;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 
 public abstract class ConverterTestCase<C> implements ClassTesting2<C>,
+    HasCurrencyCodeTesting,
     TypeNameTesting<C>,
     TreePrintableTesting {
 

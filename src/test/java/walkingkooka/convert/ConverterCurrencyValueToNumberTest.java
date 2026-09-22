@@ -29,8 +29,8 @@ import java.util.Optional;
 
 public final class ConverterCurrencyValueToNumberTest extends ConverterTestCase2<ConverterCurrencyValueToNumber<ConverterContext>> {
 
-    private final static CurrencyCode FROM_CURRENCY_CODE = CurrencyCode.parse("AUD");
-    private final static CurrencyCode TO_CURRENCY_CODE = CurrencyCode.parse("NZD");
+    private final static CurrencyCode FROM_CURRENCY_CODE = CURRENCY_CODE;
+    private final static CurrencyCode TO_CURRENCY_CODE = DIFFERENT_CURRENCY_CODE;
 
     @Test
     public void testConvertCurrencyCodeWithUnsupportedCurrencyExchange() {

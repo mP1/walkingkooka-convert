@@ -34,8 +34,6 @@ public final class ConverterNumberToCurrencyValueTest extends ConverterTestCase2
         );
     }
 
-    private final static CurrencyCode CURRENCY_CODE = CurrencyCode.parse("AUD");
-
     @Test
     public void testConvertCurrencyCodeToCurrency() {
         final Number number = 123.456;

@@ -45,7 +45,7 @@ public final class ConverterTextToCurrencyCodeTest extends ConverterTextToTestCa
         this.convertAndCheck(
             "AUD",
             CurrencyCode.class,
-            CurrencyCode.parse("AUD")
+            CURRENCY_CODE
         );
     }
 
