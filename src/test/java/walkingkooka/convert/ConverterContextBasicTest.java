@@ -53,8 +53,8 @@ public final class ConverterContextBasicTest implements ClassTesting2<ConverterC
     private final static Converter<ConverterContext> CONVERTER = Converters.objectToString();
 
     private final static CurrencyExchange CURRENCY_EXCHANGE = CurrencyExchange.with(
-        CurrencyCode.parse("AUD"),
-        CurrencyCode.parse("NZD")
+        CURRENCY_CODE,
+        DIFFERENT_CURRENCY_CODE
     );
 
     private final static Number CURRENCY_EXCHANGE_RATE = 12;

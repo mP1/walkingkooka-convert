@@ -26,10 +26,6 @@ import walkingkooka.currency.CurrencyCodeSet;
 
 public final class ConverterTextToCollectionSetCurrencyCodeSetTest extends ConverterTextToCollectionSetTestCase<CurrencyCodeSet, CurrencyCode, ConverterTextToCollectionSetCurrencyCodeSet<ConverterContext>> {
 
-    private final static CurrencyCode CURRENCY_CODE = CurrencyCode.parse("AUD");
-
-    private final static CurrencyCode CURRENCY_CODE2 = CurrencyCode.parse("NZD");
-
     private final static char SEPARATOR = ',';
 
     @Test
@@ -43,8 +39,8 @@ public final class ConverterTextToCollectionSetCurrencyCodeSetTest extends Conve
     @Test
     public void testConvertStringSurroundingSpacesTrimmed() {
         this.convertToCollectionAndCheck(
-            " " + CURRENCY_CODE2 + " ",
-            CURRENCY_CODE2
+            " " + DIFFERENT_CURRENCY_CODE + " ",
+            DIFFERENT_CURRENCY_CODE
         );
     }
 
@@ -67,18 +63,18 @@ public final class ConverterTextToCollectionSetCurrencyCodeSetTest extends Conve
     @Test
     public void testConvertStringSeparatorString() {
         this.convertToCollectionAndCheck(
-            "" + CURRENCY_CODE + SEPARATOR + CURRENCY_CODE2,
+            "" + CURRENCY_CODE + SEPARATOR + DIFFERENT_CURRENCY_CODE,
             CURRENCY_CODE,
-            CURRENCY_CODE2
+            DIFFERENT_CURRENCY_CODE
         );
     }
 
     @Test
     public void testConvertStringSeparatorStringSeparatorString() {
         this.convertToCollectionAndCheck(
-            "" + CURRENCY_CODE + SEPARATOR + CURRENCY_CODE2 + SEPARATOR + CURRENCY_CODE,
+            "" + CURRENCY_CODE + SEPARATOR + DIFFERENT_CURRENCY_CODE + SEPARATOR + CURRENCY_CODE,
             CURRENCY_CODE,
-            CURRENCY_CODE2,
+            DIFFERENT_CURRENCY_CODE,
             CURRENCY_CODE
         );
     }

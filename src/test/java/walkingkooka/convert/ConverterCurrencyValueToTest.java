@@ -20,7 +20,6 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyValue;
 
 import java.util.Currency;
@@ -42,7 +41,7 @@ public final class ConverterCurrencyValueToTest extends ConverterTestCase2<Conve
         this.convertAndCheck(
             CurrencyValue.with(
                 numberValue,
-                CurrencyCode.parse("AUD")
+                CURRENCY_CODE
             ),
             Number.class,
             numberValue
@@ -56,7 +55,7 @@ public final class ConverterCurrencyValueToTest extends ConverterTestCase2<Conve
         this.convertAndCheck(
             CurrencyValue.with(
                 numberValue,
-                CurrencyCode.parse("AUD")
+                CURRENCY_CODE
             ),
             Number.class,
             numberValue
