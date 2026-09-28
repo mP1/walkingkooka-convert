@@ -655,6 +655,13 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
+     * {@see ConverterToCurrencyCode}
+     */
+    public static <C extends ConverterContext> Converter<C> toCurrencyCode() {
+        return ConverterToCurrencyCode.instance();
+    }
+
+    /**
      * {@see ConverterToDateTimeSymbols}
      */
     public static <C extends ConverterContext> Converter<C> toDateTimeSymbols() {
