@@ -46,6 +46,14 @@ public final class ConverterToCurrencyTest extends ConverterTestCase2<ConverterT
     }
 
     @Test
+    public void testConvertCurrencyToCurrency() {
+        this.convertAndCheck(
+            CURRENCY,
+            CURRENCY
+        );
+    }
+
+    @Test
     public void testConvertHasCurrencyToCurrency() {
         this.convertAndCheck(
             new HasCurrency() {
