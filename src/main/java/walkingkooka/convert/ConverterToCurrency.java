@@ -24,7 +24,7 @@ import walkingkooka.currency.HasOptionalCurrency;
 import java.util.Currency;
 
 /**
- * A Converter that converts any {@link HasCurrency} or {@link HasOptionalCurrency} into a {@link Currency}.
+ * A Converter that converts any {@link Currency}, {@link HasCurrency} or {@link HasOptionalCurrency} into a {@link Currency}.
  */
 final class ConverterToCurrency<C extends ConverterContext> implements TryingShortCircuitingConverter<C> {
 
@@ -52,6 +52,7 @@ final class ConverterToCurrency<C extends ConverterContext> implements TryingSho
                               final Class<?> type,
                               final C context) {
         return (null == value ||
+            value instanceof Currency ||
             value instanceof HasCurrency ||
             value instanceof HasOptionalCurrency) &&
             Currency.class == type;
@@ -61,12 +62,14 @@ final class ConverterToCurrency<C extends ConverterContext> implements TryingSho
     public Object tryConvertOrFail(final Object value,
                                    final Class<?> type,
                                    final C context) {
-        return value instanceof HasCurrency ?
-            ((HasCurrency) value).currency() :
-            value instanceof HasOptionalCurrency ?
-                ((HasOptionalCurrency) value).currency()
-                    .orElse(null) :
-                null;
+        return value instanceof Currency ?
+            value :
+            value instanceof HasCurrency ?
+                ((HasCurrency) value).currency() :
+                value instanceof HasOptionalCurrency ?
+                    ((HasOptionalCurrency) value).currency()
+                        .orElse(null) :
+                    null;
     }
 
     // Object...........................................................................................................
