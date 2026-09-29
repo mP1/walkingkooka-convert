@@ -37,6 +37,22 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
     }
 
     @Test
+    public void testConvertEmptyStringToLocaleLanguageTagFails() {
+        this.convertFails(
+            "",
+            LocaleLanguageTag.class
+        );
+    }
+
+    @Test
+    public void testConvertUndStringToLocaleLanguageTagFails() {
+        this.convertFails(
+            "und",
+            LocaleLanguageTag.class
+        );
+    }
+
+    @Test
     public void testConvertStringEnAuToLocaleLanguageTag() {
         this.convertAndCheck(
             "en-AU",
