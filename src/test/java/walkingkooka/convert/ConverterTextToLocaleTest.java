@@ -28,6 +28,22 @@ import java.util.Optional;
 public final class ConverterTextToLocaleTest extends ConverterTextToTestCase<ConverterTextToLocale<ConverterContext>, Locale> {
 
     @Test
+    public void testConvertEmptyStringToLocaleFails() {
+        this.convertFails(
+            "",
+            Locale.class
+        );
+    }
+
+    @Test
+    public void testConvertUndStringToLocaleFails() {
+        this.convertFails(
+            "und",
+            Locale.class
+        );
+    }
+
+    @Test
     public void testConvertStringToStringFails() {
         this.convertFails(
             "EN-AU",
