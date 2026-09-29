@@ -18,6 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.text.CharSequences;
 import walkingkooka.util.HasLocale;
 import walkingkooka.util.HasOptionalLocale;
 
@@ -68,10 +69,18 @@ final class ConverterLocaleToLocale<C extends ConverterContext> extends Converte
     @Override
     Locale tryConvertLocaleLanguageTag(final LocaleLanguageTag localeLanguageTag,
                                        final C context) {
+        final Locale locale = Locale.forLanguageTag(
+            localeLanguageTag.value()
+        );
+        final String localeString = locale.toString();
+        if (localeString.isEmpty() || localeString.equals("und")) {
+            throw new IllegalArgumentException(
+                "Invalid locale " + CharSequences.quoteIfChars(localeLanguageTag.value())
+            );
+        }
+
         return this.tryConvertLocale(
-            Locale.forLanguageTag(
-                localeLanguageTag.value()
-            ),
+            locale,
             context
         );
     }
