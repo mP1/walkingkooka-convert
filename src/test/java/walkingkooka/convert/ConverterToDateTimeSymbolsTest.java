@@ -70,7 +70,7 @@ public final class ConverterToDateTimeSymbolsTest extends ConverterTestCase2<Con
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "toDateTimeSymbols"
+            "to DateTimeSymbols"
         );
     }
 

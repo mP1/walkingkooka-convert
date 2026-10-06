@@ -134,11 +134,11 @@ public final class ConvertersTest implements PublicStaticHelperTesting<Converter
                 "  to CsvStringList (walkingkooka.convert.ConverterToCsvStringList)\n" +
                 "  to Currency (walkingkooka.convert.ConverterToCurrency)\n" +
                 "  to CurrencyCode (walkingkooka.convert.ConverterToCurrencyCode)\n" +
+                "  to DateTimeSymbols (walkingkooka.convert.ConverterToDateTimeSymbols)\n" +
                 "  to MultiLineText (walkingkooka.convert.ConverterToMultiLineText)\n" +
                 "  to Properties (walkingkooka.convert.ConverterToProperties)\n" +
                 "  to Text (walkingkooka.convert.ConverterToText)\n" +
                 "  to TsvStringList (walkingkooka.convert.ConverterToTsvStringList)\n" +
-                "  toDateTimeSymbols (walkingkooka.convert.ConverterToDateTimeSymbols)\n" +
                 "  toDecimalNumberSymbols (walkingkooka.convert.ConverterToDecimalNumberSymbols)\n"
         );
     }
