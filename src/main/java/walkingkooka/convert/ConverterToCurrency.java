@@ -76,6 +76,6 @@ final class ConverterToCurrency<C extends ConverterContext> implements TryingSho
 
     @Override
     public String toString() {
-        return "to" + Currency.class.getSimpleName();
+        return "to " + Currency.class.getSimpleName();
     }
 }
