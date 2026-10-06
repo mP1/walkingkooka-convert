@@ -89,6 +89,10 @@ public final class ConvertersTest implements PublicStaticHelperTesting<Converter
                 "  LocalTime to LocalDateTime (walkingkooka.convert.ConverterLocalTimeToLocalDateTime)\n" +
                 "  LocalTime to Number (walkingkooka.convert.ConverterLocalTimeToNumber)\n" +
                 "  Locale to String (walkingkooka.convert.ConverterLocaleToString)\n" +
+                "  LocaleLike to DateTimeSymbols (walkingkooka.convert.ConverterLocaleToDateTimeSymbols)\n" +
+                "  LocaleLike to DecimalNumberSymbols (walkingkooka.convert.ConverterLocaleToDecimalNumberSymbols)\n" +
+                "  LocaleLike to Locale (walkingkooka.convert.ConverterLocaleToLocale)\n" +
+                "  LocaleLike to LocaleLanguageTag (walkingkooka.convert.ConverterLocaleToLocaleLanguageTag)\n" +
                 "  Number to Boolean (walkingkooka.convert.ConverterNumberToBoolean)\n" +
                 "  Number to CurrencyValue (walkingkooka.convert.ConverterNumberToCurrencyValue)\n" +
                 "  Number to LocalDate (walkingkooka.convert.ConverterNumberToLocalDate)\n" +
@@ -130,10 +134,6 @@ public final class ConvertersTest implements PublicStaticHelperTesting<Converter
                 "  to CsvStringList (walkingkooka.convert.ConverterToCsvStringList)\n" +
                 "  to Currency (walkingkooka.convert.ConverterToCurrency)\n" +
                 "  to CurrencyCode (walkingkooka.convert.ConverterToCurrencyCode)\n" +
-                "  to DateTimeSymbols (walkingkooka.convert.ConverterLocaleToDateTimeSymbols)\n" +
-                "  to DecimalNumberSymbols (walkingkooka.convert.ConverterLocaleToDecimalNumberSymbols)\n" +
-                "  to Locale (walkingkooka.convert.ConverterLocaleToLocale)\n" +
-                "  to LocaleLanguageTag (walkingkooka.convert.ConverterLocaleToLocaleLanguageTag)\n" +
                 "  to MultiLineText (walkingkooka.convert.ConverterToMultiLineText)\n" +
                 "  to Properties (walkingkooka.convert.ConverterToProperties)\n" +
                 "  to Text (walkingkooka.convert.ConverterToText)\n" +

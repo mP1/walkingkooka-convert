@@ -257,7 +257,7 @@ public final class ConverterLocaleToDateTimeSymbolsTest extends ConverterLocaleT
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToDateTimeSymbols.instance(),
-            "to " + DateTimeSymbols.class.getSimpleName()
+            "LocaleLike to " + DateTimeSymbols.class.getSimpleName()
         );
     }
 

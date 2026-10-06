@@ -220,7 +220,7 @@ public final class ConverterLocaleToDecimalNumberSymbolsTest extends ConverterLo
     public void testToString() {
         this.toStringAndCheck(
             ConverterLocaleToDecimalNumberSymbols.instance(),
-            "to " + DecimalNumberSymbols.class.getSimpleName()
+            "LocaleLike to " + DecimalNumberSymbols.class.getSimpleName()
         );
     }
 
