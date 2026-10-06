@@ -75,6 +75,6 @@ final class ConverterToCurrencyCode<C extends ConverterContext> implements Tryin
 
     @Override
     public String toString() {
-        return "to" + CurrencyCode.class.getSimpleName();
+        return "to " + CurrencyCode.class.getSimpleName();
     }
 }
