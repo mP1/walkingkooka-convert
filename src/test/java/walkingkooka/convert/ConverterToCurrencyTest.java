@@ -107,7 +107,7 @@ public final class ConverterToCurrencyTest extends ConverterTestCase2<ConverterT
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "toCurrency"
+            "to Currency"
         );
     }
 
