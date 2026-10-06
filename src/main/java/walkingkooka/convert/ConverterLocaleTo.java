@@ -108,6 +108,6 @@ abstract class ConverterLocaleTo<T, C extends ConverterContext> implements Tryin
     @Override
     public final String toString() {
         // to Locale
-        return "to " + this.targetType().getSimpleName();
+        return "LocaleLike to " + this.targetType().getSimpleName();
     }
 }
