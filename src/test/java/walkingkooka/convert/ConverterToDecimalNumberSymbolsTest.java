@@ -63,7 +63,7 @@ public final class ConverterToDecimalNumberSymbolsTest extends ConverterTestCase
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "toDecimalNumberSymbols"
+            "to DecimalNumberSymbols"
         );
     }
 

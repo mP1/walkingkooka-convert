@@ -72,6 +72,6 @@ final class ConverterToDecimalNumberSymbols<C extends ConverterContext> implemen
 
     @Override
     public String toString() {
-        return "to" + DecimalNumberSymbols.class.getSimpleName();
+        return "to " + DecimalNumberSymbols.class.getSimpleName();
     }
 }
