@@ -68,14 +68,6 @@ public final class ConverterToTextTest extends ConverterTestCase2<ConverterToTex
         );
     }
 
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(
-            this.createConverter(),
-            "toText"
-        );
-    }
-
     @Override
     public ConverterToText<ConverterContext> createConverter() {
         return ConverterToText.instance();
@@ -89,6 +81,16 @@ public final class ConverterToTextTest extends ConverterTestCase2<ConverterToTex
                 return ';';
             }
         };
+    }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            this.createConverter(),
+            "to Text"
+        );
     }
 
     // class............................................................................................................
