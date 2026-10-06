@@ -79,6 +79,6 @@ final class ConverterToText<C extends ConverterContext> implements TryingShortCi
 
     @Override
     public String toString() {
-        return "toText";
+        return "to Text";
     }
 }
