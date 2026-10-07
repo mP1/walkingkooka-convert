@@ -87,6 +87,6 @@ final class ConverterSimple<C extends ConverterContext> implements TryingShortCi
 
     @Override
     public String toString() {
-        return "if type";
+        return "simple";
     }
 }
