@@ -89,7 +89,7 @@ public final class ConverterSimpleTest extends ConverterTestCase2<ConverterSimpl
     public void testToString() {
         this.toStringAndCheck(
             this.createConverter(),
-            "if type"
+            "simple"
         );
     }
 

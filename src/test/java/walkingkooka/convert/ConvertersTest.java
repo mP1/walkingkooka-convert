@@ -128,8 +128,8 @@ public final class ConvertersTest implements PublicStaticHelperTesting<Converter
                 "  TEXT to TsvStringList (walkingkooka.convert.ConverterTextToCollectionListTsvStringList)\n" +
                 "  TEXT to TsvStringSet (walkingkooka.convert.ConverterTextToCollectionSetTsvStringSet)\n" +
                 "  TEXT to ZoneOffset (walkingkooka.convert.ConverterTextToZoneOffset)\n" +
-                "  if type (walkingkooka.convert.ConverterSimple)\n" +
                 "  never (walkingkooka.convert.ConverterNever)\n" +
+                "  simple (walkingkooka.convert.ConverterSimple)\n" +
                 "  to Binary (walkingkooka.convert.ConverterToBinary)\n" +
                 "  to CsvStringList (walkingkooka.convert.ConverterToCsvStringList)\n" +
                 "  to Currency (walkingkooka.convert.ConverterToCurrency)\n" +
