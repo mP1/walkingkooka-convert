@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Miroslav Pokorny (github.com/mP1)
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
 import walkingkooka.convert.ConverterContexts;
+import walkingkooka.convert.FakeConverterContext;
 import walkingkooka.convert.Converters;
 import walkingkooka.j2cl.locale.LocaleAware;
 
@@ -44,6 +45,31 @@ public class TestGwtTest extends GWTTestCase {
                     "A",
                     Character.class,
                     ConverterContexts.fake()
+                )
+        );
+    }
+
+    public void testConvertStringToPath() {
+        final String path = "/path/to/file123";
+
+        assertEquals(
+            Path.of(path),
+            Converters.textToPath()
+                .convertOrFail(
+                    path,
+                    Path.class,
+                    new FakeConverterContext() {
+                        @Override
+                        public <T> Either<T, String> convert(final Object value,
+                                                             final Class<T> target) {
+                            return Converters.stringToCharacterOrString()
+                                .convert(
+                                    value,
+                                    target,
+                                    this
+                                );
+                        }
+                    }
                 )
         );
     }
