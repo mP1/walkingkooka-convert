@@ -17,6 +17,7 @@
   -->
 
 <module>
+    <inherits name="walkingkooka.j2cl.java.nio.NIO"/>
     <inherits name="walkingkooka.currency.Currency"/>
     <inherits name="walkingkooka.logging.Logging"/>
     <inherits name="walkingkooka.props.Props"/>
