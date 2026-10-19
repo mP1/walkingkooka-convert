@@ -34,6 +34,7 @@ package test;
 
 
 import com.google.j2cl.junit.apt.J2clTestInput;
+import java.nio.file.Path;
 import junit.framework.AssertionFailedError;
 import org.junit.Assert;
 import org.junit.Test;
@@ -163,16 +164,28 @@ public class JunitTest {
                     path,
                     Path.class,
                     new FakeConverterContext() {
+
+                        @Override
+                        public boolean canConvert(final Object value,
+                                                  final Class<?> type) {
+                            return this.converter.canConvert(
+                                value,
+                                type,
+                                this
+                            );
+                        }
+
                         @Override
                         public <T> Either<T, String> convert(final Object value,
                                                              final Class<T> target) {
-                            return Converters.stringToCharacterOrString()
-                                .convert(
-                                    value,
-                                    target,
-                                    this
-                                );
+                            return this.converter.convert(
+                                value,
+                                target,
+                                this
+                            );
                         }
+
+                        private final Converter<ConverterContext> converter = Converters.stringToCharacterOrString();
                     }
                 )
         );
