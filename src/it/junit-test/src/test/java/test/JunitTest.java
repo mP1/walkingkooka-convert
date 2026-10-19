@@ -1,4 +1,21 @@
 /*
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+/*
  * Copyright © 2020 Miroslav Pokorny
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -133,5 +150,31 @@ public class JunitTest {
         Assert.assertEquals("Failed to convert " + CharSequences.quoteIfChars(value) + " (" + value.getClass().getName() + ")= to " + target.getName(),
             expected,
             convertedValue);
+    }
+
+    @Test
+    public void testConvertStringToPath() {
+        final String path = "/path/to/file123";
+
+        assertEquals(
+            Path.of(path),
+            Converters.textToPath()
+                .convertOrFail(
+                    path,
+                    Path.class,
+                    new FakeConverterContext() {
+                        @Override
+                        public <T> Either<T, String> convert(final Object value,
+                                                             final Class<T> target) {
+                            return Converters.stringToCharacterOrString()
+                                .convert(
+                                    value,
+                                    target,
+                                    this
+                                );
+                        }
+                    }
+                )
+        );
     }
 }
