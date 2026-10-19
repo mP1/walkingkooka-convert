@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.Cast;
 
 import java.nio.file.Path;
@@ -25,7 +24,6 @@ import java.nio.file.Path;
 /**
  * A converter that supports converting text into a {@link Path}
  */
-@GwtIncompatible
 final class ConverterTextToPath<C extends ConverterContext> extends ConverterTextTo<Path, C> {
 
     /**

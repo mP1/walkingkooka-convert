@@ -17,7 +17,6 @@
 
 package walkingkooka.convert;
 
-import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.reflect.PublicStaticHelper;
@@ -576,7 +575,6 @@ public final class Converters implements PublicStaticHelper {
     /**
      * {@see ConverterTextToPath}
      */
-    @GwtIncompatible
     public static <C extends ConverterContext> Converter<C> textToPath() {
         return ConverterTextToPath.instance();
     }
