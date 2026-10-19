@@ -17,7 +17,12 @@
 package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
+import java.nio.file.Path;
+import walkingkooka.Either;
+import walkingkooka.convert.Converter;
+import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.ConverterContexts;
+import walkingkooka.convert.Converters;
 import walkingkooka.convert.FakeConverterContext;
 import walkingkooka.convert.Converters;
 import walkingkooka.j2cl.locale.LocaleAware;
@@ -59,16 +64,28 @@ public class TestGwtTest extends GWTTestCase {
                     path,
                     Path.class,
                     new FakeConverterContext() {
+
+                        @Override
+                        public boolean canConvert(final Object value,
+                                                  final Class<?> type) {
+                            return this.converter.canConvert(
+                                value,
+                                type,
+                                this
+                            );
+                        }
+
                         @Override
                         public <T> Either<T, String> convert(final Object value,
                                                              final Class<T> target) {
-                            return Converters.stringToCharacterOrString()
-                                .convert(
-                                    value,
-                                    target,
-                                    this
-                                );
+                            return this.converter.convert(
+                                value,
+                                target,
+                                this
+                            );
                         }
+
+                        private final Converter<ConverterContext> converter = Converters.stringToCharacterOrString();
                     }
                 )
         );
