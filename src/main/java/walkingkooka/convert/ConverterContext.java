@@ -26,6 +26,7 @@ import walkingkooka.currency.HasCurrencyCode;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.locale.CanDateTimeSymbolsForLocale;
 import walkingkooka.locale.CanDecimalNumberSymbolsForLocale;
+import walkingkooka.logging.LoggerPath;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.text.BinaryTextContext;
 
@@ -43,6 +44,8 @@ public interface ConverterContext extends ConverterLike,
     DateTimeContext,
     DecimalNumberContext,
     HasCurrencyCode {
+
+    LoggerPath CONVERTER_LOGGER = LoggerPath.parse("converter");
 
     /**
      * A flag that controls whether text holding a number may or may not include a group-separator.
