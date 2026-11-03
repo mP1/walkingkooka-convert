@@ -28,4 +28,9 @@ public final class ConverterContextTestingTest implements ConverterContextTestin
     public Class<ConverterContext> type() {
         return ConverterContext.class;
     }
+
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
 }
