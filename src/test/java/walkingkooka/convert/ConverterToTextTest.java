@@ -26,10 +26,136 @@ import walkingkooka.text.LineEnding;
 public final class ConverterToTextTest extends ConverterTestCase2<ConverterToText<ConverterContext>> {
 
     @Test
+    public void testConvertNullToCharacter() {
+        this.convertAndCheck(
+            null,
+            Character.class
+        );
+    }
+
+    @Test
+    public void testConvertNullToCharSequence() {
+        this.convertAndCheck(
+            null,
+            CharSequence.class
+        );
+    }
+
+    @Test
     public void testConvertNullToString() {
         this.convertAndCheck(
             null,
             String.class
+        );
+    }
+
+    @Test
+    public void testConvertCharacterToCharacter() {
+        this.convertAndCheck(
+            'A',
+            Character.class,
+            'A'
+        );
+    }
+
+    @Test
+    public void testConvertCharacterToCharSequence() {
+        this.convertAndCheck(
+            'A',
+            CharSequence.class,
+            "A"
+        );
+    }
+
+    @Test
+    public void testConvertCharacterToString() {
+        this.convertAndCheck(
+            'A',
+            String.class,
+            "A"
+        );
+    }
+
+    @Test
+    public void testConvertCharSequenceToCharacterFails() {
+        this.convertFails(
+            new StringBuilder("ABC"),
+            Character.class
+        );
+    }
+
+    @Test
+    public void testConvertCharSequenceToCharSequence() {
+        this.convertAndCheck(
+            new StringBuilder("ABC"),
+            CharSequence.class
+        );
+    }
+
+    @Test
+    public void testConvertCharSequenceToString() {
+        this.convertAndCheck(
+            new StringBuilder("ABC"),
+            String.class,
+            "ABC"
+        );
+    }
+
+    @Test
+    public void testConvertCharSequenceToCharacter() {
+        this.convertAndCheck(
+            new StringBuilder("A"),
+            Character.class,
+            'A'
+        );
+    }
+
+    @Test
+    public void testConvertStringEmptyStringToCharacterFails() {
+        this.convertFails(
+            "",
+            Character.class
+        );
+    }
+
+    @Test
+    public void testConvertStringMoreThanOneCharacterStringToCharacterFails() {
+        this.convertFails(
+            "AB",
+            Character.class
+        );
+    }
+
+    @Test
+    public void testConvertStringToCharacter() {
+        final String string = "A";
+
+        this.convertAndCheck(
+            string,
+            Character.class,
+            'A'
+        );
+    }
+
+    @Test
+    public void testConvertStringToCharSequence() {
+        final String string = "ABC";
+
+        this.convertAndCheck(
+            string,
+            CharSequence.class,
+            string
+        );
+    }
+
+    @Test
+    public void testConvertStringToString() {
+        final String string = "ABC";
+
+        this.convertAndCheck(
+            string,
+            String.class,
+            string
         );
     }
 
