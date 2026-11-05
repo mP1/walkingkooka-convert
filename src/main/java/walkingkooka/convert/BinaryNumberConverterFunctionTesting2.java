@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface BinaryNumberConverterFunctionTesting2<F extends BinaryNumberConverterFunction<C>, C extends ConverterContext> extends BinaryNumberConverterFunctionTesting<F, C> {
+public interface BinaryNumberConverterFunctionTesting2<F extends BinaryNumberConverterFunction<C>, C extends ConverterContext> extends BinaryNumberConverterFunctionTesting {
 
     @Test
     default void testApplyWithNullLeftFails() {

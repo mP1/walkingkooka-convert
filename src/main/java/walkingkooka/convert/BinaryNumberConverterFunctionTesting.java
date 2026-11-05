@@ -19,14 +19,14 @@ package walkingkooka.convert;
 
 import walkingkooka.text.printer.TreePrintableTesting;
 
-public interface BinaryNumberConverterFunctionTesting<F extends BinaryNumberConverterFunction<C>, C extends ConverterContext> extends TreePrintableTesting {
+public interface BinaryNumberConverterFunctionTesting extends TreePrintableTesting {
 
-    default <N extends Number> void applyAndCheck(final F function,
-                                                  final Number left,
-                                                  final Number right,
-                                                  final Class<N> targetType,
-                                                  final C context,
-                                                  final N expected) {
+    default <F extends BinaryNumberConverterFunction<C>, C extends ConverterContext, N extends Number> void applyAndCheck(final F function,
+                                                                                                                          final Number left,
+                                                                                                                          final Number right,
+                                                                                                                          final Class<N> targetType,
+                                                                                                                          final C context,
+                                                                                                                          final N expected) {
         this.checkEquals(
             expected,
             function.apply(
