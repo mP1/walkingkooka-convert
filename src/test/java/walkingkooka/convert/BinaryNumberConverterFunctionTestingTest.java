@@ -18,10 +18,12 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.reflect.PublicClassTesting;
 
 import java.math.BigDecimal;
 
-public final class BinaryNumberConverterFunctionTestingTest implements BinaryNumberConverterFunctionTesting {
+public final class BinaryNumberConverterFunctionTestingTest implements BinaryNumberConverterFunctionTesting,
+    PublicClassTesting<BinaryNumberConverterFunctionTesting> {
 
     @Test
     public void testApply() {
@@ -33,6 +35,11 @@ public final class BinaryNumberConverterFunctionTestingTest implements BinaryNum
             new FakeConverterContext(),
             new BigDecimal(2 * 3)
         );
+    }
+
+    @Override
+    public Class<BinaryNumberConverterFunctionTesting> type() {
+        return BinaryNumberConverterFunctionTesting.class;
     }
 
     final static class TestBinaryNumberConverterFunction implements BinaryNumberConverterFunction<FakeConverterContext> {
