@@ -18,11 +18,10 @@
 package walkingkooka.convert;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.convert.BinaryNumberConverterFunctionTestingTest.TestBinaryNumberConverterFunction;
 
 import java.math.BigDecimal;
 
-public final class BinaryNumberConverterFunctionTestingTest implements BinaryNumberConverterFunctionTesting<TestBinaryNumberConverterFunction, FakeConverterContext> {
+public final class BinaryNumberConverterFunctionTestingTest implements BinaryNumberConverterFunctionTesting {
 
     @Test
     public void testApply() {
