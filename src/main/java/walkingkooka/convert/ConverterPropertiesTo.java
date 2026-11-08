@@ -59,7 +59,7 @@ abstract class ConverterPropertiesTo<T extends HasProperties, C extends Converte
     abstract Class<T> type();
 
     @Override
-    public String toString() {
+    public final String toString() {
         return Properties.class.getSimpleName() + " to " + this.type().getSimpleName();
     }
 }
