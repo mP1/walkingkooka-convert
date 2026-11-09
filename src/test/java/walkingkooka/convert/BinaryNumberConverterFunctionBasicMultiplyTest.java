@@ -21,13 +21,12 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.ToStringTesting;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 
 import java.math.BigInteger;
 
 public final class BinaryNumberConverterFunctionBasicMultiplyTest implements BinaryNumberConverterFunctionTesting2<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>, FakeConverterContext>,
-    ClassTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>>,
+    PackagePrivateClassTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>>,
     ToStringTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>> {
 
     @Test
@@ -117,10 +116,5 @@ public final class BinaryNumberConverterFunctionBasicMultiplyTest implements Bin
     @Override
     public Class<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>> type() {
         return Cast.to(BinaryNumberConverterFunctionBasicMultiply.class);
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
