@@ -33,19 +33,20 @@ abstract class ConverterNumber<N, C extends ConverterContext> implements ShortCi
     }
 
     @Override
-    public boolean canConvert(final Object value,
-                              final Class<?> type,
-                              final C context) {
-        return (null == value || value instanceof Number) &&
+    public final boolean canConvert(final Object value,
+                                    final Class<?> type,
+                                    final C context) {
+        return (null == value ||
+            value instanceof Number) &&
             this.targetType() == type;
     }
 
     abstract Class<N> targetType();
 
     @Override
-    public <T> Either<T, String> doConvert(final Object value,
-                                           final Class<T> type,
-                                           final C context) {
+    public final <T> Either<T, String> doConvert(final Object value,
+                                                 final Class<T> type,
+                                                 final C context) {
         return null == value ?
             this.successfulConversion(
                 value,
