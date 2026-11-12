@@ -20,11 +20,12 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.math.NumberTypeVisitorTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 
 import java.math.BigInteger;
 
 public class ConverterNumberToNumberNumberTypeVisitorTest implements NumberTypeVisitorTesting<ConverterNumberToNumberNumberTypeVisitor>,
+    PackagePrivateClassTesting<ConverterNumberToNumberNumberTypeVisitor>,
     ToStringTesting {
 
     @Test
@@ -47,10 +48,5 @@ public class ConverterNumberToNumberNumberTypeVisitorTest implements NumberTypeV
     @Override
     public Class<ConverterNumberToNumberNumberTypeVisitor> type() {
         return ConverterNumberToNumberNumberTypeVisitor.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
