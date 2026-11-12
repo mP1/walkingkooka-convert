@@ -24,7 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public final class ConverterDateTimeFormatterCacheTest extends ConverterDateTimeFormatterTestCase<ConverterDateTimeFormatterCache>
-    implements ToStringTesting<ConverterDateTimeFormatterCache> {
+    implements ToStringTesting {
 
     @Test
     public void testToString() {

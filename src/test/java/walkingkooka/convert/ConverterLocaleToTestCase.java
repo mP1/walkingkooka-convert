@@ -23,7 +23,7 @@ import walkingkooka.util.HasLocaleTesting;
 
 public abstract class ConverterLocaleToTestCase<C extends ConverterLocaleTo<T, ConverterContext>, T> implements ConverterTesting2<C, ConverterContext>,
     HasLocaleTesting,
-    ToStringTesting<C>,
+    ToStringTesting,
     ClassTesting<C> {
 
     ConverterLocaleToTestCase() {

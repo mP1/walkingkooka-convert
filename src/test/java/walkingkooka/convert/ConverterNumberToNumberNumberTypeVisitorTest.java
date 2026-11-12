@@ -25,7 +25,7 @@ import walkingkooka.reflect.JavaVisibility;
 import java.math.BigInteger;
 
 public class ConverterNumberToNumberNumberTypeVisitorTest implements NumberTypeVisitorTesting<ConverterNumberToNumberNumberTypeVisitor>,
-    ToStringTesting<ConverterNumberToNumberNumberTypeVisitor> {
+    ToStringTesting {
 
     @Test
     public void testToString() {
