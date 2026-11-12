@@ -21,9 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.math.NumberTypeVisitor;
 import walkingkooka.math.NumberVisitorTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 
 public abstract class ConverterNumberToNumberNumberTypeVisitorTestCase<V extends ConverterNumberToNumberNumberTypeVisitorNumber<N>, N extends Number> implements NumberVisitorTesting<V>,
+    PackagePrivateClassTesting<V>,
     ToStringTesting {
 
     ConverterNumberToNumberNumberTypeVisitorTestCase() {
@@ -47,10 +48,5 @@ public abstract class ConverterNumberToNumberNumberTypeVisitorTestCase<V extends
     @Override
     public final String typeNameSuffix() {
         return this.targetType().getSimpleName();
-    }
-
-    @Override
-    public final JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
     }
 }
