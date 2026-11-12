@@ -27,7 +27,7 @@ import java.math.BigInteger;
 
 public final class BinaryNumberConverterFunctionBasicMultiplyTest implements BinaryNumberConverterFunctionTesting2<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>, FakeConverterContext>,
     PackagePrivateClassTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>>,
-    ToStringTesting<BinaryNumberConverterFunctionBasicMultiply<FakeConverterContext>> {
+    ToStringTesting {
 
     @Test
     public void testApplyFloatDoubleToInteger() {

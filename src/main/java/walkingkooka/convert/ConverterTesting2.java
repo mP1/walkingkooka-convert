@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public interface ConverterTesting2<C extends Converter<CC>, CC extends ConverterContext>
     extends ConverterTesting,
     PackagePrivateClassTesting<C>,
-    ToStringTesting<C>,
+    ToStringTesting,
     TypeNameTesting<C> {
 
     C createConverter();

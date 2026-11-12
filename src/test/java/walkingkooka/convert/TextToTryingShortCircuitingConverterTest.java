@@ -79,11 +79,6 @@ public final class TextToTryingShortCircuitingConverterTest implements Converter
     }
 
     @Override
-    public void testCheckToStringOverridden() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public TestTextToTryingShortCircuitingConverter createConverter() {
         return new TestTextToTryingShortCircuitingConverter();
     }

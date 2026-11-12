@@ -49,11 +49,6 @@ public final class ShortCircuitingConverterTest implements ConverterTesting2<Tes
     }
 
     @Override
-    public void testCheckToStringOverridden() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public TestShortCircuitingConverter createConverter() {
         return new TestShortCircuitingConverter();
     }
