@@ -35,7 +35,7 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
     @Test
     public void testConvertHasMultiValueLineToStringFails() {
         this.convertFails(
-            MultiLineText.with("Hello"),
+            MultiLineText.EMPTY.setText("Hello"),
             String.class
         );
     }
@@ -62,7 +62,7 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
 
         this.convertAndCheck(
             text,
-            MultiLineText.with(text)
+            MultiLineText.EMPTY.setText(text)
         );
     }
 
@@ -72,7 +72,7 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
 
         this.convertAndCheck(
             character,
-            MultiLineText.with(
+            MultiLineText.EMPTY.setText(
                 character.toString()
             )
         );
@@ -84,14 +84,14 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
             new HasMultiLineText() {
                 @Override
                 public MultiLineText multiLineText(final TextContext context) {
-                    return MultiLineText.with(
+                    return MultiLineText.EMPTY.setText(
                         context.indentation() +
                             "Hello" +
                             context.lineEnding()
                     );
                 }
             },
-            MultiLineText.with(
+            MultiLineText.EMPTY.setText(
                 "  Hello\n"
             )
         );
@@ -103,7 +103,7 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
             new HasMultiLineText() {
                 @Override
                 public MultiLineText multiLineText(final TextContext context) {
-                    return MultiLineText.with(
+                    return MultiLineText.EMPTY.setText(
                         context.indentation() +
                             "Hello" +
                             context.lineEnding()
@@ -115,7 +115,7 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
                 DIFFERENT_INDENTATION,
                 DIFFERENT_LINE_ENDING
             ),
-            MultiLineText.with(
+            MultiLineText.EMPTY.setText(
                 "    Hello\r\n"
             )
         );
@@ -126,8 +126,8 @@ public final class ConverterToMultiLineTextTest extends ConverterTestCase2<Conve
         final String text = "HelloWorldText123";
 
         this.convertAndCheck(
-            MultiLineText.with(text),
-            MultiLineText.with(text)
+            MultiLineText.EMPTY.setText(text),
+            MultiLineText.EMPTY.setText(text)
         );
     }
 
