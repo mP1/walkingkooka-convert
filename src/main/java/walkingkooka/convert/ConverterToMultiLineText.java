@@ -66,7 +66,7 @@ final class ConverterToMultiLineText<C extends ConverterContext> implements Tryi
             value instanceof HasMultiLineText ?
                 ((HasMultiLineText) value).multiLineText(context) :
                 // when not HasMultiLineText convert to String and create a MultiLineText
-                MultiLineText.with(
+                MultiLineText.EMPTY.setText(
                     context.convertOrFail(
                         value,
                         String.class
