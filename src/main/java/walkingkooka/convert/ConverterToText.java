@@ -96,7 +96,9 @@ final class ConverterToText<C extends ConverterContext> implements TryingShortCi
                 if (value instanceof HasTextWithSeparator) {
                     final HasTextWithSeparator hasTextWithSeparator = (HasTextWithSeparator) value;
                     text = hasTextWithSeparator.textWithSeparator(
-                        context.valueSeparator()
+                        String.valueOf(
+                            context.valueSeparator()
+                        )
                     );
                 } else {
                     if (value instanceof HasText) {
