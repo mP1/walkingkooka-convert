@@ -107,7 +107,6 @@ public final class ConvertersTest implements PublicStaticHelperTesting<Converter
                 "  TEXT to BooleanList (walkingkooka.convert.ConverterTextToCollectionListBooleanList)\n" +
                 "  TEXT to Charset (walkingkooka.convert.ConverterTextToCharset)\n" +
                 "  TEXT to CsvStringList (walkingkooka.convert.ConverterTextToCollectionListCsvStringList)\n" +
-                "  TEXT to CsvStringSet (walkingkooka.convert.ConverterTextToCollectionSetCsvStringSet)\n" +
                 "  TEXT to Currency (walkingkooka.convert.ConverterTextToCurrency)\n" +
                 "  TEXT to CurrencyCode (walkingkooka.convert.ConverterTextToCurrencyCode)\n" +
                 "  TEXT to CurrencyCodeSet (walkingkooka.convert.ConverterTextToCollectionSetCurrencyCodeSet)\n" +
