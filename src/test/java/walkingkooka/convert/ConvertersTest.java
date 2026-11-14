@@ -125,7 +125,6 @@ public final class ConvertersTest implements PublicStaticHelperTesting<Converter
                 "  TEXT to Properties (walkingkooka.convert.ConverterTextToProperties)\n" +
                 "  TEXT to StringList (walkingkooka.convert.ConverterTextToCollectionListStringList)\n" +
                 "  TEXT to TsvStringList (walkingkooka.convert.ConverterTextToCollectionListTsvStringList)\n" +
-                "  TEXT to TsvStringSet (walkingkooka.convert.ConverterTextToCollectionSetTsvStringSet)\n" +
                 "  TEXT to ZoneOffset (walkingkooka.convert.ConverterTextToZoneOffset)\n" +
                 "  never (walkingkooka.convert.ConverterNever)\n" +
                 "  simple (walkingkooka.convert.ConverterSimple)\n" +

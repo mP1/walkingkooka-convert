@@ -594,13 +594,6 @@ public final class Converters implements PublicStaticHelper {
     }
 
     /**
-     * {@see ConverterTextToCollectionSetTsvStringSet}
-     */
-    public static <C extends ConverterContext> Converter<C> textToTsvStringSet() {
-        return ConverterTextToCollectionSetTsvStringSet.instance();
-    }
-
-    /**
      * {@see ConverterTextToZoneOffset}
      */
     public static <C extends ConverterContext> Converter<C> textToZoneOffset() {
