@@ -20,13 +20,16 @@ package walkingkooka.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
-import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleContextTesting;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
 import java.util.Optional;
 
-public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToTestCase<ConverterTextToLocaleLanguageTag<ConverterContext>, LocaleLanguageTag> {
+public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToTestCase<ConverterTextToLocaleLanguageTag<ConverterContext>, LocaleLanguageTag>
+    implements HasLocaleTesting,
+    LocaleContextTesting {
 
     @Test
     public void testConvertNullFails() {
@@ -63,38 +66,36 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
 
     @Test
     public void testConvertStringToLocaleLanguageTagToLocale() {
-        final Locale locale = Locale.forLanguageTag("en-AU");
-
         this.checkEquals(
             "AU",
-            locale.getCountry(),
+            LOCALE.getCountry(),
             "country"
         );
 
         this.checkEquals(
             "en",
-            locale.getLanguage(),
+            LOCALE.getLanguage(),
             "language"
         );
 
         this.checkEquals(
             "en-AU",
-            locale.toLanguageTag(),
+            LOCALE.toLanguageTag(),
             "toLanguageTag"
         );
 
         this.convertAndCheck(
             Converters.textToLocale(),
-            locale.toLanguageTag(),
+            LOCALE.toLanguageTag(),
             Locale.class,
-            locale
+            LOCALE
         );
 
         this.convertAndCheck(
             Converters.textToLocaleLanguageTag(),
-            locale.toLanguageTag(),
+            LOCALE.toLanguageTag(),
             LocaleLanguageTag.class,
-            LocaleLanguageTag.fromLocale(locale)
+            LocaleLanguageTag.fromLocale(LOCALE)
         );
     }
 
@@ -131,8 +132,7 @@ public final class ConverterTextToLocaleLanguageTagTest extends ConverterTextToT
 
             @Override
             public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
-                return LocaleContexts.jre(Locale.ENGLISH)
-                    .localeForLanguageTag(languageTag);
+                return LOCALE_CONTEXT.localeForLanguageTag(languageTag);
             }
         };
     }
