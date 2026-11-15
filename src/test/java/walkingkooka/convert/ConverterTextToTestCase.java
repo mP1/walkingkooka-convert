@@ -17,7 +17,10 @@
 
 package walkingkooka.convert;
 
-public abstract class ConverterTextToTestCase<C extends ConverterTextTo<T, ConverterContext>, T> extends ConverterTestCase2<C> {
+import walkingkooka.HasCharsetTesting;
+
+public abstract class ConverterTextToTestCase<C extends ConverterTextTo<T, ConverterContext>, T> extends ConverterTestCase2<C>
+    implements HasCharsetTesting {
 
     ConverterTextToTestCase() {
         super();

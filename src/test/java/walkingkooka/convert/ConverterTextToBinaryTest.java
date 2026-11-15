@@ -27,8 +27,6 @@ import java.nio.charset.Charset;
 
 public final class ConverterTextToBinaryTest extends ConverterTextToTestCase<ConverterTextToBinary<ConverterContext>, Binary> {
 
-    private final static Charset CHARSET = Charset.forName("UTF-8");
-
     @Test
     public void testConvertNullFails() {
         this.convertFails(

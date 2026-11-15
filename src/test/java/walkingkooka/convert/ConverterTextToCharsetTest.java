@@ -46,7 +46,7 @@ public final class ConverterTextToCharsetTest extends ConverterTextToTestCase<Co
         this.convertAndCheck(
             "UTF-8",
             Charset.class,
-            Charset.forName("UTF-8")
+            CHARSET
         );
     }
 
