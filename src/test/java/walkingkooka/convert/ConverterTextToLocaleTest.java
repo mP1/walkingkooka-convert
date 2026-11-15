@@ -21,11 +21,13 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.util.HasLocaleTesting;
 
 import java.util.Locale;
 import java.util.Optional;
 
-public final class ConverterTextToLocaleTest extends ConverterTextToTestCase<ConverterTextToLocale<ConverterContext>, Locale> {
+public final class ConverterTextToLocaleTest extends ConverterTextToTestCase<ConverterTextToLocale<ConverterContext>, Locale>
+    implements HasLocaleTesting {
 
     @Test
     public void testConvertEmptyStringToLocaleFails() {
@@ -54,28 +56,24 @@ public final class ConverterTextToLocaleTest extends ConverterTextToTestCase<Con
     @Test
     public void testConvertLocaleToLocaleFails() {
         this.convertFails(
-            Locale.forLanguageTag("EN-AU"),
+            LOCALE,
             Locale.class
         );
     }
 
     @Test
     public void testConvertStringToLocale() {
-        final Locale locale = Locale.forLanguageTag("EN-AU");
-
         this.convertAndCheck(
-            locale.toLanguageTag(),
-            locale
+            LOCALE.toLanguageTag(),
+            LOCALE
         );
     }
 
     @Test
     public void testConvertCharSequenceToLocale() {
-        final Locale locale = Locale.forLanguageTag("EN-AU");
-
         this.convertAndCheck(
-            new StringBuilder(locale.toLanguageTag()),
-            locale
+            new StringBuilder(LOCALE.toLanguageTag()),
+            LOCALE
         );
     }
 
