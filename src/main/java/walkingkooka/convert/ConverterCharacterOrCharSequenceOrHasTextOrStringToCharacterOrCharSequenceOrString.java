@@ -18,8 +18,7 @@
 package walkingkooka.convert;
 
 import walkingkooka.Cast;
-import walkingkooka.EmptyTextException;
-import walkingkooka.InvalidTextLengthException;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.HasText;
 
 /**
@@ -98,22 +97,7 @@ final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSe
                     }
 
                     if (null != charSequence) {
-                        // extract the first character or complain
-                        final int length = charSequence.length();
-                        switch (length) {
-                            case 0:
-                                throw new EmptyTextException("Empty text");
-                            case 1:
-                                result = charSequence.charAt(0);
-                                break;
-                            default:
-                                throw new InvalidTextLengthException(
-                                    "value",
-                                    charSequence.toString(),
-                                    1,
-                                    1
-                                );
-                        }
+                        result = CharSequences.toCharacter(charSequence);
                     } else {
                         result = charSequence;
                     }
