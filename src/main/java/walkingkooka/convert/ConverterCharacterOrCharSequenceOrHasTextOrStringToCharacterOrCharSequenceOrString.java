@@ -83,7 +83,8 @@ final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSe
                 if (value instanceof Character) {
                     result = value; // Character remains Character
                 } else {
-                    CharSequence charSequence;
+                    final CharSequence charSequence;
+
                     if (value instanceof CharSequence) {
                         charSequence = (CharSequence) value;
                     } else {
@@ -96,11 +97,7 @@ final class ConverterCharacterOrCharSequenceOrHasTextOrStringToCharacterOrCharSe
                         }
                     }
 
-                    if (null != charSequence) {
-                        result = CharSequences.toCharacter(charSequence);
-                    } else {
-                        result = charSequence;
-                    }
+                    result = CharSequences.toCharacter(charSequence);
                 }
                 break;
             case "String":
